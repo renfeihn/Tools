@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<package name="ajaxlfj" extends="json-default">
+		<!-- Classify -->
+		<result-types>
+			<result-type name="json"
+				class="cn.com.agree.aweb.struts2.action.support.CustJSONResult" />
+		</result-types>
+		<action name="ClassifyAction_*" class="ClassifyBean" method="{1}">
+			<result name="success" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+		</action>
+		<action name="DataRoleAction_*" class="DataRoleBean" method="{1}">
+			<result name="success" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+		</action>
+		<!-- 查看用户权限 -->
+		<action name="ShowUserPrivilegeAction_*" class="ShowUserPrivilegeActionBean" method="{1}">
+			<result name="success" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+		</action>
+		<!-- 查看用户权限 -->
+		<action name="ShowUserPrivilegeBaseCfgAction_*" class="ShowUserPrivilegeBaseCfgActionBean" method="{1}">
+			<result name="success" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+		</action>
+		<action name="AbcInfoAction_*" class="AbcInfoBean" method="{1}">
+			<result name="success" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+		</action>
+		
+		<!-- 应用性能-流水监控  -->
+		<action name="AppEsbTransMonitorAction_*" class="AppEsbTransMonitorActionBean"
+			method="{1}">
+			<result name="success" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+		</action>
+		
+		<!-- 应用性能-流水分析  -->
+		<action name="AppEsbTransAnalyseAction_*" class="AppEsbTransAnalyseActionBean"
+			method="{1}">
+			<result name="success" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+		</action>
+		
+		<!-- 应用配置-ESB对象触发规则  -->
+		<action name="AppEsbTriggerConfigAction_*" class="AppEsbTriggerConfigActionBean"
+			method="{1}">
+			<result name="success" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+		</action>
+		
+		<!-- 大屏  APMTOP -->
+		<action name="MonitorAction_*" class="MonitorActionBean"
+			method="{1}">
+			<result name="success" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+		</action>
+		
+		<!-- esb对象监控视图  -->
+		<action name="EsbMonitorAction_*" class="EsbMonitorActionBean"
+			method="{1}">
+			<result name="success" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+		</action>
+		
+		<!-- 操作系统 -->
+		<action name="AppOsAction_*" class="AppOsActionBean"
+			method="{1}">
+			<result name="success" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+		</action>
+		
+		<!-- 应用程序 -->
+		<action name="AppProgramAction_*" class="AppProgramActionBean"
+			method="{1}">
+			<result name="success" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+		</action>
+	</package>
+</struts>

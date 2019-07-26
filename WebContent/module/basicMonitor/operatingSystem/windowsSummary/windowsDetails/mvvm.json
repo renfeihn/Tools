@@ -1,0 +1,20 @@
+{
+
+	"views": {
+		"windowsDetailsV": {
+			"template": "windowsDetails.jsp",
+			"js": "windowsDetails.js"
+		}
+	}, 
+	
+	"models": {
+	}, 
+	
+	"flows": [
+		{
+			"id": "windowsDetailsV"
+		}
+	],
+
+	"stepBar": false
+}

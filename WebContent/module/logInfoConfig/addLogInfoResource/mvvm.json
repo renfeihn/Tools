@@ -1,0 +1,12 @@
+{
+    "views": {
+        "addLogInfoResourceV": {
+            "template": "addLogInfoResource.jsp",
+            "js": "addLogInfoResource.js"
+        }
+    },
+    "models": {},
+    "flows": [{
+        "id": "addLogInfoResourceV"
+    }]
+}

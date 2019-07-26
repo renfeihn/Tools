@@ -1,0 +1,19 @@
+{
+	"views": {
+		"tomcatTabsV": {
+			"template": "tomcatTabs.jsp",
+			"js": "tomcatTabs.js"
+		}
+	}, 
+	
+	"models": {
+	}, 
+	
+	"flows": [
+		{
+			"id": "tomcatTabsV"
+		}
+	],
+
+	"stepBar": false
+}

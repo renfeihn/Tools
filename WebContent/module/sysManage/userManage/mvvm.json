@@ -1,0 +1,12 @@
+{
+    "views": {
+        "view1": {
+            "template": "userManage.jsp",
+            "js": "userManage.js"
+        }
+    },
+    "models": {},
+    "flows": [{
+        "id": "view1"
+    }]
+}

@@ -1,0 +1,19 @@
+{
+	"views": {
+		"warningFieldManagerV": {
+			"template":"warningFieldManager.jsp",
+			"js":"warningFieldManager.js"
+		}
+	}, 
+	
+	"models": {
+	}, 
+	
+	"flows": [
+		{
+			"id": "warningFieldManagerV"
+		}
+	],
+
+	"stepBar": false
+}

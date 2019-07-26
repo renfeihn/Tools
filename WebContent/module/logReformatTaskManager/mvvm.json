@@ -1,0 +1,19 @@
+{
+	"views": {
+		"logReformatTaskManagerV": {
+			"template":"logReformatTaskManager.jsp",
+			"js":"logReformatTaskManager.js"
+		}
+	}, 
+	
+	"models": {
+	}, 
+	
+	"flows": [
+		{
+			"id": "logReformatTaskManagerV"
+		}
+	],
+
+	"stepBar": false
+}

@@ -1,0 +1,19 @@
+{
+	"views": {
+		"zookeeperTabsV": {
+			"template": "zookeeperTabs.jsp",
+			"js": "zookeeperTabs.js"
+		}
+	}, 
+	
+	"models": {
+	}, 
+	
+	"flows": [
+		{
+			"id": "zookeeperTabsV"
+		}
+	],
+
+	"stepBar": false
+}

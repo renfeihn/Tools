@@ -1,0 +1,19 @@
+{
+	"views": {
+		"addRelationV": {
+			"template":"addRelation.jsp",
+			"js":"addRelation.js"
+		}
+	}, 
+	
+	"models": {
+	}, 
+	
+	"flows": [
+		{
+			"id": "addRelationV"
+		}
+	],
+
+	"stepBar": false
+}

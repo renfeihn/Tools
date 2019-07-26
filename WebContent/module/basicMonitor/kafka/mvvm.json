@@ -1,0 +1,19 @@
+{
+	"views": {
+		"kafkaV": {
+			"template":"kafka.jsp",
+			"js":"kafka.js"
+		}
+	}, 
+	
+	"models": {
+	}, 
+	
+	"flows": [
+		{
+			"id": "kafkaV"
+		}
+	],
+
+	"stepBar": false
+}

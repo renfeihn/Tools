@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<package name="yuanf" extends="json-default">
+		<result-types>
+			<result-type name="json"
+				class="cn.com.agree.aweb.struts2.action.support.CustJSONResult" />
+		</result-types>
+
+		<!-- tradeAction -->
+		<action name="TradeAction_*" class="TradeActionBean" method="{1}">
+			<result name="success" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+		</action>
+		
+		<!-- SvgAction -->
+		<action name="SvgAction_*" class="SvgGraphActionBean" method="{1}">
+			<result name="success" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+		</action>
+		
+		<action name="AppEsbRunTimeMonitorAction_*" class="AppEsbRunTimeMonitorActionBean" method="{1}">
+			<result name="success" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+		</action>
+		
+		<action name="EchartsManageAction_*" class="EchartsManageActionBean" method="{1}">
+			<result name="success" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+		</action>
+		
+		
+	</package>
+</struts>

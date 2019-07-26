@@ -1,0 +1,19 @@
+{
+	"views": {
+		"mysqlDetailsV": {
+			"template": "mysqlDetails.jsp",
+			"js": "mysqlDetails.js"
+		}
+	}, 
+	
+	"models": {
+	}, 
+	
+	"flows": [
+		{
+			"id": "mysqlDetailsV"
+		}
+	],
+
+	"stepBar": false
+}

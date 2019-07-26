@@ -1,0 +1,19 @@
+{
+	"views": {
+		"logFlowV": {
+			"template":"logFlow.jsp",
+			"js":"logFlow.js"
+		}
+	}, 
+	
+	"models": {
+	}, 
+	
+	"flows": [
+		{
+			"id": "logFlowV"
+		}
+	],
+
+	"stepBar": false
+}

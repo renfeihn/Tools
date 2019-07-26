@@ -1,0 +1,19 @@
+{
+	"views": {
+		"appConfigIndexV": {
+			"template":"appConfigIndex.jsp",
+			"js":"appConfigIndex.js"
+		}
+	}, 
+	
+	"models": {
+	}, 
+	
+	"flows": [
+		{
+			"id": "appConfigIndexV"
+		}
+	],
+
+	"stepBar": false
+}

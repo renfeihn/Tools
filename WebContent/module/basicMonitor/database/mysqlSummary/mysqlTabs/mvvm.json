@@ -1,0 +1,19 @@
+{
+	"views": {
+		"mysqlTabsV": {
+			"template": "mysqlTabs.jsp",
+			"js": "mysqlTabs.js"
+		}
+	}, 
+	
+	"models": {
+	}, 
+	
+	"flows": [
+		{
+			"id": "mysqlTabsV"
+		}
+	],
+
+	"stepBar": false
+}

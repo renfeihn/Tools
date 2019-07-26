@@ -1,0 +1,19 @@
+{
+	"views": {
+		"clearFilesV": {
+			"template": "clearFiles.jsp",
+			"js": "clearFiles.js"
+		}
+	}, 
+	
+	"models": {
+	}, 
+	
+	"flows": [
+		{
+			"id": "clearFilesV"
+		}
+	],
+
+	"stepBar": false
+}

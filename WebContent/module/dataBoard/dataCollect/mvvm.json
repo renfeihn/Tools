@@ -1,0 +1,19 @@
+{
+	"views": {
+		"dataCollectV": {
+			"template":"dataCollect.jsp",
+			"js":"dataCollect.js"
+		}
+	}, 
+	
+	"models": {
+	}, 
+	
+	"flows": [
+		{
+			"id": "dataCollectV"
+		}
+	],
+
+	"stepBar": false
+}

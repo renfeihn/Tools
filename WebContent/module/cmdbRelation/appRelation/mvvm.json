@@ -1,0 +1,19 @@
+{
+	"views": {
+		"appRelation": {
+			"template":"appRelation.jsp",
+			"js":"appRelation.js"
+		}
+	}, 
+	
+	"models": {
+	}, 
+	
+	"flows": [
+		{
+			"id": "appRelation"
+		}
+	],
+
+	"stepBar": false
+}

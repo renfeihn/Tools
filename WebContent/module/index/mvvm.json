@@ -1,0 +1,19 @@
+{
+	"views": {
+		"indexV": {
+			"template":"index.jsp",
+			"js":"index.js"
+		}
+	}, 
+	
+	"models": {
+	}, 
+	
+	"flows": [
+		{
+			"id": "indexV"
+		}
+	],
+
+	"stepBar": false
+}

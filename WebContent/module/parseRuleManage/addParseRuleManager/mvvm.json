@@ -1,0 +1,19 @@
+{
+	"views": {
+		"addParseRuleManageV": {
+			"template": "addParseRuleManage.jsp",
+			"js": "addParseRuleManage.js"
+		}
+	}, 
+	
+	"models": {
+	}, 
+	
+	"flows": [
+		{
+			"id": "addParseRuleManageV"
+		}
+	],
+
+	"stepBar": false
+}

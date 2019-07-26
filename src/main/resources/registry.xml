@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<registry>
+	<!-- 该配置下的类必须继承Cycle接口，在服务器启动时会创建实例并执行initialize方法，服务器停止时调用destroy方法 -->
+	<startup>
+		<!-- Web运维管理 -->
+		<class name="cn.com.agree.aweb.filter.cycle.StandardContextCycle"></class>
+	</startup>
+	
+	<!-- 全局参数 -->
+	<global>
+		
+		<!-- 服务器信息配置 -->
+		<!-- 部署集群时需要把不同Tomcat所在的地址和端口配置到下面两个param -->
+		<init-param>
+		    <param-name>ServerAddr</param-name>
+		    <param-value>127.0.0.1</param-value>
+		</init-param>
+		<init-param>
+		    <param-name>ServerPort</param-name>
+		    <param-value>8080</param-value>
+		</init-param>
+		<init-param>
+			<param-name>allowOrigin</param-name>
+			<param-value>http://localhost:8080</param-value>
+		</init-param>
+	</global>
+	
+</registry>

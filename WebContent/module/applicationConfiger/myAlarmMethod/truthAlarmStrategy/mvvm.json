@@ -1,0 +1,19 @@
+{
+	"views": {
+		"truthAlarmStrategyV": {
+			"template":"truthAlarmStrategy.jsp",
+			"js":"truthAlarmStrategy.js"
+		}
+	}, 
+	
+	"models": {
+	}, 
+	
+	"flows": [
+		{
+			"id": "truthAlarmStrategyV"
+		}
+	],
+
+	"stepBar": false
+}

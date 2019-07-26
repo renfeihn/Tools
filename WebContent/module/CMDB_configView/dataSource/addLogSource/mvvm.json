@@ -1,0 +1,19 @@
+{
+	"views": {
+		"addLogSourceV": {
+			"template":"addLogSource.jsp",
+			"js":"addLogSource.js"
+		}
+	}, 
+	
+	"models": {
+	}, 
+	
+	"flows": [
+		{
+			"id": "addLogSourceV"
+		}
+	],
+
+	"stepBar": false
+}

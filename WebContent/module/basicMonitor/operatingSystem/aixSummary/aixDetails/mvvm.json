@@ -1,0 +1,19 @@
+{
+	"views": {
+		"aixDetailsV": {
+			"template": "aixDetails.jsp",
+			"js": "aixDetails.js"
+		}
+	}, 
+	
+	"models": {
+	}, 
+	
+	"flows": [
+		{
+			"id": "aixDetailsV"
+		}
+	],
+
+	"stepBar": false
+}

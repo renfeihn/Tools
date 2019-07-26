@@ -1,0 +1,19 @@
+{
+	"views": {
+		"redisTabsV": {
+			"template": "redisTabs.jsp",
+			"js": "redisTabs.js"
+		}
+	}, 
+	
+	"models": {
+	}, 
+	
+	"flows": [
+		{
+			"id": "redisTabsV"
+		}
+	],
+
+	"stepBar": false
+}

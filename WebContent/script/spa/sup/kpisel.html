@@ -1,0 +1,73 @@
+	<div class="modal-header" id="selModalHeader">
+		<button id="clo_btn"type="button" class="close" data-dismiss="modal"
+			aria-hidden="true">×</button>
+		<h3 id="myModalLabel">指标配置</h3>
+	</div>
+	<div class="modal-body" id="selModalBody" style="max-height: 800px;overflow: visible;">
+		<div class="sel-app-ser">
+			<h3>应用与对象选择</h3>
+			<div id="appDiv">
+				<span>应&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;用：</span>
+				<input class="hide" data-role="app_Sel" placeholder="--请选择--" readonly="readonly"></input>
+				<select class = " sel-multi-sel" id="multiApp" ></select>
+			</div>
+			<div>
+				<span>对象类型：</span>
+				<select name="" id="ObjTypeSel"><option value="">--请选择--</option></select>
+			</div>
+			<div id="objDiv">
+				<span>对象选择：</span>
+				<input class="hide" data-role="obj_Sel" placeholder="--请选择--" readonly="readonly">
+				<select class = " sel-multi-sel" id="multiObj" ></select>
+			</div>
+		</div>
+		<div class="clearfix"></div> 
+		<div class="sel-kpi-sel" id="selKpiMain">
+			<!-- kpi标题模板 -->
+			<div class="sel-kpi-title" id="selKpiTitle"><h3>指标分类选取</h3><span id="selKpiChange" style="display:none">搜索选取</span></div>
+			<!-- kpi搜索模板 -->
+			<div id="selKpiSea" class="sel-kpi-sea hide">
+				<div class="sel-kpi-sea-head">
+					<input type="text" id="selKpiInp" placeholder="请输入关键词搜索"><img class="" src="img/search.png" id="search">
+				</div>
+				<div id="selKpisCtn" class="sel-kpis-ctn">
+										
+					<!-- <div data-role="kpi-ctn" class="sel-kpi-ctn sel-cur-kpi"><span>测试测试</span></div> -->
+				</div>
+			</div>
+			<!-- kpi分类选择模板 -->
+			<div id="selKpiChoose" class="sel-kpi-choose">
+				<div><span>监控对象：</span><select name="" id="monitorObjSel"><option value="">--请选择--</option></select></div>
+				<div><span>对象类型：</span><select name="" id="objTypeSel"><option value="">--请选择--</option></select></div>
+				<div><span>指标分类：</span><select name="" id="kpiClassifySel"><option value="">--请选择--</option></select></div>
+				<div><span>指&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;标：</span><select name="" id="kpiCurSel"><option value="">--请选择--</option></select></div>
+			</div>
+		</div>
+		<div class="clearfix"></div> 
+		<table id="radioTb" class="sel-kpi-tab table table-striped table-bordered table-hover hide">
+			<thead>
+				<tr>
+					<th>编号</th>
+					<th>指标</th>
+					<th>展示类型</th>
+					<th>名称</th>
+					<th>预览</th>
+				</tr>
+			</thead>
+			<tbody></tbody>
+		</table>
+	</div>
+	<div class="modal-footer" id="selModalFooter">
+		<button class="modal-btn gray free-cancel" id="cancel" data-dismiss="modal" aria-hidden="true">取消</button>
+		<button class="modal-btn blue fre-save  marginL15" data-role="saveBtn">保存</button>
+	</div>
+	<!-- 预览框模板 -->
+	<div class="sel-pre-ctn hide" data-role="preCtn">
+		<div class="sel-pre-title"><span id="preTitle">CPU</span></div>
+		<div class="sel-pre-box" id="preChartsCtn"></div>
+	</div>
+	<!-- 预览图片模板 -->
+	<img src="./img/kpisel/preview.png" data-role="preview" class="sel-pre">
+	<img src="./img/kpisel/nopreview.png" data-role="noPreview">
+	<!-- kpi条模板 -->
+	<div data-role="kpi_ctn" class="sel-kpi-ctn"></div>

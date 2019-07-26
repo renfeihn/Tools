@@ -1,0 +1,12 @@
+{
+    "views": {
+        "view1": {
+            "template": "resetPassword.jsp",
+            "js": "resetPassword.js"
+        }
+    },
+    "models": {},
+    "flows": [{
+        "id": "view1"
+    }]
+}

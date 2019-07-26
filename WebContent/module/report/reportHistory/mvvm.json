@@ -1,0 +1,19 @@
+{
+	"views": {
+		"reportHistoryV": {
+			"template":"reportHistory.jsp",
+			"js":"reportHistory.js"
+		}
+	}, 
+	
+	"models": {
+	}, 
+	
+	"flows": [
+		{
+			"id": "reportHistoryV"
+		}
+	],
+
+	"stepBar": false
+}

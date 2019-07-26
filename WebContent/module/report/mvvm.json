@@ -1,0 +1,19 @@
+{
+	"views": {
+		"reportV": {
+			"template":"report.jsp",
+			"js":"report.js"
+		}
+	}, 
+	
+	"models": {
+	}, 
+	
+	"flows": [
+		{
+			"id": "reportV"
+		}
+	],
+
+	"stepBar": false
+}

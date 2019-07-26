@@ -1,0 +1,2118 @@
+<style>
+
+</style>
+<!-- html Start -->
+<div class="hero-unit">
+    <h1>AWeb 2.1</h1>
+    <p>JavaScript APIs</p>
+</div>
+<div>
+    <!--outline-->
+    <div data-href="cycle" class="module">
+        <div class="page-header">
+            <h2>
+                循环闭包化
+            </h2>
+        </div>
+        <p class="text-indent">
+            在循环中，如<code>for(;;){}</code>中，可能使用到索引的地方，函数进行闭包，保持变量的值不变。
+        </p>
+        <pre>
+for(var i=0;i&lt;arrayList.length;i++){
+    $.ajax({
+        success:function(ii){
+            return function(data){
+                if(data.status){
+                    app.alert(ii===i);//由于异步的关系，ii是队列中的某个索引，i已经是队列的长度
+                }
+            }
+        }(i)
+    })
+}</pre>
+        <p class="alert">
+            <strong>注意：</strong>
+            使用闭包，有可能导致内存泄漏。在使用时，尽量避免内存泄漏。
+        </p>
+    </div>
+    <div data-href="component">
+        <div class="page-header">
+            <h2>
+                各个组件基本操作
+            </h2>
+        </div>
+        <table class="table table-hover table-condensed">
+            <tr>
+                <th>组件名</th>
+                <th>初始化</th>
+                <th>恢复/刷新</th>
+                <th>重置/清空</th>
+                <th>销毁</th>
+            </tr>
+            <tr>
+                <td>表格Datatables</td>
+                <td>var dataTb=$(selector).dataTable(options);</td>
+                <td>dataTb.fnClearTable().fnAddData(data)</td>
+                <td>dataTb.fnClearTable()</td>
+                <td>dataTb.fnDestroy()</td>
+            </tr>
+            <tr>
+                <td>设备详情Page.js</td>
+                <td>var dtl=app.dtlComponent(options)</td>
+                <td></td>
+                <td>dtl.reloadDtlTb();</td>
+                <td>dtl.dispose()</td>
+            </tr>
+            <tr>
+                <td>图表Echarts</td>
+                <td>var chart=echarts.init(chartDOM[,skin]);;</td>
+                <td>chart.setOption(options)</td>
+                <td>chart.clear()</td>
+                <td>chart.dispose();</td>
+            </tr>
+            <tr>
+                <td>缓存</td>
+                <td>app.domain.exports(namespace,dataObject)</td>
+                <td></td>
+                <td>app.domain.clearScope(namespace)</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>轮询/定时</td>
+                <td>var uid=handler.set[Timout|Interval](callback,timeout)</td>
+                <td></td>
+                <td>handler.clear[Timout|Interval](uid)</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>窗口大小监听</td>
+                <td>app.screen.addResizeHandler(options)</td>
+                <td>app.screen.triggerResizeHandlerHandler(uid)</td>
+                <td></td>
+                <td>app.screen.removeResizeHandler(uid)</td>
+            </tr>
+            <tr>
+                <td>遮罩</td>
+                <td>app.shelter.show(title)</td>
+                <td></td>
+                <td>app.shelter.show(title)</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>改变遮罩zIndex</td>
+                <td>app.shelter.upperZIndex(args)</td>
+                <td></td>
+                <td>app.shelter.lowerZIndex()</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>顶部导航栏</td>
+                <td>app.banner(options)</td>
+                <td></td>
+                <td>app.banner.remove(uid)</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>标签栏</td>
+                <td>app.dispatcher.load(options)</td>
+                <td></td>
+                <td></td>
+                <td>app.dispatcher.close()</td>
+            </tr>
+            <tr>
+                <td>弹出新窗口</td>
+                <td>app.tab.openNewWindow(options)</td>
+                <td></td>
+                <td></td>
+                <td>app.tab.closeNewWindow(lastID)</td>
+            </tr>
+            <tr>
+                <td>右侧弹出框</td>
+                <td>app.formControl.set(args).show()</td>
+                <td></td>
+                <td>app.formControl.reset()</td>
+                <td>app.formControl.hide()</td>
+            </tr>
+            <tr>
+                <td>上传组件</td>
+                <td>var fileUpload=app.formControl.bootstrapUpload(options)</td>
+                <td></td>
+                <td>fileUpload.reset()</td>
+                <td>fileUpload.destroy()</td>
+            </tr>
+            <tr>
+                <td>时间组件</td>
+                <td>$(selector).datetimepicker(options)</td>
+                <td></td>
+                <td></td>
+                <td>$(selector).datetimepicker('remove')</td>
+            </tr>
+            <tr>
+                <td>多选组件</td>
+                <td>var selComponent = app.selectComponent(options)</td>
+                <td></td>
+                <td>var arrayList=selComponent.clear()</td>
+                <td>selComponent.dispose()</td>
+            </tr>
+        </table>
+        <p class="alert">
+            在各个模块中，各个组件的“初始化”方法一般写<code>load</code>函数，“重置/清空”一般写在<code>pause</code>中，“恢复/刷新”一般写在<code>resume</code>函数中，“销毁”一般写在<code>unload</code>函数中。
+        </p>
+    </div>
+    <!--outline-->
+    <!-- global-->
+    <div data-href="global" class="module">
+        <div class="page-header">
+            <h2>
+                全局参数Global
+                <small>app.global, global.js</small>
+            </h2>
+        </div>
+
+        <h3>
+            使用方法：app.global.getCookie(name)
+        </h3>
+        <ol>
+            <li>
+                可以通过该方法读取非HTTP-ONLY的cookie。
+            </li>
+        </ol>
+        <h3>
+            使用方法：app.global.getCookie(name)
+        </h3>
+        <ol>
+            <li>
+                可以通过该方法读取非HTTP-ONLY的cookie。
+            </li>
+        </ol>
+        <h4>参数</h4>
+        <ol>
+            <li>
+                <p class="text-param"><code>name</code>：cookie属性名；</p>
+            </li>
+        </ol>
+
+        <h3>
+            使用方法：app.global.getUniqueId()
+        </h3>
+        <ol>
+            <li>
+                获取一串随机的字符串，在大部分情况下可以认为是唯一的。
+            </li>
+        </ol>
+    </div>
+    <!-- global-->
+    <!-- handler-->
+    <div data-href="handler" class="module">
+        <div class="page-header">
+            <h2>
+                页面参数Handler
+                <small>handler.js</small>
+            </h2>
+        </div>
+        <h3>
+            使用方法：handler.nextStep()
+        </h3>
+        <ol>
+            <li>
+                加载当前模块的下一个页面。
+            </li>
+        </ol>
+
+        <h3>
+            使用方法：handler.prevStep()
+        </h3>
+        <ol>
+            <li>
+                加载当前模块的上一个页面。
+            </li>
+        </ol>
+
+        <h3>
+            使用方法：handler.stepTo(step)
+        </h3>
+        <ol>
+            <li>
+                跳转到模块中的某页面。
+            </li>
+        </ol>
+        <h4>参数</h4>
+        <ol>
+            <li>
+                <p class="text-param"><code>step</code>：数值类型，跳转页面的索引值，具体值取决于mvvm.json中flows数组的顺序；</p>
+            </li>
+        </ol>
+
+        <h3>
+            使用方法：var uniqueId=handler.setTimeout(callback,timeout,immediately)
+        </h3>
+        <ol>
+            <li>
+                <p class="text-param"><code>callback</code>：回调函数。</p>
+                <p class="text-param"><code>timeout</code>：超时时间。</p>
+                <p class="text-param"><code>immediately</code>：是否立即执行。</p>
+                <p class="text-param"><code>uniqueId</code>：setTimeout的唯一ID，用于清理时使用。</p>
+            </li>
+            <li>
+                使用方法类似window.setTimeout。在调用了handler.setTimeout后，如果此时模块进入到暂停
+            </li>
+            <li>
+                状态，则会自动清除掉该setTimeout方法，在页面被唤醒时重新执行handler.setTimeout方法。
+            </li>
+        </ol>
+
+        <h3>
+            使用方法：handler.clearTimeout(uniqueId)
+        </h3>
+        <ol>
+            <li>
+                清理setTimeout事件。
+            </li>
+        </ol>
+
+        <h3>
+            使用方法：var uniqueId=handler.setInterval(callback,timeout,immediately)
+        </h3>
+        <ol>
+            <li>参数与handler.setTimeout类似</li>
+            <li>
+                使用方法类似window.setInterval。在调用了handler.setInterval后，如果此时模块进入到暂停
+            </li>
+            <li>
+                状态，则会自动清除掉该setInterval方法，在页面被唤醒时重新执行handler.setInterval方法。
+            </li>
+        </ol>
+
+        <h3>
+            使用方法：handler.clearInterval(uniqueId)
+        </h3>
+        <ol>
+            <li>
+                清理setInterval事件。
+            </li>
+        </ol>
+
+    </div>
+    <!-- handler-->
+    <!-- domain-->
+    <div data-href="domain" class="module">
+        <div class="page-header">
+            <h2>
+                跨页传参Domain
+                <small>app.domain, domain.js</small>
+            </h2>
+        </div>
+
+        <h3>
+            使用方法：app.domain.exports(namespace, dataObject)
+        </h3>
+        <ol>
+            <li>
+                将数据导入到公共域中，一般用在模块间传递数据或者共享方法时。
+            </li>
+            <li>
+                比如在点击菜单时需要传递数据到新打开的模块页面，则先将数据exports到域中，再在页面里通过get方法获取数据。
+            </li>
+        </ol>
+        <h4>参数</h4>
+        <ol>
+            <li>
+                <p class="text-param"><code>namespace</code>：命名空间；</p>
+                <p class="text-param"><code>datas</code>：json格式的数据；</p>
+            </li>
+        </ol>
+
+        <h3>
+            使用方法：app.domain.clearScope(namespace)
+        </h3>
+        <ol>
+            <li>
+                清理掉公共域中的数据，避免域中数据太多或取到脏数据。
+            </li>
+        </ol>
+        <h4>参数</h4>
+        <ol>
+            <li>
+                <p class="text-param"><code>namespace</code>：命名空间；</p>
+            </li>
+        </ol>
+
+        <h3>
+            使用方法：app.domain.get(namespace, name)
+        </h3>
+        <ol>
+            <li>
+                清理掉公共域中的数据，避免域中数据太多或取到脏数据。
+            </li>
+        </ol>
+        <h4>参数</h4>
+        <ol>
+            <li>
+                <p class="text-param"><code>namespace</code>：命名空间；</p>
+                <p class="text-param"><code>name</code>：字段名；</p>
+            </li>
+        </ol>
+    </div>
+    <!-- domain-->
+    <!-- screen-->
+    <div data-href="screen" class="module">
+        <div class="page-header">
+            <h2>
+                全屏
+                <small>app.screen，component.js</small>
+            </h2>
+        </div>
+        <h3>
+            使用方法：app.screen(fullScreenType[, showType[, $context]])
+        </h3>
+        <ol>
+            <li>
+                <p>
+                    <code>app.screen(app.screen.fullScreen.LEFT);</code>
+                    <button type="button" data-role="screenToggle" class="btn btn-success pull-right">显/隐左侧边栏</button>
+                </p>
+                <p>
+                    <code>app.screen(app.screen.fullScreen.FULL,app.screen.show.HIDE);</code>
+                    <button type="button" data-role="screenHide" class="btn btn-success pull-right">隐藏</button>
+                </p>
+                <p>
+                    <code>app.screen(app.screen.fullScreen.CONTAINER,app.screen.show.SHOW);</code>
+                    <button type="button" data-role="screenShow" class="btn btn-success pull-right">显示</button>
+                </p>
+                <p>
+                    <code>app.screen(app.screen.fullScreen.MAIN,app.screen.show.TOGGLE,___$context);</code>
+                    <button type="button" data-role="screenContext" class="btn btn-success pull-right">包含context</button>
+                </p>
+            </li>
+        </ol>
+        <h3>
+            参数
+        </h3>
+        <ol>
+            <li>
+                <p class="text-param">
+                    <code>fullScreenType</code>：全屏范围，必需。共有“左侧边栏（LEFT）”、“全屏（FULL）”、“容器（CONTAINER）”、“主要（MAIN）”四种类型。
+                    其中，左侧边栏用于显隐左侧边栏；全屏，将显隐左侧边栏及顶部栏（banner）；容器，将在全屏的基础上显隐导航栏（tabs）；主要，将在容器基础上显隐$context中含有<code>.main-left</code>的容器。
+                    需要引用<code>app.screen.fullScreen.类型</code>。
+                </p>
+                <p class="text-param">
+                    <code>showType</code>：显隐类型，非必需。共有“显示（SHOW）”、“隐藏（HIDE）”、“TOGGLE”三种类型。若该参数为空，则默认使用TOGGLE。
+                    需要引用<code>app.screen.show.类型</code>。
+                </p>
+                <p class="text-param">
+                    <code>$context</code>：需要显隐<code>.main-left</code>的父容器，需为每个页面加载js的load函数中的$el。
+                </p>
+            </li>
+        </ol>
+    </div>
+    <!-- screen-->
+    <!--screenResize-->
+    <div data-href="screenResize" class="module">
+        <div class="page-header">
+            <h2>
+                窗口大小监听
+                <small>app.screen，component.js</small>
+            </h2>
+        </div>
+        <h3>
+            使用方法
+        </h3>
+        <ol>
+            <li>
+                <p>
+                    添加监听事件：
+                    <pre>
+app.screen.addResizeHandler({
+    uid:        @string     not null,
+    isGlobal:   @boolean    default=false,
+    callback:   @function   not null,
+    timeout:    @number     default=0
+});
+            </pre>
+                </p>
+                <p>
+                    移除监听事件：<code>app.screen.removeResizeHandler(uid,isGlobal);</code>
+                </p>
+                <p>
+                    模拟触发：<code>app.screen.triggerResizeHandler(uid,isGlobal);</code>
+                </p>
+            </li>
+        </ol>
+        <h3>参数</h3>
+        <ol>
+            <li>
+                <p class="text-param">
+                    <code>uid</code>：必需，字符串，唯一的ID，可以如果<code>isGlobal=true</code>，uid可以通过<code>app.global.getUniqueId()</code>获取，否则则等于某个页面内的handler.uid。
+                </p>
+                <p class="text-param">
+                    <code>isGlobal</code>：非必需，布尔型，是否是整个页面框架起作用，如果在某个页面里起作用的话，则为false。
+                </p>
+                <p class="text-param">
+                    <code>timeout</code>：非必需，数字型，窗口大小改变之后，延迟多少毫秒执行，默认为0，即一旦窗口大小改变则立即执行。
+                </p>
+                <p class="text-param">
+                    <code>callback</code>：必需，函数，窗口大小改变之后，执行的函数。
+                </p>
+            </li>
+        </ol>
+        <h3>示例</h3>
+        <ol>
+            <li>
+                <h4>全局监听示例，一般用在页面框架元素上：</h4>
+                <pre>
+app.screen.addResizeHandler({
+    uid: app.global.getUniqueId(),
+    isGlobal: true,
+    timeout: 500,
+    callback: function () {
+        focusTab($tabs.children('.active'), null);
+    }
+});//代码位于tab.js中
+                </pre>
+            </li>
+            <li>
+                <h4>局部监听示例，一般用在某个标签页上：</h4>
+                <pre>
+//某个模块页面中
+…
+load:function(){
+    /*事件监听*/
+    this.delegateEvents({…});
+
+    //绑定resize事件
+    app.screen.addResizeHandler({
+        callback: function(){
+            myEcharts.resize();
+        },
+        uid:handler.uid
+    });//代码上下文
+},
+unload:function(){
+    //销毁resize事件监听绑定
+    app.screen.removeResizeHandler(handler.uid);
+},
+resume:function(){
+    //模拟resize事件
+    app.screen.triggerResizeHandler(handler.uid);
+}
+…</pre>
+            </li>
+        </ol>
+    </div>
+    <!--screenResize-->
+    <!-- shelter-->
+    <div data-href="shelter" class="module">
+        <div class="page-header">
+            <h2>
+                遮罩
+                <small>app.shelter，component.js</small>
+            </h2>
+        </div>
+        <h3>
+            使用方法
+        </h3>
+        <ol>
+            <li>
+                <h4>
+                    显隐遮罩：app.shelter.show([title][,immediate]),app.shelter.hide();
+                    <button type="button" data-role="shelterShow" class="btn btn-success pull-right">试用</button>
+                </h4>
+                <p>
+                    隐藏：<code>app.shelter.show('显示遮罩显示的内容')</code>
+                </p>
+                <p>
+                    隐藏：<code>app.shelter.hide()</code>
+                </p>
+                <p>
+                    隐藏全部：<code>app.shelter.hideAll()</code>
+                </p>
+            </li>
+        </ol>
+        <p class="text-indent">
+            跟提示栏一样，遮罩也支持多层多个遮罩同时调用，形成一个“遮罩队列”。
+            使用hide方法会隐藏最顶层遮罩，如果之前还调用了遮罩，但没有隐藏，将会显示上一层遮罩。
+            如果需要一次性清除所有遮罩可以使用hideAll方法。当遮罩显示时，键入<code>ESC</code>将调用hideAll方法，将遮罩隐藏。
+        </p>
+        <p class="text-indent">
+            隐藏时，建议使用hide方法。
+        </p>
+        <p class="alert">
+            <strong>注意：</strong>遮罩的超时时间为60秒，如果服务器或脚本错误超过60秒无响应，将会报错超时错误并隐藏遮罩。
+        </p>
+        <ol>
+            <li>
+                <h4>
+                    改变遮罩层的z-index
+                </h4>
+                <p>
+                    提升遮罩层的z-index：<code>app.shelter.upperZIndex([alertZIndex[,maskZIndex[,alertTop]]])</code>
+                </p>
+                <p>
+                    降低遮罩层的z-index：<code>app.shelter.lowerZIndex()</code>
+                </p>
+            </li>
+        </ol>
+        <p class="text-indent">
+            提升/降低遮罩层主要用于有模态框（Modal）时，将遮罩层以及提示栏的z-index提高比模态框（1050）更高的1052，可以让在使用模态框的同时，正常使用遮罩以及提示栏。
+            如果直接使用$.fn.modal已经使用了该api，不需要另外调用。如果使用自定义的对话框，则需要手动提升及降低遮罩层。
+        </p>
+        <h3>
+            参数
+        </h3>
+        <ol>
+            <li>
+                <code>title</code>：遮罩显示的提示性内容。
+            </li>
+            <li>
+                <code>immediate</code>：布尔型，是否立即显示遮罩，如果为空是，默认延迟200毫秒。
+            </li>
+            <li>
+                <code>alertZIndex</code>：提升提示栏的z-index，默认为1052。为false时，表示不设置。
+            </li>
+            <li>
+                <code>alertTop</code>：设置提示栏的top，默认为auto。为false时，表示不设置。
+            </li>
+            <li>
+                <code>maskZIndex</code>：提升遮罩层的z-index，默认为4。右侧边栏的z-index为1062。
+            </li>
+        </ol>
+    </div>
+    <!-- shelter-->
+    <!-- scrollTop-->
+    <div data-href="scrollTop" class="module">
+        <div class="page-header">
+            <h2>
+                滚动到顶部
+                <small>app.scrollTop，component.js</small>
+            </h2>
+        </div>
+        <h3>
+            使用方法：app.scrollTop($container,$content[,speed[,marginTop]])
+        </h3>
+        <ol>
+            <li>
+                <p>示例</p>
+                <pre>
+app.scrollTop($el.parent(), $el.find('[data-href="' + href + '"]:first'), 500,0);//$el，即每个页面加载js的load函数中的$el</pre>
+            </li>
+        </ol>
+        <h3>
+            参数
+        </h3>
+        <ol>
+            <li>
+                <code>$container</code>：可滚动的容器jQuery对象，必需。
+            </li>
+            <li>
+                <code>$content</code>：需要滚动到顶部的内容的jQuery对象，必需；其中，$content必需在$container内，即$container必须为$content的祖辈，但不一定是父辈。
+            </li>
+            <li>
+                <code>speed</code>：滚动速度，单位毫秒；非必需，缺省值为200。
+            </li>
+            <li>
+                <code>marginTop</code>：数值型，必需大于0，在滚动上，还需要移动的高度，非必需，缺省值为0。
+            </li>
+        </ol>
+    </div>
+    <!-- scrollTop-->
+    <!-- dispatcher-->
+    <div data-href="dispatcher" class="module">
+        <div class="page-header">
+            <h2>
+                标签页Dispatcher
+                <small>app.dispatcher, dispatcher.js</small>
+            </h2>
+        </div>
+
+        <h3>
+            使用方法：app.dispatcher.getContextPath()
+        </h3>
+        <ol>
+            <li>
+                获取当前web应用的context path。
+            </li>
+        </ol>
+
+        <h3>
+            使用方法：app.dispatcher.load()
+        </h3>
+<pre>
+app.dispatcher.load({
+    title:'标题',
+    moduleId: '模块名称',
+    section:'子层名称',//例如'afaInstance'或['afaDetails','platformDtl']
+});
+
+app.dispatcher.load(title, moduleId, section, subSection);
+</pre>
+        <h4>参数</h4>
+        <ol>
+            <li>
+                <p class="text-param"><code>title</code>：label中展现的标题；</p>
+                <p class="text-param"><code>moduleId</code>：该模块的唯一id；</p>
+                <p class="text-param"><code>section</code>：可以传入字符串或者数组，该参数对应后台module下的模块路径；</p>
+            </li>
+        </ol>
+
+        <h3>
+            使用方法：app.dispatcher.unload(moduleId);
+        </h3>
+        <h4>参数</h4>
+        <ol>
+            <li>
+                <p class="text-param"><code>moduleId</code>：该模块的唯一id；</p>
+            </li>
+        </ol>
+    </div>
+    <!-- dispatcher-->
+    <!-- banner-->
+    <div data-href="banner" class="module">
+        <div class="page-header">
+            <h2>
+                顶部导航栏
+                <small>app.banner，component.js</small>
+            </h2>
+        </div>
+        <h3>
+            使用方法：app.banner(options)
+        </h3>
+        <ol>
+            <li>
+                <h4>添加</h4>
+                <pre>
+app.banner({
+	items:[{
+		icon:'fa fa-cog',
+		name:'组件',
+		subItems:[{
+			icon:'fa fa-expand',
+			href:'screen',
+			name:'全屏'
+		}]
+	},{
+		icon:'fa fa-bell',
+		href:'alert',
+		name:'提示栏'
+	}],
+	callback:function($ctn,$el){
+		$('[data-href]',this).click(function(){
+			var href=$(this).attr('data-href');
+			if(href){
+				$ctn.animate({
+					scrollTop:$el.find('[data-href="'+href+'"]:first').offset().top+$ctn.scrollTop()-$ctn.offset().top
+				},500);
+			}
+		});
+		//$context.on('click','[data-href]',function(){
+		// 注意不要用这种形式绑定监听
+		// 可能会引起事件没有随元素移除而解除绑定
+		//});
+	},
+	args:[$el.parent(),$el],
+    uid:handler.uid
+});
+				</pre>
+            </li>
+            <li>
+                <h4>移除</h4>
+                <pre>
+app.banner.remove(handler.uid);</pre>
+            </li>
+        </ol>
+        <p class="text-indent">
+            在使用时，可以在handler的params属性中，添加bannerOptions记录options信息。
+            在<code>load</code>、<code>resume</code>函数中通过<code>app.banner(handler.params.bannerOptions)</code>显示并绑定事件。
+            在<code>unload</code>、<code>pause</code>函数中通过<code>app.banner.remove(handler.uid)</code>移除banner。
+        </p>
+        <div class="alert">
+            <strong>注意：</strong>在callback函数的事件绑定中，不要直接将事件绑定在banner的上下文‘this’中，会导致监听事件没有移除而报错。详情请查阅“添加”代码部分。
+        </div>
+        <h3>
+            参数
+        </h3>
+        <ol>
+            <li>
+                <p class="text-param"><code>items</code>：菜单项，对象数组，必需。</p>
+                <p class="text-param"><code>callback</code>：添加菜单后，执行的函数，上下文‘this’为banner的DOM对象。可在此处添加绑定事件。</p>
+                <p class="text-param"><code>args:[]</code>：callback函数的参数，数组形式。</p>
+                <p class="text-param"><code>uid</code>：数字或字符串，必需，用于定义banner的唯一ID。一般可直接取值mvvm中的handler.uid作为uid。</p>
+                <p class="text-param"><code>items[x].icon</code>：菜单项图标样式，字符串，非必需。</p>
+                <p class="text-param"><code>items[x].href</code>：菜单项图标选择器，字符串，主要方便callback绑定事件时使用，如果有subItems则不必有该项。</p>
+                <p class="text-param"><code>items[x].name</code>：菜单项名称，字符串，必需。</p>
+                <p class="text-param"><code>items[x].subItem:[]</code>：子菜单项，数组，非必需。子属性与items类似，但没有subItems子属性。</p>
+            </li>
+        </ol>
+    </div>
+    <!-- banner-->
+    <!--tabs/label-->
+    <div data-href="tabs" class="module">
+        <div class="page-header">
+            <h2>
+                标签栏
+                <small>app.dispatcher.load，dispatcher.js、tab.js</small>
+            </h2>
+        </div>
+        <h3>
+            在默认的标签栏中的使用方法
+        </h3>
+        <ol>
+            <li>
+                <h4>
+                    打开页面：app.dispatcher.load(options)/app.dispatcher.load(title,moduleId,section,subSection)
+                </h4>
+            </li>
+            <li>
+                <h5>使用options的方法</h5>
+            <pre>
+app.dispatcher.load({
+        title:'标题',
+        moduleId: '模块名称',
+        section:'子层名称',//例如'afaInstance'或['afaDetails','platformDtl']
+        id:'tabs的唯一标识'
+    });
+            </pre>
+            </li>
+            <li>
+                <h5>使用参数的方法</h5>
+                <code>
+                    app.dispatcher.load(title,moduleId[,section[,subSection]])
+                </code>
+            </li>
+        </ol>
+        <ol>
+            <li>
+                <h4>关闭页面：app.tab.close(href,id)</h4>
+            </li>
+        </ol>
+        <p class="text-indent">
+            使用该方法，仅能关闭当前在标签里激活的页面。为了保证兼容性，故保留两种方法。href或id，填其中一个。
+        </p>
+        <h3>
+            新建窗口的使用方法（相当于一个iframe）
+        </h3>
+        <ol>
+            <li>
+                <h4>
+                    打开方法：app.tab.openNewWindow(options)
+                </h4>
+                <pre>
+app.tab.openNewWindow({
+    title:'部署分配',
+    moduleId: 'afaVersionManage',
+    section:'deployWorkgroup',
+    id:$deployWorkgroupModal[0].id+uuid,//唯一的id
+    frameRenderTo:$deployWorkgroupModal.children('.modal-body')//html填充的容器
+});</pre>
+            </li>
+            <li>
+                <h4>
+                    关闭的方法：app.tab.closeNewWindow(lastTabID)
+                </h4>
+                <code>
+                    app.tab.closeNewWindow($el[0].id);
+                </code>
+            </li>
+        </ol>
+        <p class="text-indent">
+            app.tab.openNewWindow和app.tab.closeNewWindow实际上是对app.dispatcher的一次封装和简化，openNewWindow对应load方法，故参数一致，但<code>frameRenderTo</code>必填。
+            注意，app.tab.openNewWindow仅有options方法。
+        </p>
+        <h3>
+            参数
+        </h3>
+        <ol>
+            <li>
+                <p class="text-param"><code>options.title/title</code>：标签名，字符串，必需。</p>
+                <p class="text-param"><code>options.moduleId/moduleId</code>：模块ID，module下某个模块的目录名，必需。</p>
+                <p class="text-param"><code>options.section</code>：为字符串时，表示子模块的目录名称。或字符串数组，表示子层级的目录递推结构。</p>
+                <p class="text-param"><code>options.id</code>：数字或字符串，必需，用于定义该标签的唯一ID，必需。</p>
+                <p class="text-param"><code>options.frameRenderTo</code>：打开新窗口的html填充容器。如果是新建窗口，则必需。里面的内容与一般的模块的写法一致。</p>
+                <p class="text-param"><code>section</code>：子模块的目录名称，非必需。</p>
+                <p class="text-param"><code>subSection</code>：子模块的子模块目录名称，非必需。</p>
+                <p class="text-param"><code>lastTabID</code>：新建窗口的父窗口的id，或上一个运行窗口的id，在模块中一般为$el[0].id或$el.attr('id')。</p>
+            </li>
+        </ol>
+    </div>
+    <!--tabs/label-->
+    <!-- confirm-->
+    <div data-href="confirm" class="module">
+        <div class="page-header">
+            <h2>
+                确认框
+                <small>app.confirm，component.js</small>
+            </h2>
+        </div>
+        <h3>
+            使用方法：app.confirm(options)
+            <button type="button" data-role="confirm" class="btn btn-success pull-right">试用</button>
+        </h3>
+        <ol>
+            <li>
+                <pre>
+app.confirm({
+	title:'确认',
+	content:'是否确认执行改操作？',
+	btnConfirm:'是',
+	btnCancel:'否',
+	confirmHandler:function(h){app.alert(h)},
+	cancelHandler:function(h,g){app.alert(g)},
+	context:$('body')[0],
+	args:['是','否']
+});
+				</pre>
+            </li>
+        </ol>
+        <h3>
+            参数
+        </h3>
+        <p>options里面的每个参数都不是必需的</p>
+        <ol>
+            <li>
+                <p class="text-param"><code>title</code>：确认框标题</p>
+                <p class="text-param"><code>content</code>：确认框内容</p>
+                <p class="text-param"><code>btnconfirm</code>：确认按钮显示内容</p>
+                <p class="text-param"><code>btnCancel</code>：取消按钮显示内容</p>
+                <p class="text-param"><code>confirmHandler:function(){}</code>：点击确认按钮触发的函数，参数以数组形式写在args那里</p>
+                <p class="text-param"><code>cancelHandler:function(){}</code>：点击取消按钮触发函数，参数写在args那里</p>
+                <p class="text-param"><code>context</code>：执行函数的上下文</p>
+                <p class="text-param"><code>args:[]</code>：确认、取消触发函数的参数，以数组形式书写</p>
+            </li>
+        </ol>
+    </div>
+    <!-- confirm-->
+    <!-- alert-->
+    <div data-href="alert" class="module">
+        <div class="page-header">
+            <h2>
+                提示栏
+                <small>app.alert，component.js</small>
+            </h2>
+        </div>
+        <h3>
+            使用方法：app.alert([title,]msg[,showType[,msgType]])
+        </h3>
+        <ol>
+            <li>
+                <p>
+                    <code>app.alert('hello world!');</code>
+                    <button type="button" data-role="alertDefault" class="btn btn-success pull-right">默认</button>
+                </p>
+                <p>
+                    <code>app.alert('title','hello world!');</code>
+                    <button type="button" data-role="alertTitle" class="btn btn-success pull-right">标题</button>
+                </p>
+                <p>
+                    A.<code>app.alert('title','hello world!',app.alertShowType.SUCCESS);</code>
+                    <button type="button" data-role="alertShowType" class="btn btn-success pull-right">仅提示，但不显示在消息中心上</button>
+                </p>
+                <p>
+                    B.<code>app.alert('title','hello world!',app.alertShowType.ERROR,app.alertMsgType.MESSAGE);</code>
+                    <button type="button" data-role="alertMsgType" class="btn btn-success pull-right">提示，并加入消息中心</button>
+                </p>
+                <p>
+                    C.<code>app.alert('title','hello world!',app.alertMsgType.MESSAGE);</code>
+                    <button type="button" data-role="alertMsgTypeOnly" class="btn btn-success pull-right">不提示，仅显示在消息中心</button>
+                </p>
+            </li>
+        </ol>
+        <h3>参数</h3>
+        <ol>
+            <li>
+                <p class="text-param"><code>title</code>：消息标题，在消息中心中显示，字符串，非必需</p>
+                <p class="text-param"><code>msg</code>：消息内容，必需</p>
+                <p class="text-param">
+                    <code>showType</code>：消息显示类型，非必需，共有“默认（DEFAULT）”、“成功（SUCCESS）”、“错误（ERROR）”、“提示（WARNING）”四种类型。
+                    使用时，需引用<code>app.alertShowType.类型</code>。当该参数为空时，默认使用<code>app.alertShowType.DEFAULT</code>。
+                </p>
+                <p class="text-param">
+                    <code>msgType</code>：消息类型，非必需，有“消息（MESSAGE）”、“提示（TIPS）”两种。
+                    “消息”是指将该消息显示在消息中心上，“提示”则是指仅仅以提示栏的形式显示。
+                    使用时，需引用<code>app.alertMsgType.类型</code>。当该参数为空时，默认使用<code>app.alertMsgType.TIPS</code>。
+                </p>
+                <p class="text-indent">关于消息显示类型和消息类型共有三种方法，具体参考“使用方法”的A、B、C三种方法。</p>
+            </li>
+        </ol>
+    </div>
+    <!-- alert-->
+    <!-- validate-->
+    <div data-href="validate" class="module">
+        <div class="page-header">
+            <h2>
+                表单校验Validate
+                <small>app.validate, validate.js</small>
+            </h2>
+        </div>
+
+        <h3>
+            使用方法：app.validate.isNumber(value)
+        </h3>
+        <ol>
+            <li>
+                校验是否为数值类型。
+            </li>
+        </ol>
+        <h4>参数</h4>
+        <ol>
+            <li>
+                <p class="text-param"><code>value</code>：需要校验的参数；</p>
+            </li>
+        </ol>
+
+        <h3>
+            使用方法：app.validate.isInteger(value)
+        </h3>
+        <ol>
+            <li>
+                校验是否为整型。
+            </li>
+        </ol>
+        <h4>参数</h4>
+        <ol>
+            <li>
+                <p class="text-param"><code>value</code>：需要校验的参数；</p>
+            </li>
+        </ol>
+
+        <h3>
+            使用方法：app.validate.isFloat(value)
+        </h3>
+        <ol>
+            <li>
+                校验是否为浮点数类型。
+            </li>
+        </ol>
+        <h4>参数</h4>
+        <ol>
+            <li>
+                <p class="text-param"><code>value</code>：需要校验的参数；</p>
+            </li>
+        </ol>
+
+        <h3>
+            使用方法：app.validate.isNumStr(value)
+        </h3>
+        <ol>
+            <li>
+                校验是否为纯数字字符串。
+            </li>
+        </ol>
+        <h4>参数</h4>
+        <ol>
+            <li>
+                <p class="text-param"><code>value</code>：需要校验的参数；</p>
+            </li>
+        </ol>
+
+        <h3>
+            使用方法：app.validate.isLetter(value)
+        </h3>
+        <ol>
+            <li>
+                校验是否为纯字母字符串。
+            </li>
+        </ol>
+        <h4>参数</h4>
+        <ol>
+            <li>
+                <p class="text-param"><code>value</code>：需要校验的参数；</p>
+            </li>
+        </ol>
+
+        <h3>
+            使用方法：app.validate.isUppercase(value)
+        </h3>
+        <ol>
+            <li>
+                校验是否为纯大写字母字符串。
+            </li>
+        </ol>
+        <h4>参数</h4>
+        <ol>
+            <li>
+                <p class="text-param"><code>value</code>：需要校验的参数；</p>
+            </li>
+        </ol>
+
+        <h3>
+            使用方法：app.validate.isLowercase(value)
+        </h3>
+        <ol>
+            <li>
+                校验是否为纯小写字母字符串。
+            </li>
+        </ol>
+        <h4>参数</h4>
+        <ol>
+            <li>
+                <p class="text-param"><code>value</code>：需要校验的参数；</p>
+            </li>
+        </ol>
+
+        <h3>
+            使用方法：app.validate.isAccount(value)
+        </h3>
+        <ol>
+            <li>
+                校验是否符合账号规则，由数字字母和下划线组成，且以字母开头。
+            </li>
+        </ol>
+        <h4>参数</h4>
+        <ol>
+            <li>
+                <p class="text-param"><code>value</code>：需要校验的参数；</p>
+            </li>
+        </ol>
+
+        <h3>
+            使用方法：app.validate.isEmail(value)
+        </h3>
+        <ol>
+            <li>
+                校验是否符合邮箱格式。
+            </li>
+        </ol>
+        <h4>参数</h4>
+        <ol>
+            <li>
+                <p class="text-param"><code>value</code>：需要校验的参数；</p>
+            </li>
+        </ol>
+
+        <h3>
+            使用方法：app.validate.isZipcode(value)
+        </h3>
+        <ol>
+            <li>
+                校验是否符合邮编格式。
+            </li>
+        </ol>
+        <h4>参数</h4>
+        <ol>
+            <li>
+                <p class="text-param"><code>value</code>：需要校验的参数；</p>
+            </li>
+        </ol>
+
+        <h3>
+            使用方法：app.validate.isMobile(value)
+        </h3>
+        <ol>
+            <li>
+                校验是否符合手机号码格式。
+            </li>
+        </ol>
+        <h4>参数</h4>
+        <ol>
+            <li>
+                <p class="text-param"><code>value</code>：需要校验的参数；</p>
+            </li>
+        </ol>
+
+        <h3>
+            使用方法：app.validate.isPort(value)
+        </h3>
+        <ol>
+            <li>
+                校验是否符合端口格式。
+            </li>
+        </ol>
+        <h4>参数</h4>
+        <ol>
+            <li>
+                <p class="text-param"><code>value</code>：需要校验的参数；</p>
+            </li>
+        </ol>
+
+        <h3>
+            使用方法：app.validate.isHost(value)
+        </h3>
+        <ol>
+            <li>
+                校验是否符合IP格式。
+            </li>
+        </ol>
+        <h4>参数</h4>
+        <ol>
+            <li>
+                <p class="text-param"><code>value</code>：需要校验的参数；</p>
+            </li>
+        </ol>
+
+        <h3>
+            使用方法：app.validate.validate(params)
+        </h3>
+<pre>
+app.validate.validate({
+    "$context": $ele,
+    "data": [
+        {
+            "id": "",
+            "value": "",
+            "filter": {
+                "require": true,
+                "minLen": 2,
+                "maxLen": 30
+            }
+        },
+        ...
+    ],
+    "correctCallback": function ($el, correctMsg) {
+
+    },
+    "errorCallback": function ($el, errMsg) {
+
+    }
+});
+</pre>
+        <h4>参数</h4>
+        <ol>
+            <li>
+                <p class="text-param"><code>$context</code>：表单所在的DOM元素，后续根据id去查找input元素时均以该元素作为父元素去限制查找范围；</p>
+                <p class="text-param"><code>data</code>：数组格式，为需要验证的字段；</p>
+                <ol>
+                    <li>
+                        <p class="text-param"><code>id</code>：表单所在的DOM元素，后续根据id去查找input元素时均以该元素作为父元素去限制查找范围；</p>
+                        <p class="text-param"><code>value</code>：需要校验的值；</p>
+                        <p class="text-param"><code>msg</code>：可选，当校验失败时返回的错误信息，若为填写，则返回默认的错误信息；</p>
+                        <p class="text-param"><code>filter</code>：</p>
+                        <ol>
+                            <li>
+                                <p class="text-param"><code>require</code>：是否必输；</p>
+                                <p class="text-param"><code>type</code>：提供校验的类型，允许为以下值：string, number, integer, float, numStr, letter, uppercase, lowercase, account, email, zipcode, mobile, port, host, file</p>
+                                <p class="text-param"><code>min</code>：当为数值时，允许的最小值；</p>
+                                <p class="text-param"><code>max</code>：当为数值时，允许的最大值；</p>
+                                <p class="text-param"><code>positive</code>：当为数值时，判断是否为正数；</p>
+                                <p class="text-param"><code>negative</code>：当为数值时，判断是否为负数；</p>
+                                <p class="text-param"><code>tailLen</code>：当为浮点数时，判断精度长度；</p>
+                                <p class="text-param"><code>minLen</code>：允许的最小长度；</p>
+                                <p class="text-param"><code>maxLen</code>：允许的最大长度；</p>
+                                <p class="text-param"><code>chineseMinLen</code>：包含汉字的字符串的最小长度；</p>
+                                <p class="text-param"><code>chineseMaxLen</code>：包含汉字的字符串的最大长度；</p>
+                                <p class="text-param"><code>accpet</code>：当type为file时，该字段标识允许上传的MIME的类型；</p>
+                            </li>
+                        </ol>
+                    </li>
+                </ol>
+                <p class="text-param"><code>correctCallback</code>：成功时的回调，其中参数$el指向input框；</p>
+                <p class="text-param"><code>errorCallback</code>：失败时的回调，其中参数$el指向input框；</p>
+            </li>
+        </ol>
+    </div>
+    <!-- validate-->
+    <!--formControl-->
+    <div data-href="formControl" class="module">
+        <div class="page-header">
+            <h2>
+                表单控制
+                <small>app.formControl，component.js</small>
+            </h2>
+        </div>
+        <h3>
+            使用方法
+        </h3>
+        <ol>
+            <li>
+                <h4>设置表单内容、绑定监听：app.formControl.set(title, formHtml[, listenHandler(context,$form)])</h4>
+            </li>
+            <li>
+                <p>
+                    显示表单：app.formControl.show()
+                    <button type="button" data-role="formControlShow" class="btn btn-success pull-right">试用</button>
+                </p>
+                <p>隐藏表单：app.formControl.hide()/listenHandler在中context.hide()</p>
+                <p>重置表单：app.formControl.reset([$selector])</p>
+            </li>
+            <li>
+                <div class="alert alert-warning">
+                    <strong>其中：</strong>app.formControl.show支持链式操作，即app.formControl.set(argument).show();
+                </div>
+            </li>
+            <li>
+                <p>html代码</p>
+                <!--创建实例 Temp Start-->
+                <div data-role="formControlTemp" class="hide">
+                    <div class="control-group">
+                        <label class="control-label" for="formControlInput">输入框：</label>
+                        <div class="controls">
+                            <input id="formControlInput" name="formControlInput" type="text" placeholder="输入框" class="span8">
+                            <span class="help-inline hide">请在这里数据数据</span>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="formControlTextarea">文本框：</label>
+                        <div class="controls">
+                            <textarea id="formControlTextarea" name="formControlTextarea" placeholder="文本框" class="span8" rows="3"></textarea>
+                            <span class="help-inline hide"></span>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="formControlRadio">BootstrapSwitch：</label>
+                        <div class="controls">
+                            <input id="formControlRadio" name="formControlRadio" type="checkbox" data-inner-switcher="true"/>
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <button id="formControlSmtBtn" type="button" class="btn btn-inverse hvr-radial-out">提交</button>
+                        <button type="reset" class="btn hvr-radial-out">重置</button>
+                    </div>
+                </div>
+                <!--创建实例 Temp End-->
+                <pre data-role="formControlCtt"></pre>
+                <p>js代码</p>
+                <pre>
+app.formControl.set('表单标题', $('[data-role="formControlTemp"]', $el).html(), function (context, $form) {
+    //提交按钮事件绑定
+    $('#formControlSmtBtn',$form).click(function(){
+        //提交信息的校验
+        var validateResult = app.validate.validate({
+            $context: $form,
+            data: [{
+                id: 'formControlInput',
+                msg: '请在这里数据数据',//如果此处不填的话，将使用默认的错误提示信息
+                filter: {
+                    require: true
+                }
+            }, {
+                id: 'formControlTextarea',
+                filter: {
+                    require: true
+                }
+            }],
+            /*
+            * 输入错误的返回
+            * $el   输入框的jQuery对象
+            * errMsg    错误信息
+            * */
+            errorCallback: function ($el, errMsg) {
+                $el.closest('.control-group').addClass('error');
+                $el.next().removeClass('hide').text(errMsg);
+            },
+            /*
+             * 输入正确的返回
+             * $el   输入框的jQuery对象
+             * correctMsg    正确信息
+             * */
+            correctCallback: function ($el, correctMsg) {
+                $el.closest('.control-group').removeClass('error');
+                $el.next().addClass('hide');
+            }
+        });
+    });
+
+    //context.hide(); 隐藏
+}).show();</pre>
+            </li>
+        </ol>
+        <h3>参数</h3>
+        <ol>
+            <li>
+                <h4>app.formControl.set</h4>
+                <p class="text-param"><code>title</code>：表单名称，必需。</p>
+                <p class="text-param"><code>formHtml</code>：表单html内容，必需。</p>
+                <p class="text-param">
+                    <code>listenHandler:function(context,$form){}</code>：加载完表单html内容后的处理。
+                </p>
+                <p class="text-param">
+                    <code>listenHandler.context</code>：在listenHandler函数中，当前表单控件对象的便捷方式，可理解为<code>app.formControl</code>的便捷方式。
+                    因此在函数中，可以使用<code>context.show()</code>、<code>context.hide()</code>等app.formCtrol的方法。
+                </p>
+                <p class="text-param">
+                    <code>listenHandler.$form</code>：在listenHandler函数中，当前表单的jQuery对象。
+                </p>
+            </li>
+            <li>
+                <h4>app.formControl.reset</h4>
+                <p class="text-param"><code>$selector</code>：需要重置的表单的jQuery对象，非必需。缺省值为右侧边栏的表单。</p>
+            </li>
+        </ol>
+    </div>
+    <!--formControl-->
+    <!-- bootstrapUpload-->
+    <div data-href="bootstrapUpload" class="module">
+        <div class="page-header">
+            <h2>
+                文件上传
+                <small>app.formControl.bootstrapUpload，component.js</small>
+            </h2>
+        </div>
+        <h3>
+            使用方法：app.formControl.bootstrapUpload(options)
+        </h3>
+        <ol>
+            <li>
+                <h4>示例</h4>
+                <div data-role="bootstrapUploadTemp">
+                    <div class="text-center">
+                        <label for="uploadFileID">点击上传文件：</label>
+                        <div>
+                            <input id="uploadFileID" name="uploadFileName" type="file" accept=".xls,.xlsx"/>
+                            <span class="help-inline hide"></span>
+                        </div>
+                    </div>
+                </div>
+                <p class="text-center">
+                    <button type="button" data-role="bootstrapUploadAdd" class="btn btn-success">添加</button>
+                    <button type="button" data-role="bootstrapUploadName" class="btn btn-success">名称</button>
+                    <button type="button" data-role="bootstrapUploadExtensionName" class="btn btn-success">后缀名</button>
+                    <button type="button" data-role="bootstrapUploadRemove" class="btn btn-success">销毁</button>
+                </p>
+            </li>
+            <li>
+                <h4>html代码</h4>
+                <pre data-role="bootstrapUploadCtt"></pre>
+            </li>
+            <li>
+                <h4>
+                    添加
+                </h4>
+                <pre class="gutter-top">
+var fileUpload=app.formControl.bootstrapUpload({
+    el:$('#uploadFileID',$context),
+    tips:'只能选择Excel文件',
+    canEditName:true
+});
+                </pre>
+            </li>
+            <li>
+                <p>
+                    获取文件名：<code>fileUpload.getName()</code>
+                </p>
+                <p>
+                    获取后缀名：<code>fileUpload.getExtensionName()</code>
+                </p>
+                <p>
+                    重置：<code>fileUpload.reset()</code>
+                </p>
+                <p>
+                    销毁：<code>fileUpload.destroy()</code>
+                </p>
+            </li>
+        </ol>
+        <h3>参数</h3>
+        <ol>
+            <li>
+                <p class="text-param"><code>el</code>：上传文件输入框，选择器或jQuery对象，必需。</p>
+                <p class="text-param"><code>tips</code>：鼠标移动到上传Logo显示的信息。</p>
+                <p class="text-param">
+                    <code>canEditName</code>：上传文件的名称是否可编辑，布尔型，非必需。默认为false。
+                </p>
+            </li>
+        </ol>
+    </div>
+    <!-- bootstrapUpload-->
+    <!-- bootstrapDatetimePicker-->
+    <div data-href="bootstrapDatetimePicker" class="module">
+        <div class="page-header">
+            <h2>
+                时间选择器
+                <small>.datetimepicker(optoions)</small>
+            </h2>
+        </div>
+        <h3>
+            使用方法：.datetimepicker(optoions)
+        </h3>
+        <ol>
+            <li>
+                <h4>示例</h4>
+                <form data-role="bootstrapDatetimePickerHTML" class="form-horizontal">
+<div class="control-group">
+    <label class="control-label" for="datetimePickerExample">时间：</label>
+    <div class="controls">
+        <input id="datetimePickerExample" name="datetimePickerExample"
+               type="datetime" readonly placeholder="请选择时间" class="span8 form_datetime">
+        <span class="help-inline hide">请选择时间</span>
+    </div>
+</div>
+                </form>
+            </li>
+            <li>
+                <h4>html代码</h4>
+                <pre data-role="bootstrapDatetimePickerHTMLCtt"></pre>
+            </li>
+            <li>
+                <h4>
+                    JS初始化代码
+                </h4>
+                <pre class="gutter-top">
+$('#datetimePickerExample',$el).datetimepicker({
+    format: 'yyyy-mm-dd hh:ii:ss'
+});
+                </pre>
+            </li>
+            <li>销毁：<code>$('#datetimePickerExample').datetimepicker('remove');</code></li>
+        </ol>
+        <h3>参数</h3>
+        <ol>
+            <li>
+                <p class="alert">更多参数值，参考官网<a href="http://www.bootcss.com/p/bootstrap-datetimepicker/index.htm" target="_blank">日期时间选择器</a>。</p>
+            </li>
+        </ol>
+    </div>
+    <!-- bootstrapDatetimePicker-->
+    <!-- selectComponent-->
+    <div data-href="selectComponent" class="module">
+        <div class="page-header">
+            <h2>
+                多选/选择组件
+                <small>app.selectComponent，component.js</small>
+            </h2>
+        </div>
+        <h3>
+            使用方法：app.selectComponent(options)
+        </h3>
+        <ol>
+            <li>
+                <h4>定义</h4>
+                <pre>
+var tbSampleSelComponent = app.selectComponent({
+    $context: $el,
+    btnSelector: '[data-role="dvcSelAllBtn"]',
+    tbodySelector: '[data-role="insDtlTb"]>tbody',
+    isDataTable: true,
+    deviceType:app.global.device.platform.paramName,
+    selectChild: true,
+    operationButtons:{
+        list:'#dvcStartBtn,#dvcStopBtn,#dvcDelBtn,#dvcReStartBtn',//所有控制按钮的jQuery选择器
+        status:{
+            'Running':['#dvcStopBtn,#dvcDelBtn,#dvcReStartBtn','#dvcStopBtn,#dvcDelBtn,#dvcReStartBtn'],
+            'Stopped':['#dvcStartBtn,#dvcDelBtn','#dvcStartBtn,#dvcDelBtn'],
+            '_default':['#dvcDelBtn','#dvcDelBtn']//每一种情况都为一个数组，[0]表示单选选可以触发的按钮，[1]表示多选时可以触发的按钮
+        }
+    },
+    cluster: isCluster,
+    notDisabledNum_cluster: '#dvcDelBtn,#dvcCreBtn',
+    addMethod:function(list, elem){
+        list[elem.id] = {
+            node: $this.closest('tr')[0],//必需有node记录checkbox的DOM对象
+            //其他自定义属性
+        };
+    },
+    getIDMethod:function(elem){
+        return elem.id;
+    },
+    getNode:function(list, id){
+        return list[id].node;
+    },
+    getStatusMethod:function(list,options) {
+        return status;//返回operationButtons.status其中一种情况
+    }
+});
+                </pre>
+            </li>
+            <li>
+                <p>添加，并返回当前队列：<code>tbSampleSelComponent.add(elem)</code>,elem为tbodySelector下某个checkbox的DOM对象。</p>
+                <p>删除，并返回当前队列：<code>tbSampleSelComponent.del(elem)</code>,elem为tbodySelector下某个checkbox的DOM对象或索引。</p>
+                <p>清空所有选择，并返回所有被选中的索引数组：<code>var a=tbSampleSelComponent.clear()</code></p>
+                <p>获取队列的副本：<code>tbSampleSelComponent.list()</code></p>
+                <p>获取队列的长度大小：<code>tbSampleSelComponent.selectSize()</code></p>
+                <p>销毁：<code>tbSampleSelComponent.dispose()</code></p>
+            </li>
+        </ol>
+        <h3>参数</h3>
+        <ol>
+            <li>
+                <p class="text-param"><code>options.$context</code>：选择组件的父容器，btnSelector和tbodySelector必需在该容器下，一般为$el，必需。</p>
+                <p class="text-param"><code>options.btnSelector</code>：全选按钮的jQuery选择器，必需。</p>
+                <p class="text-param"><code>options.tbodySelector</code>：被全选的控制的checkbox父容器，必需。如果在表格中，一般为tbody。</p>
+                <p class="text-param"><code>options.isDataTable</code>：tbodySelector是否为datatable的一部分，选择组件会对其进行特殊处理，必需。</p>
+                <p class="text-param"><code>options.selectChild</code>：是否选中其子集。如果为true，则checkbox必须存在data-type属性，而且必须存在父级的data-did为子级的data-did前缀存在。
+                    例如：父级的data-type=platform，data-did=127.0.0.1:9004，则子机的data-type=workgroup|lsr|out|svc|service，data-did以127.0.0.1:9004开头。</p>
+                <p class="text-param"><code>options.deviceType</code>：如果selectChild=true，则必需为设备类型中的一种。</p>
+                <p class="text-param"><code>options.operationButtons</code>：功能按钮，非必需。</p>
+                <p class="text-param"><code>options.operationButtons.list</code>：所有需要操作的功能按钮的jQuery选择器集合，字符串。当operationButtons存在时，必需。</p>
+                <p class="text-param"><code>options.operationButtons.status</code>：各种选择情况下，可以被触发的按钮集合。
+                    [0]表示单选选可以触发的按钮，[1]表示多选时可以触发的按钮。
+                    当operationButtons存在时，必需，且必须有一个<code>_default</code>的情况存在。</p>
+                <p class="text-param"><code>options.cluster</code>：是否为集群，非必需。</p>
+                <p class="text-param"><code>options.notDisabledNum_cluster</code>：当为集群的时候，不可操作的对象的jQuery选择器集合。如果cluster=true，必需。</p>
+                <p class="text-param"><code>options.addMethod</code>：添加节点的方法，就是需要保存的属性，必需。</p>
+                <p class="text-param"><code>options.getIDMethod</code>：获取节点索引的方法，必需保证该索引是唯一的，必需。</p>
+                <p class="text-param"><code>options.getNode</code>：获取节点的方法，必需。</p>
+                <p class="text-param"><code>options.getStatusMethod</code>：如果operationButtons不为空，则必需，至少需要返回字符串<code>_default</code>。</p>
+            </li>
+        </ol>
+    </div>
+    <!-- selectComponent-->
+    <!--editableSelect-->
+    <div data-href="editableSelect" class="module">
+        <div class="page-header">
+            <h2>
+                可编辑下拉框
+                <small>$.fn.editableSelect，component.js</small>
+            </h2>
+        </div>
+        <h3>使用方法</h3>
+        <ol>
+            <li>
+                <p>定义：<code>var editableSelect=$(selector).editableSelect();</code></p>
+                <p>添加选项：<code>editableSelect.addOption(value[,text]);</code></p>
+                <p>删除选项：<code>editableSelect.removeOption([value]);</code>，当value为空时，清空所有选项。</p>
+                <p>销毁及恢复：<code>editableSelect.restoreSelect();</code></p>
+                <p>获取输入框的真实value：<code>editableSelect.value();</code></p>
+            </li>
+        </ol>
+        <h3>参数</h3>
+        <ol>
+            <li>
+                <p class="text-param"><code>selector</code>：jQuery选择器，必需。</p>
+                <p class="text-param"><code>value</code>：添加或删除选项的值，字符串，即<code>option</code>中的值。</p>
+                <p class="text-param"><code>text</code>：显示的字符串，当为空的时候，使用value代替。</p>
+            </li>
+        </ol>
+    </div>
+    <!--editableSelect-->
+    <!-- dataTable-->
+    <div data-href="dataTable" class="module">
+        <div class="page-header">
+            <h2>
+                dataTable
+                <small>jquery.dataTables.js</small>
+            </h2>
+        </div>
+        <h3>
+            定义方法：var dataTb=$.fn.dataTable(options)/var DataTb=$.fn.DataTable(options)
+        </h3>
+        <div class="alert">
+            <strong>注意：</strong>
+            $.fn.dataTable(options)和$.fn.DataTable(options)配置信息options是相同的，但拥有的API是不同的。一般来说，dataTable拥有的API以fn开头，DataTable则没有。
+        </div>
+        <ol>
+            <li>
+                使用时 表格（table）外层一定要加一个div将其包裹，否则搜索框和页面将会在隐藏显示后位置错乱。
+            </li>
+            <li>
+                表格要加一个<code>style="width:100%;"</code>的样式，否则无法自动改变大小。
+            </li>
+        </ol>
+        <ol>
+            <li>
+                <h4>简单定义</h4>
+                <pre>
+var dataTb=$('[data-role=table]',$el).dataTable({
+    'bStateSave': true,
+    "aaSorting": [[7, 'desc'],[1,'asc'],...],
+    'aoColumnDefs': [
+        //多选框禁用排序
+        {"bSortable": false, "aTargets": [0]}
+    ]
+})
+                </pre>
+                <h4>参数</h4>
+                <p class="text-param"><code>options.bStateSave</code>：翻页后，当翻页回来的时候，是否恢复上次的状态，非必需，缺省值为null。</p>
+                <p class="text-param"><code>options.aaSorting</code>：需要排序的列，必需。二维数组。第一个参数为第几列，从0开始数起；第二个参数为排序的顺序，与数据库的关键字一致。</p>
+                <p class="text-param"><code>options.aoColumnDefs</code>：列定义，非必需。如果第一列为多选按钮（checkbox），则需要在这里定义，禁用排序。且在aaSorting中不能使用多选按钮排序。</p>
+                <p class="text-param"><code>options.aoColumnDefs.bSortable</code>：布尔型,是否禁用排序。</p>
+                <p class="text-param"><code>options.aoColumnDefs.aTargets</code>：数组，禁用排序的列数组，必需。</p>
+                <p class="alert">使用简单定义，后续结合dataTb.fnClearTable和dataTb.fnAddData(data)清空表格和添加数据。建议定期刷新数据，使用这种方法。</p>
+                <pre>
+var intervalHandler=handler.setInterval(function(){
+    ……
+    var data=[[1,2,3,4],[1,2,3,4]];//表格数据
+
+    dataTb.fnClearTable();//清空表格
+    data.length&&dataTb.fnAddData(data);//判断数据不为空时，添加。
+    ……
+},timeout,true)//最后一个参数true，表示页面一加载完毕就执行。
+                </pre>
+            </li>
+            <li>
+                <h4>定义并加载数据</h4>
+                <pre>
+var dataTb=$('[data-role=table]',$el).dataTable({
+    'sAjaxSource': './AfaInstanceAction_afaInsList.do',
+    'bStateSave': true,
+    "aaSorting": [[5, 'desc']],
+    'bDestroy': true,
+    'aoColumnDefs': [
+        //多选框禁用排序
+        {"bSortable": false, "aTargets": [0]}
+    ],
+    //使用post方式传递数据
+    'fnServerData': function (sSource, aoData, fnCallback) {
+        $.ajax({
+            "type": "post",
+            "contentType": "application/x-www-form-urlencoded;charset=utf-8",
+            "url": sSource,
+            "dataType": "json",
+            "data": "",
+            shelter: '正在加载实例数据，请稍候…',
+            success: function (data) {
+                var dealData = [];
+                if (data.status && data.content.aaData != null) {
+                    for (var i = -1, aaData = data.content.aaData, obj; obj = aaData[++i];) {
+                    	//是否加入集群
+                    	var isCluster = obj.clustername != null ? true : false,
+                    		tempStr = isCluster ? 'cluster="true"' : '' ;
+                        dealData.push([
+                            '&lt;input type="checkbox" id="' + obj.host + ':' + obj.port + '" ' + tempStr + ' /&gt;',
+                            obj.id,
+                            obj.name,
+                            obj.host + ":" + obj.port,
+                            insStatus[obj.state],
+                            isCluster ? obj.clustername : "未加入集群",
+                            '', ''
+                        ]);
+                    }
+                }
+
+                fnCallback({'aaData': dealData}); //服务器端返回的对象的resp部分是要求的格式
+            }, error: function () {
+                fnCallback({'aaData': []});
+            }
+        });
+    }
+});
+                </pre>
+                <h4>参数</h4>
+                <p class="text-param"><code>options.sAjaxSource</code>：获取数据的url地址，必需。</p>
+                <p class="text-param"><code>options.fnServerData</code>：加载数据的函数，必需。</p>
+                <p class="text-param"><code>options.fnServerData.sSource</code>：指向options.sAjaxSource。</p>
+                <p class="text-param"><code>options.fnServerData.aoData</code>：指向options.aoData。</p>
+                <p class="text-param"><code>options.fnServerData.fnCallback</code>：执行fnServerData完毕前，需要调用fnCallback({aaData:aaData})，其中aaData为二维数组，每行代表表格的一行，每列代表表格的一列。</p>
+            </li>
+        </ol>
+        <h3>其他方法</h3>
+        <ol>
+            <li>
+                <p class="text-indent">
+                    可以参考<a href="http://legacy.datatables.net/api" target="_blank">官网的API</a>。
+                </p>
+            </li>
+            <li>
+                <h4>清空表格 dataTb.fnClearTable()</h4>
+            </li>
+            <li>
+                <h4>获取某行在dataTable中的索引 var index=dataTb.fnGetPosition(cellOrRow)</h4>
+                <p class="text-indent">cellOrRow可以是表格中的某行的tr或td的DOM对象。</p>
+            </li>
+            <li>
+                <h4>获取某行在dataTable中的数据 var data=dataTb.fnGetData(index)</h4>
+                <p class="text-indent">index为该行在dataTable中的索引。</p>
+                <p class="text-indent">data为该行在dataTable中的数据，数组形式。</p>
+            </li>
+            <li>
+                <h4>添加数据 dataTb.fnAddData(data[,callback[,isRedrawTable]])</h4>
+                <p class="text-indent">data可以是一维数组，代表一行，也可以是二维数组，代表多行。</p>
+                <pre>
+data=[1,2,3]//一行
+data=[
+        [1,2,3],
+        [2,3,4]
+]           //多行
+                </pre>
+                <p class="text-indent">callback,添加后的回调函数。</p>
+                <p class="text-indent">isRedrawTable,是否重绘表格，默认为true。</p>
+            </li>
+            <li>
+                <h4>删除一行 dataTb.fnDeleteRow(index[,callback[,isRedrawTable]])</h4>
+                <p class="text-indent">index,该行在表格中的索引，可以通过fnGetPosition(cellOrRow)获取。</p>
+                <p class="text-indent">callback,删除后的回调函数。</p>
+                <p class="text-indent">isRedrawTable,是否重绘表格，默认为true。</p>
+            </li>
+            <li>
+                <h4>更新数据 dataTb.fnUpdate(newData,index[,columnNumber])</h4>
+                <p class="text-indent">newData，将单元格或行更换成的数据。</p>
+                <p class="text-indent">index,该行在表格中的索引，可以通过fnGetPosition(cellOrRow)获取。</p>
+                <p class="text-indent">columnNumber,需要更新的列索引，如果没有填入改参数，newData必需为一个一维数组；如果填入该参数，则newData为字符串。</p>
+                <pre>
+dataTb.fnUpdate( 'Example update', 0, 0 ); // Single cell
+dataTb.fnUpdate( ['a', 'b', 'c', 'd', 'e'], 1 ); // Row
+                </pre>
+            </li>
+            <li>
+                <h4>销毁表格 dataTb.fnDestroy()</h4>
+            </li>
+        </ol>
+    </div>
+    <!-- dataTable-->
+    <!--dataTable可点击事件及样式 -->
+    <div data-href="tdClick" class="module">
+        <div class="page-header">
+            <h2>
+                可点击表格
+                <small></small>
+            </h2>
+            <ol>
+                <li>
+                    <h3>使用方法：</h3>
+                    <p>index 为可点击的td所在的列数</p>
+                    <pre>
+                        //表格点击事件
+                        var $tbody = $('#clusterInsTb', $el).children('tbody');
+                        $tbody.click(function (event) {
+				            var e = event.target || window.event.srcElement;
+                            if($(e).closest('td').index() == 1){
+                            ...
+                            ...
+                        }
+                    </pre>
+                </li>
+                <li>
+                    <h3>添加样式：</h3>
+                    <p>aTargets为可点击td所在的列，可以多列，列数用逗号隔开，如[1,3]</p>
+                    <p>sClass为给可点击td所在的列添加样式</p>
+                    <pre>
+var insTb = $('#clusterInsTb', $el).dataTable({
+...
+'aoColumnDefs': [
+                 //多选框禁用排序
+                 {"bSortable": false, "aTargets": [0]},
+                  //可点击链接列添加样式
+                 {"aTargets" : [1],"sClass" : "link"}
+                 ],
+...
+});
+                    </pre>
+                </li>
+            </ol>
+
+
+        </div>
+    </div>
+    <!-- echart-->
+    <div data-href="echart" class="module">
+        <div class="page-header">
+            <h2>
+                Echart
+                <small>echarts-all-2.2.7.min.js</small>
+            </h2>
+        </div>
+        <h3>使用方法</h3>
+        <ol>
+            <li>
+                <h4>定义：<code>var chart=echarts.init(chartDOM[,skin]);</code></h4>
+                <h5>参数</h5>
+                    <p class="text-param"><code>chartDOM</code>：图表容器的DOM对象。</p>
+                    <p class="text-param"><code>skin</code>：图表皮肤。</p>
+                    <p class="text-param">皮肤需要引用<code>echarts.config.skin.*</code></p>
+                <pre>skin: {
+    BLUE: "blue",
+    DARK: "dark",
+    GRAY: "gray",
+    GREEN: "green",
+    HELIANTHUS: "helianthus",
+    INFOGRAPHIC: "infographic",
+    MACARONS: "macarons",
+    MACARONS2: "macarons2",
+    MINT: "mint",
+    RED: "red",
+    ROMA: "roma",
+    SAKURA: "sakura",
+    SHINE: "shine"
+}</pre>
+                <h5>例子</h5>
+                <pre>echarts.init($('#chart',$el)[0],echarts.config.skin.BLUE);</pre>
+            </li>
+            <li>
+                <h4>设置参数：<code>chart.setOption(options);</code></h4>
+                <p class="text-indent">
+                    options详细解析，请见<a href="http://echarts.baidu.com/doc/doc.html" target="_blank">ECharts · Doc</a>。
+                </p>
+            </li>
+            <li>
+                <h4>设置数据：<code>chart.setSeries(series);</code></h4>
+                <h5>参数</h5>
+                <p class="text-param"><code>data</code>：与options.series格式一致。</p>
+            </li>
+            <li>
+                <h4>清除数据：<code>chart.clear();</code></h4>
+            </li>
+            <li>
+                <h4>销毁对象：<code>chart.dispose();</code></h4>
+            </li>
+        </ol>
+        <div class="alert">
+            <p class="text-indent">
+                关于Echart内存增长的问题，经过测试，在IE8下，Echart是基于excanvas.js的，而在现代浏览器则是基于ZRender。由于excavas.js年代比较久远，内存管理可能有点问题，导致内存泄漏问题。
+            </p>
+            <p class="text-indent">
+                为了解决这个问题，可以使用以下代码解决：
+            </p>
+            <pre>
+option.series[0].data.splice(0, option.series[0].data.length);//手动清空数据，清理数据内存,注意，series里面的每一行都要清一下
+$.ajax({
+    url: 'ajax/data.asp?t=' + Math.random(),
+    success: function (result) {
+        result = $.parseJSON(result);
+        option.series[0].data = [].concat(result.dataset);    //新建一个数组，避免option.series[0].data直接指向result.dataset，导致浏览器不能自动清理内存
+        myChart.clear().setOption(option);                    //手动使用clear方法，将清理内存，再重新设置option
+        result = null;
+    }
+});</pre>
+            <p class="text-indent">另外，在IE8下，还可以使用IE特有的垃圾回收函数，清理内存：</p>
+            <pre>
+if (window.CollectGarbage) {
+    setInterval(CollectGarbage, 20000);     //经过测试，每20秒调用一次内存清理，效果最佳
+}
+            </pre>
+            关于Echart内存优化分析，可浏览<a href="http://blog.csdn.net/tqtiwvfdn/article/details/46313547" target="_blank">ECharts源码分析优化</a>。
+        </div>
+    </div>
+    <!-- echart-->
+    <!-- jOrgChart-->
+    <div data-href="jOrgChart" class="module">
+        <div class="page-header">
+            <h2>
+                拓扑图
+                <small>jquery,jOrgCharts.js，taffy.js，deviceTree.js</small>
+            </h2>
+        </div>
+        <h3>
+            使用方法：原生$.fn.jOrgChart(options)，二次封装app.deviceTree(options)
+        </h3>
+        <h4>jOrgChart使用方法</h4>
+        <p class="text-indent">由于jOrgChart的分支版本比较多，本项目才有基于Mark Lee、Wes Nolte和Héctor Vela完善的版本上重写的代码版本。</p>
+        <div data-role="jOrgChartListTemp" class="hide">
+            <ul id="treeContent">
+                <li class="root cud"><!--根节点-->
+                    <div class="label_node" data-id >
+                        <i class="fa fa-icon"></i>      <!--图标-->
+                        <h5 class="title">_name_</h5>   <!--标题-->
+                    </div>
+                    <div class="details"><table class="table-details"></table></div> <!--详细描述-->
+                    <ul>
+                        <li class="child"><!--子节点-->
+                            <div class="label_node" data-id ><i class="fa fa-icon"></i>
+                                <h5 class="title">_name_</h5></div>
+                            <div class="details"><table class="table-details"></table></div>
+                            <ul>
+                                <li class="child ud">…</li><!--子 子节点1-->
+                                <li class="child cu">…</li><!--子 子节点1-->
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <h5>HTML代码</h5>
+        <pre data-role="jOrgChartListSample"></pre>
+        <h5>JS代码</h5>
+        <pre>$('#treeContent').jOrgChart({
+        $context: ___$context,                      //父容器，上下文
+        chartElement: $tree,                        //显示拓扑图的容器
+        chartClass: "jOrgChart",                    //树的基本样式
+        depth: -1,                                  //从哪个深度开始显示
+        expand: true,                               //是否可伸展
+        control: !!editable,                        //是否显示编辑按钮
+        dragAndDrop: draggable||cloneable,          //是否可拖拽
+        draggedZIndex: 1000,                        //拖拽时显示的z-index
+        dropHandler: function (event, ui) {}        //只要draggable或cloneable为true都需要写这个函数
+        rowColor: false                             //不同层级显示不同颜色
+}</pre>
+        <p class="alert"><strong>注意：</strong>拖拽功能需要jQuery-UI的支持。</p>
+        <h4>jOrgChart参数</h4>
+        <ol>
+            <li>
+                <p class="text-param"><code>$context</code>：上下文，jQuery对象或jQuery selector，非必需；缺省值为chartElement的父容器。</p>
+                <p class="text-param"><code>chartElement</code>：显示拓扑图的容器，jQuery对象或jQuery selector，必需。</p>
+                <p class="text-param"><code>chartClass</code>：拓扑图的容器的基本样式，非必需，缺省值为<code>jOrgChart</code>。</p>
+                <p class="text-param"><code>depth</code>：从哪个深度开始显示拓扑图，数值型，非必需，缺省值为<code>-1</code>。</p>
+                <p class="text-param"><code>expand</code>：是否可伸展，布尔型，非必需，缺省值为<code>false</code>。</p>
+                <p class="text-param"><code>control</code>：是否显示编辑按钮，布尔型，非必需，缺省值为<code>false</code>。</p>
+                <p class="text-param"><code>dragAndDrop</code>：是否可拖拽，布尔型，非必需，缺省值为<code>false</code>。</p>
+                <p class="text-param"><code>draggedZIndex</code>：是否可拖拽，数值型，非必需，缺省值为<code>1000</code>。</p>
+                <p class="text-param"><code>dropHandler</code>：拖拽后处理函数，函数，如果dragAndDrop为true则必需。</p>
+                <p class="text-param"><code>rowColor</code>：不同层级显示不同颜色，布尔型，非必需，缺省值为<code>false</code>。*样式未写</p>
+            </li>
+        </ol>
+
+        <h4>deviceTree使用方法</h4>
+        <p class="text-indent">基于jOrgChart的二次封装，结合JS数据库taffy，省略部分细节，并添加增删改、刷新数据等功能。</p>
+        <h5>定义</h5>
+        <pre>var devViewTree = app.deviceTree({
+        $context: $el,                                  //上下文
+        $container: $('[data-role=devViewCtn]', $el),   //拓扑图容器
+        editable: 'cud',// 'cud',                       //是否可编辑   增删改 cud，改删'ud'，增删'cd'，不可编辑false,
+        data: data.content.aaData,                      //拓扑图数据
+                                                        /*  data为节点对象集合的一维数组，其中每个节点都必须有name这个属性
+                                                        *   data=[{},{
+                                                        *               name://名称必需
+                                                        *           }]
+                                                        *   node[selector]=node[parentSelector]+node.name//默认是
+                                                        *
+                                                        */
+
+        //details有两种写法，第一种为map形式的键值对，
+        /* details: {
+         name: '名称',
+         desp: '描述',
+         path: '路径'
+         },*/
+        //第二种形式，就是函数的形式，返回一个键值对的二维数组，用于不是直接生成的描述信息
+        details: function (node) {
+            //node是某个节点
+            var lines = [];//待返回的行。
+
+            lines.push(['名称', node.name]);
+            lines.push(['描述', node.desp]);
+            lines.push(['路径', node.path]);
+            lines.push(['类型', app.deviceTree.DEVICE_PARAMS[node.type].chineseName]);
+
+            return lines;
+        },
+        selector: 'path',                           //自己的路径，子节点的父路径
+        parentSelector: 'parentPath',               //父路径
+        root: data.content.aaData[0].path,          //根路径，开始搜索的路径
+        rootDeletable:false,                        //根节点是否可以删除
+        pathDivider: '/',                           //路径的分割线
+        draggable: true,                            //是否可以拖拽
+        cloneable:true                              //是否可以克隆
+    });</pre>
+        <h4>deviceTree参数</h4>
+        <ol>
+            <li>
+                <p class="text-param"><code>$context</code>：上下文，jQuery对象或jQuery selector，必需。</p>
+                <p class="text-param"><code>$container</code>：显示拓扑图的容器，jQuery对象或jQuery selector，必需。</p>
+                <p class="text-param"><code>editable</code>：可编辑的程度，
+                    分为 增c、改u、删d，可分为这些<code>cud|cu|cd|ud|c|u|d</code>组合。
+                    不可编辑<code>false</code>，非必需，缺省值为<code>cud</code>。</p>
+                <p class="text-param"><code>data</code>：拓扑图的节点的集合的一维数组，必需。</p>
+                <p class="text-param"><code>details</code>：需要显示的细节，js对象或函数，非必需，缺省值为<code>空</code>。</p>
+                <p class="text-param"><code>selector</code>：节点的路径，子节点的父路径，非必需，缺省值为<code>'path'</code>。</p>
+                <p class="text-param"><code>parentSelector</code>：节点的父路径，非必需，缺省值为<code>'parentPath'</code>。</p>
+                <p class="text-param"><code>root</code>：根路径，开始搜索的路径，非必需，缺省值为<code>'/'</code>。</p>
+                <p class="text-param"><code>pathDivider</code>：路径的分割符，非必需，缺省值为<code>'/'</code>。</p>
+                <p class="text-param"><code>draggable</code>：节点是否可以拖拽，布尔型，非必需，缺省值为<code>false</code>。</p>
+                <p class="text-param"><code>cloneable</code>：节点是否可以拖拽，布尔型，非必需，缺省值为<code>false</code>。</p>
+            </li>
+        </ol>
+        <h5>增加</h5>
+        <pre>devViewTree.add(node)//可以是单个节点或节点数组，返回成功添加的个数。</pre>
+        <h5>删除</h5>
+        <pre>devViewTree.remove(elem)//elem可以是节点的data-id或是节点的任意子对象DOM或jQuery对象，返回节点路径（删除成功）或false（删除失败）。
+            //注意，删除功能不会自动刷新树结构，需要手动调用devViewTree.refresh(false)刷新树结构。</pre>
+        <h5>更新</h5>
+        <pre>devViewTree.update(path,info)//path可以是单个节点的路径或是节点路径的数组集合，info可以是数组形式，或单个对象的形式，将返回更新个数。
+        如：deviceView.update('/银行',{desp:'dsds'})
+        或：deviceView.update(['/银行','/银行/a分行'],{type:'0'})
+        或：deviceView.update(['/银行','/银行/a分行'],[{type:'8'},{type:'7'}])
+        </pre>
+        <h5>清空</h5>
+        <pre>devViewTree.clear()</pre>
+        <h5>刷新数据/还原</h5>
+        <pre>devViewTree.refresh([data])。data格式，与定义时一致，如果data为空，则还原到最原始的状态，如果data为布尔型的flase,则仅仅刷新树结构。</pre>
+        <h5>获取当前拓扑单个节点的信息</h5>
+        <pre>devViewTree.get(elem)。//elem可以是节点的data-id或是节点的任意子对象DOM或jQuery对象，返回节点所有信息或空对象。</pre>
+        <h5>获取当前拓扑所有节点的信息</h5>
+        <pre>devViewTree.getJSONString()。返回所有节点信息的数据的JSON字符串，格式与data一致。</pre>
+    </div>
+    <!-- jOrgChart-->
+    <!-- taffy-->
+    <div data-href="taffy" class="module">
+        <div class="page-header">
+            <h2>
+                JS数据库Taffy
+                <small>app.taffy，jquery.jOrgChart-taffy.js</small>
+            </h2>
+        </div>
+        <h3>
+            方法
+        </h3>
+        <ol>
+            <li>
+                <p>
+                    创建：<code>var db=app.taffy([data])</code>
+                </p>
+                <p class="text-param"><code>db</code>：可以理解问关系数据库中的表。</p>
+                <p class="text-param"><code>data</code>：非必需，数组类型，数组内的元素必需为键值对的对象类型，如</p>
+                <pre>
+data=[{
+    id:'1',
+    name:'test1',
+    ……
+},{
+    id:'2',
+    name:'test2',
+    ……
+}]
+                </pre>
+            </li>
+            <li>
+                <p>
+                    增加数据：<code>db.insert(obj)</code>
+                </p>
+                <p class="text-param"><code>obj</code>：可以是多个对象的数组，如创建时的data，或单个对象。</p>
+            </li>
+            <li>
+                <p>
+                    查询数据：<code>var rows=db([filter])</code>
+                </p>
+                <p class="text-param"><code>filter</code>：非必需，筛选条件，格式如<code>{key:value[,key1:value[,…]]}</code>，单个或多个条件的键值对，如果filter为空，则返回表中的所有行。</p>
+            </li>
+            <li>
+                <p class="text-indent">查询完数据后，应先调用<code>rows.count()</code>获取数据的行数。</p>
+                <p>
+                    获取多行数据：<code>var tuples=rows.get()</code>
+                </p>
+                <p class="text-param"><code>tuples</code>：元组集合，数组类型，返回格式与data一致；如果没有数据，tuples等于空数组[]。</p>
+                <p>
+                    获取单个数据：<code>var tuple=rows.first()</code>
+                </p>
+                <p class="text-param"><code>tuple</code>：单个对象；如果没有数据，tuple等于false。</p>
+            </li>
+            <li>
+                <p>
+                    更改数据：<code>var rows=rows.update(updatedTuple)</code>
+                </p>
+                <p class="text-param"><code>rows</code>：需要更新的行。</p>
+                <p class="text-param"><code>updatedTuple</code>：键值对的对象类型，格式如<code>{key:updateValue1[,key1:updateValue2[,…]]}</code>，即原先的属性名+更新后的值。</p>
+            </li>
+            <li>
+                <p>
+                    删除数据：<code>var deletedCount=db([filter]).remove()</code>
+                </p>
+                <p class="text-param"><code>deletedCount</code>：删除的元组数。</p>
+            </li>
+            <li>
+                <p>
+                    循环元组：<code>db([filter]).ecah(function(tuple){…})</code>
+                </p>
+            </li>
+        </ol>
+        <h3>实例</h3>
+        <pre>
+//数据
+var data=[
+    {attr1:'attr1',attr2:'attr1',attr3:'attr3'},
+    {attr1:'attr1',attr2:'attr12',attr3:'attr32'},
+    {attr1:'attr13',attr2:'attr13',attr3:'attr3'}
+];
+//建立表格
+var db=app.taffy(data);
+
+/*查询*/
+//筛选数据
+var filter={attr1:'attr1'};
+//筛选到的行对象，包括增删查改的操作函数
+var rows=db(filter);
+
+if(rows.count()){//判断获取的函数是否大于0，如果为0的话，rows.count===false
+    //获取的数据
+    var tuples=rows.get();//tuples = [Object, Object], rows = Object {extend: undefined, insert: undefined}
+    var tuple=rows.first();//tuple = Object {attr1: "attr1", attr2: "attr1", attr3: "attr3", ___id: "T000008R000002", ___s: true}
+
+    //更新多行，不能带'___id'属性
+    var updateTuples={attr1:'attr_updated'};
+    rows.update(updateTuples);
+
+    //更新后的rows.count()===0，需要重新从db中获取
+    rows=db();
+
+    //更新一行。一定要带'___id'属性
+    var updateTuple=$(true,{},tuple);//深克隆一份
+    updateTuple.attr2='attr update 3';
+    db(tuple).update(updateTuple);
+
+    //重置元组
+    rows=db();
+
+    //删除一行
+    var deletedCount=db(updateTuple).remove();
+
+    //删除多行
+    var deletedCount=db().remove();
+}
+        </pre>
+    </div>
+    <!-- taffy-->
+</div>
+<!--html End-->

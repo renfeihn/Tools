@@ -1,0 +1,12 @@
+{
+    "views": {
+        "addLogInfoConfig1": {
+            "template": "addLogInfoConfig.jsp",
+            "js": "addLogInfoConfig.js"
+        }
+    },
+    "models": {},
+    "flows": [{
+        "id": "addLogInfoConfig1"
+    }]
+}

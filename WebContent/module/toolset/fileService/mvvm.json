@@ -1,0 +1,19 @@
+{
+	"views": {
+		"fileService": {
+			"template": "fileService.jsp",
+			"js": "fileService.js"
+		}
+	}, 
+	
+	"models": {
+	}, 
+	
+	"flows": [
+		{
+			"id": "fileService"
+		}
+	],
+
+	"stepBar": false
+}

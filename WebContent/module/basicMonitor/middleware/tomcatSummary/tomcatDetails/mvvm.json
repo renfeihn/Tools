@@ -1,0 +1,19 @@
+{
+	"views": {
+		"tomcatDetailsV": {
+			"template": "tomcatDetails.jsp",
+			"js": "tomcatDetails.js"
+		}
+	}, 
+	
+	"models": {
+	}, 
+	
+	"flows": [
+		{
+			"id": "tomcatDetailsV"
+		}
+	],
+
+	"stepBar": false
+}

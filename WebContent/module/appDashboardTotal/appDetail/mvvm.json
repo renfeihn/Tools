@@ -1,0 +1,19 @@
+{
+	"views": {
+		"appDetailV": {
+			"template": "appDetail.jsp",
+			"js": "appDetail.js"
+		}
+	}, 
+	
+	"models": {
+	}, 
+	
+	"flows": [
+		{
+			"id": "appDetailV"
+		}
+	],
+
+	"stepBar": false
+}

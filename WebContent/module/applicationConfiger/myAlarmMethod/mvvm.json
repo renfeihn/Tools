@@ -1,0 +1,19 @@
+{
+	"views": {
+		"myAlarmMethodV": {
+			"template":"myAlarmMethod.jsp",
+			"js":"myAlarmMethod.js"
+		}
+	}, 
+	
+	"models": {
+	}, 
+	
+	"flows": [
+		{
+			"id": "myAlarmMethodV"
+		}
+	],
+
+	"stepBar": false
+}

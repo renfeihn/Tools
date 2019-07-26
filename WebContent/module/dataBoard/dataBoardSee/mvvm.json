@@ -1,0 +1,19 @@
+{
+	"views": {
+		"dataBoardSeeV": {
+			"template":"dataBoardSee.jsp",
+			"js":"dataBoardSee.js"
+		}
+	}, 
+	
+	"models": {
+	}, 
+	
+	"flows": [
+		{
+			"id": "dataBoardSeeV"
+		}
+	],
+
+	"stepBar": false
+}

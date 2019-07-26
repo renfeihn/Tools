@@ -1,0 +1,19 @@
+{
+	"views": {
+		"linuxSummaryV": {
+			"template": "linuxSummary.jsp",
+			"js": "linuxSummary.js"
+		}
+	}, 
+	
+	"models": {
+	}, 
+	
+	"flows": [
+		{
+			"id": "linuxSummaryV"
+		}
+	],
+
+	"stepBar": false
+}

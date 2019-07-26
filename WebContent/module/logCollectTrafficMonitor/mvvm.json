@@ -1,0 +1,19 @@
+{
+	"views": {
+		"logCollectTrafficMonitorV": {
+			"template":"logCollectTrafficMonitor.jsp",
+			"js":"logCollectTrafficMonitor.js"
+		}
+	}, 
+	
+	"models": {
+	}, 
+	
+	"flows": [
+		{
+			"id": "logCollectTrafficMonitorV"
+		}
+	],
+
+	"stepBar": false
+}

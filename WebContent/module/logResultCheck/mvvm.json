@@ -1,0 +1,19 @@
+{
+	"views": {
+		"logResultCheckV": {
+			"template":"logResultCheck.jsp",
+			"js":"logResultCheck.js"
+		}
+	}, 
+	
+	"models": {
+	}, 
+	
+	"flows": [
+		{
+			"id": "logResultCheckV"
+		}
+	],
+
+	"stepBar": false
+}

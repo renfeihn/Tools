@@ -1,0 +1,19 @@
+{
+	"views": {
+		"eventPainterV": {
+			"template": "eventPainter.jsp",
+			"js": "eventPainter.js"
+		}
+	}, 
+	
+	"models": {
+	}, 
+	
+	"flows": [
+		{
+			"id": "eventPainterV"
+		}
+	],
+
+	"stepBar": false
+}

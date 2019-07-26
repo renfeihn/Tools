@@ -1,0 +1,19 @@
+{
+	"views": {
+		"logForwardTaskManagerV": {
+			"template":"logForwardTaskManager.jsp",
+			"js":"logForwardTaskManager.js"
+		}
+	}, 
+	
+	"models": {
+	}, 
+	
+	"flows": [
+		{
+			"id": "logForwardTaskManagerV"
+		}
+	],
+
+	"stepBar": false
+}

@@ -1,0 +1,19 @@
+{
+	"views": {
+		"dataSourceV": {
+			"template": "dataSource.jsp",
+			"js": "dataSource.js"
+		}
+	}, 
+	
+	"models": {
+	}, 
+	
+	"flows": [
+		{
+			"id": "dataSourceV"
+		}
+	],
+
+	"stepBar": false
+}

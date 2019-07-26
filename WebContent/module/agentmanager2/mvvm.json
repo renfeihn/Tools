@@ -1,0 +1,19 @@
+{
+	"views": {
+		"agentmanagerV": {
+			"template": "agentmanager.jsp",
+			"js": "agentmanager.js"
+		}
+	}, 
+	
+	"models": {
+	}, 
+	
+	"flows": [
+		{
+			"id": "agentmanagerV"
+		}
+	],
+
+	"stepBar": false
+}

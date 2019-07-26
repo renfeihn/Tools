@@ -1,0 +1,19 @@
+{
+	"views": {
+		"RACTabsV": {
+			"template": "RACTabs.jsp",
+			"js": "RACTabs.js"
+		}
+	}, 
+	
+	"models": {
+	}, 
+	
+	"flows": [
+		{
+			"id": "RACTabsV"
+		}
+	],
+
+	"stepBar": false
+}

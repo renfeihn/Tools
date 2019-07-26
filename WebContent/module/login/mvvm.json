@@ -1,0 +1,19 @@
+{
+	"views": {
+		"loginV": {
+			"template":"login.jsp",
+			"js":"login.js"
+		}
+	}, 
+	
+	"models": {
+	}, 
+	
+	"flows": [
+		{
+			"id": "loginV"
+		}
+	],
+
+	"stepBar": false
+}

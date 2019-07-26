@@ -1,0 +1,29 @@
+
+/* �������ʽ */
+section.app2Repository-noMargin input {
+    padding: 0 4px;
+    top: 2px;
+    right: 10px;
+    border-color: #e5e5e5;
+}
+
+/* Ztree�������� ��������Ϊ���� */
+.ztree li span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 120px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+/* ��ɫ�·���ť */
+.btn-group.event .btn, .btn-group.event .btn.open {
+    height: 30px;
+    color: #fff;
+    background-color: #5b62f9 !important;
+    background-image: none;
+    text-shadow: none;
+    border: none;
+    border-radius: 4px;
+}

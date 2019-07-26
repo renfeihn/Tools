@@ -1,0 +1,19 @@
+{
+	"views": {
+		"appOverviewV": {
+			"template":"appOverview.jsp",
+			"js":"appOverview.js"
+		}
+	}, 
+	
+	"models": {
+	}, 
+	
+	"flows": [
+		{
+			"id": "appOverviewV"
+		}
+	],
+
+	"stepBar": false
+}

@@ -1,0 +1,19 @@
+{
+	"views": {
+		"logWarningManagerV": {
+			"template":"logWarningManager.jsp",
+			"js":"logWarningManager.js"
+		}
+	}, 
+	
+	"models": {
+	}, 
+	
+	"flows": [
+		{
+			"id": "logWarningManagerV"
+		}
+	],
+
+	"stepBar": false
+}

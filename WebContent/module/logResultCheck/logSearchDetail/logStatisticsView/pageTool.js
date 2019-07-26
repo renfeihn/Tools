@@ -1,0 +1,190 @@
+/**
+ * 统计echarts工具
+ */
+define(["jquery"], function ($) {
+	/**
+	 * 获取页面配置
+	 * @param  {[type]} Fields 字段列表
+	 * @return {[type]}       页面配置
+	 */
+	function getConfig(Fields) {
+		var PAGECONFIG= {
+			typeConfig:{
+				title:'统计类型',
+				role:'typeSelset',
+				typeSelset:[{name:'事件趋势统计',value:'事件趋势统计'},{name:'时间分区统计',value:'时间分区统计'},
+							{name:'时间间隔统计',value:'时间间隔统计'},{name:'数值区间统计',value:'数值区间统计'}
+							/*,{name:'数值间隔统计',value:'数值间隔统计'}*/,{name:'数值分类统计',value:'数值分类统计'}
+							,{name:'数值百分比统计',value:'数值百分比统计'},{name:'地理分布统计',value:'地理分布统计'}]
+			},
+			detailConfig:{
+				'事件趋势统计':{
+					echartsType:{
+						title:'图表类型',
+						role:'echartsTypeSelect',
+						typeSelset:[{name:'折线图',value:'line'},{name:'柱状图',value:'bar'}]
+					},
+					fields:{
+						title:'结构化字段',
+						role:'addFields',
+						filterSetting: [{
+							role:'fieldsFilter',
+							text:'过滤空项'
+						}],
+						select:{
+							role:'fields',
+							typeSelset:[].concat(Fields.D,Fields.S,Fields.N)
+						}
+					}
+				},
+				'时间分区统计':{
+					echartsType:{
+						title:'图表类型',
+						role:'echartsTypeSelect',
+						typeSelset:[{name:'柱状图',value:'bar'}]
+					},
+					fields:{
+						title:'结构化字段',
+						role:'fields',
+						typeSelset:[].concat(Fields.D,Fields.S,Fields.N)
+					},
+					timeSegment:{
+						title:'时间分段',
+						role:'addTimeSegment',
+						segmentConfig:{
+							role:'timeSegment',
+							readonly: true,
+							inputType: 'text'
+						}
+					}
+				},
+				'时间间隔统计':{
+					echartsType:{
+						title:'图表类型',
+						role:'echartsTypeSelect',
+						typeSelset:[{name:'柱状图',value:'bar'}]
+					},
+					timeInterval:{
+						title:'时间间隔',
+						role:'timeInterval',
+						select:{
+							role:'intervalSelect',
+							defaultValue:'m',
+							typeSelset:[{name:'秒',value:'s'},{name:'分钟',value:'m'},{name:'小时',value:'h'},{name:'天',value:'d'},{name:'月',value:'M'},{name:'年',value:'y'}]
+						}
+					},
+					fields:{
+						title:'结构化字段',
+						role:'addFields',
+						filterSetting: [{
+							role:'fieldsFilter',
+							text:'过滤空项'
+						}],
+						select:{
+							role:'fields',
+							typeSelset:[].concat(Fields.D,Fields.S,Fields.N)
+						}
+					}
+				},
+				'数值区间统计':{
+					echartsType:{
+						title:'图表类型',
+						role:'echartsTypeSelect',
+						typeSelset:[{name:'折线图',value:'line'},{name:'柱状图',value:'bar'}]
+					},
+					fields:{
+						title:'结构化字段',
+						role:'fields',
+						typeSelset:[].concat(Fields.N)
+					},
+					statisticalMethods:{
+						title:'统计方式',
+						role:'statisticalMethods',
+						typeSelset:[{name:'计数',value:'count'},{name:'平均',value:'avg'},{name:'求和',value:'sum'},{name:'最大',value:'max'},{name:'最小',value:'min'}]
+					},
+					numSegment:{
+						title:'数值分段',
+						role:'addNumSegment',
+						segmentConfig:{
+							role:'numSegment',
+							inputType:'number'
+						}
+					}
+				},
+				'数值间隔统计':{
+					echartsType:{
+						title:'图表类型',
+						role:'echartsTypeSelect',
+						typeSelset:[{name:'柱状图',value:'bar'}]
+					},
+					fields:{
+						title:'结构化字段',
+						role:'fields',
+						typeSelset:[].concat(Fields.D,Fields.S,Fields.N)
+					},
+					statisticalMethods:{
+						title:'统计方式',
+						role:'statisticalMethods',
+						typeSelset:[{name:'计数'},{name:'平均'},{name:'求和'}]
+					},
+					timeInterval:{
+						title:'时间间隔',
+						role:'timeInterval',
+						select:{
+							role:'intervalSelect',
+							defaultValue:'m',
+							typeSelset:[{name:'秒',value:'s'},{name:'分钟',value:'m'},{name:'小时',value:'h'},{name:'天',value:'d'},{name:'月',value:'M'},{name:'年',value:'y'}]
+						}
+					}
+				},
+				'数值分类统计':{
+					echartsType:{
+						title:'图表类型',
+						role:'echartsTypeSelect',
+						typeSelset:[{name:'柱状图',value:'bar'},{name:'饼图',value:'pie'}]
+					},
+					fields:{
+						title:'结构化字段',
+						role:'fields',
+						typeSelset:[].concat(Fields.D,Fields.S,Fields.N)
+					},
+					topSetting:{
+						title:'TOP设定',
+						role:'topSetting',
+						defaultValue: 10,
+						inputType: 'number'
+					}
+				},
+				'数值百分比统计':{
+					echartsType:{
+						title:'图表类型',
+						role:'echartsTypeSelect',
+						typeSelset:[{name:'饼图',value:'pie'}]
+					},
+					fields:{
+						title:'结构化字段',
+						role:'fields',
+						typeSelset:[].concat(Fields.N)
+					}
+				},
+				'地理分布统计':{
+					echartsType:{
+						title:'图表类型',
+						role:'echartsTypeSelect',
+						typeSelset:[{name:'地图',value:'map'}]
+					},
+					fields:{
+						title:'结构化字段',
+						role:'fields',
+						typeSelset:[].concat(Fields.N)
+					}
+				}
+			}
+		}
+		return PAGECONFIG;
+	}
+
+	return {
+		getConfig:getConfig
+	};
+})		

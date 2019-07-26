@@ -1,0 +1,9 @@
+{
+  "containerList":[
+    {"type": "stage", "shouldInPanel": false, "name": "交易容器"},
+    {"type": "row", "shouldInPanel": true, "name": "行布局容器"},
+    {"type": "panel", "shouldInPanel": true, "name": "面板容器"},
+    {"type": "tab", "shouldInPanel": true, "name": "选项卡容器"},
+    {"type": "template", "shouldInPanel": false, "name": "模板容器"}
+  ]
+}

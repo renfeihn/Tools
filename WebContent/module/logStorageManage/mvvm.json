@@ -1,0 +1,19 @@
+{
+	"views": {
+		"logStorageManageV": {
+			"template":"logStorageManage.jsp",
+			"js":"logStorageManage.js"
+		}
+	}, 
+	
+	"models": {
+	}, 
+	
+	"flows": [
+		{
+			"id": "logStorageManageV"
+		}
+	],
+
+	"stepBar": false
+}

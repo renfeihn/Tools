@@ -1,0 +1,19 @@
+{
+	"views": {
+		"fieldsV": {
+			"template": "fields.jsp",
+			"js": "fields.js"
+		}
+	}, 
+	
+	"models": {
+	}, 
+	
+	"flows": [
+		{
+			"id": "fieldsV"
+		}
+	],
+
+	"stepBar": false
+}

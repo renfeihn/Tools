@@ -1,0 +1,19 @@
+{
+	"views": {
+		"LinuxTabsV": {
+			"template": "LinuxTabs.jsp",
+			"js": "LinuxTabs.js"
+		}
+	}, 
+	
+	"models": {
+	}, 
+	
+	"flows": [
+		{
+			"id": "LinuxTabsV"
+		}
+	],
+
+	"stepBar": false
+}

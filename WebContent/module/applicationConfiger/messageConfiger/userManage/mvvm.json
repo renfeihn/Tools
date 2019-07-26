@@ -1,0 +1,19 @@
+{
+	"views": {
+		"userManageV": {
+			"template":"userManage.jsp",
+			"js":"userManage.js"
+		}
+	}, 
+	
+	"models": {
+	}, 
+	
+	"flows": [
+		{
+			"id": "userManageV"
+		}
+	],
+
+	"stepBar": false
+}

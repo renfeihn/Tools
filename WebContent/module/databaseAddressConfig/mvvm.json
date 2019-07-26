@@ -1,0 +1,19 @@
+{
+	"views": {
+		"databaseAddressConfigV": {
+			"template":"databaseAddressConfig.jsp",
+			"js":"databaseAddressConfig.js"
+		}
+	}, 
+	
+	"models": {
+	}, 
+	
+	"flows": [
+		{
+			"id": "databaseAddressConfigV"
+		}
+	],
+
+	"stepBar": false
+}

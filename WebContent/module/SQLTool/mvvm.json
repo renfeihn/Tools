@@ -1,0 +1,19 @@
+{
+	"views": {
+		"SQLToolV": {
+			"template":"SQLTool.jsp",
+			"js":"SQLTool.js"
+		}
+	}, 
+	
+	"models": {
+	}, 
+	
+	"flows": [
+		{
+			"id": "SQLToolV"
+		}
+	],
+
+	"stepBar": false
+}

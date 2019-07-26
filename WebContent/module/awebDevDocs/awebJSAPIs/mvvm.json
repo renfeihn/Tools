@@ -1,0 +1,19 @@
+{
+	"views": {
+		"awebAPIsV": {
+			"template": "awebAPIs.html",
+			"js": "awebAPIs.js"
+		}
+	}, 
+	
+	"models": {
+	}, 
+	
+	"flows": [
+		{
+			"id": "awebAPIsV"
+		}
+	],
+
+	"stepBar": false
+}

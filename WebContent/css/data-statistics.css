@@ -1,0 +1,291 @@
+
+@charset "utf-8";
+	/* CSS Document*/
+fieldset, img {
+	border: 0;
+}
+h1, h2, h3, h4, h5, h6 {
+	font-size:12px;
+}
+ol, ul {
+	list-style: none;
+}
+table {
+	border-collapse: collapse;
+}
+body,font {
+	font-size:12px;
+	color:#666;
+	font-family:"微软雅黑","宋体";
+}
+a {
+	color:#666;
+	text-decoration:none;
+	outline:none !important;
+}
+a:hover {
+	color:#e50015;
+	cursor:pointer
+}
+img {
+	margin:0;
+	padding:0;
+	border:0;
+}
+body {
+	background: #080b13 ;
+	overflow: hidden;
+}
+/*翻页动画*/
+	@-webkit-keyframes flipTop {
+	0% {
+	-webkit-transform: perspective(400px) rotateX(0deg);
+}
+100% {
+	-webkit-transform: perspective(400px) rotateX(-90deg);
+}
+}
+@-webkit-keyframes flipBottom {
+	0% {
+	-webkit-transform: perspective(400px) rotateX(90deg);
+}
+100% {
+	-webkit-transform: perspective(400px) rotateX(0deg);
+}
+}
+@-moz-keyframes flipTop {
+	0% {
+	-moz-transform: perspective(400px) rotateX(0deg);
+}
+100% {
+	-moz-transform: perspective(400px) rotateX(-90deg);
+}
+}
+@-moz-keyframes flipBottom {
+	0% {
+	-moz-transform: perspective(400px) rotateX(90deg);
+}
+100% {
+	-moz-transform: perspective(400px) rotateX(0deg);
+}
+}
+@-ms-keyframes flipTop {
+	0% {
+	-ms-transform: perspective(400px) rotateX(0deg);
+}
+100% {
+	-ms-transform: perspective(400px) rotateX(-90deg);
+}
+}
+@-ms-keyframes flipBottom {
+	0% {
+	-ms-transform: perspective(400px) rotateX(90deg);
+}
+100% {
+	-ms-transform: perspective(400px) rotateX(0deg);
+}
+}
+@-keyframes flipTop {
+	0% {
+	transform: perspective(400px) rotateX(0deg);
+}
+100% {
+	transform: perspective(400px) rotateX(-90deg);
+}
+}
+@-keyframes flipBottom {
+	0% {
+	transform: perspective(400px) rotateX(90deg);
+}
+100% {
+	transform: perspective(400px) rotateX(0deg);
+}
+}
+.dataStatistics {
+	text-align:center;
+	color: #cbe0ff;
+	font-family: "Helvetica Neue", Helvetica, sans-serif;
+	font-size: 40px;
+	font-weight: bold;
+	line-height: 50px;
+
+	height: 50px;
+	margin: 0 auto;
+	text-align: center;
+
+}
+ .dataStatistics .seperator {
+	vertical-align: top;
+	margin: 0 -20px;
+	display: inline;
+}
+.dataStatistics .seconds,.dataStatistics .minutes,.dataStatistics .hours,.dataStatistics .days {
+	height: 100%;
+	display: inline;
+} 
+.dataStatistics .digit_set {
+	float: left;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+	border: 2px solid #2274ef;
+	width: 35px;
+	height: 100%;
+	display: inline-block;
+	position: relative;
+	margin: 0 5px;
+}
+.dataStatistics .digit_set:before,.dataStatistics .digit_set_none:before {
+	content: "";
+	display: inline-block;
+	width: 50%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 999;
+	height: 0;
+	border-top: 3px solid #4f94fe;
+	border-right: 3px solid transparent;
+}
+.dataStatistics .digit_set:after,.dataStatistics .digit_set_none:after {
+	content: "";
+	display: inline-block;
+	width: 50%;
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	z-index: 999;
+	height: 0;
+	border-bottom: 3px solid #4f94fe;
+	border-left: 3px solid transparent;
+}
+.dataStatistics .digit_set_none {
+	font-size: 30px;
+	background-color: #092d70;
+	float: left;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+	border: 2px solid #2274ef;
+	width: 35px;
+	height: 100%;
+	display: inline-block;
+	position: relative;
+	margin: 0 5px;
+}
+.dataStatistics .digit {
+	position: absolute;
+	height: 100%;
+}
+.dataStatistics .digit > div {
+	position: absolute;
+	left: 0;
+	overflow: hidden;
+	height: 50%;
+	width: 35px;
+}
+.dataStatistics .digit > div.digit_top, .dataStatistics .digit > div.shadow_top {
+	background-color: #092d70;
+	border-bottom: 1px solid #092d70;
+	box-sizing: border-box;
+	top: 0;
+	z-index: 0;
+}
+.dataStatistics .digit > div.digit_top:before, .dataStatistics .digit > div.shadow_top:before {
+	content: "";
+	height: 100%;
+	width: 100%;
+	position: absolute;
+	left: 0;
+	top: 0;
+}
+.dataStatistics .digit > div.shadow_top {
+	opacity: 0;
+	-webkit-transition: opacity 0.3s ease-in;
+}
+.dataStatistics .digit > div.digit_bottom, .dataStatistics .digit > div.shadow_bottom {
+	background-color: #092d70;
+	bottom: 0;
+	z-index: 0;
+}
+.dataStatistics .digit > div.digit_bottom .digit_wrap, .dataStatistics .digit > div.shadow_bottom .digit_wrap {
+	display: block;
+	line-height: 0px;
+}
+.dataStatistics .digit > div.digit_bottom:before, .dataStatistics .digit > div.shadow_bottom:before {
+	content: "";
+	height: 100%;
+	width: 100%;
+	position: absolute;
+	left: 0;
+	top: 0;
+}
+.digit_wrap {
+	display: block;
+}
+.dataStatistics .digit > div.shadow_bottom {
+	opacity: 0;
+	-webkit-transition: opacity 0.3s ease-in;
+}
+.dataStatistics .digit.previous .digit_top,.dataStatistics .digit.previous .shadow_top {
+	opacity: 1;
+	z-index: 2;
+	-webkit-transform-origin: 50% 100%;
+	-webkit-animation: flipTop 0.3s ease-in both;
+	-moz-transform-origin: 50% 100%;
+	-moz-animation: flipTop 0.3s ease-in both;
+	-ms-transform-origin: 50% 100%;
+	-ms-animation: flipTop 0.3s ease-in both;
+	transform-origin: 50% 100%;
+	animation: flipTop 0.3s ease-in both;
+}
+.dataStatistics .digit.previous .digit_bottom,.dataStatistics .digit.previous .shadow_bottom {
+	z-index: 1;
+	opacity: 1;
+}
+.dataStatistics .digit.active .digit_top {
+	z-index: 1;
+}
+.dataStatistics .digit.active .digit_bottom {
+	z-index: 2;
+	-webkit-transform-origin: 50% 0%;
+	-webkit-animation: flipBottom 0.3s 0.3s ease-out both;
+	-moz-transform-origin: 50% 0%;
+	-moz-animation: flipBottom 0.3s 0.3s ease-out both;
+	-ms-transform-origin: 50% 0%;
+	-ms-animation: flipBottom 0.3s 0.3s ease-out both;
+	transform-origin: 50% 0%;
+	animation: flipBottom 0.3s 0.3s ease-out both;
+}
+
+.dataStatistics .digit_set_douhao {
+	float: left;
+    position: relative;
+    width: 9px;
+    height: 100%;
+    font-size: 45px;
+}
+.dataStatistics .digit_set_douhao>span{
+	position: absolute;
+    bottom: -6px;
+    display: inline-block;
+    left: -17px;
+}
+
+
+/*数据展示盒子*/
+
+.monitor_data_box{
+	width: 17%;
+    height: 6.5%;
+    background: url(images/rect.png) no-repeat center center;
+    background-size: 100% 100%;
+    box-sizing: border-box;
+    position: absolute;
+    top: 10%;
+    left: 5.3%;
+}
+
+.monitor_data_container{
+   position: relative;
+   width: 100%;
+   height: 100%;
+
+}
+

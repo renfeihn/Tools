@@ -1,0 +1,19 @@
+{
+	"views": {
+		"logCapacityStatisticsV": {
+			"template": "logCapacityStatistics.jsp",
+			"js": "logCapacityStatistics.js"
+		}
+	}, 
+	
+	"models": {
+	}, 
+	
+	"flows": [
+		{
+			"id": "logCapacityStatisticsV"
+		}
+	],
+
+	"stepBar": false
+}

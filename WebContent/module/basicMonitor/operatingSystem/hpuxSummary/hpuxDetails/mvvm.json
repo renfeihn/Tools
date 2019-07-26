@@ -1,0 +1,19 @@
+{
+	"views": {
+		"hpuxDetailsV": {
+			"template": "hpuxDetails.jsp",
+			"js": "hpuxDetails.js"
+		}
+	}, 
+	
+	"models": {
+	}, 
+	
+	"flows": [
+		{
+			"id": "hpuxDetailsV"
+		}
+	],
+
+	"stepBar": false
+}

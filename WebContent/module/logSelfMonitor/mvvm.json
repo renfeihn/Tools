@@ -1,0 +1,19 @@
+{
+	"views": {
+		"logSelfMonitorV": {
+			"template":"logSelfMonitor.jsp",
+			"js":"logSelfMonitor.js"
+		}
+	}, 
+	
+	"models": {
+	}, 
+	
+	"flows": [
+		{
+			"id": "logSelfMonitorV"
+		}
+	],
+
+	"stepBar": false
+}

@@ -1,0 +1,19 @@
+{
+	"views": {
+		"flowMonitorV": {
+			"template":"flowMonitor.jsp",
+			"js":"flowMonitor.js"
+		}
+	}, 
+	
+	"models": {
+	}, 
+	
+	"flows": [
+		{
+			"id": "flowMonitorV"
+		}
+	],
+
+	"stepBar": false
+}

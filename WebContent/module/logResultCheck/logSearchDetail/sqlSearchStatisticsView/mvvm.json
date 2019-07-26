@@ -1,0 +1,12 @@
+{
+    "views": {
+        "sqlSearchStatisticsView": {
+            "template": "sqlSearchStatisticsView.jsp",
+            "js": "sqlSearchStatisticsView.js"
+        }
+    },
+    "models": {},
+    "flows": [{
+        "id": "sqlSearchStatisticsView"
+    }]
+}

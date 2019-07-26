@@ -1,0 +1,98 @@
+.enable {
+	background-color: #FFFFFF;
+}
+
+.requisite {
+	background-color: yellow;
+}
+
+.event-input {
+	border: 2px solid;
+	border-color: red;
+}
+.echo-input {
+	border: 2px solid;
+	border-color: #1228E4;
+}
+.hand-input {
+	border: 2px solid;
+	border-color: #CA1BD2;
+}
+body {
+	background-color: #f2f2f2;
+	font-family: 'Segoe UI', 微软雅黑, DroidSansFallback, 华文细黑, 'Helvetica Neue',
+		Helvetica, Arial, sans-serif;
+	font-size: 14px;
+	line-height: 20px;
+	color: rgb(51, 51, 51);
+	background-color: rgb(241, 244, 246);
+	cursor: default;
+	margin: 0px;
+	padding: 12px;
+}
+input{
+	border: 1px solid #e5e5e5;
+}
+select{
+	border: 1px solid #e5e5e5;
+}
+.hide {
+	display: none !important;
+}
+
+.modal-div {
+	padding: 10px;
+	margin: 0 10px 20px 10px;
+}
+
+.div-bg {
+	background-color: rgb(255, 255, 255);
+	box-shadow: 0 0px 5px rgba(0, 0, 0, .2);
+	/* border: 1px solid #999; */
+	/* border: 1px dotted #999; */
+}
+
+.dialog {
+	position: absolute;
+	top: 250px;
+	left: 250px;
+	border-radius: 2px;
+	width: 300px;
+	background-color: #f2f2f2;
+}
+
+.i-red {
+	color: red;
+}
+.i-blue {
+	color: blue;
+}
+.i-yellow {
+	color: yellow;
+}
+
+.dialog-title {
+	line-height: 36px;
+}
+
+.dialog-content {
+	margin-bottom: 20px;
+	word-wrap: break-word;
+    word-break: break-all;
+}
+
+table{
+	border-collapse: collapse;
+	border-spacing: 0px;
+}
+
+th{
+	border: 1px solid grey;
+	font-weight: normal;
+	font-size: 14px;
+}
+
+td{
+	border: 1px solid grey;
+	font-size: 12px;
+}

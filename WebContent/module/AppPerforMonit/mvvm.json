@@ -1,0 +1,19 @@
+{
+	"views": {
+		"AppPerforMonitV": {
+			"template": "AppPerforMonit.jsp",
+			"js": "AppPerforMonit.js"
+		}
+	}, 
+	
+	"models": {
+	}, 
+	
+	"flows": [
+		{
+			"id": "AppPerforMonitV"
+		}
+	],
+
+	"stepBar": false
+}

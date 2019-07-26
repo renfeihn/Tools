@@ -1,0 +1,19 @@
+{
+	"views": {
+		"addStrategyV": {
+			"template": "addStrategy.jsp",
+			"js": "addStrategy.js"
+		}
+	}, 
+	
+	"models": {
+	}, 
+	
+	"flows": [
+		{
+			"id": "addStrategyV"
+		}
+	],
+
+	"stepBar": false
+}

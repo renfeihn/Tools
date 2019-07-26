@@ -1,0 +1,1292 @@
+<!--style-->
+<style>
+    .dev-docs-table-color{
+        color:#FFF;
+    }
+    .dev-docs-color1 {
+        background-color:#05c697
+    }
+    .dev-docs-color2 {
+        background-color:#05ba8e
+    }
+    .dev-docs-color3 {
+        background-color:#04ad84
+    }
+    .dev-docs-color4 {
+        background-color:#04a17b
+    }
+    .dev-docs-color5 {
+        background-color:#049471
+    }
+    .dev-docs-color6 {
+        background-color:#038868
+    }
+    .dev-docs-color7 {
+        background-color:#037b5e
+    }
+    .dev-docs-color8 {
+        background-color:#036f55
+    }
+    .dev-docs-color9 {
+        background-color:#02634b
+    }
+    .dev-docs-color10 {
+        background-color:#025642
+    }
+    .dev-docs-color11 {
+        background-color:#024a38
+    }
+</style>
+<!--style-->
+<!--html Start-->
+<div class="hero-unit">
+    <h1>AWeb 2.1</h1>
+
+    <p>开发说明</p>
+</div>
+<div>
+    <!-- 配置菜单项 Start-->
+    <div data-href="menu" class="module">
+        <div class="page-header">
+            <h2>菜单项配置
+                <small>Left Side Menu</small>
+            </h2>
+        </div>
+        <h3>静态配置</h3>
+        <ol>
+            <li>
+                <p>
+                    在index.jsp中id为<code>asideMenuList</code>的左侧边栏添加菜单项：
+                </p>
+            </li>
+            <li>
+                <div data-role="menuModuleTemp" class="hide">
+<!-- 菜单项 Start-->
+<div class="accordion-group">
+    <div class="accordion-heading">
+        <a class="accordion-toggle collapsed hvr-bounce-to-left" data-toggle="collapse" data-parent="#asideMenuList"
+           href="#asideDev">
+            <i class="fa   fa-yelp"></i><span>&nbsp;菜单项名</span>
+            <i class="fa fa-angle-down"></i>
+        </a>
+    </div>
+    <div class="accordion-body collapse">
+        <div class="accordion-inner">
+            <ul class="nav nav-list">
+                <!--子菜单项 Start-->
+                <li><a data-href="test#testModule">测试模块</a></li>
+                <!--子菜单项 End-->
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- 菜单项 End-->
+                </div>
+                <pre data-role="menuModuleHtml"></pre>
+            </li>
+            <li>
+                <p class="text-indent">
+                    如果只添加子菜单项，只需在<code>ul.nav.nav-list</code>中添加子菜单项即可。
+                </p>
+            </li>
+            <li>
+                <p class="text-indent">
+                    其中<code>data-href</code>对应的值为该菜单模块在<code>WebContent/module</code>文件夹下的路径，
+                    每层文件夹使用<code>#</code>隔开。如上例中的配置，
+                    程序会在<code>WebContent/module/test/testModule</code>路径下去获取<code>mvvm.json</code>文件，并根据该文件中的配置，去进行页面展现。
+                </p>
+            </li>
+        </ol><!--
+        <h3>动态配置1—在数据库中配置</h3>
+        <ol>
+            <li>
+                <h4>
+                    在表<code>agree_access_menu</code>中添加菜单项
+                </h4>
+            </li>
+            <li>
+                <table class="table table-hover table-condensed gutter-top table-bordered">
+                    <thead>
+                        <tr><th>ID</th><th>PID</th><th>NAME</th><th>VALUE</th><th>ISPARENT</th><th>OPEN</th><th>ICON</th><th>STATE</th><th>SORT</th><th>REMARK</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>accessData</td><td>access</td><td>权限管理</td><td></td><td>true</td><td>true</td><td>users</td><td>1</td><td>5</td><td></td></tr>
+                        <tr><td>accessRole</td><td>accessData</td><td>角色管理</td><td>accessRole.jsp</td><td>false</td><td>false</td><td></td><td>1</td><td>2</td><td></td></tr>
+                    </tbody>
+                </table>
+            </li>
+            <li>
+                <p>
+                    如表格所示，第一行为菜单项，第二行为子菜单项。只有子菜单项才能打开窗口。
+                </p>
+            </li>
+            <li>
+                <p class="text-param"><code>ID</code>：菜单项的唯一标识，即module下的菜单文件夹名称。</p>
+                <p class="text-param"><code>PID</code>：子菜单项父ID，指向夫菜单项的ID。
+                    如果为主菜单，则参考数据库表<code>agree_access</code>的属性<code>ELEMENT_ID</code>，通常是<code>access</code>。</p>
+                <p class="text-param"><code>NAME</code>：菜单项名称。</p>
+                <p class="text-param"><code>VALUE</code>：如果mvvm.json中没有配置，则需要在这里指向访问的页面，否则则留空。<strong>不建议在这里配置页面路径！</strong></p>
+                <p class="text-param"><code>ISPARENT</code>：是否是主菜单项。</p>
+                <p class="text-param"><code>OPEN</code>：是否展开，如果是主菜单项，这里为<code>true</code>，子菜单项为<code>false</code>。</p>
+                <p class="text-param"><code>ICON</code>：主菜单项的图标，请参考CSS API的字体图标部分，已省略<code>fa-</code>部分。</p>
+                <p class="text-param"><code>STATE</code>：是否显示，1为显示，0为隐藏。</p>
+                <p class="text-param"><code>SORT</code>：在菜单项中的位置，从1开始。</p>
+                <p class="text-param"><code>REMARK</code>：备注。</p>
+            </li>
+            <li>
+                <h4>
+                    在表<code>agree_access</code>中设置主菜单项显示权限
+                </h4>
+            </li>
+            <li>
+                <table class="table table-hover table-condensed gutter-top table-bordered">
+                    <thead>
+                        <tr><th>ID</th><th>ELEMENT_ID</th><th>TYPE</th><th>NAME</th><th>PID</th><th>STATE</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>15010100000030000000</td><td>access</td><td>0</td><td>所有权限</td><td>accesssss</td><td>1</td>
+                        </tr>
+                        <tr>
+                            <td>15010100000030000001</td><td>homePage</td><td>0</td><td>首页</td><td>access</td><td>1</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </li>
+            <li>
+                <div class="alert">仅主菜单项需要在<code>agree_access</code>中配置。</div>
+            </li>
+            <li>
+                <p class="text-param"><code>ID</code>：主菜单项的唯一标识。</p>
+                <p class="text-param"><code>ELEMENT_ID</code>：主菜单项在表agree_access_menu中的ID。</p>
+                <p class="text-param"><code>TYPE</code>：类型。0表示菜单，1代表按钮，2代表页面元素。</p>
+                <p class="text-param"><code>NAME</code>：权限名称。</p>
+                <p class="text-param"><code>PID</code>：权限继承项的ID。</p>
+                <p class="text-param"><code>STATE</code>：权限是否生效，0表示false，1表示true。</p>
+            </li>
+        </ol>-->
+    </div>
+    <!-- 配置菜单项 End-->
+    <!-- 配置模块 Start-->
+    <div data-href="module" class="module">
+        <div class="page-header">
+            <h2>模块配置
+                <small>Module</small>
+            </h2>
+        </div>
+        <ol>
+            <li>
+                <p class="text-indent">
+                    每个模块中可能包含一个或者多个页面，每个页面有独立的页面jsp和js文件需要加载，
+                    mvvm.json用于描述该模块中各个页面的流转流程，test/testModule模块的mvvm.json配置讲解如下：
+                </p>
+            </li>
+            <li>
+                <pre>
+{
+	/* 在views中配置的为当前模块中的所有jsp页面以及对应的js */
+	"views": {
+		/* step1V为页面的唯一id，与flows中的id对应 */
+		"step1V": {
+			/* 页面 */
+			"template": "step1.jsp",
+			/* 页面对应的js */
+			"js": "step1.js"
+		},
+		"step2V": {
+			"template": "step2.jsp",
+			"js": "step2.js"
+		}
+	},
+
+	/* 暂时不使用 */
+	"models": {
+	},
+
+	/* flows中配置页面的流转流程，在后续开发中使用handler.stepTo(index);可以进行页面跳转，其中index的值就对应下面数组中的下标 */
+	/* 加载页面时，默认加载flows[0].id中的页面，即step1V的页面。 */
+	"flows": [
+		{
+			"id": "step1V"
+		},
+		{
+			"id": "step2V"
+		}
+	]
+}
+                </pre>
+            </li>
+        </ol>
+    </div>
+    <!-- 配置模块 End-->
+    <!-- 配置页面HTML Start-->
+    <div data-href="pageHtml" class="module">
+        <div class="page-header">
+            <h2>页面HTML配置
+                <small>Page HTML</small>
+            </h2>
+        </div>
+        <p class="text-indent">
+            当在页面点击测试模块菜单时，程序会自动读取<code>WebContent/module/test/testModule/mvvm.json</code>
+            文件，并在当前标签页中打开该json中配置的flows下标为0的页面。
+        </p>
+        <div class="alert">
+            step1.jsp并不是一个完整的jsp页面，只是页面的一部分（原因请了解SPA单页应用的相关知识）。没有body标签，直接写页面内容即可。
+        </div>
+        <h3  data-href="structWeb">Web页面结构</h3>
+        <table class="table table-bordered dev-docs-table-color">
+            <tr>
+                <td colspan="4" class="dev-docs-color1">
+                    java页面声明，如<code>&lt;@ page…/&gt;</code>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4" class="dev-docs-color2">
+                    页面前缀声明，表明该页面的命名前缀，功能模块信息。如schema.jsp下的<code>&lt;%--页面前缀 sch--%&gt;</code>
+                </td>
+            </tr>
+            <tr>
+                <td rowspan="5" class="dev-docs-color8">正文部分</td>
+                <td colspan="3" class="dev-docs-color3">
+                    该页面的style样式，注意不能影响其他页面的渲染效果。样式前可加页面的前缀，如<code>.sch-del-btn</code>,其中<code>sch</code>为schema页面的前缀。
+                </td>
+            </tr>
+            <tr>
+                <td rowspan="4" class="dev-docs-color9">HTML部分</td>
+                <td rowspan="2" class="dev-docs-color5">默认显示的代码</td>
+                <td class="dev-docs-color4">页面各个操作的功能键代码,如添加、删除、搜索等交互操作的按钮。</td>
+            </tr>
+            <tr>
+                <td class="dev-docs-color6">页面用于显示数据的代码，如表格等。</td>
+            </tr>
+            <tr>
+                <td rowspan="2" class="dev-docs-color10">默认隐藏的代码</td>
+                <td class="dev-docs-color7">用于添加的表单（formControl）模板，后缀为<code>Temp</code>,如添加实例的表单<code>insCreTemp</code></td>
+            </tr>
+            <tr>
+                <td class="dev-docs-color11">用于修改、选择等的模态框（modal），后缀为<code>Modal</code>,如选择schema版本<code>comConfListModal</code></td>
+            </tr>
+        </table>
+    </div>
+    <!-- 配置页面HTML End-->
+    <!-- 配置页面JS Start-->
+    <div data-href="pageJs" class="module">
+        <div class="page-header">
+            <h2>页面JS配置
+                <small>Page JavaScript</small>
+            </h2>
+        </div>
+        <p class="text-indent">
+            页面加载完成后，会执行step1.js，js的基本结构如下：
+        </p>
+        <pre>
+define([ "jquery" ], function() {
+     // 公用变量
+    //  公用函数
+	return {
+		//页面加载完成后触发该方法
+		load : function($el, scope, handler) {
+			//$el 当前页面对应的jquery对象
+			//scope 在模块中进行页面流转时，可通过该对象进行数据传递
+			//handler 控制页面跳转，提供一些二次封装后的setTimeout等方法（参看API）
+
+			//查找元素时，一定要限制查找范围在$el内，否则可能找到错误的元素
+			$("#submit", $el).click(function () {
+				var name = $("#name", $el).val();
+
+				//往scope中填充数据
+				scope.name = name;
+				//跳转到mvvom.json的flows中下标为1的页面
+				handler.stepTo(1);
+			});
+		},
+
+		//页面销毁时触发该方法
+		unload : function(handler) {},
+
+		//页面暂停时触发（标签页切换时）
+		pause : function($el, scope, handler) {},
+
+		//页面唤醒时触发
+		resume : function($el, scope, handler) {}
+
+	};
+});
+        </pre>
+        <h4>页面转跳</h4>
+        <p class="text-indent">
+            在页面上点击submit后，可以进入step2.jsp中，对应的step2.js如下：
+        </p>
+        <pre>
+define([ "jquery" ], function() {
+    //  公用变量
+    //  公用函数
+	return {
+		load : function($el, scope, handler) {
+			//上一页面中scope传递的参数可直接取出
+			$("#name", $el).html(scope.name);
+
+			$("#submit", $el).click(function () {
+				$.ajax({
+					"type": "POST",
+					//该参数设置为true时，显示遮罩
+					"shelter": true,
+					"url": "TestModuleAction_testModule.do",
+					"data": {
+						name: scope.name
+					},
+					"success": function (resp) {
+
+					}
+				});
+			});
+		},
+    ……
+        </pre>
+        <h3  data-href="structJS">JS页面结构</h3>
+        <table class="table table-bordered" style="color: #FFF">
+            <tr>
+                <td colspan="2" class="dev-docs-color1">
+                    各模块的JS脚本
+                </td>
+                <td class="dev-docs-color2">
+                    所有的$(selector,context)都要写context，默认是$el，以防搜索范围出错或过大。
+                    并建议使用“[data-role="x"]”作为selector，减少id的冲突。
+                </td>
+            </tr>
+            <tr>
+                <td rowspan="2" class="dev-docs-color3">定义公用变量及函数</td>
+                <td rowspan="2" class="dev-docs-color4">
+                    公用参数、函数定义
+                </td>
+                <td class="dev-docs-color1">
+                    <div>
+                        /*公用常量、变量的定义*/
+                    </div>
+                    <div>
+                        公用变量统一放在此处：
+                        <pre>
+define([ "jquery" ], function() {
+    //  公用变量
+    //  公用函数
+	return {
+		load : function($el, scope, handler) {
+        …</pre>
+                    </div>
+                    <div>
+                        所谓的公用变量，及在页面加载<code>load</code>、销毁<code>unliad</code>、暂停<code>pause</code>、唤醒<code>resume</code>的方法中，跨方法调用的变量。
+                    </div>
+                    <div>
+                        如在<code>load</code>函数中定义的一个dataTables表格变量，需要在<code>resume</code>时刷新该表格的数据，则这个变量则需要定义为公用变量。
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="dev-docs-color1">
+                    <div>
+                        /*公用函数（方法）的定义*/
+                    </div>
+                    <div>
+                        公用函数统一放在此处：
+                        <pre>
+define([ "jquery" ], function() {
+    //  公用变量
+    //  公用函数
+	return {
+		load : function($el, scope, handler) {
+        …</pre>
+                    </div>
+                    <div>
+                        所谓的公用函数，及在页面加载<code>load</code>、销毁<code>unliad</code>、暂停<code>pause</code>、唤醒<code>resume</code>的方法中，跨方法调用的函数。
+                    </div>
+                    <div>
+                        如在<code>load</code>函数中定义的一个dataTables表格变量，需要在<code>resume</code>时刷新该表格的数据。
+                    </div>
+                    <div>
+                        实际上，无论是加载数据还是刷新数据，代码大部分都是相同的，所以可以提取成一个公用的函数，并定义为公用函数。
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td rowspan="4" class="dev-docs-color3">
+                    首次进入页面执行加载（load）
+                </td>
+                <td rowspan="2" class="dev-docs-color2">
+                    参数、函数定义
+                </td>
+                <td class="dev-docs-color1">
+                    <div>
+                        /*常量、变量的定义*/
+                    </div>
+                    <div>
+                        摆放函数间共同用到的变量。如果没有复用的必要，直接在函数内定义变量，减少引用链。
+                    </div>
+                    <div>
+                        <i class="span1"></i>//常量
+                    </div>
+                    <div>
+                        <i class="span1"></i>//变量
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="dev-docs-color4">
+                    <div>
+                        /*内部函数的定义*/
+                    </div>
+                    <div>
+                        摆放页面内多次用到的函数。如果使用次数较少，直接将函数放在方法内，减少引用链。
+                    </div>
+                    <div>
+                        <i class="span1"></i>//内部功能函数
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td rowspan="2" class="dev-docs-color6">
+                    数据加载及监听绑定
+                </td>
+                <td class="dev-docs-color5">
+                    <div>
+                        /*数据加载*/
+                    </div>
+                    <div>
+                        在load和resume方法内，主要用于页面界面、数据的初始化；
+                        在pause和unload方法内，主要用于数据的销毁。
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="dev-docs-color7">
+                    <div>
+                        /*绑定监听*/
+                    </div>
+                    <div>
+                        在load和resume方法内，主要用于按钮、控件的事件绑定；
+                        在pause和unload方法内，主要用于按钮、控件的事件解绑。
+                    </div>
+                    <div>
+                        除监听控件外，绑定的事件，使用this.delegateEvents(events)
+                        <pre>
+this.delegateEvents({
+    'eventType selector':function(){…}，//“绑定事件类型+空格+选择器”作为属性名，执行的函数作为属性值
+    ……
+});</pre>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" class="dev-docs-color8">
+                    退出页面执行销毁（unload）
+                </td>
+                <td class="dev-docs-color9">
+                    在此处将各个组件，如dataTables、Echarts的公用变量进行销毁，并设置为null。
+                    如：<pre>
+//销毁Echart对象
+myChart&&myChart.dispose&&myChart.dispose();
+myChart=null;</pre>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" class="dev-docs-color9">
+                    换出页面执行暂停（pause）
+                </td>
+                <td class="dev-docs-color10">
+                    在此处将某些组件的状态清空，如调用全选组件的clear方法。
+                    如：<pre>
+//全选按钮的恢复
+tbSampleSelComponent&&tbSampleSelComponent.clear&&tbSampleSelComponent.clear();</pre>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" class="dev-docs-color10">
+                    切入页面执行唤醒（resume）
+                </td>
+                <td class="dev-docs-color11">
+                    在此处将页面数据进行刷新，如调用dataTables的数据刷新。
+                    如：<pre>
+//刷新dataTables的数据
+$.ajax({}).done(function(status,data){
+    insTb.fnClearTable().fnAddData(data);
+});</pre>
+                </td>
+            </tr>
+        </table>
+        <h3 ></h3>
+    </div>
+    <!-- 配置页面JS End-->
+    <!-- 配置Struct和Spring Start-->
+    <div data-href="structAndSpring" class="module">
+        <div class="page-header">
+            <h2>Struct配置
+                <small>Struct XML</small>
+            </h2>
+        </div>
+        <ol>
+            <li>
+                <h4>struts-aim.xml配置</h4>
+            </li>
+            <li>
+                <div data-role="structTemp" class="hide">
+                    <action name="TestModuleAction_*" class="TestModuleActionBean" method="{1}">
+                        <result name="success" type="json">
+                            <param name="root">strutsMessage</param>
+                        </result>
+                    </action>
+                </div>
+                <pre data-role="structXml"></pre>
+            </li>
+            <li>
+                <h4>spring-action-aim.xml配置</h4>
+            </li>
+            <li>
+                <div data-role="springTemp" class="hide">
+                    <bean id="TestModuleActionBean" class="cn.com.agree.aweb.struts2.action.TestModuleAction" scope="prototype">
+                        <property name="dbOperation" ref="hibernateDao"></property>
+                    </bean>
+                </div>
+                <pre data-role="springXml"></pre>
+            </li>
+        </ol>
+    </div>
+    <!-- 配置Struct和Spring End-->
+    <!-- 配置JavaClass Start-->
+    <div data-href="javaClass" class="module">
+        <div class="page-header">
+            <h2>Java Action
+                <small>Java Classes And Actions</small>
+            </h2>
+        </div>
+        <p class="text-indent">
+            TestModuleAction中的开发与上一版本中类似，只是增加了通过Hibernate进行数据库的操作：
+        </p>
+        <ol>
+            <li>
+                <p class="text-indent">
+                    通过dbOperation对象可进行数据库操作，该对象提供了一些常用的增删改查的操作，如需增加方法，可自行修改IDbSupport接口，并在StandardDbSupport类中进行具体的实现；
+                </p>
+                <p class="text-indent">
+                    与Aim的交互在类AimDisplayConnector中实现，其中增加了一些对Aim集群的支持，详细的问题可联系吴伟军；
+                </p>
+                <p class="text-indent">
+                    后台Action执行完成后，结果返回StrutsMessage的实例，具体参看TestModuleAction中的处理；
+                </p>
+            </li>
+        </ol>
+        <div class="alert">
+            一些框架封装的API，可参考项目中的开发人员手册。
+        </div>
+        <h3>
+            关于strutsMessage
+        </h3>
+        <ol>
+            <li>
+                <p class="text-indent alert-error">
+                    在action中，必需有变量<code>strutsMessage</code>存在，且getter方法必需为这个名字：<code>getStrutsMessage</code>。所有函数返回前台的变量有且只有strutsMessage。
+                </p>
+            </li>
+            <li>
+                <p class="text-indent">
+                    在action中，赋值给strutsMessage的方式有两种方式
+                </p>
+                <pre>
+
+strutsMessage = StrutsMessage.errorMessage(ExceptionTypes.AWEB.AWEB50, e);
+                </pre>
+            </li>
+            <li>
+                <h4>正常返回</h4>
+                <pre>
+strutsMessage = StrutsMessage.successMessage()
+strutsMessage.addParameter("array", new JSONArray());
+strutsMessage.addParameter("object", new JSONObject());
+strutsMessage.addParameter("str", "string");
+                </pre>
+                <p class="text-indent">strutsMessage一次赋值即可，需要传递到前台的参数，可通过addParameter加入。如果参数是复杂的数据类型，最好先转化为JSONArray或JSONObject。</p>
+                <p class="text-indent">传递到前台的数据格式，将会是：</p>
+                <pre>
+$.ajax({
+    success:function(data){
+        if(data&&data.status){
+        }
+        //这里的data即为strutsMessage
+    },
+    error: function (xhr, status, errMsg) {
+        //ajax失败，后台无返回等问题
+        app.alert('错误' + status, errMsg, app.alertShowType.ERROR, app.alertMsgType.MESSAGE);
+    }
+})
+                </pre>
+                <p class="text-indent">ajax的success参数data，即为strutsMessage，数据结构如下：</p>
+                <pre>
+data={
+    status:true,
+    errorMsg:null,//因为status为true，所以这里没有错误提示。
+    content:{//所有使用addParameter传入的参数，都在这个对象里面
+        array:[],
+        object:{},
+        str:'string'
+    }
+}
+                </pre>
+            </li>
+            <li>
+                <h4>异常返回</h4>
+                <pre>
+try{
+    ……
+}catch(DBSupportException e){
+    strutsMessage = StrutsMessage.errorMessage(ExceptionTypes.AWEB.AWEB50, e);
+}
+                </pre>
+                <p class="text-indent">抛出的错误码列表，请见<code>\src\main\java\cn\com\agree\aweb\exception\ExceptionTypes.java</code></p>
+                <p class="text-indent">传递到前台的数据格式，将会是：</p>
+                <pre>
+data={
+    status:false,
+    errorMsg:'与数据库交互时发生异常，异常描述为：……',//因为status为false，这里是错误提示。
+    content:{//所有使用addParameter传入的参数，都在这个对象里面
+        ……
+    }
+}
+                </pre>
+            </li>
+        </ol>
+    </div>
+    <!-- 配置JavaClass End-->
+    <!-- 引入JS库 Start-->
+    <div data-href="jsAysn" class="module">
+        <div class="page-header">
+            <h2>引入JS库
+                <small>Javascript Libraries</small>
+            </h2>
+        </div>
+        <p class="text-indent">
+            引入JS库，分别有两种方法。
+        </p>
+        <h3>第一种：在bootloader.js中引用</h3>
+        <p class="text-indent">
+            该方法，适用于整个网页都使用的JS库。
+        </p>
+        <ol>
+            <li>
+                <h4>第一步：引入require.js</h4>
+                <p class="text-indent">实际上，bootloader是require.js的配置文件。在使用前，我们需要在index.jsp分别引用require.js和bootloader.js。</p>
+                <pre>
+&lt;%--引入脚本 Start--%&gt;
+&lt;script type="text/javascript" src="script/lib/require.js" data-main="bootloader"&gt;&lt;/script&gt;
+&lt;%--引入脚本 End--%&gt;</pre>
+            </li>
+            <li>
+                <h4>第二步：配置JS库属性</h4>
+                <p class="text-indent">打开bootloader.js，需要有三个地方配置，分别是：
+                    依赖关系<code> require.config.shim</code>、
+                    路径<code> require.config.path</code>、
+                    加载位置<code> require([JSLibName,…], function (JSLibObject,…) {…}</code>
+                </p>
+            </li>
+            <li>
+                <h4>第三步：配置依赖关系</h4>
+                <pre>
+require.config({
+        //依赖定义
+        shim: {
+            jquery: {
+                exports: "$"
+            },
+            JSLibName: {
+                exports: "JSLibObject",
+                deps: ["jquery",…]
+            },
+            JSLibName2:{
+                deps: ["jquery"]
+            },
+……
+                </pre>
+                <p class="text-indent">
+                    如上面代码所示，<code>JSLibName</code>是我们给这个JS库的名字，只要与shim中其他的JS库区别即可。
+                </p>
+                <p class="text-param">
+                    <code>exports</code>：非必需，写明JS库返回的对象名。
+                </p>
+                <p class="text-param">
+                    <code>deps</code>：非必需，数组类型，写明该JS库依赖其他JS库的库名，其他JS的库名必需在shim中写明。即JSLibName2的依赖库jquery必需在shim中已经配置了。
+                </p>
+            </li>
+            <li>
+                <h4>第四步：配置JS库的路径</h4>
+                <pre>
+require.config({
+        ……
+        //文件路径定义
+        //script/lib文件夹中部分库包含注释版本及压缩版，此处为提高加载速度统一使用压缩版
+        //如特殊情况需断点调试，请暂时指向注释版本并在完成调试后更改回压缩版
+         paths: {
+            jquery: "script/lib/jquery-1.9.1",
+            JSLibName:"script/lib/JSLibName",
+        ……
+                </pre>
+                <p class="text-indent">
+                    因为require.js是在index.jsp中引入的，所以这里配置的路径是相对index.jsp的。而且路径需要省略后缀名<code>.js</code>。
+                </p>
+                <p class="text-param">
+                    <code>JSLibName</code>：即require.config.shim中配置的<code>JSLibName</code>。
+                </p>
+            </li>
+            <li>
+                <h4>第五步：配置JS库的加载位置</h4>
+                <pre>
+require(["JSLibName","JSLibName2",…], function (JSLibObject,JSLibObject2,…) {
+
+        //在全局中暴露api方法
+        app[methodName]=JSLibObject;
+        app[methodName2]=JSLibObject2.method1;
+        ……
+                </pre>
+                <p class="text-indent">
+                    配置好路径后，需要配置JS加载位置，在bootloader.js中有两个位置加载JS库，分别是提前加载部分和初始化app基础功能部分。
+                </p>
+                <p class="text-param">
+                    <code>JSLibName</code>：即require.config.shim中配置的<code>JSLibName</code>。
+                </p>
+                <p class="text-param">
+                    <code>JSLibObject</code>：该JS库返回的对象。
+                </p>
+                <p class="text-indent">如果需要在全局中暴露api方法，则需要配置<code>app[methodName]=JSLibObject</code>或<code>app[methodName]=JSLibObject.method</code>。
+                    如果不需要在全局中暴露api方法，像jQuery已经在全局中暴露到的，则不需要配置<code>app[methodName]</code>。</p>
+            </li>
+        </ol>
+        <h3>第二种：在模块中引用</h3>
+        <p class="text-indent">
+            该方法，适用于在某个页面中使用。
+        </p>
+        <ol>
+            <li>
+               <h4>第一步：建立一个js文件</h4>
+               <p class="text-indent">在模块文件夹中，建立<strong class="alert-error">AMD模式</strong>闭包的JS文件。如创建<code>module/aimDevDocs/awebDevDescription/test.js</code>文件。代码如下：</p>
+               <pre>
+(function (undefined) {
+    (function (factory) {
+        "use strict";
+
+        // amd module
+        if (typeof define === "function" && define.amd) {
+            define(["jquery"], factory);//表明依赖的JS库，在bootloader.js的require.config.shim中已配置的JS库
+        }
+        // global
+        else {
+            factory();
+        }
+
+    })
+    (function ($) {
+        "use strict";
+        //在这里写函数功能
+        var method1=function(args){
+            app.alert(args||'没有参数');
+        };
+
+        var method2=function(){
+            app.alert('method1');
+        };
+
+        //在这里返回方法、对象
+        return {
+            mth1: method1,
+            mth2: method2
+        };
+    });
+})();</pre>
+            </li>
+            <li>
+               <h4>第二步：在模块中引用</h4>
+               <pre>
+var requireMethods;
+require(['module/aimDevDocs/awebDevDescription/test.js',…], function (test,…) {
+    requireMethods = test;
+});</pre>
+               <p class="text-indent">
+                   需要输入的是require([path1,path2,…],function(obj1,obj2){…});
+               </p>
+               <p class="text-param">
+                   <code>path</code>：加载js内容的路径，由于本项目采用spa单页面，所以路径相对于index.jsp。
+               </p>
+               <p class="text-param">
+                   <code>obj</code>：加载js运行后返回的对象，或方法。
+               </p>
+           </li>
+            <li>
+                <h4>第三步：在模块中使用</h4>
+                <div class="form-horizontal wells">
+                    <div class="control-group">
+                        <label class="control-label" for="jsAysnTestInput">测试：</label>
+                        <div class="controls">
+                            <input id="jsAysnTestInput" type="text" placeholder="在这里输入测试" class="span8">
+                            <button data-role="jsAysnTestBtn" type="button" class="btn btn-success pull-right">使用方法method1。</button>
+                        </div>
+                    </div>
+                </div>
+                <p>JS代码：</p>
+                <pre>
+this.delegateEvents({
+    'click [data-role="jsAysnTestBtn"]':function(){
+        var $this=$(this);
+        if(requireMethods&&requireMethods.mth1){
+            requireMethods.mth1($(this).prev().val());
+        }else{
+            app.alert('错误提示','test.js没有加载',app.alertShowType.WARNING);
+        }
+    }
+});</pre>
+            </li>
+        </ol>
+    </div>
+    <!-- 引入JS库 End-->
+    <!-- 各模块部分的命名规范 Start-->
+    <div data-href="name" class="module">
+        <div class="page-header">
+            <h2>命名规范
+                <small>Named Rules for AWeb</small>
+            </h2>
+        </div>
+        <h3 data-href="module">模块</h3>
+        <table class="table table-hover table-condensed">
+            <tr>
+                <th>模块名</th>
+                <th>前端名</th>
+                <th>程序中</th>
+                <th>链接对象</th>
+                <th>数据库</th>
+            </tr>
+            <tr>
+                <td>集群</td>
+                <td>afaCluster/</td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>实例</td>
+                <td>afaInstance/instance/ins</td>
+                <td>global/platform</td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>版本管理</td>
+                <td>afaVersion/version/ver</td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>版本部署信息</td>
+                <td>afaDeploy/dep</td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>AFA监控</td>
+                <td>afaMonitor/mon</td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>操作日志</td>
+                <td>afaLog/olog</td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>公共管理</td>
+                <td>afaComConf/comConf</td>
+                <td>commonConfig</td>
+                <td>commonConfigVO</td>
+                <td>afa_common_config</td>
+            </tr>
+            <tr>
+                <td>公共组件管理</td>
+                <td>afaElement/comElem</td>
+                <td>commonConfigMoudle</td>
+                <td>commonConfigMoudleVO</td>
+                <td>afa_common_config_moudle</td>
+            </tr>
+            <tr>
+                <td>Schema管理</td>
+                <td>afaSchema/sch</td>
+                <td>schema</td>
+                <td>schemaVO</td>
+                <td>afa_schema</td>
+            </tr>
+            <tr>
+                <td>注册中心管理</td>
+                <td>afaRegister/reg</td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>AFA云日志</td>
+                <td>afaCloudLog/clog</td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>AFA热点交易统计</td>
+                <td>afaTrade/tra</td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>开发者</td>
+                <td>afaDevDocs/dev</td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>开发规范文档</td>
+                <td>awebSpecification</td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>前端JS APIs</td>
+                <td>awebJSAPIs</td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>前端CSS规范</td>
+                <td>awebCssSpecification</td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </table>
+        <h3 data-href="opr">操作</h3>
+        <table class="table table-hover table-condensed">
+            <tr>
+                <th>操作名</th>
+                <th>前端名</th>
+                <th>程序中</th>
+                <th>链接对象</th>
+                <th>数据库</th>
+            </tr>
+            <tr>
+                <td>增加/添加/创建</td>
+                <td>cre</td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>删除/移除</td>
+                <td>del</td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>查询/搜索</td>
+                <td>que</td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>改/更新/编辑</td>
+                <td>upd</td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>读取/获取</td>
+                <td>get</td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>设置</td>
+                <td>set</td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>选择</td>
+                <td>sel</td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>提交</td>
+                <td>smt</td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </table>
+        <h3 data-href="noun">名词</h3>
+        <table class="table table-hover table-condensed">
+            <tr>
+                <th>操作名</th>
+                <th>前端名</th>
+                <th>程序中</th>
+                <th>链接对象</th>
+                <th>数据库</th>
+            </tr>
+            <tr>
+                <td>配置</td>
+                <td>conf</td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>信息</td>
+                <td>info</td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>详细</td>
+                <td>dtl</td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>结构</td>
+                <td>struct</td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>图形</td>
+                <td>grap</td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>监控</td>
+                <td>mon</td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>工作组</td>
+                <td>workgroup/wkg</td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>模块</td>
+                <td>module/mod</td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>接入</td>
+                <td>lsr</td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>接出</td>
+                <td>out</td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>业务</td>
+                <td>svc</td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>服务</td>
+                <td>service(s)/srv</td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>设备</td>
+                <td>dvc</td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </table>
+        <h3 data-href="tags">HTML标签</h3>
+        <table class="table table-hover table-condensed">
+            <tr>
+                <th>功能</th>
+                <th>使用标签</th>
+                <th>命名或缩写</th>
+            </tr>
+            <tr>
+                <td>外部容器（container）</td>
+                <td>div</td>
+                <td>ctn</td>
+            </tr>
+            <tr>
+                <td>h*（title）或抬头标题（header）</td>
+                <td>h*/p/div</td>
+                <td>tt/hd</td>
+            </tr>
+            <tr>
+                <td>内部容器/内容容器（content）</td>
+                <td>div</td>
+                <td>ctt</td>
+            </tr>
+            <tr>
+                <td>模板（template）</td>
+                <td>/</td>
+                <td>temp</td>
+            </tr>
+            <tr>
+                <td>表格（table）</td>
+                <td>table</td>
+                <td>tb</td>
+            </tr>
+            <tr>
+                <td>按钮（button）</td>
+                <td>button、a</td>
+                <td>btn</td>
+            </tr>
+        </table>
+        <h3 data-href="const">JS常量</h3>
+        <table class="table table-hover table-condensed">
+            <tr>
+                <th>名称</th>
+                <th>英文名</th>
+            </tr>
+            <tr>
+                <td>实例</td>
+                <td>platform</td>
+            </tr>
+            <tr>
+                <td><i class="span1"></i>工作组</td>
+                <td>workgroup</td>
+            </tr>
+            <tr>
+                <td><i class="span2"></i>模块</td>
+                <td>module</td>
+            </tr>
+            <tr>
+                <td><i class="span2"></i>接入适配器</td>
+                <td>lsr</td>
+            </tr>
+            <tr>
+                <td><i class="span2"></i>业务处理器/处理器</td>
+                <td>svc</td>
+            </tr>
+            <tr>
+                <td><i class="span2"></i>接出适配器</td>
+                <td>out</td>
+            </tr>
+            <tr>
+                <td><i class="span3"></i>服务</td>
+                <td>service</td>
+            </tr>
+            <tr>
+                <td><i class="span3"></i>接入服务</td>
+                <td>lsrService</td>
+            </tr>
+            <tr>
+                <td><i class="span3"></i>结出服务</td>
+                <td>outService</td>
+            </tr>
+        </table>
+    </div>
+    <!-- 各模块部分的命名规范 End-->
+    <!-- jsp、html页面编写规范 Start-->
+    <div data-href="jspPage" class="module">
+        <div class="page-header">
+            <h2>jsp、html页面编写规范
+                <small>Rules for Writing JSP and HTML</small>
+            </h2>
+        </div>
+        <h3>命名规范</h3>
+        <p class="text-indent">
+            ID的命名法则：使用首字母为小写的驼峰式编码形式，根据<strong>模块名+功能名+标签功能</strong>组合命名，
+            如“实例下的查询按钮”：<code>insQueBtn</code>。
+        </p>
+        <p class="text-indent">各个标签的命名建议：根据中英文对照,并使用缩写方式。</p>
+
+        <h3>编写规范</h3>
+
+        <p class="text-indent">各标签属性使用双引号<code>"&nbsp;"</code>包裹属性值</p>
+
+        <p class="text-indent">各标签属性编写顺序：</p>
+        <ol>
+            <li class="text-param">id</li>
+            <li class="text-param">type、href、src;注意：a标签的href没有链接的时候，使用<code>javascript:;</code>。</li>
+            <li class="text-param">data-*</li>
+            <li class="text-param">class</li>
+        </ol>
+
+        <h3>其他</h3>
+
+        <p class="text-indent">每个功能部分的代码段应该用注释将其包裹起来。</p>
+    </div>
+    <!-- jsp、html页面编写规范 End-->
+    <!-- css编写规范 Start-->
+    <div data-href="css" class="module">
+        <div class="page-header">
+            <h2>CSS编写规范
+                <small>Rules for writing css</small>
+            </h2>
+        </div>
+        <h3>命名规范</h3>
+        <p class="text-indent">
+            根据<strong>[模块名+功能名+]标签功能[+样式大小]</strong>组合命名，使用<code>-</code>将每个单词分隔开，
+            如“小的按钮”：<code>.btn-small</code>；“实例下查询的小按钮”：<code>.ins-que-btn-small</code>。
+        </p>
+    </div>
+    <!-- css编写规范 End-->
+    <!-- js编写规范 Start-->
+    <div data-href="js" class="module">
+        <div class="page-header">
+            <h2>JS编写规范
+                <small>Rules for Writing JavaScript</small>
+            </h2>
+        </div>
+        <h3>命名规范</h3>
+
+        <p class="text-indent">
+            使用首字母为小写的驼峰式编码形式，根据<strong>模块名+功能名+标签功能</strong>组合命名，
+            如“实例下的查询按钮”：<code>instanceQueryBtn</code>。
+        </p>
+
+        <p class="text-indent">
+            如果为jQuery对象，在变量前加<code>$</code>符号。
+        </p>
+    </div>
+    <!-- js编写规范 End-->
+</div>
+<!--html End-->
+
+
+

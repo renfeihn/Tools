@@ -1,0 +1,19 @@
+{
+	"views": {
+		"SQLCircleV": {
+			"template":"SQLCircle.jsp",
+			"js":"SQLCircle.js"
+		}
+	}, 
+	
+	"models": {
+	}, 
+	
+	"flows": [
+		{
+			"id": "SQLCircleV"
+		}
+	],
+
+	"stepBar": false
+}

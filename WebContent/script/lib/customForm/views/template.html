@@ -1,0 +1,347 @@
+<!-- 分组 -->
+<script name='分组' type='text/template'>
+  <fieldset id='{{id}}' name='{{name}}' class='{{$data.enabled === false ? 'disabled':''}} {{@ $data.props | getOutterProperty }}'>
+    <legend>
+      {{name}}
+    </legend>
+      {{@ body}}
+  </fieldset>
+</script>
+
+<!-- 单行文本 -->
+<script name='单行文本' type='text/template'>
+<div class="control-group {{@ $data.props | getOutterProperty }} {{$data.enabled === false ? 'disabled':''}}">
+    <label for="{{name}}" class="control-label">{{name}}</label>
+    <div class="controls">
+        <input id="{{id}}" data-control-type="{{type}}" data-control-ename="{{ename}}" name="{{name}}" type="text" {{@ $data.props | getProperty}}>
+    </div>
+	<div data-id="{{pcateId}}" class="source-cate-info {{$data.pcateId ? '':'hide'}}">
+		<span>{{pcateName}}</span>
+	</div>
+</div>
+</script>
+
+<!-- 下拉菜单 -->
+<script name='下拉菜单' type='text/template'>
+  <div class="control-group {{@ $data.props | getOutterProperty }} {{$data.enabled === false ? 'disabled':''}}">
+    <label for="{{name}}" class="control-label">{{name}}</label>
+    <div class="controls">
+      <select id="{{id}}" data-control-type="{{type}}" data-control-ename="{{ename}}" name="{{name}}" {{@ $data.props | getProperty}}>
+        <option value=""></option>
+        {{each dicts dict}}
+          <option value="{{dict.dictValue}}" {{$data.props.value == dict.dictValue ? 'selected' : ''}}>{{dict.dictValueDesc}}</option>
+        {{/each}}
+      </select>
+    </div>
+	<div data-id="{{pcateId}}" class="source-cate-info {{$data.pcateId ? '':'hide'}}">
+		<span>{{pcateName}}</span>
+	</div>
+</div>
+</script>
+
+<!-- 多行文本 -->
+<script name='多行文本' type='text/template'>
+  <div class="control-group {{@ $data.props | getOutterProperty }} {{$data.enabled === false ? 'disabled':''}}">
+    <label for="{{name}}" class="control-label">{{name}}</label>
+    <div class="controls">
+      <textarea id="{{id}}" data-control-type="{{type}}" data-control-ename="{{ename}}" name="{{name}}" {{@ $data.props | getProperty}}>{{$data.props.value}}</textarea>
+    </div>
+	<div data-id="{{pcateId}}" class="source-cate-info {{$data.pcateId ? '':'hide'}}">
+		<span>{{pcateName}}</span>
+	</div>
+  </div>
+</script>
+
+<!-- 单选 -->
+<script name='单选' type='text/template'>
+  <div class="control-group {{@ $data.props | getOutterProperty }} {{$data.enabled === false ? 'disabled':''}}">
+      <label for="{{name}}" class="control-label">{{name}}</label>
+    <div class="controls" id="{{id}}" data-control-type="{{type}}">
+      {{each dicts dict index}}
+        <label for="{{$data.id + '_' + index}}">
+          <input id="{{$data.id + '_' + index}}" name="{{$data.name}}" data-control-ename="{{ename}}" type="radio" value="{{dict.dictValue}}" {{$data.props.value === dict.dictValue ? 'checked' : ''}}>{{dict.dictValue === '' ? '' : dict.dictValue + '-' + dict.dictValueDesc}}
+        </label>
+      {{/each}}
+    </div>
+	<div data-id="{{pcateId}}" class="source-cate-info {{$data.pcateId ? '':'hide'}}">
+		<span>{{pcateName}}</span>
+	</div>
+  </div>
+</script>
+
+<!-- 多选 -->
+<script name='多选' type='text/template'>
+  <div class="control-group {{@ $data.props | getOutterProperty }} {{$data.enabled === false ? 'disabled':''}}">
+    <label for="{{name}}" class="control-label">{{name}}</label>
+    <div class="controls" id="{{id}}" data-control-type="{{type}}" data-control-ename="{{ename}}">
+      {{each dicts dict}}
+        <label for="{{$data.id + '_' + $index}}">
+          <input id="{{$data.id + '_' + $index}}" name="{{$data.name}}" data-control-ename="{{ename}}" type="checkbox" value="{{dict.dictValue}}"  {{$imports.ifChecked($data.props.value, dict.dictValue) ? 'checked' : ''}}>{{dict.dictValue === '' ? '' : dict.dictValue + '-' + dict.dictValueDesc}}
+        </label>
+      {{/each}}
+    </div>
+	<div data-id="{{pcateId}}" class="source-cate-info {{$data.pcateId ? '':'hide'}}">
+		<span>{{pcateName}}</span>
+	</div>
+  </div>
+</script>
+
+<!-- 数字 -->
+<script name='数字' type='text/template'>
+  <div class="control-group {{@ $data.props | getOutterProperty }} {{$data.enabled === false ? 'disabled':''}}">
+    <label for="{{name}}" class="control-label">{{name}}</label>
+    <div class="controls">
+        <input id="{{id}}" name="{{name}}" type="text" data-control-ename="{{ename}}" data-control-type="{{type}}" {{@ $data.props | getProperty}}>
+    </div>
+	<div data-id="{{pcateId}}" class="source-cate-info {{$data.pcateId ? '':'hide'}}">
+		<span>{{pcateName}}</span>
+	</div>
+  </div>
+</script>
+
+<!-- 图片 -->
+<script name='图片' type='text/template'>
+  {{ if hasData }}
+    <div class="control-group diyForm-pictrue {{@ $data.props | getOutterProperty }} {{$data.enabled === false ? 'disabled':''}}">
+      <label for="{{name}}" data-control-ename="{{ename}}" class="control-label">{{name}}</label>
+      <div class="controls">
+        {{ if $data.props.value.length > 0 }}
+            <ul class="pictrue-list">
+              {{ each $data.props.value item }}
+                <li data-filename="{{ item.fileName }}" data-path="{{ item.path }}" data-size="{{ item.size }}">
+                    <img src="FormFileAction_getBase64.do?fileFileName={{ item.fileName }}" alt="">
+                    <i class="fa fa-download"></i>
+                </li>
+              {{ /each }}
+            </ul>
+        {{ else }} 
+          暂无图片 
+        {{ /if }}
+      </div>
+	  <div data-id="{{pcateId}}" class="source-cate-info {{$data.pcateId ? '':'hide'}}">
+		<span>{{pcateName}}</span>
+	  </div>
+    </div>
+  {{ else }}
+    <div class="control-group diyForm-pictrue {{@ $data.props | getOutterProperty }} {{$data.enabled === false ? 'disabled':''}}">
+      <label for="{{name}}" class="control-label">{{name}}</label>
+      <div class="controls">
+        <button id="{{id}}" data-control-type="{{type}}" name="{{name}}" type="button">
+          <i class="fa fa-file-picture-o"></i>上传图片
+        </button>
+      </div>
+	  <div data-id="{{pcateId}}" class="source-cate-info {{$data.pcateId ? '':'hide'}}">
+		<span>{{pcateName}}</span>
+	  </div>
+    </div>
+  {{ /if }}
+</script>
+
+<!-- 附件 -->
+<script name='附件' type='text/template'>
+ {{ if hasData }}
+    <div class="control-group diyForm-attachment {{@ $data.props | getOutterProperty }} {{$data.enabled === false ? 'disabled':''}}">
+      <label for="{{name}}" data-control-ename="{{ename}}" class="control-label">{{name}}</label>
+      <div class="controls">
+        {{ if $data.props.value.length > 0 }}
+          <ul class="file-list">
+          {{ each $data.props.value item }}
+              <li data-filename="{{ item.fileName }}" data-path="{{ item.path }}" data-size="{{ item.size }}">
+                <span title="文件名称：{{ item.fileName }}">{{ item.fileName }}</span>
+                <span title="文件路径：{{ item.path }}">{{ item.path }}</span>
+                <span>{{ item.size }}</span>
+                <span>
+                  <i class="fa fa-download"></i>
+                </span>
+              </li>
+            {{ /each }}
+          </ul>
+        {{ else }}
+          暂无附件
+        {{ /if }}
+      </div>
+	  <div data-id="{{pcateId}}" class="source-cate-info {{$data.pcateId ? '':'hide'}}">
+		<span>{{pcateName}}</span>
+	  </div>
+    </div>
+ {{ else }}
+  <div class="control-group diyForm-attachment {{@ $data.props | getOutterProperty }} {{$data.enabled === false ? 'disabled':''}}">
+    <label for="{{name}}" class="control-label">{{name}}</label>
+    <div class="controls">
+      <button id="{{id}}" data-control-type="{{type}}" name="{{name}}" type="button">
+        <i class="fa fa-upload"></i>上传附件
+      </button>
+    </div>
+	<div data-id="{{pcateId}}" class="source-cate-info {{$data.pcateId ? '':'hide'}}">
+		<span>{{pcateName}}</span>
+	</div>
+  </div>
+ {{ /if }}
+</script>
+
+<!-- 日期时间 -->
+<script name='日期时间' type='text/template'>
+  <div class="control-group {{@ $data.props | getOutterProperty }} {{$data.enabled === false ? 'disabled':''}}">
+    <label for="{{name}}" class="control-label">{{name}}</label>
+    <div class="controls">
+        <input id="{{id}}"  data-control-ename="{{ename}}" data-control-type="{{type}}" name="{{name}}" type="text" {{@ $data.props | getProperty}}>
+    </div>
+	<div data-id="{{pcateId}}" class="source-cate-info {{$data.pcateId ? '':'hide'}}">
+		<span>{{pcateName}}</span>
+	</div>
+  </div>
+</script>
+
+<!-- 人员 -->
+<script name='人员' type='text/template'>
+  <div class="control-group {{@ $data.props | getOutterProperty }} {{$data.enabled === false ? 'disabled':''}}">
+    <label for="{{name}}" class="control-label">{{name}}</label>
+    <div class="controls">
+        <input id="{{id}}" data-control-ename="{{ename}}" readonly="readonly" data-control-type="{{type}}" name="{{name}}" type="text" {{@ $data.props | getProperty}}>
+    </div>
+	<div data-id="{{pcateId}}" class="source-cate-info {{$data.pcateId ? '':'hide'}}">
+		<span>{{pcateName}}</span>
+	</div>
+  </div>
+</script>
+
+<!-- 级联选择 -->
+<script name='级联选择' type='text/template'>
+  {{ if $data.props.value }}
+    <div class="diyForm-cascade {{@ $data.props | getOutterProperty }} {{$data.enabled === false ? 'disabled':''}}" id="{{id}}" data-control-type="{{type}}" data-control-ename="{{ename}}">
+      {{each props.groups.names itemName}}
+      <div class="control-group">
+        <label for="{{itemName}}">{{itemName}}</label>
+        <div class="controls">
+          <select id="{{$data.id + '_' + $index}}" data-control-type="{{$data.type}}" name="{{itemName}}">
+            {{if $index === 0}}
+              <option value=""></option>
+              {{each dicts dict}}
+              <option value="{{dict.dictValue}}" {{$data.props.value[$index].value === dict.dictValue ? 'selected' : ''}}>{{dict.dictValueDesc}}</option>
+              {{/each}}
+            {{else}}
+              <option value="{{$data.props.value[$index].value}}">{{ $data.props.value[$index].text }}</option>
+            {{/if}}
+          </select>
+        </div>
+      </div>
+      {{/each}}
+	  <div data-id="{{pcateId}}" class="source-cate-info {{$data.pcateId ? '':'hide'}}">
+		 <span>{{pcateName}}</span>
+	  </div>
+    </div>
+  {{ else }}
+  <div class="diyForm-cascade {{@ $data.props | getOutterProperty }} {{$data.enabled === false ? 'disabled':''}}" id="{{id}}" data-control-type="{{type}}" data-control-ename="{{ename}}">
+    {{each props.groups.names itemName}}
+      <div class="control-group">
+        <label for="{{itemName}}">{{itemName}}</label>
+        <div class="controls">
+          <select id="{{$data.id + '_' + $index}}"  data-control-type="{{$data.type}}" name="{{itemName}}">
+              <option value=""></option>
+            {{if $index === 0}}
+              {{each dicts dict}}
+              <option value="{{dict.dictValue}}">{{dict.dictValueDesc}}</option>
+              {{/each}}
+            {{/if}}
+          </select>
+        </div>
+      </div>
+    {{/each}}
+	  <div data-id="{{pcateId}}" class="source-cate-info {{$data.pcateId ? '':'hide'}}">
+		 <span>{{pcateName}}</span>
+	  </div>
+  </div>
+  {{ /if }}
+</script>
+
+<!-- 表格 -->
+<script name='表格' type='text/template'>
+  <div class="control-group diyForm-table {{@ $data.props | getOutterProperty }} {{$data.enabled === false ? 'disabled':''}}">
+    <label for="{{name}}" class="control-label">{{name}}</label>
+    <div class="controls" id="{{id}}" data-control-type="{{type}}" {{@ $data.props | getProperty}}>
+      {{ if !$data.props.value }}
+      <button type="button" class="addBtn">添加</button>
+      <button type="button" class="delBtn disabled">删除</button>
+      {{ /if }}
+      <div class="fake-table">
+        <div class="fake-table-thead">
+            {{each props.table['data-columnName'] col}}
+              <span data-fieldid="{{col.fieldid}}">{{col.cname}}</span>
+            {{/each}}
+        </div>
+        <div class="fake-table-tbody" style="height: {{props.table['data-viewRow']*30}}px">
+          {{ if $data.props.value }}
+            {{ each $data.props.value row }}
+              <div>
+                {{ each row col index }}
+                  {{ if props.table['data-columnName'][index].option }}
+                    <span>{{$imports.escape(props.table['data-columnName'][index].option, col)}}</span>
+                  {{ else }}
+                    <span>{{col}}</span>
+                  {{ /if }}
+                {{ /each }}
+              </div>
+            {{ /each }}
+          {{ /if }}
+        </div>
+      </div>
+    </div>
+	<div data-id="{{pcateId}}" class="source-cate-info {{$data.pcateId ? '':'hide'}}">
+		<span>{{pcateName}}</span>
+	</div>
+  </div>
+</script>
+
+<!-- 标签 -->
+<script name='标签' type='text/template'>
+  <div class="control-group diyForm-label {{@ $data.props | getOutterProperty }} {{$data.enabled === false ? 'disabled':''}}">
+      <label for="" class="control-label"></label>
+      <div class="controls">
+       <pre id="{{id}}" data-control-ename="{{ename}}" data-control-type="{{type}}" name="{{name}}" {{@ $data.props | getProperty}}>{{props.content}}</pre>
+      </div>
+	  <div data-id="{{pcateId}}" class="source-cate-info {{$data.pcateId ? '':'hide'}}">
+		<span>{{pcateName}}</span>
+	  </div> 
+  </div>
+</script>
+
+<!-- 标签页 -->
+<script name='标签页' type='text/template'>
+  <div class="diyForm-tabs {{@ $data.props | getOutterProperty }} {{$data.enabled === false ? 'disabled':''}}" id="{{id}}" data-control-type="{{type}}">
+      
+      <ul class="nav nav-tabs nav-underLine">
+        {{ each $data.props.tabsName tabName index }}
+          <li class="{{ index === 0 ? 'active' : ''}}">
+            <a href="#tabs{{id}}_{{index}}" data-toggle="tab" ondragstart="return false">{{tabName}}</a>
+          </li>
+        {{ /each }}
+      </ul>
+      <div class="tab-content">
+        {{ each $data.props.forms form index }}
+          <div id="tabs{{id}}_{{index}}" class="tab-pane {{ index === 0 ? 'active' : ''}}">{{@ form.tabForm}}</div>
+        {{ /each }}
+      </div>
+	<div data-id="{{pcateId}}" class="source-cate-info {{$data.pcateId ? '':'hide'}}">
+		<span>{{pcateName}}</span>
+	</div>
+  </div>
+</script>
+
+<!-- <table name="{{name}}" {{@ $data.props | getProperty}}>
+        <thead>
+          <tr>
+            {{each props.table['data-columnName'] col}}
+              <th data-fieldid="{{col.fieldid}}">{{col.cname}}</th>
+            {{/each}}
+          </tr>
+        </thead>
+        <tbody>
+            <%for(var i = 0; i < props.table['data-viewRow']; i ++) {%>
+              <tr>
+                  <%for(var j = 0; j < props['data-columnCount']; j ++) {%>
+                  <td></td>
+                  <%}%>
+              </tr>
+            <%}%>
+        </tbody>
+      </table> -->

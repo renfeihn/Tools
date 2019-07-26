@@ -1,0 +1,19 @@
+{
+	"views": {
+		"groupManageV": {
+			"template":"groupManage.jsp",
+			"js":"groupManage.js"
+		}
+	}, 
+	
+	"models": {
+	}, 
+	
+	"flows": [
+		{
+			"id": "groupManageV"
+		}
+	],
+
+	"stepBar": false
+}

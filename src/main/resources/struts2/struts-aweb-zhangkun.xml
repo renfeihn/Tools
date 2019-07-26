@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<package name="ajaxzhangkun" extends="json-default">
+		<result-types>
+			<result-type name="json"
+				class="cn.com.agree.aweb.struts2.action.support.CustJSONResult" />
+		</result-types>
+
+		<action name="UserAction_*" class="AwebUserBean" method="{1}">
+			<result name="success" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+		</action>
+		<action name="RoleUserAction_*" class="AwebRoleUserBean"
+			method="{1}">
+			<result name="success" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+
+		</action>
+		<!-- 应用配置总览  -->
+		<action name="AppConfigAction_*" class="AppConfigOverviewActionBean"
+			method="{1}">
+			<result name="success" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+
+		</action>
+		<!-- 应用性能,性能分析 -->
+		<action name="AppPerformAnsyAction_*" class="EsbActionBean"
+			method="{1}">
+			<result name="success" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+
+		</action>
+		<!-- 主触发器 -->
+		<action name="AimTriggerAction_*" class="AimTriggerBean"
+			method="{1}">
+			<result name="success" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+		</action>
+		<!-- 关联触发器 -->
+		<action name="AimTriggerSubAction_*" class="AimTriggerSubActionBean"
+			method="{1}">
+			<result name="success" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+		</action>
+		<!-- 应用系统软件架构 -->
+		<action name="AppSoftFrameAction_*" class="AppSoftFrameBean"
+			method="{1}">
+			<result name="success" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+		</action>
+		<!-- 大屏-ESB架构 -->
+		<action name="ScreenFrameAction_*" class="ScreenFrameActionBean"
+			method="{1}">
+			<result name="success" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+		</action>
+		
+		<!-- 大屏-事件分布 -->
+		<action name="ScreenEventDistributeAction_*" class="ScreenEventDistributeActionBean"
+			method="{1}">
+			<result name="success" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+		</action>
+		<!-- 大屏，根据系统id获取系统各项信息 -->
+		<action name="ScreenAimEsbMonAction_*" class="ScreenAimEsbMonActionBean"
+			method="{1}">
+			<result name="success" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+		</action>
+		<!-- 事件列表 -->
+		<action name="EventListAction_*" class="EventListActionBean"
+			method="{1}">
+			<result name="success" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+		</action>
+		<!-- 事件详情 -->
+		<action name="EventDetailAction_*" class="EventDetailBean"
+			method="{1}">
+			<result name="success" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+		</action>
+		
+		<!-- 事件解除 -->
+		<action name="EventRemoveAction_*" class="EventRemoveActionBean"
+			method="{1}">
+			<result name="success" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+		</action>
+		
+		<!-- ASB信息 -->
+		<action name="AbsInfoAction_*" class="AbsInfoBean"
+			method="{1}">
+			<result name="success" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+		</action>
+		<action name="AimAbsAgentAction_*" class="AimAbsAgentBean"
+			method="{1}">
+			<result name="success" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+		</action>
+		<!-- 应用程序基本信息 -->
+		<action name="CmdbSoftwareAction_*" class="CmdbSoftwareActionBean"
+			method="{1}">
+			<result name="success" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+		</action>
+		<!-- APM汇总信息 -->
+		<action name="SummaryAPMAction_*" class="SummaryAPMBean"
+			method="{1}">
+			<result name="success" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+		</action>
+		<!-- 大屏配置交易 -->
+		<action name="ScreenCongfigAction_*" class= "ScreenImpAppsConfigActionBean"
+			method="{1}">
+			<result name="success" type="json">
+				<param name ="root">strutsMessage</param>
+			</result>
+			</action>	
+			<action name="ESBCommAction_*" class= "ESBCommActionBean"
+			method="{1}">
+			<result name="success" type="json">
+				<param name ="root">strutsMessage</param>
+			</result>
+			</action>
+		<!-- 应用配置(对象触发规则) -->
+		<action name="AppTriggerConfigAction_*" class="AppTriggerConfigActionBean"
+			method="{1}">
+			<result name="success" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+		</action>
+		<!-- 应用配置(对象采集命令) -->
+		<action name="AppCommandConfigAction_*" class="AppCommandConfigActionBean"
+			method="{1}">
+			<result name="success" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+		</action>		
+		<!-- 应用日志(异常日志) -->
+		<action name="AppAbnormalLogAction_*" class="AppAbnormalLogActionBean"
+			method="{1}">
+			<result name="success" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+		</action>
+		<!-- 应用日志(其他日志) -->
+		<action name="AppOtherLogAction_*" class="AppOtherLogActionBean"
+			method="{1}">
+			<result name="success" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+		</action>		
+		<!-- 柜面日志操作名称配置 -->
+		<action name="AimlTellerOperationCfgAction_*" class="AimlTellerOperationCfgActionBean"
+			method="{1}">
+			<result name="success" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+		</action>					
+	</package>
+</struts>

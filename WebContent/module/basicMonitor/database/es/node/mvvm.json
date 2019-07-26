@@ -1,0 +1,19 @@
+{
+	"views": {
+		"nodeV": {
+			"template": "node.jsp",
+			"js": "node.js"
+		}
+	}, 
+	
+	"models": {
+	}, 
+	
+	"flows": [
+		{
+			"id": "nodeV"
+		}
+	],
+
+	"stepBar": false 
+}

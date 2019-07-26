@@ -1,0 +1,19 @@
+{
+	"views": {
+		"agentExcute": {
+			"template":"agentExcute.jsp",
+			"js":"agentExcute.js"
+		}
+	}, 
+	
+	"models": {
+	}, 
+	
+	"flows": [
+		{
+			"id": "agentExcute"
+		}
+	],
+
+	"stepBar": false
+}

@@ -1,0 +1,19 @@
+{
+	"views": {
+		"informixSummaryV": {
+			"template": "informixSummary.jsp",
+			"js": "informixSummary.js"
+		}
+	}, 
+	
+	"models": {
+	}, 
+	
+	"flows": [
+		{
+			"id": "informixSummaryV"
+		}
+	],
+
+	"stepBar": false
+}

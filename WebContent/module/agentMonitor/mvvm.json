@@ -1,0 +1,19 @@
+{
+	"views": {
+		"agentMonitorV": {
+			"template":"agentMonitor.jsp",
+			"js":"agentMonitor.js"
+		}
+	}, 
+	
+	"models": {
+	}, 
+	
+	"flows": [
+		{
+			"id": "agentMonitorV"
+		}
+	],
+
+	"stepBar": false
+}

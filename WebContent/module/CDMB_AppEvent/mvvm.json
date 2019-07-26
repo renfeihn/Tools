@@ -1,0 +1,19 @@
+{
+	"views": {
+		"CMDB_eventList": {
+			"template":"CMDB_eventList.jsp",
+			"js":"CMDB_eventList.js"
+		}
+	}, 
+	
+	"models": {
+	}, 
+	
+	"flows": [
+		{
+			"id": "CMDB_eventList"
+		}
+	],
+
+	"stepBar": false
+}

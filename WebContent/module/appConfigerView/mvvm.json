@@ -1,0 +1,19 @@
+{
+	"views": {
+		"appConfigerViewV": {
+			"template":"appConfigerView.jsp",
+			"js":"appConfigerView.js"
+		}
+	}, 
+	
+	"models": {
+	}, 
+	
+	"flows": [
+		{
+			"id": "appConfigerViewV"
+		}
+	],
+
+	"stepBar": false
+}

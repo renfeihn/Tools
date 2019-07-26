@@ -1,0 +1,19 @@
+{
+	"views": {
+		"esDetailsV": {
+			"template": "esDetails.jsp",
+			"js": "esDetails.js"
+		}
+	}, 
+	
+	"models": {
+	}, 
+	
+	"flows": [
+		{
+			"id": "esDetailsV"
+		}
+	],
+
+	"stepBar": false
+}

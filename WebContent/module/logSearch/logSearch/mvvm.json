@@ -1,0 +1,19 @@
+{
+	"views": {
+		"logSearch2V": {
+			"template":"logSearch.jsp",
+			"js":"logSearch.js"
+		}
+	}, 
+	
+	"models": {
+	}, 
+	
+	"flows": [
+		{
+			"id": "logSearch2V"
+		}
+	],
+
+	"stepBar": false
+}

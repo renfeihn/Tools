@@ -1,0 +1,19 @@
+{
+	"views": {
+		"baseMonitorV": {
+			"template":"baseMonitor.jsp",
+			"js":"baseMonitor.js"
+		}
+	}, 
+	
+	"models": {
+	}, 
+	
+	"flows": [
+		{
+			"id": "baseMonitorV"
+		}
+	],
+
+	"stepBar": false
+}

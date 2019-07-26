@@ -1,0 +1,19 @@
+{
+	"views": {
+		"logQuickSearchManagerV": {
+			"template":"logQuickSearchManager.jsp",
+			"js":"logQuickSearchManager.js"
+		}
+	}, 
+	
+	"models": {
+	}, 
+	
+	"flows": [
+		{
+			"id": "logQuickSearchManagerV"
+		}
+	],
+
+	"stepBar": false
+}

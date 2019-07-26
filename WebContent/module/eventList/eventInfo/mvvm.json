@@ -1,0 +1,19 @@
+{
+	"views": {
+		"eventInfoV": {
+			"template": "eventInfo.jsp",
+			"js": "eventInfo.js"
+		}
+	}, 
+	
+	"models": {
+	}, 
+	
+	"flows": [
+		{
+			"id": "eventInfoV"
+		}
+	],
+
+	"stepBar": false
+}

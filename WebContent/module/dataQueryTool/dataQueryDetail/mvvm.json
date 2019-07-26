@@ -1,0 +1,19 @@
+{
+	"views": {
+		"dataQueryDetailV": {
+			"template": "dataQueryDetail.jsp",
+			"js": "dataQueryDetail.js"
+		}
+	}, 
+	
+	"models": {
+	}, 
+	
+	"flows": [
+		{
+			"id": "dataQueryDetailV"
+		}
+	],
+
+	"stepBar": false
+}

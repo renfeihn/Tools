@@ -1,0 +1,19 @@
+{
+	"views": {
+		"sysParamConfigV": {
+			"template": "sysParamConfig.jsp",
+			"js": "sysParamConfig.js"
+		}
+	}, 
+	
+	"models": {
+	}, 
+	
+	"flows": [
+		{
+			"id": "sysParamConfigV"
+		}
+	],
+
+	"stepBar": false
+}

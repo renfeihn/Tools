@@ -1,0 +1,19 @@
+{
+	"views": {
+		"messageConfigerV": {
+			"template":"messageConfiger.jsp",
+			"js":"messageConfiger.js"
+		}
+	}, 
+	
+	"models": {
+	}, 
+	
+	"flows": [
+		{
+			"id": "messageConfigerV"
+		}
+	],
+
+	"stepBar": false
+}

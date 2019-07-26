@@ -1,0 +1,19 @@
+{
+	"views": {
+		"userOperationHistory": {
+			"template":"userOperationHistory.jsp",
+			"js":"userOperationHistory.js"
+		}
+	}, 
+	
+	"models": {
+	}, 
+	
+	"flows": [
+		{
+			"id": "userOperationHistory"
+		}
+	],
+
+	"stepBar": false
+}

@@ -1,0 +1,19 @@
+{
+	"views": {
+		"dataAnalyseV": {
+			"template":"dataAnalyse.jsp",
+			"js":"dataAnalyse.js"
+		}
+	}, 
+	
+	"models": {
+	}, 
+	
+	"flows": [
+		{
+			"id": "dataAnalyseV"
+		}
+	],
+
+	"stepBar": false
+}

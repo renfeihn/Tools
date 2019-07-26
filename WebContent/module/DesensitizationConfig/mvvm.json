@@ -1,0 +1,19 @@
+{
+	"views": {
+		"DesensitizationConfigV": {
+			"template":"DesensitizationConfig.jsp",
+			"js":"DesensitizationConfig.js"
+		}
+	}, 
+	
+	"models": {
+	}, 
+	
+	"flows": [
+		{
+			"id": "DesensitizationConfigV"
+		}
+	],
+
+	"stepBar": false
+}

@@ -1,0 +1,761 @@
+<!--css Start-->
+<style>
+    .dev-css-docs-table{
+        color: #000;
+        border: 1px solid #05c697;
+    }
+    .dev-css-docs-table td{
+        border: none;
+        text-align: center;
+        vertical-align: middle;
+    }
+    .dev-css-docs-text1{
+        color:rgba(5, 198, 151, 0.51);
+    }
+    .dev-css-docs-text2{
+        color:#05ba8e;
+    }
+    .dev-css-docs-color1 {
+        background-color: rgba(5, 198, 151, 0.51)
+    }
+    .dev-css-docs-color2 {
+        background-color:#05ba8e
+    }
+    .dev-css-docs-color3 {
+        background-color:#04ad84
+    }
+    .dev-css-docs-text4 {
+        color:#04a17b
+    }
+    .dev-css-docs-color4 {
+        background-color:#04a17b
+    }
+    .dev-css-docs-color9 {
+        background-color:#02634b
+    }
+    .dev-css-docs-color10 {
+        background-color:#025642
+    }
+    .dev-css-docs-color11 {
+        background-color:#024a38
+    }
+</style>
+<!--css End-->
+<!--html Start-->
+<div class="hero-unit">
+    <h1>AWeb 2.1</h1>
+    <p>CSS APIs</p>
+</div>
+<div>
+    <!-- bootstrap Start-->
+    <div data-href="bootstrap" class="module">
+        <div class="page-header">
+            <h2>Bootstrap
+                <small>bootstrap.min.css、bootstrap-responsive.min.css</small>
+            </h2>
+        </div>
+        <p class="text-indent">
+            在AWeb 2.1项目中，使用了<a href="http://v2.bootcss.com/" target="_blank">Bootstrap V2</a>。其中bootstrap.min.css是Bootstrap普通样式，bootstrap-responsive.min.css是Bootstrap响应式样式。
+        </p>
+        <h3>
+           编译Bootstrap源码
+        </h3>
+        <p class="text-indent">
+            AWeb 2.1的Bootstrap源码与项目源码分开了，检出路径位于https://www.agreeqzdev.net:8888/svn/AIMWEB/trunk/project/Aimbootstrap_v3中。编译Bootstrap源码，需要安装Node.js。
+        </p>
+        <p class="text-indent">
+            环境部署如下：
+        </p>
+        <ol>
+            <li>
+                <p class="text-indent">
+                    检出；并安装<a href="https://nodejs.org/en/" target="_blank">Node.js 3.2.7</a>。
+                </p>
+                <p class="text-indent">
+                    运行<code>configure.cmd</code>编译安装插件。
+                </p>
+            </li>
+            <li>
+                <p class="text-indent">
+                    修改<code>replace.cmd</code>，修改项目路径和替换路径。
+                </p>
+                <pre>
+
+copy AWeb 2.1 Bootstrap路径\dist\bootstrap.min.css AWeb 2.1项目路径\WebContent\css\bootstrap.min.css/y
+copy AWeb 2.1 Bootstrap路径\bootstrap-responsive.min.css AWeb 2.1项目路径\WebContent\css\bootstrap-responsive.min.css/y
+                </pre>
+            </li>
+            <li>
+                <p class="text-indent">
+                    修改*.less样式。其中变量参数位于<code>less/variables.less</code>中，函数方法位于<code>less/mixins.less</code>中；
+                    响应式样式位于<code>less/responsive*.less</code>中，其余文件为各个组件的样式。
+                </p>
+                <p>
+                    增加组件新增less文件，在<code>less/bootstrap.less</code>中添加<code>@import "xxxx.less"</code>。
+                </p>
+                <p class="text-indent">
+                    编辑Bootstrap样式，参照Bootstrap的规范。
+                </p>
+            </li>
+            <li>
+                <p class="text-indent">
+                    修改完成后，使用打开命令提示符，进入项目路径，假设Bootstrap项目路径位于<code>D:\bootstrap_v2</code>
+                </p>
+                <pre>
+
+C:\Users\tqtiw>d:           '切换工作区域
+D:\>cd bootstrap_v2         '进入项目文件夹
+D:\bootstrap_v2>complie.cmd '编译项目
+                </pre>
+            </li>
+            <li>
+                <p class="text-indent">
+                    编译后，如果没有错误提示后，运行<code>replace.cmd</code>，将编译文件，替换到项目中。
+                </p>
+            </li>
+        </ol>
+    </div>
+    <!-- bootstrap End-->
+    <!-- common.css End-->
+    <div data-href="common" class="module">
+        <div class="page-header">
+            <h2>
+                通用样式
+                <small>commom.css</small>
+            </h2>
+        </div>
+        <p class="text-indent">
+            通用样式，用于保存项目中各个页面的公共样式，但不是组件的样式。也可以在调试的时候，临时将样式写在common.css中，调试完毕后，将样式移到bootstrap中。
+        </p>
+    </div>
+    <!-- common.css End-->
+    <!-- font-awesome.min.css Start-->
+    <div data-href="fontAwesome" class="module">
+        <div class="page-header">
+            <h2>字体图标样式
+                <small>font-awesome.min.css</small>
+            </h2>
+        </div>
+        <h3>使用方法</h3>
+        <ol>
+            <li>
+                <p class="text-indent">
+                    假设需要引用一个这样的图标<i class="fa fa-desktop"></i>，代码如下：
+                </p>
+                <pre>&lt;i class="fa fa-desktop"&gt;&lt;/i&gt;</pre>
+                <p class="text-indent">
+                    字体图标还可以通过添加样式调整图标颜色，请参考<a data-link="color">颜色</a>的<strong>字体颜色</strong>部分。
+                </p>
+                <p class="text-indent">
+                    图标一般使用<code>&lt;i&gt;</code>标签。不同的图标，参考<a href="http://www.thinkcmf.com/font/icons" target="_blank">Font Awesome官网</a>。
+                </p>
+            </li>
+        </ol>
+    </div>
+    <!-- font-awesome.min.css End-->
+ 	<!-- css整体布局 Start-->
+	<div data-href="location" class="module">
+        <div class="page-header">
+            <h2>CSS整体布局
+                <small>WebCotent/css/*</small>
+            </h2>
+        </div>
+        <table class="table table-hover table-condensed">
+            <tr>
+                <th>适用范围</th>
+                <th>编写位置</th>
+            </tr>
+            <tr>
+                <td>项目整体共用</td>
+                <td>bootstrap.min.css</td>
+            </tr>
+            <tr>
+                <td>部分页面共用</td>
+                <td>common.css</td>
+            </tr>
+            <tr>
+                <td>单个页面使用</td>
+                <td>该页面顶部添加<code>&lt;style&gt;&lt;/style&gt;</code></td>
+            </tr>
+            <tr>
+                <td>各种功能插件</td>
+                <td>独立的<code>*.css</code>文件</td>
+            </tr>
+        </table>
+	</div>
+	<!-- css整体布局 end-->
+	<!-- 页面布局 Start-->
+	<div data-href="layout"  class="module">
+        <div class="page-header">
+            <h2>页面布局
+                <small>index.jsp</small>
+            </h2>
+        </div>
+        <table class="table dev-css-docs-table">
+            <tr>
+                <td colspan="11">
+                    &nbsp;
+                </td>
+            </tr>
+            <tr>
+                <td colspan="1">&nbsp;</td>
+                <td colspan="9" class="dev-css-docs-color1">
+                    确认框、模态框（.modal）
+                </td>
+                <td colspan="1">&nbsp;</td>
+            </tr>
+            <tr>
+                <td  colspan="11">
+                    &nbsp;
+                </td>
+            </tr>
+            <tr>
+                <td rowspan="7" >
+                    &nbsp;
+                </td>
+                <td rowspan="7" class="dev-css-docs-color2">
+                    左侧边栏（.aside-left）
+                </td>
+                <td colspan="7" class="dev-css-docs-color11">
+                    顶边栏（.banner）
+                </td>
+                <td rowspan="7" class="dev-css-docs-color1">
+                    右侧边栏（.aside-left）
+                </td>
+                <td rowspan="7">
+                    &nbsp;
+                </td>
+            </tr>
+            <tr>
+                <td colspan="7" class="dev-css-docs-color3">
+                    内容（.content-container）
+                </td>
+            </tr>
+            <tr>
+                <td rowspan="5" class="dev-css-docs-color3">
+                    &nbsp;
+                </td>
+                <td colspan="5" class="dev-css-docs-color10">
+                    标签栏/选项卡（.tabs-container)
+                </td>
+                <td rowspan="5" class="dev-css-docs-color3">
+                    &nbsp;
+                </td>
+            </tr>
+            <tr>
+                <td colspan="5" class="dev-css-docs-color4">
+                    主内容（.main)
+                </td>
+            </tr>
+            <tr>
+                <td class="dev-css-docs-color4">
+                    &nbsp;
+                </td>
+                <td class="dev-css-docs-color9">
+                    <br/><br/>
+                    <p>
+                        左主内容（.main-left）
+                    </p>
+                    <br/><br/>
+                </td>
+                <td class="dev-css-docs-color4">
+                    &nbsp;
+                </td>
+                <td  class="dev-css-docs-color9">
+                    <br/><br/>
+                    <p>
+                        右主内容（.main-right）
+                    </p>
+                    <br/><br/>
+                </td>
+                <td  class="dev-css-docs-color4">
+                    &nbsp;
+                </td>
+            </tr>
+            <tr>
+                <td colspan="5" class="dev-css-docs-color4">
+                    &nbsp;
+                </td>
+            </tr>
+            <tr>
+                <td colspan="5" class="dev-css-docs-color3">&nbsp;</td>
+            </tr>
+            <tr>
+                <td colspan="11">
+                    &nbsp;
+                </td>
+            </tr>
+            <tr>
+                <td colspan="1">&nbsp;</td>
+                <td colspan="9" class="dev-css-docs-color1">
+                    遮罩（.mask、.backdrop）
+                </td>
+                <td colspan="1">&nbsp;</td>
+            </tr>
+            <tr>
+                <td  colspan="11">
+                    &nbsp;
+                </td>
+            </tr>
+        </table>
+        <ol class="gutter-top">
+            <li class="text-indent">
+                <p class="text-param">
+                    <i class="fa fa-square dev-css-docs-text1"></i>
+                    遮罩、确认框、模态框以及右侧边栏在正常情况下是隐藏的。
+                </p>
+                <p class="text-param">
+                    <i class="fa fa-square dev-css-docs-text4"></i>
+                    所有页面均填充在主内容中。
+                </p>
+            </li>
+        </ol>
+	</div>
+	<!-- 页面布局 end-->
+	<!-- 基本样式 start-->
+    <div class="module">
+        <div class="page-header">
+            <h2>基本样式
+            </h2>
+        </div>
+        <h3 data-href="typesetting">排版</h3>
+        <h4>栅格</h4>
+        <p class="text-indent">
+            在DIV+CSS时代，编写页面已经不再提倡甚至最好不用table对页面进行排版。
+            在Bootstrap框架下，使用栅格可对页面进行统一、有序、高效的排版和编码。
+            Bootstrap默认的栅格系统为12列，在AIM项目中，将栅格细分到48列，使用时请注意。
+        </p>
+        <table class="table dev-css-docs-table gutter-bottom">
+            <tr>
+                <td colspan="9">&nbsp;</td>
+            </tr>
+            <tr>
+                <td rowspan="3">&nbsp;</td>
+                <td colspan="7" class="dev-css-docs-color1" style="text-align: left">
+                    div.row
+                </td>
+                <td rowspan="3">&nbsp;</td>
+            </tr>
+            <tr>
+                <td class="dev-css-docs-color4">
+                    div.span4
+                </td>
+                <td class="dev-css-docs-color1">
+                    &nbsp;
+                </td>
+                <td class="dev-css-docs-color1">
+                    &nbsp;
+                </td>
+                <td class="dev-css-docs-color1">
+                    &nbsp;&nbsp;
+                </td>
+                <td class="dev-css-docs-color1">
+                    &nbsp;
+                </td>
+                <td colspan="2" class="dev-css-docs-color4">
+                    div.span8.offset8
+                </td>
+            </tr>
+            <tr>
+                <td colspan="7" class="dev-css-docs-color1">
+                    &nbsp;
+                </td>
+            </tr>
+            <tr>
+                <td colspan="9">&nbsp;</td>
+            </tr>
+        </table>
+        <ol>
+            <li>
+                <p class="text-param">
+                    <code>.span*</code>：span*可以是<code>.span1</code>～<code>.span48</code>，表示容器的大小。
+                </p>
+                <p class="text-param">
+                    <code>.offset*</code>：offset*可以是<code>.offset1</code>～<code>.offset48</code>，表示容器的距离左边元素（element）的距离。
+                </p>
+            </li>
+        </ol>
+        <p class="text-indent">使用<code>.span*</code>和<code>.offset*</code>，需要使用<code>.row</code>包裹。详细教程，请查看<a
+                href="http://v2.bootcss.com/scaffolding.html#gridSystem" target="_blank">栅格系统</a>。</p>
+        <h4>对齐</h4>
+        <table class="table dev-css-docs-table table-border">
+            <tr>
+                <td style="text-align: left">左对齐</td>
+                <td style="text-align: center">居中</td>
+                <td style="text-align: right">右对齐</td>
+            </tr>
+            <tr>
+                <td><code>.text-left</code></td>
+                <td><code>.text-center</code></td>
+                <td><code>.text-right</code></td>
+            </tr>
+        </table>
+        <h4>缩进</h4>
+        <ol>
+            <li>
+                <p class="text-param"><code>.text-indent</code>：首行缩进2个字符。</p>
+                <p class="text-param"><code>.text-param</code>：悬挂缩进2个字符。</p>
+            </li>
+        </ol>
+        <h4>边距</h4>
+        <table class="table dev-css-docs-table">
+            <tr>
+                <td colspan="19">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+                <td colspan="5" class="dev-css-docs-color1">&nbsp;</td>
+                <td>&nbsp;</td>
+                <td class="dev-css-docs-color1">&nbsp;</td>
+                <td colspan="3" class="dev-css-docs-color9">与下外边距有1em的距离</td>
+                <td class="dev-css-docs-color1">&nbsp;</td>
+                <td>&nbsp;</td>
+                <td colspan="5" class="dev-css-docs-color1">&nbsp;</td>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+                <td class="dev-css-docs-color1">&nbsp;</td>
+                <td colspan="3" class="dev-css-docs-color9">与上外边距有1em的距离</td>
+                <td class="dev-css-docs-color1">&nbsp;</td>
+                <td>&nbsp;</td>
+                <td colspan="5" class="dev-css-docs-color1">&nbsp;</td>
+                <td>&nbsp;</td>
+                <td class="dev-css-docs-color1">&nbsp;</td>
+                <td colspan="3" class="dev-css-docs-color9">与外边距有0.5em的距离</td>
+                <td class="dev-css-docs-color1">&nbsp;</td>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td colspan="13">&nbsp;</td>
+                <td colspan="5" class="dev-css-docs-color1">&nbsp;</td>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+                <td colspan="5"><code>.gutter-top</code></td>
+                <td>&nbsp;</td>
+                <td colspan="5"><code>.gutter-bottom</code></td>
+                <td>&nbsp;</td>
+                <td colspan="5"><code>.gutter-both</code></td>
+                <td>&nbsp;</td>
+            </tr>
+        </table>
+        <h3 data-href="color">
+            颜色
+        </h3>
+        <h4>字体颜色</h4>
+        <table class="table table-border dev-css-docs-table">
+            <tr>
+                <td><i class="fa fa-circle text-error"></i></td>
+                <td><i class="fa fa-circle text-warning"></i></td>
+                <td><i class="fa fa-circle text-info"></i></td>
+                <td><i class="fa fa-circle text-success"></i></td>
+                <td><i class="fa fa-circle muted"></i></td>
+                <td><i class="fa fa-circle Running"></i></td>
+                <td><i class="fa fa-circle Stopping"></i></td>
+                <td><i class="fa fa-circle Stopped"></i></td>
+            </tr>
+            <tr>
+                <td><code>.text-error</code></td>
+                <td><code>.text-warning</code></td>
+                <td><code>.text-info</code></td>
+                <td><code>.text-success</code></td>
+                <td><code>.muted</code></td>
+                <td><code>.Running</code></td>
+                <td><code>.Stopping</code></td>
+                <td><code>.Stopped</code></td>
+            </tr>
+        </table>
+        <h4>背景颜色</h4>
+        <table class="table table-border dev-css-docs-table">
+            <tr>
+                <td><span class="bg-error">&nbsp;&nbsp;&nbsp;&nbsp;</span></td>
+                <td><span class="bg-warning">&nbsp;&nbsp;&nbsp;&nbsp;</span></td>
+                <td><span class="bg-info">&nbsp;&nbsp;&nbsp;&nbsp;</span></td>
+                <td><span class="bg-success">&nbsp;&nbsp;&nbsp;&nbsp;</span></td>
+                <td><span class="bg-muted">&nbsp;&nbsp;&nbsp;&nbsp;</span></td>
+                <td><span class="bg-running">&nbsp;&nbsp;&nbsp;&nbsp;</span></td>
+                <td><span class="bg-stopping">&nbsp;&nbsp;&nbsp;&nbsp;</span></td>
+                <td><span class="bg-stopped">&nbsp;&nbsp;&nbsp;&nbsp;</span></td>
+            </tr>
+            <tr>
+                <td><code>.bg-error</code></td>
+                <td><code>.bg-warning</code></td>
+                <td><code>.bg-info</code></td>
+                <td><code>.bg-success</code></td>
+                <td><code>.bg-muted</code></td>
+                <td><code>.bg-running</code></td>
+                <td><code>.bg-stopping</code></td>
+                <td><code>.bg-stopped</code></td>
+            </tr>
+        </table>
+        <p class="alert text-indent gutter-top">
+            提示：因为logo颜色是绿色，所以把logo的绿色或者以logo绿色变化明度饱和度的绿色作为所有页面的主提亮色，logo的绿色为<code>#05c697</code>，<code>rgb(5,198,151)</code>。
+        </p>
+        <h4>其他基本样式</h4>
+        <p class="text-indent">
+            其他基本样式，请参考
+            <a href="http://v2.bootcss.com/scaffolding.html" target="_blank">Bootstrap手脚架</a>，
+            <a href="http://v2.bootcss.com/base-css.html" target="_blank">Bootstrap基本样式</a>
+        </p>
+    </div>
+	<!-- 基本样式 end -->
+	<!-- 组件start -->
+	<div class="module">
+        <div class="page-header">
+            <h2>组件</h2>
+        </div>
+		<h3 data-href="button">按钮</h3>
+        <p class="text-indent">
+            按钮的基本样式为<code>.btn</code>。
+        </p>
+        <h4>写法</h4>
+        <table class="table dev-css-docs-table gutter-bottom">
+            <tr>
+                <td><input type="button" class="btn" value="按钮"/></td>
+                <td><button type="button" class="btn">按钮</button></td>
+            </tr>
+            <tr>
+                <td><code>&lt;input type="button" class="btn" value="按钮"/&gt;</code></td>
+                <td><code>&lt;button type="button" class="btn"&gt;按钮&lt;/button&gt;</code></td>
+            </tr>
+        </table>
+        <h4>颜色</h4>
+        <table class="table dev-css-docs-table gutter-bottom">
+            <tr>
+                <td><button type="button" class="btn">默认</button></td>
+                <td><button type="button" class="btn btn-primary">主要</button></td>
+                <td><button type="button" class="btn btn-inverse">深色</button></td>
+                <td><button type="button" class="btn btn-info">信息</button></td>
+                <td><button type="button" class="btn btn-success">成功</button></td>
+                <td><button type="button" class="btn btn-warning">警告</button></td>
+                <td><button type="button" class="btn btn-danger">危险</button></td>
+            </tr>
+            <tr>
+                <td><code>.btn</code></td>
+                <td><code>.btn.btn-primary</code></td>
+                <td><code>.btn.btn-inverse</code></td>
+                <td><code>.btn.btn-info</code></td>
+                <td><code>.btn.btn-success</code></td>
+                <td><code>.btn.btn-warning</code></td>
+                <td><code>.btn.btn-danger</code></td>
+            </tr>
+        </table>
+        <h4>大小</h4>
+        <table class="table dev-css-docs-table gutter-bottom">
+            <tr>
+                <td><button type="button" class="btn btn-mini">迷你按钮</button></td>
+                <td><button type="button" class="btn btn-small">小按钮</button></td>
+                <td><button type="button" class="btn">默认按钮</button></td>
+                <td><button type="button" class="btn btn-large">大按钮</button></td>
+            </tr>
+            <tr>
+                <td><code>.btn.btn-mini</code></td>
+                <td><code>.btn.btn-small</code></td>
+                <td><code>.btn</code></td>
+                <td><code>.btn.btn-large</code></td>
+            </tr>
+        </table>
+        <!-- 鼠标悬停 start-->
+        <h3 data-href="hover">
+            鼠标悬停
+            <small>
+                hover效果（支持ie9以上）
+            </small>
+        </h3>
+        <table class="table dev-css-docs-table">
+            <tr>
+                <td><div class="bg-muted alert-container hvr-bounce-to-left">从左到右</div></td>
+                <td><div class="bg-muted alert-container hvr-bounce-to-right">从右到左</div></td>
+                <td><div class="bg-muted alert-container hvr-radial-out">从里到外</div></td>
+            </tr>
+            <tr>
+                <td><code>.hvr-bounce-to-left</code></td>
+                <td><code>.hvr-bounce-to-right</code></td>
+                <td><code>.hvr-radial-out</code></td>
+            </tr>
+            <tr>
+                <td><div class="bg-muted alert-container hvr-ripple-out">向外扩散</div></td>
+                <td><div class="bg-muted alert-container hvr-overline-from-right">外线左冲</div></td>
+                <td><div class="bg-muted alert-container hvr-overline-from-left">外线右冲</div></td>
+            </tr>
+            <tr>
+                <td><code>.hvr-ripple-out</code></td>
+                <td><code>.hvr-overline-from-right</code></td>
+                <td><code>.hvr-overline-from-left</code></td>
+            </tr>
+        </table>
+        <!-- 鼠标悬停 end-->
+		<h3 data-href="alert">提示与便签</h3>
+        <h4>提示</h4>
+        <table class="table dev-css-docs-table gutter-bottom">
+            <tr>
+                <td colspan="2">
+                    <div class="alert text-left">
+                        <button type="button" class="close" data-dismiss="alert"><i class="fa fa-times"></i></button>
+                        <strong>提示</strong>：
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <pre class="text-left">
+&lt;div class="alert"&gt;
+    &lt;button type="button" class="close" data-dismiss="alert"&gt;
+        &lt;i class="fa fa-times"&gt;&lt;/i&gt;
+    &lt;/button&gt;
+    &lt;strong&gt;提示&lt;/strong&gt;：
+&lt;/div&gt;</pre>
+                </td>
+            </tr>
+            <tr>
+                <td><div class="alert alert-success text-left"><strong>成功</strong>：<span></span></spn></div></td>
+                <td><div class="alert alert-danger text-left"><em>警告</em>：</div></td>
+            </tr>
+            <tr>
+                <td><code>&lt;div class="alert alert-success"&gt;&lt;strong&gt;提示&lt;/strong&gt;：&lt;/div&gt;</code></td>
+                <td><code>&lt;div class="alert alert-danger"&gt;&lt;em&gt;警告&lt;/em&gt;：&lt;/div&gt;</code></td>
+            </tr>
+        </table>
+        <h4>便签</h4>
+        <table class="table dev-css-docs-table gutter-bottom">
+            <tr>
+                <td><div class="alert-info alert-container">信息</div></td>
+                <td><div class="alert-pink alert-container">普通</div></td>
+                <td><div class="alert-success alert-container">成功</div></td>
+            </tr>
+            <tr>
+                <td><code>.alert-info.alert-container</code></td>
+                <td><code>.alert-pink.alert-container</code></td>
+                <td><code>.alert-success.alert-container</code></td>
+            </tr>
+            <tr>
+                <td><div class="alert-warning alert-container">警告</div></td>
+                <td><div class="alert-danger alert-container">危险</div></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td><code>.alert-warning.alert-container</code></td>
+                <td><code>.alert-danger.alert-container</code></td>
+                <td></td>
+            </tr>
+        </table>
+		<h3 data-href="tabs">标签页Tabs</h3>
+		<div data-role="tabsTemp" class="dev-css-docs-table gutter-both">
+<ul class="nav nav-tabs main-ctn-tabs">
+	<li class="active">
+        <a href="#tab1" data-toggle="tab">tab1</a>
+    </li>
+	<li>
+        <a href="#tab2" data-toggle="tab">tab2</a>
+    </li>
+	<li>
+        <a href="#tab3" data-toggle="tab">tab3</a>
+    </li>
+</ul>
+<div class="tab-content comElemCont">
+	<div class="tab-pane active" id="tab1">
+        这里放tab1的内容
+    </div>
+	<div class="tab-pane" id="tab2">
+        这里放tab2的内容
+    </div>
+	<div class="tab-pane" id="tab3">
+        这里放tab3的内容
+    </div>
+</div>
+		</div>
+        <h4>HTML代码</h4>
+        <pre data-role="tabsHTML"></pre>
+        <!--内容左右布局 start-->
+        <h3 data-href="contentPosition">左右布局DIV</h3>
+        <table class="table dev-css-docs-table">
+            <colgroup>
+                <col width="5%"/>
+                <col width="15%"/>
+                <col width="5%"/>
+                <col width="70%"/>
+                <col width="5%"/>
+            </colgroup>
+            <tr><td colspan="5"></td></tr>
+            <tr>
+                <td></td>
+                <td class="dev-css-docs-color2">
+                    左边容器（.main-left）
+                </td>
+                <td></td>
+                <td class="dev-css-docs-color2">
+                    右边容器（.main-right）
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><code>div.main-left.div-bg</code></td>
+                <td></td>
+                <td><code>div.main-right.div-bg</code></td>
+                <td></td>
+            </tr>
+        </table>
+        <!--内容左右布局 end-->
+	</div>
+	<!-- 组件end -->
+	<!-- ie8兼容写法-----start -->
+	<div class="module">
+        <div class="page-header">
+            <h2>
+                CSS3兼容
+                <small>IE8以下</small>
+            </h2>
+        </div>
+		<h3 data-href="nthChild">nth-child()</h3>
+		<p>不兼容写法：<code>ul&gt;li:nth-child(3)</code></p>
+		<p>兼容写法：<code>ul&gt;li:first-child+li+li</code>(*提示：first-child是CSS2的，last-child是CSS3的)</p>
+		<h3 data-href="rgba">rgba()</h3>
+		<p>不兼容写法：<code>background-color: rgba(255,255,255,.8)</code></p>
+		<p>兼容写法：<code>filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#C8ffffff,endColorstr=#C8ffffff);</code>(*提示：<span class="act">C8ffffff</span>前两位数是透明程度，后六位是颜色值)</p>
+		<table class="table table-hover table-condensed">
+			<tr><th>小数透明度数</th><th>十六进制透明度数</th></tr>
+			<tr><td>0.1</td><td>19</td></tr>
+			<tr><td>0.2</td><td>33</td></tr>
+			<tr><td>0.3</td><td>4C</td></tr>
+			<tr><td>0.4</td><td>66</td></tr>
+			<tr><td>0.5</td><td>7F</td></tr>
+			<tr><td>0.6</td><td>99</td></tr>
+			<tr><td>0.7</td><td>B2</td></tr>
+			<tr><td>0.8</td><td>C8</td></tr>
+			<tr><td>0.9</td><td>E5</td></tr>
+		</table>
+	</div>
+	<!-- ie8兼容写法------end -->
+    <!-- z-index层级-----start -->
+    <div data-href="zIndex" class="module">
+        <div class="page-header">
+            <h2>
+                zIndex层级
+            </h2>
+        </div>
+        <table class="table table-condensed dev-css-docs-color2 dev-css-docs-color-td">
+            <tr class="dev-css-docs-color1"> <th>组件名称</th><th>默认</th><th>显示的情况</th><th>右侧边栏显示</th><th>模态框出现</th><th>模态框+右侧边栏</th><th>模态框+遮罩</th><th>确认框</th></tr>
+            <tr><td class="dev-css-docs-color4">背景</td><td>-1</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td class="dev-css-docs-color4">标签栏（.tabs)</td><td>1</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td class="dev-css-docs-color4">左侧边栏（.aside-left）</td><td>2</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td class="dev-css-docs-color4">标签栏左右按钮（.tabs-left|right)</td><td>2</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td class="dev-css-docs-color4">提示框（#alertList）</td><td>4</td><td></td><td>1061</td><td></td><td>1061</td><td>15001</td><td>1063</td></tr>
+            <tr><td class="dev-css-docs-color4">换肤(.skin-change）</td><td>4</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td class="dev-css-docs-color4">帮助文档（.help-doc）</td><td>4</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td class="dev-css-docs-color4">消息中心（.message-center)</td><td>6</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td class="dev-css-docs-color4">模态框遮罩背景（#mask）</td><td>1059</td><td></td><td>4</td><td></td><td>1060</td><td>4</td><td>1062</td></tr>
+            <tr><td class="dev-css-docs-color4">右侧边栏（.aside-right)</td><td>1062</td><td></td><td></td><td></td><td>1062</td><td></td><td></td></tr>
+            <tr><td class="dev-css-docs-color4">公共配置信息框（.conf-info)</td><td>auto</td><td>5</td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td class="dev-css-docs-color4">模态框</td><td>auto</td><td>1050</td><td></td><td>1050</td><td>1050</td><td>1050</td><td></td></tr>
+            <tr><td class="dev-css-docs-color4">遮罩Shelter（.mask)</td><td></td><td></td><td></td><td></td><td></td><td>15000</td><td></td></tr>
+            <tr><td class="dev-css-docs-color4">确认框（app.confirm)</td><td>auto</td><td>1064</td><td></td><td></td><td></td><td></td><td></td></tr>
+        </table>
+        <p><i class="fa fa-square dev-css-docs-text4"></i>组件名称</p>
+        <p><i class="fa fa-square dev-css-docs-text2"></i>各组件在不同页面操作情况下的z-index值t</p>
+    </div>
+    <!-- z-index层级-----end -->
+</div>
+<!--html End-->

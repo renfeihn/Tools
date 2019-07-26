@@ -1,0 +1,19 @@
+{
+	"views": {
+		"linuxDetailsV": {
+			"template": "linuxDetails.jsp",
+			"js": "linuxDetails.js"
+		}
+	}, 
+	
+	"models": {
+	}, 
+	
+	"flows": [
+		{
+			"id": "linuxDetailsV"
+		}
+	],
+
+	"stepBar": false
+}

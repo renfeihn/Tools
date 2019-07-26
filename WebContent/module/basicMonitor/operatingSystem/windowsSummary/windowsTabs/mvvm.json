@@ -1,0 +1,19 @@
+{
+	"views": {
+		"windowsTabsV": {
+			"template": "windowsTabs.jsp",
+			"js": "windowsTabs.js"
+		}
+	}, 
+	
+	"models": {
+	}, 
+	
+	"flows": [
+		{
+			"id": "windowsTabsV"
+		}
+	],
+
+	"stepBar": false
+}

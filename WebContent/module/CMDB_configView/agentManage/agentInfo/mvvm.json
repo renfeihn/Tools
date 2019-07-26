@@ -1,0 +1,19 @@
+{
+	"views": {
+		"agentInfo": {
+			"template":"agentInfo.jsp",
+			"js":"agentInfo.js"
+		}
+	}, 
+	
+	"models": {
+	}, 
+	
+	"flows": [
+		{
+			"id": "agentInfo"
+		}
+	],
+
+	"stepBar": false
+}

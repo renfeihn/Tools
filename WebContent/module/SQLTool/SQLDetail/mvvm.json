@@ -1,0 +1,19 @@
+{
+	"views": {
+		"SQLDetailV": {
+			"template":"SQLDetail.jsp",
+			"js":"SQLDetail.js"
+		}
+	}, 
+	
+	"models": {
+	}, 
+	
+	"flows": [
+		{
+			"id": "SQLDetailV"
+		}
+	],
+
+	"stepBar": false
+}

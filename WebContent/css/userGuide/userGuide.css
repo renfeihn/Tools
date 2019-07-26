@@ -1,0 +1,165 @@
+body {
+	margin: 0;
+}
+a:focus, a:hover{
+	text-decoration: none;
+}
+.gutter-top{
+	margin-top:2em;
+}
+.user-header {
+	background-color: rgba(34, 34, 44, 0.85);
+	height: 50px;
+	position:fixed;
+	top:0;
+	left:0;
+	right:0;
+	z-index:1000;
+}
+
+.user-header img {
+	margin-top:-8px;
+}
+.user-jumbotron{
+	padding:80px 0 30px 0;
+	color:#eee;
+	background-color: #336A6D;
+    background-image: -moz-linear-gradient(left, #002831, #336A6D); 
+    background-image: -webkit-gradient(linear, 0 0, 100% 0, from(#002831), to(#336A6D)); 
+    background-image: -webkit-linear-gradient(left, #002831, #336A6D); 
+    background-image: -o-linear-gradient(left, #002831, #336A6D); 
+    background-image: linear-gradient(to right, #002831, #336A6D); 
+    background-repeat: repeat-x;
+}
+.user-jumbotron:before{
+	position:absolute;
+	content:'';
+	top:0;
+	left:0;
+	right:0;
+	height:180px;
+	opacity:0.5;
+	background:url(../../img/button_bg.png);
+	-webkit-animation:circle-pic 10s 0.9s infinite linear;
+}
+
+/*....用户指南 start..........*/
+.user-document-sidebar {
+	float:left;
+	width:230px;
+}
+
+.user-document-sidebar .accordion-inner{
+	padding:0;
+}
+.user-document-sidebar.sidebar-fixed-top{
+	position:fixed;
+	top:70px;
+}
+.accordion-heading a{
+	background-color:rgba(34, 34, 44, 0.85);
+}
+
+.user-document-sidebar ul{
+	margin:0;
+}
+.user-document-sidebar ul li{
+	background-color:#e3e8ec;
+	border-bottom:1px solid #cfd4d8;
+}
+
+.user-document-sidebar ul li a{
+	display:block;
+	padding:10px;
+	color:#555;
+}
+
+.user-document-sidebar ul li a:hover{
+	background-color:#d3dbe2;
+}
+.user-document-sidebar ul li ul {
+	display:none;
+}
+.user-document-sidebar ul li.active ul {
+	display:block;
+}
+.user-document-sidebar ul li ul li{
+	background-color:#eef1f4;
+	border-bottom:none;
+}
+
+.user-document-sidebar ul li ul li a{
+	text-indent:2em;
+	color:#888;
+}
+
+.user-document-wrapper {
+	 margin-left:270px;
+}
+
+.user-document-wrapper h2
+{
+	font-size:25px;
+	font-weight:500;
+}
+
+.user-document-wrapper h3
+{
+	font-size:20px;
+	font-weight:500;
+}
+
+.user-document-wrapper h2,h3{
+	line-height:48px;
+}
+.user-document-wrapper .section
+{
+	margin:10px 0 50px 0;
+}
+
+.user-document-wrapper img{
+	box-shadow:0px 0px 20px #ccc;
+	margin: 10px auto;
+	display:block;
+}
+
+.alert-box{
+	padding:10px;
+	border-radius:5px;
+	border:1px solid #CDBD5E;
+	
+}
+/*....用户指南 end..........*/
+
+/*....常见问题样式 start..........*/
+.asked-tabs>li:first-child{
+	margin-left:0;
+}
+.asked-tabs>li>a{
+	background:#BECFCC;
+	font-size:20px;
+	border-radius:5px;
+	padding:20px 5px;
+}
+.asked-tabs>li.active>a,
+.asked-tabs>li>a:hover,
+.asked-tabs>li.active>a:hover{
+	background:#71D0BE;
+}
+.asked-tabs>li>a>i{
+	font-size:40px;
+	margin-right:10px;
+	vertical-align:middle;
+}
+.asked-details{
+	padding:12px;
+	margin:0 10px 20px 0;
+	border-radius:3px;
+	background:#E5EBEA;
+}
+.asked-details>.ans{
+	color:#BE8541;
+	font-style:italic;
+}
+
+/*....常见问题样式 end..........*/

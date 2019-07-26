@@ -1,0 +1,19 @@
+{
+	"views": {
+		"dataManageDetailRelationV": {
+			"template": "dataManageDetailRelation.jsp",
+			"js": "dataManageDetailRelation.js"
+		}
+	}, 
+	
+	"models": {
+	}, 
+	
+	"flows": [
+		{
+			"id": "dataManageDetailRelationV"
+		}
+	],
+
+	"stepBar": false
+}

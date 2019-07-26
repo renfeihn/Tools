@@ -1,0 +1,19 @@
+{
+	"views": {
+		"globalAlarmMethodV": {
+			"template":"globalAlarmMethod.jsp",
+			"js":"globalAlarmMethod.js"
+		}
+	}, 
+	
+	"models": {
+	}, 
+	
+	"flows": [
+		{
+			"id": "globalAlarmMethodV"
+		}
+	],
+
+	"stepBar": false
+}

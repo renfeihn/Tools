@@ -1,0 +1,19 @@
+{
+	"views": {
+		"dataManageDetailPropertyV": {
+			"template":"dataManageDetailProperty.jsp",
+			"js":"dataManageDetailProperty.js"
+		}
+	}, 
+	
+	"models": {
+	}, 
+	
+	"flows": [
+		{
+			"id": "dataManageDetailPropertyV"
+		}
+	],
+
+	"stepBar": false
+}

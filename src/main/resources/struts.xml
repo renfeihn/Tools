@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC 
+	"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+	"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<constant name="struts.devMode" value="false" />
+	<constant name="struts.ui.theme" value="simple" />
+	<constant name="struts.i18n.encoding" value="UTF-8" />
+	<!-- <bean type="org.apache.struts2.dispatcher.multipart.MultiPartRequest" 
+		name="requestParser" class="cn.com.agree.aweb.struts2.action.support.RefactorMultiPartRequest" 
+		scope="default" optional="true" /> -->
+
+	<bean type="org.apache.struts2.dispatcher.multipart.MultiPartRequest"
+		name="requestParser" class="org.apache.struts2.dispatcher.multipart.JakartaMultiPartRequest"
+		scope="default" optional="true" />
+
+	<!-- 上传文件配置 -->
+	<constant name="struts.multipart.maxSize" value="524288000" />
+	<constant name="struts.multipart.saveDir" value="repository" />
+	<constant name="struts.multipart.parser" value="requestParser" />
+
+	<constant name="struts.action.extension" value="do" />
+
+	<!-- map -->
+	<include file="struts2/struts-aweb-action.xml"></include>
+	<include file="struts2/struts-aweb-luotong.xml"></include>
+	<include file="struts2/struts-aweb-zhangkun.xml"></include>
+	<include file="struts2/struts-aweb-fengjiao.xml"></include>
+	<include file="struts2/struts-aweb-yuanf.xml"></include>
+	
+</struts>

@@ -1,0 +1,19 @@
+{
+	"views": {
+		"dbOracleV": {
+			"template": "oracleDetails.jsp",
+			"js": "oracleDetails.js"
+		}
+	}, 
+	
+	"models": {
+	}, 
+	
+	"flows": [
+		{
+			"id": "dbOracleV"
+		}
+	],
+
+	"stepBar": false
+}

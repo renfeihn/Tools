@@ -1,0 +1,19 @@
+{
+	"views": {
+		"dbOracleV": {
+			"template": "redisDetails.jsp",
+			"js": "redisDetails.js"
+		}
+	}, 
+	
+	"models": {
+	}, 
+	
+	"flows": [
+		{
+			"id": "dbOracleV"
+		}
+	],
+
+	"stepBar": false
+}

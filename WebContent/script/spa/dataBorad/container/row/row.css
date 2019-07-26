@@ -1,0 +1,64 @@
+.editor-page .row-com {
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
+    box-sizing: border-box;
+    /*overflow: hidden;*/
+    height: calc(100% - 16px);
+    border: 1px solid #ccc;
+    vertical-align: top;
+    background-color: rgba(242, 242, 242, .7);
+    box-shadow: 0 0 0 #f2f2f2;
+    margin: 8px;
+    align-content: flex-start;
+}
+.show-page-config .row-com {
+	border: none;
+	background-color: transparent;
+	box-shadow: none;
+	margin: 0 !important;
+}
+
+.editor-page .row-com.edit {
+    padding: 20px;
+}
+.show-page-config  .row-com.edit {
+	padding: 0;
+}
+
+.row-com .col-line{
+    width: 5px;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    cursor: col-resize;
+    z-index: 100;
+}
+
+.row-com .col-line.l {
+    left: -2.5px;
+}
+
+.row-com .col-line.r{
+    right: -2.5px;
+}
+
+.row-com .row-line{
+    width: 100%;
+    height: 5px;
+    position: absolute;;
+    bottom: -2.5px;
+    left: 0;
+    cursor: row-resize;
+    z-index: 100;
+}
+
+
+
+
+
+
+
+
+
+

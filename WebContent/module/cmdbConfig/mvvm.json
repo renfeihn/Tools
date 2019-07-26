@@ -1,0 +1,19 @@
+{
+	"views": {
+		"cmdbConfig": {
+			"template":"cmdbConfig.jsp",
+			"js":"cmdbConfig.js"
+		}
+	}, 
+	
+	"models": {
+	}, 
+	
+	"flows": [
+		{
+			"id": "cmdbConfig"
+		}
+	],
+
+	"stepBar": false
+}

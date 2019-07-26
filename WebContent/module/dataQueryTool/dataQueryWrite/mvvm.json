@@ -1,0 +1,19 @@
+{
+	"views": {
+		"dataQueryWriteV": {
+			"template": "dataQueryWrite.jsp",
+			"js": "dataQueryWrite.js"
+		}
+	}, 
+	
+	"models": {
+	}, 
+	
+	"flows": [
+		{
+			"id": "dataQueryWriteV"
+		}
+	],
+
+	"stepBar": false
+}

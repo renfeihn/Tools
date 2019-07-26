@@ -1,0 +1,19 @@
+{
+	"views": {
+		"eventRelativeV": {
+			"template": "eventRelative.jsp",
+			"js": "eventRelative.js"
+		}
+	}, 
+	
+	"models": {
+	}, 
+	
+	"flows": [
+		{
+			"id": "eventRelativeV"
+		}
+	],
+
+	"stepBar": false
+}

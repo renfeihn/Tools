@@ -1,0 +1,19 @@
+{
+	"views": {
+		"tabV": {
+			"template": "es.jsp",
+			"js": "es.js"
+		}
+	}, 
+	
+	"models": {
+	}, 
+	
+	"flows": [
+		{
+			"id": "tabV"
+		}
+	],
+
+	"stepBar": false 
+}

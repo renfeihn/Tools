@@ -1,0 +1,19 @@
+{
+	"views": {
+		"dashboardDetailsV": {
+			"template":"dashboardDetails.jsp",
+			"js":"dashboardDetails.js"
+		}
+	}, 
+	
+	"models": {
+	}, 
+	
+	"flows": [
+		{
+			"id": "dashboardDetailsV"
+		}
+	],
+
+	"stepBar": false
+}

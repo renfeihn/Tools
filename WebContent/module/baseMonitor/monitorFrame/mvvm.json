@@ -1,0 +1,19 @@
+{
+	"views": {
+		"monitorFrameV": {
+			"template":"monitorFrame.jsp",
+			"js":"monitorFrame.js"
+		}
+	}, 
+	
+	"models": {
+	}, 
+	
+	"flows": [
+		{
+			"id": "monitorFrameV"
+		}
+	],
+
+	"stepBar": false
+}

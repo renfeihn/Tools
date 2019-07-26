@@ -1,0 +1,19 @@
+{
+	"views": {
+		"KPIDetailsV": {
+			"template": "KPIDetails.jsp",
+			"js": "KPIDetails.js"
+		}
+	}, 
+	
+	"models": {
+	}, 
+	
+	"flows": [
+		{
+			"id": "KPIDetailsV"
+		}
+	],
+
+	"stepBar": false
+}

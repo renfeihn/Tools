@@ -1,0 +1,19 @@
+{
+	"views": {
+		"agentHistory": {
+			"template":"agentHistory.jsp",
+			"js":"agentHistory.js"
+		}
+	}, 
+	
+	"models": {
+	}, 
+	
+	"flows": [
+		{
+			"id": "agentHistory"
+		}
+	],
+
+	"stepBar": false
+}

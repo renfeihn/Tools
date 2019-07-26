@@ -1,0 +1,19 @@
+{
+	"views": {
+		"auditQueryV": {
+			"template": "auditQuery.jsp",
+			"js": "auditQuery.js"
+		}
+	}, 
+	
+	"models": {
+	}, 
+	
+	"flows": [
+		{
+			"id": "auditQueryV"
+		}
+	],
+
+	"stepBar": false
+}

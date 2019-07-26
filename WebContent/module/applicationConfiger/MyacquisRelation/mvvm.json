@@ -1,0 +1,19 @@
+{
+	"views": {
+		"MyacquisRelationV": {
+			"template": "MyacquisRelation.jsp",
+			"js": "MyacquisRelation.js"
+		}
+	}, 
+	
+	"models": {
+	}, 
+	
+	"flows": [
+		{
+			"id": "MyacquisRelationV"
+		}
+	],
+
+	"stepBar": false
+}

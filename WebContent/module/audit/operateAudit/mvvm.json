@@ -1,0 +1,19 @@
+{
+	"views": {
+		"operateAuditV": {
+			"template":"operateAudit.jsp",
+			"js":"operateAudit.js"
+		}
+	}, 
+	
+	"models": {
+	}, 
+	
+	"flows": [
+		{
+			"id": "operateAuditV"
+		}
+	],
+
+	"stepBar": false
+}

@@ -1,0 +1,19 @@
+{
+	"views": {
+		"oracleSummaryV": {
+			"template": "oracleSummary.jsp",
+			"js": "oracleSummary.js"
+		}
+	}, 
+	
+	"models": {
+	}, 
+	
+	"flows": [
+		{
+			"id": "oracleSummaryV"
+		}
+	],
+
+	"stepBar": false
+}

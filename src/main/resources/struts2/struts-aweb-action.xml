@@ -1,0 +1,883 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<package name="ajax" extends="json-default">
+
+		<result-types>
+			<result-type name="json"
+				class="cn.com.agree.aweb.struts2.action.support.CustJSONResult" />
+		</result-types>
+
+		<!-- 用户登陆管理 -->
+		<action name="LoginAction_*" class="LoginBean" method="{1}">
+			<result name="success" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+
+			<result name="redirect">/index.jsp</result>
+			<result name="login">/login.html</result>
+		</action>
+
+		<!-- session管理类 -->
+		<action name="SessionSyncAction_*" class="SessionSyncActionBean"
+			method="{1}">
+			<result name="success" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+		</action>
+
+		<!-- 角色管理 -->
+		<action name="RoleManageAction_*" class="RoleManageActionBean"
+			method="{1}">
+			<result name="success" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+		</action>
+		<!-- 应用总览 -->
+		<action name="AppOverviewAction_*" class="AppOverviewActionBean"
+			method="{1}">
+			<result name="success" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+		</action>
+		
+		
+		<!-- 应用概览 -->
+		<action name="AppPerformAction_*" class="AppPerformActionBean"
+			method="{1}">
+			<result name="success" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+		</action>
+		
+		<!-- 应用性能-系统监控 -->
+		<action name="AppSysMonitorAction_*" class="AppSysMonitorActionBean"
+			method="{1}">
+			<result name="success" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+		</action>
+		
+		<!-- 应用性能总览 -->
+		<action name="AppPerformOverviewAction_*" class="AppPerformOverviewActionBean"
+			method="{1}">
+			<result name="success" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+		</action>
+		
+		<!-- 软硬件架构 -->
+		<action name="AppSoftHardWareAction_*" class="AppSoftHardWareActionBean"
+			method="{1}">
+			<result name="success" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+		</action>
+		
+		<!-- 应用事件总览 -->
+		<action name="AppEventViewAction_*" class="AppEventViewActionBean"
+			method="{1}">
+			<result name="success" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+		</action>
+		
+		<!-- 大屏-重要应用系统 -->
+		<action name="ScreenImpAppsAction_*" class="ScreenImpAppsActionBean"
+			method="{1}">
+			<result name="success" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+		</action>
+		
+		<!-- 配置管理-网络管理 -->
+		<action name="NetworkManageAction_*" class="NetworkManageActionBean"
+			method="{1}">
+			<result name="success" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+		</action>
+		
+		<!-- 采集参数配置 -->
+		<action name="AimConfigSampleAction_*" class="AimConfigSampleActionBean"
+			method="{1}">
+			<result name="success" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+		</action>
+		
+		<!-- 指标分类定义 -->
+		<action name="MetricCategoryAction_*" class="MetricCategoryActionBean"
+			method="{1}">
+			<result name="success" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+		</action>
+		
+		<!-- 应用程序管理 -->
+		<action name="ProgramManageAction_*" class="ProgramManageActionBean"
+			method="{1}">
+			<result name="success" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+		</action>
+		
+	
+	<!-- 短信推送配置 -->
+		<action name="MessSendConfigAction_*" class="MessSendConfigActionBean"
+			method="{1}">
+			<result name="success" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+		</action>
+	
+		<!-- LINUX操作系统二级汇总交易的页面 -->
+		<action name="LINUXSummaryAction_*" class="LINUXSummaryActionBean"
+			method="{1}">
+			<result name="success" type="json">
+				<param name="root">strutsMessage</param>
+			</result>	
+		</action>
+		<!-- AIX操作系统二级汇总交易的页面 -->
+		<action name="AIXSummaryAction_*" class="AIXSummaryActionBean"
+			method="{1}">
+			<result name="success" type="json">
+				<param name="root">strutsMessage</param>
+			</result>	
+		</action>
+		<!-- AB应用视图 -->
+		<action name="ABViewAction_*" class="ABViewActionBean"
+			method="{1}">
+			<result name="success" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+		</action>
+		
+		<!-- ABS应用视图 -->
+		<action name="ABSViewAction_*" class="ABSViewActionBean"
+			method="{1}">
+			<result name="success" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+		</action>
+		
+		<!-- JDBC 页面 -->
+		<action name="JDBCViewAction_*" class="JDBCViewActionBean"
+			method="{1}">
+			<result name="success" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+		</action>
+		
+		<action name="ABJvmViewAction_*" class="ABJvmViewBean"
+			method="{1}">
+			<result name="success" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+		</action>
+		<action name="ABCRequestAction_*" class="ABCRequestActionBean"
+			method="{1}">
+			<result name="success" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+			<result name="stream" type="stream">
+				<param name="inputName">inStream</param>  
+				<param name="contentDisposition">attachment;filename="${fileName}"</param>  
+			</result>
+		</action>
+		
+		<!-- ABS 任务应用视图 -->
+		<action name="ABSTaskAction_*" class="ABSTaskBean"
+			method="{1}">
+			<result name="success" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+		</action>
+
+		<!-- EsbShowSystem -->
+		<action name="AimEsbShowSystem_*" class="AimEsbShowSystemBean"
+			method="{1}">
+			<result name="success" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+		</action>
+		
+		<!-- EsbShowSystem -->
+		<action name="AimlKeywordsConfig_*" class="AimlKeywordsConfigBean"
+			method="{1}">
+			<result name="success" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+		</action>
+		
+		<action name="AimlLogfileConfigAction_*" class="AimlLogfileConfigActionBean"
+			method="{1}">
+			<result name="success" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+		</action>
+
+		<action name="MQDetailAction_*" class="MQDetailActionBean"
+			method="{1}">
+			<result name="success" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+		</action>
+		<action name="MQSecondarySumAction_*" class="MQSecondarySumBean"
+			method="{1}">
+			<result name="success" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+		</action>
+		
+		<!-- was详情 -->
+		<action name="WasDetailAction_*" class="WasDetailActionBean"
+			method="{1}">
+			<result name="success" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+		</action>
+		<!-- was汇总 -->
+		<action name="WasSummaryAction_*" class="WasSummaryActionBean"
+			method="{1}">
+			<result name="success" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+		</action>
+		<!-- echarts ins -->
+		<action name="EchartsInsConfAction_*" class="EchartsInsConfActionBean"
+			method="{1}">
+			<result name="success" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+		</action>
+
+		<!-- Aim_Config_Echarts_Page -->
+		<action name="AimConfigEchartsPageAction_*" class="AimConfigEchartsPageActionBean"
+			method="{1}">
+			<result name="success" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+		</action>
+		
+		<!-- aim_config_echarts_style -->
+		<action name="AimConfigEchartsStyleAction_*" class="AimConfigEchartsStyleActionBean"
+			method="{1}">
+			<result name="success" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+		</action>
+		
+		<action name="LogConfigAction_*" class="LogManagerActionBean"
+			method="{1}">
+			<result name="success" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+		</action>
+		<action name="HbaseQueryAction_*" class="HbaseQueryActionBean"
+			method="{1}">
+			<result name="success" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+			<result name="error" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+		</action>
+		
+		<!-- appGroup -->
+		<action name="AppGroupAction_*" class="AppGroupActionBean"
+			method="{1}">
+			<result name="success" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+		</action>
+		
+		<action name="ESQueryAction_*" class="ESQueryActionBean"
+			method="{1}">
+			<result name="success" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+			<result name="error" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+		</action>
+		<action name="AfaMonitorAction_*" class="AfaMonitorActionBean"
+			method="{1}">
+			<result name="success" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+			<result name="error" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+		</action>
+		<!-- esb_mon_msext -->
+		<action name="EsbMonMsextAction_*" class="EsbMonMsextActionBean"
+			method="{1}">
+			<result name="success" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+		</action>
+		
+		<!-- esb同步信息和 配置信息 -->
+		<action name="EsbSyncCfgAction_*" class="EsbSyncCfgActionBean"
+			method="{1}">
+			<result name="success" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+			<result name="error" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+		</action>
+		
+		<!-- esb sysconfig variables -->
+		<action name="AimSysconfigVariablesAction_*" class="AimSysconfigVariablesActionBean"
+			method="{1}">
+			<result name="success" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+		</action>
+		
+		<action name="CommWithAFAAction_*" class="CommWithAFABean"
+			method="{1}">
+			<result name="success" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+		</action>
+		<!-- 事件关联分析 -->
+      <action name="RelationAnalysAction_*" class="RelationAnalysBean"
+			method="{1}">
+			<result name="success" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+		</action>
+       <action name="ComponentPageAction_*" class="ComponentPageBean"
+			method="{1}">
+			<result name="success" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+		</action>
+		<action name="AimEdwTriggerRuleAction_*" class="AimEdwTriggerRuleBean"
+			method="{1}">
+			<result name="success" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+		</action>
+		<action name="NoPasswdLogAction_*" class="NoPasswdLogActionBean"
+			method="{1}">
+			<result name="success" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+			<result name="redirect">/index.jsp</result>
+			<result name="renzheng" type="redirect">http://10.8.221.9:8082/portal-server/login</result>
+			<result name="shouquan" type="redirect">http://10.8.221.9:8081/bam/UI/Login</result>
+		</action>
+		<action name="AimEdwContactAction_*" class="AimEdwContactBean"
+			method="{1}">
+			<result name="success" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+		</action>
+		<action name="AimEdwIndexConfigAction_*" class="AimEdwIndexConfigBean"
+			method="{1}">
+			<result name="success" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+		</action>
+		<action name="AimEdwIndexChangeAction_*" class="AimEdwIndexChangeBean"
+			method="{1}">
+			<result name="success" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+		</action>
+		
+		<action name="AFARequestAction_*" class="AFARequestActionBean"
+			method="{1}">
+			<result name="success" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+		</action>
+		
+		<!-- 用户操作记录 -->
+		<action name="UserOperationAction_*" class="UserOperationActionBean"
+			method="{1}">
+			<result name="success" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+		</action>
+		
+		<!-- logSource信息操作 -->
+		<action name="LogSourceAction_*" class="LogSourceActionBean"
+			method="{1}">
+			<result name="success" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+			<result name="error" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+		</action>
+		
+		<!-- log转发配置 -->
+		<action name="LogTransmitAction_*" class="LogTransmitActionBean"
+			method="{1}">
+			<result name="success" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+			<result name="error" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+		</action>
+		
+		<action name="ESSearchAction_*" class="ESSearchActionBean"
+			method="{1}">
+			<result name="success" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+			<result name="error" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+			<result name="stream" type="stream">  
+                <param name="contentType">application/octet-stream;charset=UTF-8</param>  
+                <param name="inputName">inStream</param>  
+                <param name="contentDisposition">attachment;filename=${fileName}</param>  
+                <param name="bufferSize">8192</param>
+		   	</result>
+		</action>
+		<!-- nmon文件上传 -->
+		<action name="NmonDataAction_*" class="NmonDataActionBean"
+			method="{1}">
+			<result name="success" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+		</action>
+		<!-- 保存用户搜索信息 -->
+		<action name = "LogUserSearchAction_*" class = "LogUserSearchActionBean"
+			method = "{1}">
+			<result name = "success" type = "json">
+				<param name = "root">strutsMessage</param>
+			</result>
+			<result name="error" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+		</action>
+		<!-- 日志采集配置 -->
+		<action name = "LogCfgAction_*" class = "LogCfgActionBean"
+			method = "{1}">
+			<result name = "success" type = "json">
+				<param name = "root">strutsMessage</param>
+			</result>
+			<result name="stream" type="stream">  
+	                <param name="contentType">application/octet-stream;charset=UTF-8</param>  
+	                <param name="inputName">inStream</param>  
+	                <param name="contentDisposition">attachment;filename=${fileName}</param>  
+	                <param name="bufferSize">8192</param>
+		   	</result>
+		   	<result name="error" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+		</action>
+		<!-- 日志采集数据源配置 -->
+		<action name = "LogCfgSourceAction_*" class = "LogCfgSourceActionBean"
+			method = "{1}">
+			<result name = "success" type = "json">
+				<param name = "root">strutsMessage</param>
+			</result>
+			<result name="error" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+		</action>
+		<!-- 日志采集统计 -->
+		<action name = "LogStaticsAction_*" class = "LogStaticsActionBean"
+			method = "{1}">
+			<result name = "success" type = "json">
+				<param name = "root">strutsMessage</param>
+			</result>
+			<result name="error" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+		</action>
+		<!-- 监控公共 -->
+		<action name="CommonMonitorAction_*" class="CommonMonitorAction"
+			method="{1}">
+			<result name="success" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+		</action>
+		<!-- es监控 -->
+		<action name="ESMonitorAction_*" class="ESMonitorAction"
+			method="{1}">
+			<result name="success" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+		</action>
+		<!-- kafka监控 -->
+		<action name="KafkaMonitorAction_*" class="KafkaMonitorAction"
+			method="{1}">
+			<result name="success" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+		</action>
+		<!-- storm监控 -->
+		<action name="StormMonitorAction_*" class="StormMonitorAction"
+			method="{1}">
+			<result name="success" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+		</action>
+		<!-- zookeeper监控 -->
+		<action name="ZookeeperMonitorAction_*" class="ZookeeperMonitorAction"
+			method="{1}">
+			<result name="success" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+		</action>
+		
+		<!-- 监控配置 -->
+		<action name="MonitorCfgManagerAction_*" class="MonitorCfgManagerActionBean" method="{1}">
+			<result name="success" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+		</action>
+		<!-- 代理管理 -->
+		<action name="AgentManageAction_*" class="AgentManageActionBean" method="{1}">
+			<result name="success" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+		</action>
+		<action name="AgentManagerAction_*" class="AgentManagerBean" method="{1}">
+			<result name="success" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+		</action>
+		<!-- 日志仪表盘 -->
+		<action name = "DashBoardAction_*" class = "DashBoardActionBean"
+			method = "{1}">
+			<result name = "success" type = "json">
+				<param name = "root">strutsMessage</param>
+			</result>
+			<result name="error" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+		</action>
+		<!-- 日志预警 -->
+		<action name = "LogWarningAction_*" class = "LogWarningActionBean"
+			method = "{1}">
+			<result name = "success" type = "json">
+				<param name = "root">strutsMessage</param>
+			</result>
+			<result name="error" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+		</action>
+		<!-- 日志关联 -->
+		<action name = "LogRelationAction_*" class = "LogRelationActionBean"
+			method = "{1}">
+			<result name = "success" type = "json">
+				<param name = "root">strutsMessage</param>
+			</result>
+			<result name="error" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+		</action>
+
+		<!-- 报表统计 -->
+		<action name = "ESReportAction_*" class = "ESReportAction"
+				method = "{1}">
+			<result name = "success" type = "json">
+				<param name = "root">strutsMessage</param>
+			</result>
+			<result name="error" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+		</action>
+
+		<!-- cmdb配置 -->
+		<action name="CmdbConfigManagerAction_*" class="CmdbConfigManagerActionBean" method="{1}">
+			<result name="success" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+			<result name="error" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+			<result name="stream" type="stream">  
+                <param name="contentType">application/octet-stream;charset=UTF-8</param>  
+                <param name="inputName">inStream</param>  
+                <param name="contentDisposition">attachment;filename=${fileName}</param>  
+                <param name="bufferSize">8192</param>
+		   	</result>
+		</action>
+		<!-- 系统参数配置 -->
+		<action name="SysVariableAction_*" class="SysVariableActionBean" method="{1}">
+			<result name="success" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+			<result name="error" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+		</action>
+		<!-- 拆分字段数字词典配置 -->
+		<action name="FieldDictionaryAction_*" class="FieldDictionaryBean" method="{1}">
+			<result name="success" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+			<result name="error" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+		</action>
+		<!-- 预警字段配置 -->
+		<action name="LogWarningFieldAction_*" class="LogWarningFieldActionBean" method="{1}">
+			<result name="success" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+			<result name="error" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+		</action>
+		<!-- 日志二次结构化任务 -->
+		<action name="LogCfgTaskAction_*" class="LogCfgTaskActionBean" method="{1}">
+			<result name="success" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+			<result name="error" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+		</action>	
+		<!-- 数据转发 -->
+		<action name="DataForwardAction_*" class="DataForwardActionBean" method="{1}">
+			<result name="success" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+			<result name="error" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+		</action>		
+		<!-- 数据清理 -->
+		<action name="DataCleanAction_*" class="DataCleanActionBean" method="{1}">
+			<result name="success" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+			<result name="error" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+		</action>
+		
+		<action name="LogAchiveAction_*" class="LogAchiveActionBean" method="{1}">
+			<result name="success" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+			<result name="error" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+		</action>
+
+		<!-- 日志归档统计 -->
+		<action name="LogManagementAction_*" class="LogManagementActionBean" method="{1}">
+			<result name="success" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+			<result name="error" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+		</action>
+
+		<!-- 数据源管理 -->
+		<action name="DbManagerAction_*" class="DbManagerActionBean" method="{1}">
+			<result name="success" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+			<result name="error" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+			<result name="stream" type="stream">  
+                <param name="contentType">application/octet-stream;charset=UTF-8</param>  
+                <param name="inputName">inStream</param>  
+                <param name="contentDisposition">attachment;filename=${fileName}</param>  
+                <param name="bufferSize">8192</param>
+		   	</result>
+		</action>
+
+		<!-- 工具集(包含：jdbc查询，文件服务，SQL圈) -->
+		<action name="ToolsetAction_*" class="ToolsetActionBean" method="{1}">
+			<result name="success" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+			<result name="error" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+			<result name="stream" type="stream">
+				<param name="contentType">application/octet-stream;charset=UTF-8</param>
+				<param name="inputName">inStream</param>
+				<param name="contentDisposition">attachment;filename=${fileName}</param>
+				<param name="bufferSize">8192</param>
+			</result>
+		</action>
+
+		<!-- 关键字提示 -->
+		<action name="WordAction_*" class="WordActionBean" method="{1}">
+			<result name="success" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+			<result name="error" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+		</action>
+		<!-- 日志脱敏 -->
+		<action name="UnSensitivityAction_*" class="unSensitivityActionBean" method="{1}">
+			<result name="success" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+			<result name="error" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+		</action>
+		<!-- 应用日志分析 -->
+		<action name="AppStatisticAction_*" class="AppStatisticActionBean" method="{1}">
+			<result name="success" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+			<result name="error" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+		</action>
+		<!-- sql市场 -->
+		<action name="SqlMarketAction_*" class="SqlMarketActionBean" method="{1}">
+			<result name="success" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+			<result name="error" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+		</action>
+		
+		<!-- 链路配置 -->
+		<action name="LogTranKeysAction_*" class="LogTranKeysActionBean" method="{1}">
+			<result name="success" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+			<result name="error" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+		</action>
+		
+		<!--日志源日志清理 -->
+		<action name="LogDelManagerAction_*" class="LogDelManagerActionBean" method="{1}">
+			<result name="success" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+			<result name="error" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+		</action>
+		
+		<!--sql讨论组和内容 -->
+		<action name="SqlMarketGroupAction_*" class="SqlMarketGroupActionBean" method="{1}">
+			<result name="success" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+			<result name="error" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+		</action>
+		
+		<!--sql搜索热词 -->
+		<action name="SqlMarketHotWordsAction_*" class="SqlMarketHotWordsActionBean" method="{1}">
+			<result name="success" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+			<result name="error" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+		</action>
+		
+		<!--sql动态-->
+		<action name="SqlMarketDynamicStateAction_*" class="SqlMarketDynamicStateActionBean" method="{1}">
+			<result name="success" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+			<result name="error" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+		</action>
+		
+		<!-- 仪表盘 -->
+		<action name="PanelAction_*" class="PanelActionBean" method="{1}">
+			<result name="success" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+			<result name="error" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+		</action>
+		
+		<!-- 仪表盘组件 -->
+		<action name="PanelChartAction_*" class="PanelChartActionBean" method="{1}">
+			<result name="success" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+			<result name="error" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+		</action>		
+		<!-- 精准链路 -->
+		<action name="LogChainAction_*" class="LogChainActionBean" method="{1}">
+			<result name="success" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+			<result name="error" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+		</action>
+		<!-- 日志操作记录 -->
+		<action name="LogOperationAction_*" class="LogOperationActionBean" method="{1}">
+			<result name="success" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+			<result name="error" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+		</action>
+		<!-- es多数据源导出 -->
+		<action name="EtlTargetDatasourceAction_*" class="EtlTargetDatasourceActionBean" method="{1}">
+			<result name="success" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+			<result name="error" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+		</action>	
+		<!-- es多数据源导出-任务管理 -->
+		<action name="EtlTaskAction_*" class="EtlTaskActionBean" method="{1}">
+			<result name="success" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+			<result name="error" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+		</action>
+		<!-- es多数据源导出-字段映射 -->
+		<action name="EtlTaskFieldMappingAction_*" class="EtlTaskFieldMappingActionBean" method="{1}">
+			<result name="success" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+			<result name="error" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+		</action>
+		<!-- 应用关联采集配置-->
+		<action name="CfgLogAppRelationActionBean_*" class="AimlCfgLogAppRelationActionBean" method="{1}">
+			<result name="success" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+			<result name="error" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+		</action>	
+		<!-- 数据库查询工具-->
+		<action name="DataQueryAction_*" class="DataQueryActionBean" method="{1}">
+            <result name="success" type="json">
+                <param name="root">strutsMessage</param>
+            </result>
+        </action>
+	</package>
+</struts>

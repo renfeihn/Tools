@@ -1,0 +1,19 @@
+{
+	"views": {
+		"objListV": {
+			"template":"objList.jsp",
+			"js":"objList.js"
+		}
+	}, 
+	
+	"models": {
+	}, 
+	
+	"flows": [
+		{
+			"id": "objListV"
+		}
+	],
+
+	"stepBar": false
+}

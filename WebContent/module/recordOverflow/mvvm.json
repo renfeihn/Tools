@@ -1,0 +1,19 @@
+{
+	"views": {
+		"recordOverflowV": {
+			"template": "recordOverflow.jsp",
+			"js": "recordOverflow.js"
+		}
+	}, 
+	
+	"models": {
+	}, 
+	
+	"flows": [
+		{
+			"id": "recordOverflowV"
+		}
+	],
+
+	"stepBar": false
+}

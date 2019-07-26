@@ -1,0 +1,20 @@
+{
+
+	"views": {
+		"windowsSummaryV": {
+			"template": "windowsSummary.jsp",
+			"js": "windowsSummary.js"
+		}
+	}, 
+	
+	"models": {
+	}, 
+	
+	"flows": [
+		{
+			"id": "windowsSummaryV"
+		}
+	],
+
+	"stepBar": false
+}

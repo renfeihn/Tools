@@ -1,0 +1,19 @@
+{
+	"views": {
+		"objCateConfig": {
+			"template": "objCateConfig.jsp",
+			"js": "objCateConfig.js"
+		}
+	}, 
+	
+	"models": {
+	}, 
+	
+	"flows": [
+		{
+			"id": "objCateConfig"
+		}
+	],
+
+	"stepBar": false
+}

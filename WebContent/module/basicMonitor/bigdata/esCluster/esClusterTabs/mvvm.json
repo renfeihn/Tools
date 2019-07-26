@@ -1,0 +1,19 @@
+{
+	"views": {
+		"esClusterTabsV": {
+			"template": "esClusterTabs.jsp",
+			"js": "esClusterTabs.js"
+		}
+	}, 
+	
+	"models": {
+	}, 
+	
+	"flows": [
+		{
+			"id": "esClusterTabsV"
+		}
+	],
+
+	"stepBar": false
+}

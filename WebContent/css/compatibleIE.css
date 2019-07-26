@@ -1,0 +1,16 @@
+/* css3 hover样式兼容*/
+.mask{
+	filter:alpha(opacity=80);
+}
+.bg{
+    background-position: center top;
+    background-repeat: repeat;
+}
+.bootstrap-upload-input{
+    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+}
+/* .nav-tabs > .active > a, 
+.nav-tabs > .active > a:active, 
+.nav-tabs > .active > a:hover{
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#99ffffff,endColorstr=#99ffffff);
+} */

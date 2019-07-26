@@ -1,0 +1,19 @@
+{
+	"views": {
+		"AFASumInstanceV": {
+			"template": "AFASumInstance.jsp",
+			"js": "AFASumInstance.js"
+		}
+	}, 
+	
+	"models": {
+	}, 
+	
+	"flows": [
+		{
+			"id": "AFASumInstanceV"
+		}
+	],
+
+	"stepBar": false
+}

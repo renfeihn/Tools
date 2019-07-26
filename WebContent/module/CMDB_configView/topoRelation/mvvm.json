@@ -1,0 +1,19 @@
+{
+	"views": {
+		"topoRelationV": {
+			"template":"topoRelation.jsp",
+			"js":"topoRelation.js"
+		}
+	}, 
+	
+	"models": {
+	}, 
+	
+	"flows": [
+		{
+			"id": "topoRelationV"
+		}
+	],
+
+	"stepBar": false
+}

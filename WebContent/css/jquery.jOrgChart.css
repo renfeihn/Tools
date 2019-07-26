@@ -1,0 +1,163 @@
+/*第一部分 Start*/
+/* Basic styling */
+/* Draw the lines */
+.jOrgChart{
+    padding: 20px;
+    font-size: .7em;
+    -webkit-user-select: none;
+}
+/*树状显示表格*/
+.jOrgChart > table {
+    margin: 0 auto;
+}
+/* node cell */
+.jOrgChart td {
+    text-align: center;
+    vertical-align: top;
+    padding: 0;
+}
+/* 节点 Start */
+.jOrgChart .node {
+    position: relative;
+    display: inline-block;
+    margin: 0 15px;
+    border: 2px solid #5b62f9;
+    /* border-bottom-width: 2.5em; */
+    border-radius: 1em;
+    font-size: 12px;
+    width: 10em;
+    height: 10em;
+    z-index: 2;
+    box-sizing: border-box;
+}
+.label-node {
+    padding-top: 30px;
+}
+.label-node>.fa{
+    padding: 0;
+    font-size: 3em;
+    color: #5b62f9;
+}
+/*节点 End*/
+/*标题 Start*/
+.label-node>.title{
+    position: absolute;
+    bottom: 2em;
+    margin:0 auto;
+    width: 100%;
+    font-size: 12px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+/*标题 End*/
+/*线*/
+.jOrgChart .line {
+    height: 30px;
+    width: 2px;
+}
+
+.jOrgChart .down {
+    position: relative;
+    left: 0;
+    margin: 0 auto;
+    background-color: #ccc;
+}
+
+.jOrgChart .top {
+    border-top: 2px solid #ccc;
+}
+
+.jOrgChart .left {
+    border-right: 2px solid #ccc;
+}
+
+.jOrgChart .right {
+    border-left: 2px solid #ccc;
+}
+
+/*节点隐藏样式*/
+.jOrgChart .node-hidden{
+    visibility: hidden;
+}
+.jOrgChart .node-hidden>td{
+    border: none;
+}
+/*伸展图标 Start*/
+.exp-col {
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: auto;
+    bottom: -1em;
+    font-size: 1.5em;
+    display: block;
+    width: 16px;
+    height: 16px;
+    color: #5b62f9;
+    cursor: pointer;
+    background: #fff;
+}
+/*伸展图标 Start*/
+/*编辑、删除、添加*/
+.opciones {
+    position: absolute;
+    right: .2em;
+    bottom: 0;
+    display: none;
+    color: rgba(0,0,0,.9);
+}
+.opciones>.fa{
+    padding:0 .1em;
+    font-size: 1.2em;
+    cursor: pointer;
+}
+.opciones>.fa:HOVER{
+    color: #5b62f9;
+}
+
+/*提示信息 Start*/
+.details {
+    position: absolute;
+    left: 105%;
+    top: 0;
+    display: none;
+    height: auto;
+    min-width: 150px;
+    max-width: 200px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 1em;
+    background:#FFF;
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid #e5e5e5;
+    border-radius: 4px;
+    text-align: left;
+    white-space: nowrap;
+    color: #000;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+.details.details-left{
+    /* box-shadow: 5px 4px 1em #05c697; */
+}
+.jOrgChart table.table-details {
+    width: 100%;
+}
+.jOrgChart .details tr + tr {
+    border-top: 1px solid #e5e5e5;
+}
+.jOrgChart .details td {
+    text-align: left;
+    height: 30px;
+    vertical-align: middle;
+    min-width: 34px;
+}
+/*提示信息 Start*/
+.drag-active {
+    border-style: dotted !important;
+    border-color: #b71515 !important;
+}
+.drop-hover {
+    border-style: solid !important;
+    border-color: #E05E00 !important;
+}

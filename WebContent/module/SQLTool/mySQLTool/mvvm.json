@@ -1,0 +1,19 @@
+{
+	"views": {
+		"mySQLToolV": {
+			"template":"mySQLTool.jsp",
+			"js":"mySQLTool.js"
+		}
+	}, 
+	
+	"models": {
+	}, 
+	
+	"flows": [
+		{
+			"id": "mySQLToolV"
+		}
+	],
+
+	"stepBar": false
+}

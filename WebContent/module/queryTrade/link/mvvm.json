@@ -1,0 +1,19 @@
+{
+	"views": {
+		"linkV": {
+			"template": "link.jsp",
+			"js": "link.js"
+		}
+	}, 
+	
+	"models": {
+	}, 
+	
+	"flows": [
+		{
+			"id": "linkV"
+		}
+	],
+
+	"stepBar": false
+}

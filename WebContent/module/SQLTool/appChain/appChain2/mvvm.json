@@ -1,0 +1,19 @@
+{
+	"views": {
+		"appChain2V": {
+			"template":"appChain2.jsp",
+			"js":"appChain2.js"
+		}
+	}, 
+	
+	"models": {
+	}, 
+	
+	"flows": [
+		{
+			"id": "appChain2V"
+		}
+	],
+
+	"stepBar": false
+}

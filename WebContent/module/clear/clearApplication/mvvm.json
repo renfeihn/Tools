@@ -1,0 +1,19 @@
+{
+	"views": {
+		"clearApplicationV": {
+			"template": "clearApplication.jsp",
+			"js": "clearApplication.js"
+		}
+	}, 
+	
+	"models": {
+	}, 
+	
+	"flows": [
+		{
+			"id": "clearApplicationV"
+		}
+	],
+
+	"stepBar": false
+}

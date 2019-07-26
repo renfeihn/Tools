@@ -1,0 +1,19 @@
+{
+	"views": {
+		"dataQueryTV": {
+			"template":"dataQueryTool.jsp",
+			"js":"dataQueryTool.js"
+		}
+	}, 
+	
+	"models": {
+	}, 
+	
+	"flows": [
+		{
+			"id": "dataQueryTV"
+		}
+	],
+
+	"stepBar": false
+}

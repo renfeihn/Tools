@@ -1,0 +1,19 @@
+{
+	"views": {
+		"sqlAuditV": {
+			"template": "sqlAudit.jsp",
+			"js": "sqlAudit.js"
+		}
+	}, 
+	
+	"models": {
+	}, 
+	
+	"flows": [
+		{
+			"id": "sqlAuditV"
+		}
+	],
+
+	"stepBar": false
+}

@@ -1,0 +1,19 @@
+{
+	"views": {
+		"stormDetailV": {
+			"template": "stormDetail.jsp",
+			"js": "stormDetail.js"
+		}
+	}, 
+	
+	"models": {
+	}, 
+	
+	"flows": [
+		{
+			"id": "stormDetailV"
+		}
+	],
+
+	"stepBar": false
+}

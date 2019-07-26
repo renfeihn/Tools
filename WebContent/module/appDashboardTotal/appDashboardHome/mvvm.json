@@ -1,0 +1,19 @@
+{
+	"views": {
+		"appDashboardHomeV": {
+			"template":"appDashboardHome.jsp",
+			"js":"appDashboardHome.js"
+		}
+	}, 
+	
+	"models": {
+	}, 
+	
+	"flows": [
+		{
+			"id": "appDashboardHomeV"
+		}
+	],
+
+	"stepBar": false
+}

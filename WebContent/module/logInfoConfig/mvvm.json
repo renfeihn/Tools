@@ -1,0 +1,19 @@
+{
+	"views": {
+		"logInfoConfigV": {
+			"template":"logInfoConfig.jsp",
+			"js":"logInfoConfig.js"
+		}
+	}, 
+	
+	"models": {
+	}, 
+	
+	"flows": [
+		{
+			"id": "logInfoConfigV"
+		}
+	],
+
+	"stepBar": false
+}

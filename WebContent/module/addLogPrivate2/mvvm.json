@@ -1,0 +1,19 @@
+{
+	"views": {
+		"addLogPrivateV": {
+			"template":"addLogPrivate.jsp",
+			"js":"addLogPrivate.js"
+		}
+	}, 
+	
+	"models": {
+	}, 
+	
+	"flows": [
+		{
+			"id": "addLogPrivateV"
+		}
+	],
+
+	"stepBar": false
+}

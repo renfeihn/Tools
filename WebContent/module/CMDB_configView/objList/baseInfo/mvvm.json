@@ -1,0 +1,19 @@
+{
+	"views": {
+		"baseInfoV": {
+			"template":"baseInfo.jsp",
+			"js":"baseInfo.js"
+		}
+	}, 
+	
+	"models": {
+	}, 
+	
+	"flows": [
+		{
+			"id": "baseInfoV"
+		}
+	],
+
+	"stepBar": false
+}

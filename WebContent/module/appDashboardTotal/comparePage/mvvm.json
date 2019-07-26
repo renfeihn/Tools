@@ -1,0 +1,19 @@
+{
+	"views": {
+		"comparePageV": {
+			"template": "comparePage.jsp",
+			"js": "comparePage.js"
+		}
+	}, 
+	
+	"models": {
+	}, 
+	
+	"flows": [
+		{
+			"id": "comparePageV"
+		}
+	],
+
+	"stepBar": false
+}

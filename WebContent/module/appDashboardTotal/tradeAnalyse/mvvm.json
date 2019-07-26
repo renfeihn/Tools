@@ -1,0 +1,19 @@
+{
+	"views": {
+		"tradeAnalyseV": {
+			"template": "tradeAnalyse.jsp",
+			"js": "tradeAnalyse.js"
+		}
+	}, 
+	
+	"models": {
+	}, 
+	
+	"flows": [
+		{
+			"id": "tradeAnalyseV"
+		}
+	],
+
+	"stepBar": false
+}

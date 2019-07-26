@@ -1,0 +1,19 @@
+{
+	"views": {
+		"selffind": {
+			"template":"selffind.jsp",
+			"js":"selffind.js"
+		}
+	}, 
+	
+	"models": {
+	}, 
+	
+	"flows": [
+		{
+			"id": "selffind"
+		}
+	],
+
+	"stepBar": false
+}

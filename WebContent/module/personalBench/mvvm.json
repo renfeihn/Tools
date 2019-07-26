@@ -1,0 +1,19 @@
+{
+	"views": {
+		"personalBenchV": {
+			"template": "personalBench.jsp",
+			"js": "personalBench.js"
+		}
+	}, 
+	
+	"models": {
+	}, 
+	
+	"flows": [
+		{
+			"id": "personalBenchV"
+		}
+	],
+
+	"stepBar": false
+}

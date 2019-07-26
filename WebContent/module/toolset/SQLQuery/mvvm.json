@@ -1,0 +1,19 @@
+{
+	"views": {
+		"SQLQuery": {
+			"template":"SQLQuery.jsp",
+			"js":"SQLQuery.js"
+		}
+	},
+
+	"models": {
+	},
+
+	"flows": [
+		{
+			"id": "SQLQuery"
+		}
+	],
+
+	"stepBar": false
+}

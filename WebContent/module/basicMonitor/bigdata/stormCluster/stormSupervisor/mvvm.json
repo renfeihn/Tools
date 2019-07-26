@@ -1,0 +1,19 @@
+{
+	"views": {
+		"stormSupervisorV": {
+			"template": "stormSupervisor.jsp",
+			"js": "stormSupervisor.js"
+		}
+	}, 
+	
+	"models": {
+	}, 
+	
+	"flows": [
+		{
+			"id": "stormSupervisorV"
+		}
+	],
+
+	"stepBar": false
+}

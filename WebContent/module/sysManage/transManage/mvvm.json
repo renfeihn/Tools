@@ -1,0 +1,12 @@
+{
+    "views": {
+        "view1": {
+            "template": "transManage.jsp",
+            "js": "transManage.js"
+        }
+    },
+    "models": {},
+    "flows": [{
+        "id": "view1"
+    }]
+}

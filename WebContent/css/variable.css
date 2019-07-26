@@ -1,0 +1,28 @@
+@charset 'UTF-8';
+:root {
+	--modelbg: #fff;
+	--boxbg: #F5F7FA;
+	--boxbg2: #c9d2e0;
+	--borderColor: #D9DDE5;
+	--fontColorNormal: #364055;
+	--fontbg1: #E0EDFF;
+	--fontColor1: #2A75E2;
+	--fontbg2: #E1F5F3;
+	--fontColor2: #00B89E;
+	--hoverbg: #3685F2;
+	--hoverColor: #fff;
+	--listBgcolor: #E5F1FF;
+	--listFontColor: #3F8CFC;
+	--theadBgcolor: #F0F3F9;
+	--tborderColor: #E7EBF5;
+	--trOddBgColor: #fff;
+
+
+	--bgcolor1: #9e9e9e;
+	--bgcolor2: #eee;
+	--bgcolor3: #ddd;
+	--bgcolor4: #f5f5f5;
+	--bgcolor5: #e2e2e2;
+	--font1: #000;
+	--font2: #262833;
+}

@@ -1,0 +1,19 @@
+{
+	"views": {
+		"DashBoradV": {
+			"template":"DashBorad.jsp",
+			"js":"DashBorad.js"
+		}
+	}, 
+	
+	"models": {
+	}, 
+	
+	"flows": [
+		{
+			"id": "DashBoradV"
+		}
+	],
+
+	"stepBar": false
+}

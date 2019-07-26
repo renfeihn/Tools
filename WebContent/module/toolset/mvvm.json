@@ -1,0 +1,19 @@
+{
+	"views": {
+		"toolset": {
+			"template": "toolset.jsp",
+			"js": "toolset.js"
+		}
+	}, 
+	
+	"models": {
+	}, 
+	
+	"flows": [
+		{
+			"id": "toolset"
+		}
+	],
+
+	"stepBar": false
+}

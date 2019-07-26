@@ -1,0 +1,19 @@
+{
+	"views": {
+		"SQLexecuteV": {
+			"template":"SQLexecute.jsp",
+			"js":"SQLexecute.js"
+		}
+	}, 
+	
+	"models": {
+	}, 
+	
+	"flows": [
+		{
+			"id": "SQLexecuteV"
+		}
+	],
+
+	"stepBar": false
+}

@@ -1,0 +1,19 @@
+{
+	"views": {
+		"logFileDetailV": {
+			"template":"logFileDetail.jsp",
+			"js":"logFileDetail.js"
+		}
+	}, 
+	
+	"models": {
+	}, 
+	
+	"flows": [
+		{
+			"id": "logFileDetailV"
+		}
+	],
+
+	"stepBar": false
+}

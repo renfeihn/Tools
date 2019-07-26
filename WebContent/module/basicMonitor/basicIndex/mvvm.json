@@ -1,0 +1,19 @@
+{
+	"views": {
+		"basicIndexV": {
+			"template": "basicIndex.jsp",
+			"js": "basicIndex.js"
+		}
+	}, 
+	
+	"models": {
+	}, 
+	
+	"flows": [
+		{
+			"id": "basicIndexV"
+		}
+	],
+
+	"stepBar": false
+}

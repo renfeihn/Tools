@@ -1,0 +1,19 @@
+{
+	"views": {
+		"myKPISetV": {
+			"template": "myKPISet.jsp",
+			"js": "myKPISet.js"
+		}
+	}, 
+	
+	"models": {
+	}, 
+	
+	"flows": [
+		{
+			"id": "myKPISetV"
+		}
+	],
+
+	"stepBar": false
+}

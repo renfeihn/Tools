@@ -1,0 +1,19 @@
+{
+	"views": {
+		"AppPerforTab2V": {
+			"template": "AppPerforTab2.jsp",
+			"js": "AppPerforTab2.js"
+		}
+	}, 
+	
+	"models": {
+	}, 
+	
+	"flows": [
+		{
+			"id": "AppPerforTab2V"
+		}
+	],
+
+	"stepBar": false
+}

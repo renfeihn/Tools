@@ -1,0 +1,19 @@
+{
+	"views": {
+		"poolConfigV": {
+			"template": "poolConfig.jsp",
+			"js": "poolConfig.js"
+		}
+	}, 
+	
+	"models": {
+	}, 
+	
+	"flows": [
+		{
+			"id": "poolConfigV"
+		}
+	],
+
+	"stepBar": false
+}

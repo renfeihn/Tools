@@ -1,0 +1,188 @@
+.kp-container *{
+	-webkit-box-sizing:border-box;
+	-moz-box-sizing:border-box;
+	box-sizing:border-box;
+}
+.kp-container{
+	border: 1px solid #e5e5e5; 
+	border-radius:4px;
+	-webkit-border-radius:4px;
+	-moz-border-radius:4px;
+	-webkit-box-sizing:border-box;
+	-moz-box-sizing:border-box;
+	box-sizing:border-box;
+}
+.kp-tip{   
+	padding: 0 20px;
+	border-bottom:1px #e5e5e5 solid;
+	height:44px;  
+	background: #FAFAFA;
+	line-height:44px;  
+	font-size: 14px;
+}
+.kp-tip-title{
+	float:left;
+}
+.kp-tip-icon{
+	float:right;
+	margin-left:18px;
+	color: rgba(102, 102, 102, 1);
+	font-size:18px;
+	line-height:44px;  
+}
+.kp-main{
+	position:relative;
+	overflow:hidden;
+	padding:20px;
+	height:calc(100% - 44px);
+	width: 100%;
+	background:#FFFFFF; 
+	}   
+.kp-cha-ctn{
+	position: relative;   
+	margin-right: 180px;
+    height: 100%;
+}
+
+.kp-cha-tit{
+	height:15%;  
+	background:#FFFFFF;
+    line-height: 44px;
+}
+.kp-cha-shw{
+	position: relative;    
+	height: 233px;
+}
+.kp-dig-ctn{
+	position: absolute;
+	top: 20px;
+	right: 20px; 
+	border: 1px solid #e5e5e5;
+	height: calc(100% - 40px );
+	width: 160px;
+    background: #F7F7FA;
+    line-height: 40px; 
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;  
+    border-radius: 4px;
+}  
+.kp-dig-item-bigval{
+	min-height:40px;
+	color: #13B1F5;  
+	font-size: 56px;
+} 
+/* .kp-dig-item-ctn{
+	padding: 0 15px;
+	font-size: 14px;
+	border: 1px solid transparent;  
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+    border-radius: 4px; 
+} */
+/* .kp-dig-val-hover:hover{    
+	cursor:pointer;    
+	border: 1px solid #13B3F7;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+    border-radius: 4px;
+}  */
+/* .kp-dig-item-ctn-hover:hover{  
+	cursor:pointer;    
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px; 
+	border: 1px solid #13B3F7;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+    border-radius: 4px;
+}  */
+.kp-dig-item{
+     margin: 0 12px;
+     border-bottom:1px dotted #D9D9D9;
+}
+
+.kp-dig-item-last{
+	cursor: default !important;  
+	border:none !important;  
+}
+.kp-dig-item-last:hover{
+	border:none !important;  
+} 
+.kp-dig-key{
+	display:inline-block;
+	 overflow: hidden;
+	height: 44px;
+	min-width: 45%; 
+    color:#333; 
+	font-size:12px;
+	text-align:justify;   
+	vertical-align: middle; 
+}
+
+ .kp-dig-key::after{
+	content: 'sd';
+	display: inline-block;
+	overflow: hidden;   
+	height: 0;
+    width: 100%;
+    color: #000;
+    font-size: 12px;
+} 
+.kp-dig-val{
+	display: inline-block;
+	margin-left: 5px;
+	width: 20px;
+    font-size: 12px;
+    vertical-align: middle;
+    white-space: nowrap;  
+}
+/**如果插件的配置type为event,则会应用下面样式**/
+.kp-dig-eveCtn{
+	position: absolute;
+	top: 20px;
+	right: 20px; 
+	/* border: 1px solid #e5e5e5; */
+	height: calc(100% - 40px );
+	width: 160px;
+    background: #FFF;
+    line-height: 40px; 
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;  
+    border-radius: 4px;
+}  
+.kp-dig-item-eveCtn1{
+   /*  position: absolute;
+    top: 40px;
+    right: 20px; */
+    /* border: 1px solid #e5e5e5; */
+    padding: 12px;
+   /*  height: calc(100% - 95px ); */
+    height: 115px;
+    width: 160px;
+    background: #13B1F5;
+    line-height: 40px;
+    color:#fff;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    /* border-radius: 4px; */
+}
+.kp-dig-item-eveCtn4{
+	line-height: 2;
+    font-size: 14px;
+    padding: 12px;
+    color: #808080;
+    background: #FAFAFA;
+    margin-top: 20px;
+    border-radius: 4px;
+    height: 81px;
+}
+.kp-dig-item-eveItem1Name{
+	font-size: 14px;
+}
+.kp-dig-item-eveItem1Value{
+	font-size: 48px;
+}
+.kp-dig-item-eveItem4Name{
+}
+.kp-dig-item-eveItem4Value{
+	display: block;
+}

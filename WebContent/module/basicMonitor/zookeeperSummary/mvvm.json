@@ -1,0 +1,19 @@
+{
+	"views": {
+		"zookeeperSummaryV": {
+			"template": "zookeeperSummary.jsp",
+			"js": "zookeeperSummary.js"
+		}
+	}, 
+	
+	"models": {
+	}, 
+	
+	"flows": [
+		{
+			"id": "zookeeperSummaryV"
+		}
+	],
+
+	"stepBar": false
+}

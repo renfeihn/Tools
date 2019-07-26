@@ -1,0 +1,19 @@
+{
+	"views": {
+		"mysqlSummaryV": {
+			"template": "mysqlSummary.jsp",
+			"js": "mysqlSummary.js"
+		}
+	}, 
+	
+	"models": {
+	}, 
+	
+	"flows": [
+		{
+			"id": "mysqlSummaryV"
+		}
+	],
+
+	"stepBar": false
+}

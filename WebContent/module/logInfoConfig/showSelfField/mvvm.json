@@ -1,0 +1,19 @@
+{
+	"views": {
+		"showSelfFieldV": {
+			"template": "showSelfField.jsp",
+			"js": "showSelfField.js"
+		}
+	}, 
+	
+	"models": {
+	}, 
+	
+	"flows": [
+		{
+			"id": "showSelfFieldV"
+		}
+	],
+
+	"stepBar": false
+}

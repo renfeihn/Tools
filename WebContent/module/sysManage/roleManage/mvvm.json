@@ -1,0 +1,12 @@
+{
+    "views": {
+        "view1": {
+            "template": "roleManage.jsp",
+            "js": "roleManage.js"
+        }
+    },
+    "models": {},
+    "flows": [{
+        "id": "view1"
+    }]
+}

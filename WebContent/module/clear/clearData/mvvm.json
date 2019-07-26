@@ -1,0 +1,19 @@
+{
+	"views": {
+		"clearDataV": {
+			"template": "clearData.jsp",
+			"js": "clearData.js"
+		}
+	}, 
+	
+	"models": {
+	}, 
+	
+	"flows": [
+		{
+			"id": "clearDataV"
+		}
+	],
+
+	"stepBar": false
+}

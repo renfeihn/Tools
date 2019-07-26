@@ -1,0 +1,19 @@
+{
+	"views": {
+		"redisSummaryV": {
+			"template": "redisSummary.jsp",
+			"js": "redisSummary.js"
+		}
+	}, 
+	
+	"models": {
+	}, 
+	
+	"flows": [
+		{
+			"id": "redisSummaryV"
+		}
+	],
+
+	"stepBar": false
+}

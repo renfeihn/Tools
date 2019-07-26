@@ -1,0 +1,19 @@
+{
+	"views": {
+		"YeWuRiZhiGuanLiV": {
+			"template": "YeWuRiZhiGuanLi.jsp",
+			"js": "YeWuRiZhiGuanLi.js"
+		}
+	}, 
+	
+	"models": {
+	}, 
+	
+	"flows": [
+		{
+			"id": "YeWuRiZhiGuanLiV"
+		}
+	],
+
+	"stepBar": false
+}

@@ -1,0 +1,19 @@
+{
+	"views": {
+		"kafkaClusterNodeV": {
+			"template": "kafkaClusterNode.jsp",
+			"js": "kafkaClusterNode.js"
+		}
+	}, 
+	
+	"models": {
+	}, 
+	
+	"flows": [
+		{
+			"id": "kafkaClusterNodeV"
+		}
+	],
+
+	"stepBar": false
+}

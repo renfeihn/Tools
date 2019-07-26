@@ -1,0 +1,19 @@
+{
+	"views": {
+		"dataOutputResultV": {
+			"template":"dataOutputResult.jsp",
+			"js":"dataOutputResult.js"
+		}
+	}, 
+	
+	"models": {
+	}, 
+	
+	"flows": [
+		{
+			"id": "dataOutputResultV"
+		}
+	],
+
+	"stepBar": false
+}

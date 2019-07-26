@@ -1,0 +1,19 @@
+{
+	"views": {
+		"dataVersion": {
+			"template":"dataVersion.jsp",
+			"js":"dataVersion.js"
+		}
+	}, 
+	
+	"models": {
+	}, 
+	
+	"flows": [
+		{
+			"id": "dataVersion"
+		}
+	],
+
+	"stepBar": false
+}

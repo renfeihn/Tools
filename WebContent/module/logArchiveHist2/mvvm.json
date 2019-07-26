@@ -1,0 +1,16 @@
+{
+  "views": {
+    "logArchiveHist": {
+      "template": "logArchiveHist.jsp",
+      "js": "logArchiveHist.js"
+    }
+  },
+  "models": {
+  },
+  "flows": [
+    {
+      "id": "logArchiveHist"
+    }
+  ],
+  "stepBar": false
+}

@@ -1,0 +1,19 @@
+{
+	"views": {
+		"esClusterIndexV": {
+			"template": "esClusterIndex.jsp",
+			"js": "esClusterIndex.js"
+		}
+	}, 
+	
+	"models": {
+	}, 
+	
+	"flows": [
+		{
+			"id": "esClusterIndexV"
+		}
+	],
+
+	"stepBar": false
+}

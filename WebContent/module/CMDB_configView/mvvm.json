@@ -1,0 +1,19 @@
+{
+	"views": {
+		"CMDB_configViewV": {
+			"template":"CMDB_configView.jsp",
+			"js":"CMDB_configView.js"
+		}
+	}, 
+	
+	"models": {
+	}, 
+	
+	"flows": [
+		{
+			"id": "CMDB_configViewV"
+		}
+	],
+
+	"stepBar": false
+}

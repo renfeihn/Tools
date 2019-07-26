@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>日志分析平台</title>
+
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta http-equiv="Cache-Control" content="no-cache" />
+	<meta name="msapplication-tap-highlight" content="no" />
+	<meta content="minimal-ui" name="viewport" />
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+	<meta content="yes" name="apple-mobile-web-app-capable" />
+
+	<link href="img/favicon.ico" rel="shortcut icon" type="image/x-icon">
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+	<link rel="stylesheet" type="text/css" href="css/bootstrap-responsive.min.css" />
+	<link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="css/common.css" />
+	<link rel="stylesheet" type="text/css" href="css/animate.min.css"/>
+	<script type="text/javascript" src="script/lib/jquery-1.9.1.js"></script>
+<style>
+.login-header{
+	width:83.333%;
+	height:6.667%;
+	margin:0 auto;
+	position:relative;
+}
+.login_shadowbox{
+	width:calc(100% - 10px);
+	height:calc(100% - 2px);
+	box-shadow:0px 0px 12px #ddd;
+	position:absolute;
+	left:5px; 
+}
+.login_logo{
+	width:100%;
+	height:100%;
+	position:absolute;
+	left:0;
+	background:#fff;
+	display:flex;
+}
+.login_logo>p{
+	width:50%;
+	height:100%;
+	flex:auto;
+}
+.login_logo>p:nth-child(1){
+	background:url(img/bank/agree-logo.png) no-repeat center center;
+}
+.login_logo>p:nth-child(2){
+	background:url(img/login_/slogan.png) no-repeat center center;
+}
+
+.navigatorDL-box{
+	width: 80%;
+    margin: 10vh auto;
+    height: 50vh;
+    border: 1px solid #ebebeb;
+    background-color: #fff;
+    padding: 20px;
+}
+.navigatorDL-box .title{
+	font-size: 22px;
+    color: #333;
+    border-bottom: 1px solid #ebebeb;
+    margin-bottom: 20px;
+    height: 40px;
+    line-height: 40px;
+    padding: 0 20px;
+}
+.navigatorDL-box .content{
+	padding: 30px;
+}
+.navigatorDL-box .content a{
+	display: block;
+    width: 200px;
+    height: 50px;
+    font-size: 16px;
+    font-weight: normal;
+    text-align: center;
+    line-height: 50px;
+    border: 1px solid #55a8fd;
+    margin-bottom: 30px;
+    color: #55a8fd;
+    border-radius: 5px;
+}
+.navigatorDL-box .content a:hover{
+	text-decoration: none;
+	background-color: #55a8fd;
+	color: #fff;
+}
+</style>
+</head>
+<body style="width: 100vw;height: 100vh;">
+	<header class="login-header">
+		<div class="login_shadowbox"></div>
+		<div class="login_logo">
+			<p></p>
+			<p></p>
+		</div>
+	</header>
+	<div class="navigatorDL-box">
+		<div class="title">谷歌浏览器下载</div>
+		<div class="content">
+			<a href="./download/ChromeSetup(32Bit).exe">Windows版本32位下载</a>
+			<a href="./download/ChromeSetup(64Bit).exe">Windows版本64位下载</a>
+			<a href="./download/GoogleChrome.dmg">Mac版</a>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,19 @@
+{
+	"views": {
+		"templateV": {
+			"template":"template.jsp",
+			"js":"template.js"
+		}
+	}, 
+	
+	"models": {
+	}, 
+	
+	"flows": [
+		{
+			"id": "templateV"
+		}
+	],
+
+	"stepBar": false
+}

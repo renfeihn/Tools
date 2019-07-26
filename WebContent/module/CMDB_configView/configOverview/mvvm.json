@@ -1,0 +1,19 @@
+{
+	"views": {
+		"configOverviewV": {
+			"template":"configOverview.jsp",
+			"js":"configOverview.js"
+		}
+	}, 
+	
+	"models": {
+	}, 
+	
+	"flows": [
+		{
+			"id": "configOverviewV"
+		}
+	],
+
+	"stepBar": false
+}

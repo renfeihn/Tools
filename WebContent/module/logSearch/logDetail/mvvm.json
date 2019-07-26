@@ -1,0 +1,17 @@
+{
+	"views": {
+		"logDetailV1": {
+			"template": "logDetail.jsp",
+			"js": "logDetail.js"
+		}
+	},
+	
+	"models": {
+	},
+	
+	"flows": [
+		{
+			"id": "logDetailV1"
+		}
+	]
+}

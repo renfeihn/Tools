@@ -1,0 +1,19 @@
+{
+	"views": {
+		"appLogTotalV": {
+			"template":"appLogTotal.jsp",
+			"js":"appLogTotal.js"
+		}
+	}, 
+	
+	"models": {
+	}, 
+	
+	"flows": [
+		{
+			"id": "appLogTotalV"
+		}
+	],
+
+	"stepBar": false
+}

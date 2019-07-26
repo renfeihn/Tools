@@ -1,0 +1,19 @@
+{
+	"views": {
+		"error404V": {
+			"template": "error404.jsp",
+			"js": "error404.js"
+		}
+	}, 
+	
+	"models": {
+	}, 
+	
+	"flows": [
+		{
+			"id": "error404V"
+		}
+	],
+
+	"stepBar": false
+}

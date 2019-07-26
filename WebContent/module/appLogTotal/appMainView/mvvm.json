@@ -1,0 +1,19 @@
+{
+	"views": {
+		"appMainViewV": {
+			"template":"appMainView.jsp",
+			"js":"appMainView.js"
+		}
+	}, 
+	
+	"models": {
+	}, 
+	
+	"flows": [
+		{
+			"id": "appMainViewV"
+		}
+	],
+
+	"stepBar": false
+}

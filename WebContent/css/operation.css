@@ -1,0 +1,945 @@
+@CHARSET "UTF-8";
+
+.oper-body {
+    width: 1556px;
+    height: 700px;
+}
+
+/* 左侧我的工具 Start */
+.myTools {
+    width: 464px;
+    height: 780px;
+    border: 1px solid #e5e5e5;
+    border-radius: 4px;
+    background-color: #fff;
+    float: left;
+}
+
+.oper-body-search {
+    float: left;
+    width: 100%;
+    border-bottom: 1px solid #e5e5e5;
+    height: 44px;
+    background-color: #fafafa;
+}
+
+i#operSearchCln {
+    position: absolute;
+    margin: 6px auto auto -20px;
+    cursor: pointer;
+    color: #ccc;
+}
+
+div#operNum {
+    float: right;
+    margin: 5px 100px;
+    color: #13B1F5;
+}
+
+i#operSearchCln:hover {
+    color: #e5e5e5;
+}
+
+span#operToolAthBtn:hover {
+    background-color: #fff;
+    color: #13b1f5;
+}
+span#operToolAthBtn {
+    width: 60px;
+    height: 20px;
+    background-color: #13b1f5;
+    color: #fff;
+    border: 1px solid #13b1f5;
+    border-radius: 4px;
+    text-align: center;
+    line-height: 20px;
+    right: 120px;
+    position: absolute;
+    cursor: pointer;
+    transition: all linear .3s;
+}
+
+.oper-body-tools {
+	width: 436px;
+    height: 100%;
+    position: relative;
+    float: left;
+    border-right: none;
+    padding: 8px 20px 20px 8px;
+}
+
+.oper-body-tool {
+    position: relative;
+    width: 204px;
+    height: 70px;
+    border: 1px solid #E5E5E5;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-left: 12px;
+    margin-top: 12px;
+    float: left;
+    box-sizing: border-box;
+}
+
+#operAddTool {
+    position: relative;
+    width: 204px;
+    height: 70px;
+    border: 1px solid #E5E5E5;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 12px;
+    margin-top: 12px;
+    float: left;
+    box-sizing: border-box;
+}
+
+#operAddTool:hover {
+    border-color: #999;
+}
+
+.oper-body-tool-logo {
+    width: 48px;
+    height: 100%;
+    float: left;
+    margin-left: 12px;
+}
+
+.oper-body-tool-title {
+    color: #4d4d4d;
+    font-size: 12px;
+    float: left;
+    height: 100%;
+    width: 112px;
+    /* display: -webkit-box;
+    display: -moz-box;
+    -webkit-box-align: center;
+    -moz-box-pack: center;
+    -moz-box-align: center; */
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+}
+
+.oper-body-tool-dele {
+    float: left;
+    width: 28px;
+    height: 100%;
+}
+
+.oper-body-tool-title>p {
+    word-break: break-all;
+    max-width: 112px;
+    margin-bottom: 0px;
+    margin-left: 12px;
+}
+
+.oper-body-title {
+    float: left;
+    font-size: 14px;
+    font-weight: bold;
+    margin-left: 20px;
+    margin-top: 12px;
+}
+
+.oper-body-search>div:nth-child(2) {
+    float: right;
+    margin-top: 12px;
+    margin-right: 12px;
+    font-size: 12px;
+    color: #13b1f5;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.oper-body-search>div:nth-child(3) {
+    float: right;
+    margin-top: 12px;
+    margin-right: 12px;
+    font-size: 12px;
+    color: #13b1f5;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.oper-body-search>div:nth-child(4) {
+    float: right;
+    margin-top: 12px;
+    margin-right: 12px;
+    font-size: 12px;
+    color: #13b1f5;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.oper-body-search>div:nth-child(5) {
+	display: none;
+    float: right;
+    margin-top: 12px;
+    margin-right: 12px;
+    font-size: 12px;
+    color: #13b1f5;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+div#operBodyRegis {
+    float: right;
+    color: #13baf5;
+    text-align: center;
+    text-decoration: underline;
+    margin-top: 12px;
+    margin-right: 12px;
+    cursor: pointer;
+}
+
+.oper-body-tool-dele-btn {
+    font-family: Segoe UI;
+    font-weight: lighter;
+    font-size: 20px;
+    border-radius: 10px;
+    margin-top: 22px;
+    margin-right: 12px;
+    height: 70px;
+    color: #ccc;
+    text-decoration: none !important;
+    float: right;
+}
+
+.oper-body-tool:HOVER>.oper-body-tool-detail {
+    opacity: 1;
+    transform: translateX(21px);
+    z-index: 1;
+}
+
+.oper-body-tool-detail {
+    /* display: none; */
+    width: 510px;
+    height: 360px;
+    padding: 20px;
+    position: absolute;
+    left: 194px;
+    margin-top: -1px;
+    background-color: #fff;
+    border: 2px solid #13b1f5;
+    border-radius: 4px;
+    margin-top: -2px;
+    cursor: default;
+    opacity: 0;
+    transition: all 0.3s 0.1s;
+    z-index: -1;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, .3);
+}
+
+.oper-body-tool-detail-title {
+    width: 100%;
+    height: 30px;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.oper-body-tool-detail-title>div {
+    float: left;
+}
+
+.oper-body-tool-detail-title-txt {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.oper-body-tool-detail-title-dev {
+    margin-left: 12px;
+}
+
+.oper-oper-body-tool-detail-title-modify {
+    color: #13baf5;
+    text-decoration: underline;
+    cursor: pointer;
+    position: absolute;
+    right: 30px;
+}
+
+.oper-body-tool-detail-ctn {
+    width: 100%;
+    height: 190px;
+    padding: 20px 0 20px 0;
+}
+
+.oper-body-tool-detail-ctn-left {
+    height: 180px;
+    width: 148px;
+    background-color: #fafafa;
+    float: left;
+}
+
+.oper-body-tool-detail-ctn-left-img {
+    width: 124px;
+    height: 156px;
+    border: 1px solid #f7f7fa;
+    background-color: #fff;
+    margin-top: 12px;
+    margin-left: 12px;
+    float: left;
+}
+
+.oper-body-tool-detail-ctn-left-img {
+    float: left;
+    width: 124px;
+    height: 156px;
+    background-color: #fff;
+    margin: 12px;
+}
+
+.oper-body-tool-detail-ctn-left-img>div {
+    background: url(../img/tools/person.png) 50% 50% no-repeat;
+    width: 100%;
+    height: 100%;
+}
+
+.oper-body-tool-detail-ctn-right {
+    width: calc(100% - 148px);
+    height: 180px;
+    float: left;
+}
+
+.oper-body-tool-detail-ctn-right>div {
+    margin-top: 6px;
+}
+
+.oper-body-tool-detail-ctn-right>div:first-child {
+    margin-top: 0px;
+}
+
+.oper-body-tool-detail-ctn-right>div:nth-child(6) {
+    margin-left: 20px;
+    font-size: 14px;
+}
+
+.oper-body-tool-detail-ctn-right>div:nth-child(6)>div {
+	cursor: pointer;
+    width: 50px;
+    float: left;
+}
+
+.oper-body-tool-detail-ctn-right>div:nth-child(6)>div {
+    color: #ffa602;
+    transition: all linear .3s;
+}
+
+.oper-body-tool-detail-ctn-right>div:nth-child(6)>div:hover {
+	color: #f01024;
+}
+
+.oper-body-tool-detail-ctn-right>div:nth-child(6)>span {
+    margin-left: 12px;
+    color: #ffa602;
+}
+
+.oper-body-tool-detail-ctn-right>div:last-child {
+    background-color: #13b1f5;
+    width: 135px;
+    height: 30px;
+    line-height: 30px;
+    border: 1px solid #13b1f5;
+    border-radius: 4px;
+    margin-left: 20px;
+    transition: all linear .3s;
+    cursor: pointer;
+    text-align: center;
+    color: #fff;
+    font-size: 14px;
+}
+
+.oper-body-tool-detail-ctn-right>div:last-child:hover {
+    background-color: #fff;
+    color: #13b1f5;
+}
+
+.oper-body-tool-detail-ctn-right>div>span {
+    font-size: 14px;
+    color: #666;
+    margin-left: 20px;
+}
+
+.oper-body-tool-detail-info-title {
+    font-size: 14px;
+    font-weight: bold;
+    width: 100%;
+}
+
+.oper-body-tool-detail-info-txt {
+    margin-top: 6px;
+    width: 100%;
+    height: 65px;
+}
+
+/* 左侧我的工具 End */
+
+/* 右侧工具市场 Start */
+.oper-body-market {
+	display: none;
+    width: 1068px;
+    height: 780px;
+    background-color: #fff;
+    float: left;
+    margin-left: 20px;
+    border: 1px solid #e5e5e5;
+    border-radius: 4px;
+}
+
+.oper-body-market-title {
+    width: 100%;
+    height: 44px;
+    border-bottom: 1px solid #e5e5e5;
+    background-color: #fafafa;
+}
+
+.oper-body-market-title-txt {
+    height: 100%;
+    float: left;
+    margin: 12px auto auto 20px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.oper-body-market-title-close {
+    margin-right: 20px;
+    margin-top: 10px;
+    width: 18px;
+    height: 18px;
+    float: right;
+    font-size: 24px;
+    font-family: Segoe UI;
+    font-weight: lighter;
+    text-decoration: none !important;
+}
+
+.oper-body-market-ctn-search {
+    width: 100%;
+    height: 30px;
+}
+
+.oper-body-market-ctn {
+    padding: 20px;
+}
+
+.oper-body-market-ctn-search-btn {
+    text-align: left;
+    border: 1px solid #D2D2D2;
+}
+
+.oper-body-market-ctn-search-btn:hover {
+    border: 1px solid #13b1f5;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    -webkit-transition: border linear .2s, box-shadow linear .2s;
+    -moz-transition: border linear .2s, box-shadow linear .2s;
+    -o-transition: border linear .2s, box-shadow linear .2s;
+    transition: border linear .2s, box-shadow linear .2s;
+}
+
+.oper-body-market-ctn-search-btn>i {
+    color: #999;
+    font-size: 16px;
+    margin-top: 5px;
+    margin-left: 20px;
+    float: left;
+}
+
+#operToolSearch {
+    border-color: #e5e5e5;
+    text-shadow: none;
+    border: none;
+    border-radius: 0;
+    height: 20px;
+    box-shadow: none;
+    margin-bottom: 0px;
+    margin-left: 6px;
+    font-size: 14px;
+    width: 950px;
+    outline: none;
+}
+
+.oper-body-market-ctn-result {
+    margin-top: 20px;
+}
+
+.oper-body-market-ctn-result-ctn-left-class-item {
+    width: 180px;
+    height: 75px;
+    float: left;
+    border-radius: 5px;
+    color: #fff;
+    margin-right: 12px;
+    cursor: pointer;
+}
+
+.oper-body-market-ctn-result-ctn-left-class-item:hover {
+    opacity: 0.8;
+}
+
+.oper-body-market-ctn-result-ctn-left-class-item:nth-child(1) {
+	background-color: #00C6FF;
+}
+.oper-body-market-ctn-result-ctn-left-class-item:nth-child(2) {
+	background-color: #14B1F6;
+}
+.oper-body-market-ctn-result-ctn-left-class-item:nth-child(3) {
+	background-color: #1393F6;
+}
+.oper-body-market-ctn-result-ctn-left-class-item:nth-child(4) {
+	background-color: #607AEB;
+}
+
+.oper-body-market-ctn-result-ctn-left-class-item>div:nth-child(1) {
+    font-size: 14px;
+    margin-left: 12px;
+    margin-top: 12px;
+}
+
+.oper-body-market-ctn-result-ctn-left-class-item>div:nth-child(2) {
+    font-size: 32px;
+    margin-left: 12px;
+    margin-top: 5px;
+}
+
+.oper-body-market-ctn-result-ctn-left {
+    float: left;
+}
+
+.oper-body-market-ctn-result-ctn-left-ctn {
+    width: 754px;
+    height: 534px;
+    border: 1px solid #e5e5e5;
+    border-radius: 5px;
+    float: left;
+    margin-top: 20px;
+}
+
+.oper-body-market-ctn-result-ctn-right {
+    width: 210px;
+    height: 588px;
+    float: left;
+    border: 1px solid #e5e5e5;
+    border-radius: 5px;
+    background-color: #fafafa;
+    margin-left: 8px;
+    padding: 20px;
+}
+
+.oper-body-market-ctn-result-ctn-left-ctn-list {
+    width: 380px;
+    height: 100%;
+    float: left;
+    border-right: 1px solid #e5e5e5;
+}
+
+.oper-body-market-ctn-result-ctn-left-ctn-info {
+    float: left;
+    width: calc(100% - 421px);
+    height: calc(100% - 40px);
+    padding: 20px;
+}
+
+.oper-body-market-ctn-result-ctn-left-ctn-info-tit {
+    height: 30px;
+    font-size: 14px;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.oper-body-market-ctn-result-ctn-left-ctn-info-ctn {
+    height: 190px;
+    padding-top: 20px;
+}
+
+.oper-body-market-ctn-result-ctn-left-ctn-info-ctn-img {
+    width: 124px;
+    height: calc(100% - 24px);
+    padding: 12px;
+    background-color: #F7F6FA;
+    float: left;
+}
+
+.oper-body-market-ctn-result-ctn-left-ctn-info-ctn-img-pic {
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+}
+
+.oper-body-market-ctn-result-ctn-left-ctn-info-ctn-img-pic>div {
+    background: url(../img/tools/person.png) 50% 50% no-repeat;
+    width: 100%;
+    height: 100%;
+}
+
+.oper-body-market-ctn-result-ctn-left-ctn-info-ctn-base {
+    float: left;
+    margin-left: 12px;
+}
+
+.oper-body-market-ctn-result-ctn-left-ctn-info-ctn-base>div>span {
+    font-size: 12px;
+    color: #666;
+}
+
+.oper-body-market-ctn-result-ctn-left-ctn-info-ctn-base>div:last-child {
+    background-color: #13b1f5;
+    width: 135px;
+    height: 30px;
+    border-radius: 5px;
+}
+
+.oper-body-market-ctn-result-ctn-left-ctn-info-ctn-base>div:last-child>span {
+    color: #fff;
+    margin-top: 5px;
+    float: left;
+    cursor: pointer;
+    width: 100%;
+    text-align: center;
+}
+}
+
+.oper-body-market-ctn-result-ctn-left-ctn-info-ctn-base>div:first-child {
+    margin-top: 0px;
+}
+
+.oper-body-market-ctn-result-ctn-left-ctn-info-ctn-base>div {
+    margin-top: 6px;
+}
+
+.oper-body-market-ctn-result-ctn-left-ctn-info-txt {
+    margin-top: 20px;
+}
+
+.oper-body-market-ctn-result-ctn-left-ctn-info-txt-tit {
+    font-size: 14px;
+}
+
+.oper-body-market-ctn-result-ctn-left-ctn-info-txt-base {
+    margin-top: 12px;
+    color: #666;
+}
+
+.oper-body-market-ctn-result-ctn-left-ctn-list-tool {
+    height: 53px;
+    width: 100%;
+    border-bottom: 1px solid #e5e5e5;
+    cursor: pointer;
+    transition: background-color linear .3s;
+}
+
+.oper-body-market-ctn-result-ctn-left-ctn-list-tool-btn {
+    /* background: url(../img/tools/plus.png) 50% 50% no-repeat; */
+    width: 53px;
+    height: 53px;
+    float: left;
+}
+
+.oper-body-market-ctn-result-ctn-left-ctn-list-tool-icon {
+    /* background: url(../img/tools/appss36x36.png) 50% 50% no-repeat; */
+    width: 36px;
+    height: 53px;
+    float: left;
+}
+
+.oper-body-market-ctn-result-ctn-left-ctn-list-tool-name {
+    height: 53px;
+    vertical-align: middle;
+    font-size: 12px;
+    color: #666;
+    margin-left: 12px;
+    display: -webkit-box;
+    display: -moz-box;
+    -webkit-box-align: center;
+    -moz-box-pack: center;
+    -moz-box-align: center;
+    float: left;
+}
+
+.oper-body-market-ctn-result-ctn-left-ctn-list-tool:hover {
+    background-color: #13b1f5;
+}
+
+.oper-body-market-ctn-result-ctn-left-ctn-list-tool:hover>div:nth-child(3) {
+    color: #fff;
+}
+
+.oper-body-market-ctn-result-ctn-right-tit>div {
+    float: left;
+    font-size: 14px;
+    /* margin-left: 20px; */
+    /* border-bottom: 2px solid #13b1f5; */
+    height: 30px;
+    width: 37%;
+    /* padding-left: 12px; */
+    cursor: pointer;
+    text-align: center;
+    color: #999;
+}
+
+.oper-body-market-ctn-result-ctn-right-tit {
+    width: 100%;
+    height: 30px;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.oper-body-market-ctn-result-ctn-right-tit>div:hover {
+    border-bottom: 2px solid #13BAF5;
+    color: #13B1F5;
+    font-weight: bold;
+}
+
+.oper-body-market-ctn-result-ctn-right-list-tool {
+    width: 100%;
+    float: left;
+    margin-top: 12px;
+}
+
+.oper-body-market-ctn-result-ctn-right-list-logo {
+    width: 36px;
+    height: 36px;
+}
+
+.oper-body-market-ctn-result-ctn-right-list-tool>div {
+    float: left;
+}
+
+.oper-body-market-ctn-result-ctn-right-list-tit {
+    width: 154px;
+    font-size: 14px;
+    height: 36px;
+    line-height: 36px;
+    padding-left: 12px;
+}
+
+.oper-body-market-ctn-result-ctn-right-list-btn {
+	display: none;
+    width: 48px;
+    height: 20px;
+    background-color: #13b1f5;
+    color: #fff;
+    border-radius: 4px;
+    margin-left: 48px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.oper-list-tit-click {
+	border-bottom: 2px solid #13BAF5;
+    color: #13B1F5 !important;
+    font-weight: bold;
+}
+/* 右侧工具市场 Start */
+
+/* 右侧工具注册 Start */
+.oper-body-register-ctn-menu-item-main>span:last-child>a {
+    float: right;
+    margin-right: 20px;
+    margin-top: 5px;
+    color: #fff;
+    font-size: 14px;
+}
+.oper-body-register, .oper-body-modify{
+	display: none;
+    width: 1068px;
+    height: 780px;
+    background-color: #fff;
+    float: left;
+    margin-left: 20px;
+    border: 1px solid #e5e5e5;
+    border-radius: 4px;
+}
+.oper-body-register-ctn, .oper-body-update-ctn {
+    padding: 20px;
+}
+.oper-body-register-ctn-base, .oper-body-update-ctn-base {
+    width: 100%;
+    height: 280px;
+    border: 1px solid #e5e5e5;
+    border-radius: 4px;
+}
+.oper-body-register-ctn-base-tit, .oper-body-update-ctn-base-tit {
+    width: 100%;
+    height: 30px;
+    border-bottom: 1px solid #e5e5e5;
+    background-color: #fafafa;
+}
+.oper-body-register-ctn-base-tit>span, .oper-body-update-ctn-base-tit>span {
+    font-size: 14px;
+    margin: 5px auto auto 12px;
+    float: left;
+}
+.oper-body-register-ctn-menu {
+    width: 100%;
+    height: 340px;
+    margin-top: 20px;
+    border: 1px solid #e5e5e5;
+    border-radius: 4px;
+}
+.oper-body-register-ctn-menu-tit {
+    width: 100%;
+    height: 30px;
+    line-height: 30px;
+    border-bottom: 1px solid #e5e5e5;
+    background-color: #fafafa;
+}
+.oper-body-register-ctn-menu-tit>span {
+    margin-left: 12px;
+    float: left;
+    font-size: 14px;
+}
+/* 权限配置按钮 
+.oper-body-register-ctn-menu-tit>a {
+    color: #13baf5;
+    float: right;
+    margin-right: 20px;
+    font-size: 14px;
+} */
+.oper-body-register-ctn-save, .oper-body-update-ctn-save {
+    width: 100px;
+    height: 20px;
+    background-color: #13b1f5;
+    color: #fff;
+    border-radius: 4px;
+    text-align: center;
+    cursor: pointer;
+    margin-top: 12px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.oper-body-register-ctn-save-btn {
+    width: 100%;
+    height: 50px;
+    margin-left: calc(50% - 40px);
+}
+div#operBodyRegisterSave:hover {
+    background-color: #42C0F7;
+}
+.oper-body-register-ctn-base-ctn>div, .oper-body-update-ctn-base-ctn>div {
+    width: 31%;
+    height: 30px;
+    float: left;
+    margin-left: 20px;
+    margin-top: 12px;
+}
+.oper-body-register-ctn-base-ctn>div>label, .oper-body-update-ctn-base-ctn>div>label {
+    width: 20%;
+    float: left;
+}
+.oper-body-register-ctn-base-ctn>div>div>input, .oper-body-update-ctn-base-ctn>div>div>input {
+    float: left;
+}
+.oper-body-register-ctn-base-ctn>div:last-child, .oper-body-update-ctn-base-ctn>div:last-child {
+    width: 988px;
+    margin-top: 12px;
+}
+.oper-body-register-ctn-base-ctn>div:last-child, .oper-body-update-ctn-base-ctn>div:last-child {
+    width: 988px;
+    margin-top: 12px;
+    height: 100px;
+}
+.oper-body-register-ctn-base-ctn>div:last-child>label, .oper-body-update-ctn-base-ctn>div:last-child>label {
+    width: 63.73px;
+}
+.oper-body-register-ctn-base-ctn>div:last-child>div>textarea, .oper-body-update-ctn-base-ctn>div:last-child>div>textarea {
+    width: 89%;
+    float: left;
+    height: 90px;
+    resize: none;
+}
+.oper-body-register-ctn-menu-ctn {
+    padding: 12px;
+    padding-top: 0px;
+    overflow: hidden;
+    overflow-y: auto;
+    height: 270px;
+}
+.oper-body-register-ctn-menu-item {
+    width: 100%;
+    border: 1px solid #e5e5e5;
+    border-radius: 4px;
+    transition: all linear .3s;
+    margin-top: 12px;
+}
+.oper-body-register-ctn-menu-item-main {
+    width: 100%;
+    height: 30px;
+    border-bottom: 1px solid #e5e5e5;
+    padding: 6px 0px 6px 0px;
+    background-color: #13baf5;
+}
+.oper-body-register-ctn-menu-item-main>span {
+    margin-left: 12px;
+    color: #fff;
+}
+.oper-body-register-ctn-menu-item-main>input {
+    margin-left: 12px;
+}
+.oper-body-register-ctn-menu-item-sub {
+    padding: 12px;
+    padding-bottom: 0px;
+}
+.oper-body-register-ctn-menu-item-sub-item {
+    padding: 12px;
+    border: 1px solid #e5e5e5;
+}
+.oper-body-register-ctn-menu-item-sub-item {
+    padding: 6px;
+    border: 1px solid #e5e5e5;
+    height: 30px;
+    margin-top: 6px;
+}
+.oper-body-register-ctn-menu-item-sub-item>span {
+    margin-left: 12px;
+}
+.oper-body-register-ctn-menu-item-sub-item>input {
+    margin-left: 12px;
+}
+.oper-body-register-ctn-menu-item-sub-item>i:hover {
+    color: #666;
+}
+.oper-body-register-ctn-menu-item-sub-item>i {
+    float: right;
+    margin-right: 12px;
+    margin-top: 6px;
+    cursor: pointer;
+}
+.oper-body-register-ctn-menu-item:hover {
+    border: 1px solid #13baf5;
+}
+.oper-body-register-ctn-menu-item-sub-add {
+    height: 20px;
+    border: 1px solid #e5e5e5;
+    margin: 12px;
+    text-align: center;
+    line-height: 25px;
+    cursor: pointer;
+    background-color: #fafafa;
+    transition: all linear .3s;
+}
+.oper-body-register-ctn-menu-item-sub-add:hover {
+    background-color: #e5e5e5;
+}
+.oper-body-register-ctn-menu-item-sub-add>i {
+    color: #999;
+}
+.oper-body-register-ctn-menu-add {
+    width: 100%;
+    height: 50px;
+    border: 1px solid #e5e5e5;
+    border-radius: 4px;
+    margin-top: 12px;
+    background-color: #fafafa;
+    text-align: center;
+    line-height: 70px;
+    cursor: pointer;
+    transition: all linear .3s;
+}
+.oper-body-register-ctn-menu-add:hover{
+	background-color: #e5e5e5;
+}
+.oper-body-register-ctn-menu-add>i {
+    font-size: 40px;
+    color: #666;
+}
+/* 右侧工具注册 End */

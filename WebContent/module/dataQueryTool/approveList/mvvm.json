@@ -1,0 +1,19 @@
+{
+	"views": {
+		"approveListV": {
+			"template": "approveList.jsp",
+			"js": "approveList.js"
+		}
+	}, 
+	
+	"models": {
+	}, 
+	
+	"flows": [
+		{
+			"id": "approveListV"
+		}
+	],
+
+	"stepBar": false
+}

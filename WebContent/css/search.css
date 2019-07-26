@@ -1,0 +1,139 @@
+.sea-main{
+	position: absolute;
+	z-index:503;
+	top:150px;
+	left:200px;
+	padding: 30px;
+	width: 1110px;
+	height: 666px;
+	margin: 0 auto;
+	box-shadow: 1px 1px 10px 5px #cccccc;
+	background: #FFFFFF;
+}
+.sea-main-title{
+	padding-bottom: 10px;
+	border-bottom: 1px solid #cccccc;
+}
+.sea-title-font{
+	font-size: 18px;
+}
+.sea-title-close{
+	float: right;
+}
+.sea-title-close:hover{
+	cursor:pointer;
+}
+.sea-body-sea{
+	height: 50px;
+	margin-top: 20px;
+}
+.sea-body-sea>a#seaModalBtn{
+	width: 45px;
+	height: 28px;
+	float: left;
+	display: block;
+	background: url("../img/search/sea_btn.png");
+	margin-left: 15px;
+}
+
+.sea-body-sea>a#clearModalBtn {
+    color: #13B1F5;
+    text-decoration: none;
+    margin-left: 12px;
+    margin-top: 5px;
+    float: left;
+}
+
+.sea-body-sea>a#seaModalBtn:hover{
+	background: url("../img/search/sea_hover.png");
+}
+
+.sea-body-sea>a#clearModalBtn:hover {
+    color: #42C0F7;
+}
+
+.sea-body-sea-input{
+	width: 336px;
+	height: 30px;
+}
+.sea-body-sea-font{
+	font-size: 14px;
+}
+.sea-body-ser{
+	width: 40%;
+	float: left;
+}
+.sea-body-app{
+	width: 45%;
+	float: left;
+}
+.sea-body-show{
+	height:565px;
+	overflow:auto;
+	background: #F2F2F5;
+}
+.sea-body-model{
+	height: 200px;
+	border-bottom: 1px solid #cccccc;
+}
+.sea-icon-div{
+	width: 144px;
+	height: 144px;
+	float:left;
+	margin: 20px;
+	border-radius: 4px;
+	border: 1px solid #E5E5E5;
+	background: #FFFFFF;
+}
+.sea-icon-div:hover{
+	cursor:pointer;
+}
+.sea-app-col{
+	width: 120px;
+	height: 36px;
+	float: left;
+	padding:0px 5px 0px 5px;
+	margin: 20px 0px 0px 20px;
+	border: 1px solid #E5E5E5;
+	border-radius: 4px;
+	background: #ffffff;
+	font-size: 12px;
+	text-align: center;
+	overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+	line-height: 3;
+	color: #A6A6A6;
+}
+.sea-app-col:hover{
+	cursor:pointer;
+}
+.sea-model-left{
+	float: left;
+	padding-right: 5px;
+}
+.sea-model-right{
+	width: 890px;
+	height: 180px;
+	overflow: auto;
+	float: left;
+}
+.sea-icon-img{
+	margin: 38px 0px 15px 46px;
+}
+.sea-icon-font{
+	padding: 0 5px;
+	text-align: center;
+	font-size: 14px;
+}
+
+/* 搜索框清除按钮 */
+.awebClearCtnBtn {
+    margin-left: -25px;
+    color: #ccc;
+}
+
+.awebClearCtnBtn:hover {
+	cursor: pointer;
+	color: #e5e5e5;
+}

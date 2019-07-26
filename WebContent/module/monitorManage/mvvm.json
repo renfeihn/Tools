@@ -1,0 +1,19 @@
+{
+	"views": {
+		"monitorManage": {
+			"template":"monitorManage.jsp",
+			"js":"monitorManage.js"
+		}
+	}, 
+	
+	"models": {
+	}, 
+	
+	"flows": [
+		{
+			"id": "monitorManage"
+		}
+	],
+
+	"stepBar": false
+}

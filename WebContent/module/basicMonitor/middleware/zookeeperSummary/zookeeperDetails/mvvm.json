@@ -1,0 +1,19 @@
+{
+	"views": {
+		"dbOracleV": {
+			"template": "zookeeperDetails.jsp",
+			"js": "zookeeperDetails.js"
+		}
+	}, 
+	
+	"models": {
+	}, 
+	
+	"flows": [
+		{
+			"id": "dbOracleV"
+		}
+	],
+
+	"stepBar": false
+}

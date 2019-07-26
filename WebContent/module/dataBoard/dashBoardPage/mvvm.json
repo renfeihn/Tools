@@ -1,0 +1,19 @@
+{
+	"views": {
+		"dashBoardPageV": {
+			"template":"dashBoardPage.jsp",
+			"js":"dashBoardPage.js"
+		}
+	}, 
+	
+	"models": {
+	}, 
+	
+	"flows": [
+		{
+			"id": "dashBoardPageV"
+		}
+	],
+
+	"stepBar": false
+}

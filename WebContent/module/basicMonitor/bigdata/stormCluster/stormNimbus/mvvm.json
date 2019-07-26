@@ -1,0 +1,19 @@
+{
+	"views": {
+		"stormNimbusV": {
+			"template": "stormNimbus.jsp",
+			"js": "stormNimbus.js"
+		}
+	}, 
+	
+	"models": {
+	}, 
+	
+	"flows": [
+		{
+			"id": "stormNimbusV"
+		}
+	],
+
+	"stepBar": false
+}

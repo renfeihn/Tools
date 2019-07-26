@@ -1,0 +1,19 @@
+{
+	"views": {
+		"SQLServerSummaryV": {
+			"template": "SQLServerSummary.jsp",
+			"js": "SQLServerSummary.js"
+		}
+	}, 
+	
+	"models": {
+	}, 
+	
+	"flows": [
+		{
+			"id": "SQLServerSummaryV"
+		}
+	],
+
+	"stepBar": false
+}

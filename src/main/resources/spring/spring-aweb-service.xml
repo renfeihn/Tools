@@ -1,0 +1,846 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd">
+
+	<!-- session管理 -->
+	<bean id="SessionSyncActionBean" class="cn.com.agree.aweb.struts2.action.SessionSyncAction"
+		scope="prototype">
+	</bean>
+
+	<!-- 登录管理 -->
+	<bean id="loginService" class="cn.com.agree.aweb.service.aweb.impl.LoginServiceImpl">
+		<property name="dbService" ref="dbService"></property>
+	</bean>
+	<!-- abc -->
+	<bean id="abcInfoManager" class=" tc.cama.aweb.ab.service.impl.AbcInfoManager">
+		<property name="dbService" ref="dbService"></property>
+	</bean>
+
+	<!--SVG -->
+	<bean id="svgData" class="tc.cama.aweb.svg.impl.SvgDataImpl">
+		<property name="cmdbServiceFactory" ref="cmdbServiceFactory"></property>
+		<property name="healthDegreeService" ref="healthDegreeService"></property>
+	</bean>
+
+	<!-- 后台调用服务配置开始 -->
+	<bean id="internalAwebService" class="cn.com.agree.aweb.service.CamaServiceFactory">
+		<constructor-arg type="java.lang.String" value="aweb" />
+		<property name="remoteService" ref="remoteService" />
+		<property name="defaultMc" value="${cama.service.aweb.mc}" />
+		<property name="defaultTc" value="${cama.service.aweb.tc}" />
+	</bean>
+
+	<!-- 关注 -->
+	<bean id="userAttention" factory-bean="internalAwebService"
+		factory-method="getCamaService">
+		<constructor-arg type="java.lang.Class"
+			value="tc.cama.aweb.service.attention.IUserAttention" />
+	</bean>
+
+	<bean id="esbStatisticQuery" factory-bean="internalAwebService"
+		factory-method="getCamaService">
+		<constructor-arg type="java.lang.Class"
+			value="tc.cama.aweb.esb.service.EsbStatisticQuery" />
+	</bean>
+
+	<bean id="userService" factory-bean="internalAwebService"
+		factory-method="getCamaService">
+		<constructor-arg type="java.lang.Class"
+			value="tc.cama.aweb.service.IUserManager" />
+	</bean>
+	<bean id="roleService" factory-bean="internalAwebService"
+		factory-method="getCamaService">
+		<constructor-arg type="java.lang.Class"
+			value="tc.cama.aweb.service.IRoleManager" />
+	</bean>
+	<bean id="classifyManager" factory-bean="internalAwebService"
+		factory-method="getCamaService">
+		<constructor-arg type="java.lang.Class"
+			value="tc.cama.aweb.service.IClassifyManager" />
+	</bean>
+	<bean id="roleDataService" factory-bean="internalAwebService"
+		factory-method="getCamaService">
+		<constructor-arg type="java.lang.Class"
+			value="tc.cama.aweb.service.IRoleDataService" />
+	</bean>
+
+	<bean id="showUserPrivilegeService" factory-bean="internalAwebService"
+		factory-method="getCamaService">
+		<constructor-arg type="java.lang.Class"
+			value="tc.cama.aweb.service.IShowUserPrivilegeService" />
+	</bean>
+	<bean id="showUserPrivilegeBaseCfgService" factory-bean="internalAwebService"
+		factory-method="getCamaService">
+		<constructor-arg type="java.lang.Class"
+			value="tc.cama.aweb.service.IShowUserPrivilegeBaseCfgService" />
+	</bean>
+	<bean id="tradeManager" factory-bean="internalAwebService"
+		factory-method="getCamaService">
+		<constructor-arg type="java.lang.Class"
+			value="tc.cama.aweb.service.ITradeManager" />
+	</bean>
+	<bean id="roleUserService" factory-bean="internalAwebService"
+		factory-method="getCamaService">
+		<constructor-arg type="java.lang.Class"
+			value="tc.cama.aweb.service.IRoleUserManager" />
+	</bean>
+
+	<!-- 应用总览 -->
+	<bean id="appOverview" factory-bean="internalAwebService"
+		factory-method="getCamaService">
+		<constructor-arg type="java.lang.Class"
+			value="tc.cama.aweb.service.IAppOverview" />
+	</bean>
+	<!-- 应用概览 -->
+	<bean id="appPerform" factory-bean="internalAwebService"
+		factory-method="getCamaService">
+		<constructor-arg type="java.lang.Class"
+			value="tc.cama.aweb.service.IAppPerform" />
+	</bean>
+	<!-- 应用配置总览 -->
+	<bean id="appConfigOverview" factory-bean="internalAwebService"
+		factory-method="getCamaService">
+		<constructor-arg type="java.lang.Class"
+			value="tc.cama.aweb.service.IAppConfigOverview" />
+	</bean>
+	<!-- 应用性能总览 -->
+	<bean id="appPerformOverview" factory-bean="internalAwebService"
+		factory-method="getCamaService">
+		<constructor-arg type="java.lang.Class"
+			value="tc.cama.aweb.service.IAppPerformOverview" />
+	</bean>
+	<!-- 应用性能，性能分析 -->
+	<bean id="appAns" factory-bean="internalAwebService"
+		factory-method="getCamaService">
+		<constructor-arg type="java.lang.Class"
+			value="tc.cama.aweb.service.IAppPerformAnsy" />
+	</bean>
+
+	<!-- 应用性能-系统监控 -->
+	<bean id="appSysMonitor" factory-bean="internalAwebService"
+		factory-method="getCamaService">
+		<constructor-arg type="java.lang.Class"
+			value="tc.cama.aweb.service.IAppSysMonitor" />
+	</bean>
+	<!-- 应用性能-流水监控 -->
+	<bean id="appEsbTransMonitor" factory-bean="internalAwebService"
+		factory-method="getCamaService">
+		<constructor-arg type="java.lang.Class"
+			value="tc.cama.aweb.service.IAppEsbTransMonitor" />
+	</bean>
+	<!-- 应用性能-流水分析 -->
+	<bean id="appEsbTransAnalyse" factory-bean="internalAwebService"
+		factory-method="getCamaService">
+		<constructor-arg type="java.lang.Class"
+			value="tc.cama.aweb.service.IAppEsbTransAnalyse" />
+	</bean>
+	<!-- 大屏- APMtop -->
+	<bean id="appMonitor" factory-bean="internalAwebService"
+		factory-method="getCamaService">
+		<constructor-arg type="java.lang.Class"
+			value="tc.cama.aweb.service.IAppMonitor" />
+	</bean>
+	<!-- 操作系统 -->
+	<bean id="appOs" factory-bean="internalAwebService"
+		factory-method="getCamaService">
+		<constructor-arg type="java.lang.Class" value="tc.cama.aweb.service.IAppOs" />
+	</bean>
+	<!-- 应用程序 -->
+	<bean id="appProgram" factory-bean="internalAwebService"
+		factory-method="getCamaService">
+		<constructor-arg type="java.lang.Class"
+			value="tc.cama.aweb.service.IAppProgram" />
+	</bean>
+	<!-- 软硬件架构 -->
+	<bean id="appSoftHardWare" factory-bean="internalAwebService"
+		factory-method="getCamaService">
+		<constructor-arg type="java.lang.Class"
+			value="tc.cama.aweb.service.IAppSoftHardWare" />
+	</bean>
+	<!-- 应用系统软件架构 -->
+	<bean id="appSoftWareService" factory-bean="internalAwebService"
+		factory-method="getCamaService">
+		<constructor-arg type="java.lang.Class"
+			value="tc.cama.aweb.service.AppConfigSoftFrame" />
+	</bean>
+	<!-- 应用事件总览 -->
+	<bean id="appEventView" factory-bean="internalAwebService"
+		factory-method="getCamaService">
+		<constructor-arg type="java.lang.Class"
+			value="tc.cama.aweb.service.IAppEventView" />
+	</bean>
+	<!-- 大屏-重要应用系统 -->
+	<bean id="screenImpApps" factory-bean="internalAwebService"
+		factory-method="getCamaService">
+		<constructor-arg type="java.lang.Class"
+			value="tc.cama.aweb.service.IScreenImpApps" />
+	</bean>
+	<!-- 配置管理-网络管理 -->
+	<bean id="configManage" factory-bean="internalAwebService"
+		factory-method="getCamaService">
+		<constructor-arg type="java.lang.Class"
+			value="tc.cama.aweb.service.IConfigManage" />
+	</bean>
+	<!-- 大屏-ESB架构 -->
+	<bean id="iScreenFrame" factory-bean="internalAwebService"
+		factory-method="getCamaService">
+		<constructor-arg type="java.lang.Class"
+			value="tc.cama.aweb.service.IScreenFrame" />
+	</bean>
+	<!-- 大屏-事件分布 -->
+	<bean id="iScreenEventDistribute" factory-bean="internalAwebService"
+		factory-method="getCamaService">
+		<constructor-arg type="java.lang.Class"
+			value="tc.cama.aweb.service.IScreenEventDistribute" />
+	</bean>
+	<!-- 大屏-根据系统id获取系统各项指标 -->
+	<bean id="screenAimEsbMon" factory-bean="internalAwebService"
+		factory-method="getCamaService">
+		<constructor-arg type="java.lang.Class"
+			value="tc.cama.aweb.service.IScreenAimEsbMon" />
+	</bean>
+	<!--事件列表 -->
+	<bean id="event" factory-bean="internalAwebService"
+		factory-method="getCamaService">
+		<constructor-arg type="java.lang.Class" value="tc.cama.aweb.service.IEvent" />
+	</bean>
+	<!--esb系统运行监控 -->
+	<bean id="appEsbRunTimeMonitor" factory-bean="internalAwebService"
+		factory-method="getCamaService">
+		<constructor-arg type="java.lang.Class"
+			value="tc.cama.aweb.service.IAppEsbRunTimeMonitor" />
+	</bean>
+	<!--事件详情 -->
+	<bean id="eventDetail" factory-bean="internalAwebService"
+		factory-method="getCamaService">
+		<constructor-arg type="java.lang.Class"
+			value="tc.cama.aweb.service.IEventDetail" />
+	</bean>
+	<!-- 指标 -->
+	<bean id="metricCategory" factory-bean="internalAwebService"
+		factory-method="getCamaService">
+		<constructor-arg type="java.lang.Class"
+			value="tc.cama.aweb.service.IMetricCategory" />
+	</bean>
+	<!-- 应用程序 -->
+	<bean id="programManage" factory-bean="internalAwebService"
+		factory-method="getCamaService">
+		<constructor-arg type="java.lang.Class"
+			value="tc.cama.aweb.service.IProgramManage" />
+	</bean>
+	<bean id="summaryAPM" factory-bean="internalAwebService"
+		factory-method="getCamaService">
+		<constructor-arg type="java.lang.Class"
+			value="tc.cama.aweb.service.ISummaryAPM" />
+	</bean>
+	<!--esb对象监控视图 -->
+	<bean id="esbMonitor" factory-bean="internalAwebService"
+		factory-method="getCamaService">
+		<constructor-arg type="java.lang.Class"
+			value="tc.cama.aweb.service.IEsbMonitor" />
+	</bean>
+
+        <!-- linux汇总 -->
+	<bean id="linuxSummary" factory-bean="internalAwebService"
+		factory-method="getCamaService">
+		<constructor-arg type="java.lang.Class"
+			value="tc.cama.aweb.service.ILINUXSummary" />
+	</bean>
+	<!-- aix汇总 -->
+	<bean id="aixSummary" factory-bean="internalAwebService"
+		factory-method="getCamaService">
+		<constructor-arg type="java.lang.Class"
+			value="tc.cama.aweb.service.IAIXSummary" />
+	</bean>
+	<!-- WAS详情 -->
+	<bean id="wasDetail" factory-bean="internalAwebService"
+		factory-method="getCamaService">
+		<constructor-arg type="java.lang.Class"
+			value="tc.cama.aweb.service.IWasDetail" />
+	</bean>
+	<!-- WAS汇总 -->
+	<bean id="wasSummary" factory-bean="internalAwebService"
+		factory-method="getCamaService">
+		<constructor-arg type="java.lang.Class"
+			value="tc.cama.aweb.service.IWasSummary" />
+	</bean>
+	<!-- echart ins -->
+	<bean id="conf" factory-bean="internalAwebService"
+		factory-method="getCamaService">
+		<constructor-arg type="java.lang.Class"
+			value="tc.cama.aweb.echarts.service.IEchartsInsConf" />
+	</bean>
+
+	<!-- echarts 公共配置接口 -->
+	<bean id="echartsManager" factory-bean="internalAwebService"
+		factory-method="getCamaService">
+		<constructor-arg type="java.lang.Class"
+			value="tc.cama.aweb.echarts.service.IEchartsManager" />
+	</bean>
+
+	<!-- aim_config_echarts_style -->
+	<bean id="styleService" factory-bean="internalAwebService"
+		factory-method="getCamaService">
+		<constructor-arg type="java.lang.Class"
+			value="tc.cama.aweb.echarts.service.IAimConfigEchartsStyle" />
+	</bean>
+
+	<!-- Aim_Config_Echarts_Page -->
+	<bean id="aimConfigEchartsPage" factory-bean="internalAwebService"
+		factory-method="getCamaService">
+		<constructor-arg type="java.lang.Class"
+			value="tc.cama.aweb.echarts.service.IAimConfigEchartsPage" />
+	</bean>
+	<!-- aiml_logfile_config日志检测配置表 -->
+	<bean id="aimlLogfileConfigService" factory-bean="internalAwebService"
+		factory-method="getCamaService">
+		<constructor-arg type="java.lang.Class"
+			value="tc.cama.aweb.service.IAimlLogfileConfig" />
+	</bean>
+	<!-- 后台调用服务配置结束 -->
+
+	<!-- 应用程序基本信息 -->
+	<bean id="cmdbSoftware" class="tc.cama.aweb.ab.service.impl.CmdbSoftwareImpl">
+		<property name="dbService" ref="dbService"></property>
+	</bean>
+
+
+	<!-- Abs -->
+	<bean id="absInfoManager" class="tc.cama.aweb.ab.service.impl.AbsInfoManagerImpl">
+		<property name="dbService" ref="dbService"></property>
+	</bean>
+	<!-- Abs1 -->
+	<bean id="absManager" class="tc.cama.aweb.ab.service.impl.AimAbcAgentCurImpl">
+		<property name="dbService" ref="dbService"></property>
+	</bean>
+
+	<!-- 大屏配置交易 -->
+	<bean id="screenImpAppsConfig" class="tc.cama.aweb.service.impl.ScreenImpAppsConfigImpl">
+		<property name="dbService" ref="dbService"></property>
+	</bean>
+
+	<!-- AB应用视图 -->
+	<bean id="abManager" class="tc.cama.aweb.ab.service.impl.ABManagerImpl">
+		<property name="dbService" ref="dbService"></property>
+		<property name="healthDegreeService" ref="healthDegreeService"></property>
+		<property name="eventCounter" ref="eventCounter"></property>
+		<property name="metricHistoryQueryService" ref="metricHistoryQueryService"></property>
+	</bean>
+
+	<!-- ABS应用视图 -->
+	<bean id="absManagers" class="tc.cama.aweb.ab.service.impl.ABSManagerImpl">
+		<property name="dbService" ref="dbService"></property>
+		<property name="metricHistoryQueryService" ref="metricHistoryQueryService"></property>
+		<property name="eventCounter" ref="eventCounter"></property>
+		<property name="healthDegreeService" ref="healthDegreeService"></property>
+		<property name="metricQueryService" ref="metricQueryService"></property>
+	</bean>
+
+	<!-- ABS 任务应用视图 -->
+	<bean id="absTaskManager" class="tc.cama.aweb.ab.service.impl.ABSTaskManagerImpl">
+		<property name="dbService" ref="dbService"></property>
+		<property name="metricHistoryQueryService" ref="metricHistoryQueryService"></property>
+	</bean>
+	<!-- ABS jvm 视图 -->
+	<bean id="jvmManager" class="tc.cama.aweb.ab.service.impl.ABJvmManager">
+		<property name="dbService" ref="dbService"></property>
+		<property name="metricHistoryQueryService" ref="metricHistoryQueryService"></property>
+	</bean>
+
+	<!-- 对象触发规则操作服务 -->
+	<bean id="appTriggerConfig" factory-bean="internalAwebService"
+		factory-method="getCamaService">
+		<constructor-arg type="java.lang.Class"
+			value="tc.cama.aweb.service.IAppTriggerConfig" />
+	</bean>
+
+	<!-- 对象采集命令操作服务 -->
+	<bean id="appCommandConfig" factory-bean="internalAwebService"
+		factory-method="getCamaService">
+		<constructor-arg type="java.lang.Class"
+			value="tc.cama.aweb.service.IAppCommandConfig" />
+	</bean>
+
+	<!-- ESB触发规则命令操作服务 -->
+	<bean id="appEsbTriggerConfig" factory-bean="internalAwebService"
+		factory-method="getCamaService">
+		<constructor-arg type="java.lang.Class"
+			value="tc.cama.aweb.service.IAppEsbTriggerConfig" />
+	</bean>
+
+	<!-- AimEsbShowSystem -->
+	<bean id="aimEsbShowSystemService" factory-bean="internalAwebService"
+		factory-method="getCamaService">
+		<constructor-arg type="java.lang.Class"
+			value="tc.cama.aweb.service.IAimEsbShowSystem" />
+	</bean>
+
+	<bean id="logManager" factory-bean="internalAwebService"
+		factory-method="getCamaService">
+		<constructor-arg type="java.lang.Class"
+			value="tc.cama.aweb.service.ILogManager" />
+	</bean>
+	<bean id="hbaseQuery" factory-bean="internalAwebService"
+		factory-method="getCamaService">
+		<constructor-arg type="java.lang.Class"
+			value="tc.cama.aweb.service.IHbaseQueryService" />
+	</bean>
+
+	<!-- appGroup -->
+	<bean id="appGroupManager" factory-bean="internalAwebService"
+		factory-method="getCamaService">
+		<constructor-arg type="java.lang.Class"
+			value="tc.cama.aweb.service.IAppGroupManager" />
+	</bean>
+
+
+	<bean id="eshttpservice" factory-bean="internalAwebService"
+		factory-method="getCamaService">
+		<constructor-arg type="java.lang.Class"
+			value="tc.cama.aweb.service.IESHttpService" />
+	</bean>
+	<bean id="afaMonitor" factory-bean="internalAwebService"
+		factory-method="getCamaService">
+		<constructor-arg type="java.lang.Class"
+			value="tc.cama.aweb.service.IAfaMonitor" />
+	</bean>
+	<!-- esb_mon_msext -->
+	<bean id="esbMonMsext" factory-bean="internalAwebService"
+		factory-method="getCamaService">
+		<constructor-arg type="java.lang.Class"
+			value="tc.cama.aweb.esb.service.IEsbMonMsext" />
+	</bean>
+
+	<!-- esb配置信息和同步信息 -->
+	<bean id="esbSyncCfgManager" factory-bean="internalAwebService"
+		factory-method="getCamaService">
+		<constructor-arg type="java.lang.Class"
+			value="tc.cama.aweb.esb.service.IEsbSyncSysCfgInfo" />
+	</bean>
+
+	<!-- esb sysconfig variables -->
+	<bean id="sysconfigVariables" factory-bean="internalAwebService"
+		factory-method="getCamaService">
+		<constructor-arg type="java.lang.Class"
+			value="tc.cama.aweb.service.ISysconfigVariables" />
+	</bean>
+
+	<!-- AimlKeywordsConfig -->
+	<bean id="aimlKeywordsConfigService" factory-bean="internalAwebService"
+		factory-method="getCamaService">
+		<constructor-arg type="java.lang.Class"
+			value="tc.cama.aweb.service.IAimlKeywordsConfig" />
+	</bean>
+
+	<bean id="relationAnalysisService" factory-bean="internalAwebService"
+	    factory-method="getCamaService">
+		<constructor-arg type="java.lang.Class"
+		    value="tc.cama.aweb.service.RelationAnalysisService" />
+	</bean>
+
+	<bean id="componentPage" factory-bean="internalAwebService"
+	    factory-method="getCamaService">
+		<constructor-arg type="java.lang.Class"
+		value="tc.cama.aweb.service.IComponentPage" />
+	</bean>
+
+	<bean id="aimEdwTriggerRuleService" factory-bean="internalAwebService"
+	    factory-method="getCamaService">
+		<constructor-arg type="java.lang.Class"
+		    value="tc.cama.aweb.service.IAimEdwTriggerRule" />
+	</bean>
+
+	<bean id="aimEdwContactService" factory-bean="internalAwebService"
+	    factory-method="getCamaService">
+		<constructor-arg type="java.lang.Class"
+		    value="tc.cama.aweb.service.IAimEdwContact" />
+	</bean>
+
+	<bean id="aimEdwIndexConfigService" factory-bean="internalAwebService"
+	    factory-method="getCamaService">
+		<constructor-arg type="java.lang.Class"
+		value="tc.cama.aweb.service.IAimEdwIndexConfig" />
+	</bean>
+
+	<bean id="aimEdwIndexChangeService" factory-bean="internalAwebService"
+	    factory-method="getCamaService">
+		<constructor-arg type="java.lang.Class"
+		    value="tc.cama.aweb.service.IAimEdwIndexChange" />
+	</bean>
+
+	<!-- 应用日志(异常日志) -->
+	<bean id="appAbnormalLogService" factory-bean="internalAwebService"
+	    factory-method="getCamaService">
+		<constructor-arg type="java.lang.Class"
+		    value="tc.cama.aweb.service.IAppAbnormalLog" />
+	</bean>
+
+	<!-- 应用日志(其他日志) -->
+	<bean id="appOtherLogService" factory-bean="internalAwebService"
+	    factory-method="getCamaService">
+		<constructor-arg type="java.lang.Class"
+		    value="tc.cama.aweb.service.IAppOtherLog" />
+	</bean>
+
+	<!-- 柜面日志操作名称配置 -->
+	<bean id="aimlTellerOperationConfigService" factory-bean="internalAwebService"
+	    factory-method="getCamaService">
+		<constructor-arg type="java.lang.Class"
+		    value="tc.cama.aweb.service.IAimlTellerOperationConfig" />
+	</bean>
+
+	<!-- 用户操作记录 -->
+	<bean id="userOperationService" factory-bean="internalAwebService"
+	    factory-method="getCamaService">
+		<constructor-arg type="java.lang.Class"
+		    value="tc.cama.aweb.service.IUserOperation" />
+	</bean>
+
+	<!-- ES 搜索 -->
+	<bean id="esSearchService" factory-bean="internalAwebService"
+	    factory-method="getCamaService">
+		<constructor-arg type="java.lang.Class"
+		    value="tc.bank.asda.es.service.IESSearch" />
+	</bean>
+	<!-- 日志关联分析 -->
+    <bean id="esRelation" factory-bean="internalAwebService" factory-method="getCamaService">
+      <constructor-arg type="java.lang.Class" value="tc.bank.asda.es.service.IESRelation" />
+    </bean>
+
+	<!-- logSource信息操作 -->
+	<bean id="logSourceService" factory-bean="internalAwebService"
+	    factory-method="getCamaService">
+		<constructor-arg type="java.lang.Class"
+		    value="tc.bank.asda.logconfig.service.ILogSourceService" />
+	</bean>
+
+	<!-- logSource信息操作 -->
+	<bean id="aimLogConfigService" factory-bean="internalAwebService"
+	    factory-method="getCamaService">
+		<constructor-arg type="java.lang.Class"
+		    value="tc.bank.asda.logconfig.service.IAimLogConfigService" />
+	</bean>
+	<!-- nmon文件上传 -->
+	<bean id="nmonDataTransService" factory-bean="internalAwebService"
+	    factory-method="getCamaService">
+		<constructor-arg type="java.lang.Class"
+		    value="tc.cama.aweb.nmon.INmonDataTransService" />
+	</bean>
+	<!-- 保存用户搜索信息 -->
+	<bean id="logUserSearchService" factory-bean="internalAwebService"
+	    factory-method="getCamaService">
+		<constructor-arg type="java.lang.Class"
+		    value="tc.bank.asda.logconfig.service.IAimLogUserSearch" />
+	</bean>
+	<!-- 日志采集配置 -->
+	<bean id="logService" factory-bean="internalAwebService"
+	    factory-method="getCamaService">
+		<constructor-arg type="java.lang.Class"
+		    value="tc.bank.asda.logconfig.service.IAimlCfgLogService" />
+	</bean>
+	<!-- 日志源配置 -->
+	<bean id="logCfgSourceService" factory-bean="internalAwebService"
+	    factory-method="getCamaService">
+		<constructor-arg type="java.lang.Class"
+		    value="tc.bank.asda.logconfig.service.IAimlCfgLogSourceService" />
+	</bean>
+	<!-- 日志采集统计 -->
+	<bean id="logStaticsSourceService" factory-bean="internalAwebService"
+	    factory-method="getCamaService">
+		<constructor-arg type="java.lang.Class"
+		    value="tc.bank.asda.logstatis.service.IAimlMonInputStaticsService" />
+	</bean>
+
+	<!-- es-->
+	<bean id="esService" factory-bean="internalAwebService"
+		factory-method="getCamaService">
+		<constructor-arg type="java.lang.Class"
+			value="tc.cama.aweb.base_monitor.ES.IESService" />
+	</bean>
+	<!--common-->
+	<bean id="commonService" factory-bean="internalAwebService"
+		factory-method="getCamaService">
+		<constructor-arg type="java.lang.Class"
+			value="tc.cama.aweb.base_monitor.common.ICommonService" />
+	</bean>
+	<!--kafka-->
+
+	<bean id="kafkaService" factory-bean="internalAwebService"
+		factory-method="getCamaService">
+		<constructor-arg type="java.lang.Class"
+			value="tc.cama.aweb.base_monitor.Kafka.IKafkaService" />
+	</bean>
+
+	<!--storm-->
+
+	<bean id="stormService" factory-bean="internalAwebService"
+		factory-method="getCamaService">
+		<constructor-arg type="java.lang.Class"
+			value="tc.cama.aweb.base_monitor.storm.IStormService" />
+	</bean>
+
+	<!--zookeeper-->
+
+	<bean id="zookeeperService" factory-bean="internalAwebService"
+		factory-method="getCamaService">
+		<constructor-arg type="java.lang.Class"
+			value="tc.cama.aweb.base_monitor.ZOOKEEPER.IZookeeperService" />
+	</bean>
+
+	 	<!-- 监控配置 -->
+	<bean id="monitorCfgManager" factory-bean="internalAwebService"
+		factory-method="getCamaService">
+		<constructor-arg type="java.lang.Class"
+			value="tc.cama.aweb.service.IMonitorCfgManager" />
+	</bean>
+	 	<!-- 代理監控 -->
+	<bean id="agentManage" factory-bean="internalAwebService"
+		factory-method="getCamaService">
+		<constructor-arg type="java.lang.Class"
+			value="tc.cama.aweb.service.agentManager.IAgentManage" />
+	</bean>
+	<bean id="agentManager" factory-bean="internalAwebService"
+		factory-method="getCamaService">
+		<constructor-arg type="java.lang.Class"
+			value="tc.cama.aweb.service.IAgentManager" />
+	</bean>
+	<bean id="dashBoardService" factory-bean="internalAwebService"
+		factory-method="getCamaService">
+		<constructor-arg type="java.lang.Class"
+			value="tc.bank.asda.dashboard.service.IDashBoardService" />
+	</bean>
+	<bean id="dashBoardGroupService" factory-bean="internalAwebService"
+		factory-method="getCamaService">
+		<constructor-arg type="java.lang.Class"
+			value="tc.bank.asda.dashboard.service.IDashBoardGroupService" />
+	</bean>
+	<!-- 预警配置 -->
+	<bean id="logWarningService" factory-bean="internalAwebService"
+		factory-method="getCamaService">
+		<constructor-arg type="java.lang.Class"
+			value="tc.bank.asda.warning.service.IAimlCfgLogWarningService" />
+	</bean>
+	<!--日志事件-->
+	<bean id="eventRecordService" factory-bean="internalAwebService"
+		factory-method="getCamaService">
+		<constructor-arg type="java.lang.Class"
+			value="tc.bank.asda.warning.service.IAimlCfgEventRecordService" />
+	</bean>
+	<!--cmdb配置-->
+	<bean id="cmdbConfigManager" factory-bean="internalAwebService"
+		factory-method="getCamaService">
+		<constructor-arg type="java.lang.Class"
+			value="tc.cama.aweb.service.cmdbconfig.ICmdbConfigManager" />
+	</bean>
+
+	<!--日志拆分配配置-字段拆分-->
+	<bean id="splitMethodService" factory-bean="internalAwebService"
+		factory-method="getCamaService">
+		<constructor-arg type="java.lang.Class"
+			value="tc.bank.asda.logconfig.service.IAimlSplitMethodService" />
+	</bean>
+	<!--系统参数配置-->
+	<bean id="sysVariableService" factory-bean="internalAwebService"
+		factory-method="getCamaService">
+		<constructor-arg type="java.lang.Class"
+			value="tc.bank.asda.sysvariable.service.ISysVariableService" />
+	</bean>
+	<!--字段字典配置-->
+	<bean id="fieldService" factory-bean="internalAwebService"
+		factory-method="getCamaService">
+		<constructor-arg type="java.lang.Class"
+			value="tc.bank.asda.logconfig.service.IAimlCfgLogFieldService" />
+	</bean>
+	<!--预警字段配置-->
+	<bean id="warningFieldService" factory-bean="internalAwebService"
+		factory-method="getCamaService">
+		<constructor-arg type="java.lang.Class"
+			value="tc.bank.asda.warning.service.IAimlCfgLogWarningFieldService" />
+	</bean>
+	<!-- 快速搜索 -->
+    <bean id="esQuickSearch" factory-bean="internalAwebService" factory-method="getCamaService">
+      <constructor-arg type="java.lang.Class" value="tc.bank.asda.es.service.IESQuickSearch" />
+    </bean>
+	<!-- 日志二次结构化 -->
+    <bean id="logTaskService" factory-bean="internalAwebService" factory-method="getCamaService">
+      <constructor-arg type="java.lang.Class" value="tc.bank.asda.logconfig.service.IAimlCfgLogTaskService" />
+    </bean>
+    <!-- 数据转发 -->
+    <bean id="dataForwardService" factory-bean="internalAwebService" factory-method="getCamaService">
+      <constructor-arg type="java.lang.Class" value="tc.bank.asda.forward.service.IDataForwardService" />
+    </bean>
+    <!-- 数据清理 -->
+    <bean id="dataCleanService" factory-bean="internalAwebService" factory-method="getCamaService">
+      <constructor-arg type="java.lang.Class" value="tc.bank.asda.dataclean.service.IDataCleanService" />
+    </bean>
+	<!-- 日志xxxxxxxx归档统计 -->
+	<bean id="logManagementService" factory-bean="internalAwebService" factory-method="getCamaService">
+		<constructor-arg type="java.lang.Class" value="tc.bank.asda.logmanagement.service.ILogManagementService" />
+	</bean>
+	
+	<bean id="logAchiveService" factory-bean="internalAwebService" factory-method="getCamaService">
+		<constructor-arg type="java.lang.Class" value="tc.bank.asda.dataclean.service.ILogAchiveService" />
+	</bean>
+	<!-- 统计报表 -->
+	<bean id="dashBoardReportService" factory-bean="internalAwebService" factory-method="getCamaService">
+		<constructor-arg type="java.lang.Class" value="tc.bank.asda.report.service.IDashBoardReportService" />
+	</bean>
+    <!-- 数据预测 -->
+    <bean id="predictService" factory-bean="internalAwebService" factory-method="getCamaService">
+      <constructor-arg type="java.lang.Class" value="tc.bank.asda.logstatis.service.IDataPredictService" />
+    </bean>
+     <!-- 数据源管理 -->
+    <bean id="dbManagerService" factory-bean="internalAwebService" factory-method="getCamaService">
+      <constructor-arg type="java.lang.Class" value="tc.bank.asda.dbmanager.service.IDbManagerService" />
+    </bean>
+     <!-- 日志关键字提示 -->
+    <bean id="wordService" factory-bean="internalAwebService" factory-method="getCamaService">
+      <constructor-arg type="java.lang.Class" value="tc.bank.asda.word.service.IWordService" />
+    </bean>
+     <!-- 日志模版 -->
+    <bean id="resumeWord" class = "cn.com.agree.aweb.util.ResumeWord"/>
+    <!-- 日志脱敏 -->
+    <bean id="unSensitivityService" factory-bean="internalAwebService" factory-method="getCamaService">
+      <constructor-arg type="java.lang.Class" value="tc.bank.asda.logconfig.service.IAimLogUnSensitivityService" />
+    </bean> 
+     <!-- 应用日志分析 -->
+    <bean id="appStatisticService" factory-bean="internalAwebService" factory-method="getCamaService">
+      <constructor-arg type="java.lang.Class" value="tc.bank.asda.app.service.IAppStatisticService" />
+    </bean> 
+    <!-- sql市场 -->
+	<bean id="sqlMarketService" factory-bean="internalAwebService"
+		factory-method="getCamaService">
+		<constructor-arg type="java.lang.Class"
+			value="tc.bank.asda.sqlmarket.service.IAimlSqlMarketService" />
+	</bean>
+	<!-- 日志源日志清理结果 -->
+	<bean id="iLogManagerDelInfoService" factory-bean="internalAwebService"
+		factory-method="getCamaService">
+		<constructor-arg type="java.lang.Class"
+			value="tc.bank.asda.logmanagement.service.ILogManagerDelInfoService" />
+	</bean>
+	<!-- 日志源日志清理 -->
+	<bean id="iLogManagerDelService" factory-bean="internalAwebService"
+		factory-method="getCamaService">
+		<constructor-arg type="java.lang.Class"
+			value="tc.bank.asda.logmanagement.service.ILogManagerDelService" />
+	</bean>
+	<!-- 链路 -->
+	<bean id="iLogTranKeysDaoService" factory-bean="internalAwebService"
+		factory-method="getCamaService">
+		<constructor-arg type="java.lang.Class"
+			value="tc.bank.asda.logtrace.service.ILogTranKeysDaoService" />
+	</bean>
+	<!-- sql讨论组和内容 -->
+	<bean id="iAimSqlMarketGroupService" factory-bean="internalAwebService"
+		factory-method="getCamaService">
+		<constructor-arg type="java.lang.Class"
+			value="tc.bank.asda.sqlmarket.service.IAimSqlMarketGroupService" />
+	</bean>
+	<!-- sql搜索热词 -->
+	<bean id="iAimSqlMarketHotWordsService" factory-bean="internalAwebService"
+		factory-method="getCamaService">
+		<constructor-arg type="java.lang.Class"
+			value="tc.bank.asda.sqlmarket.service.IAimSqlMarketHotWordsService" />
+	</bean>
+	<!-- sql动态 -->
+	<bean id="iAimSqlMarketDynamicStateService" factory-bean="internalAwebService"
+		factory-method="getCamaService">
+		<constructor-arg type="java.lang.Class"
+			value="tc.bank.asda.sqlmarket.service.IAimSqlMarketDynamicStateService" />
+	</bean>
+	<!-- 仪表盘 -->
+	<bean id="iPanelService" factory-bean="internalAwebService"
+		factory-method="getCamaService">
+		<constructor-arg type="java.lang.Class"
+			value="tc.bank.asda.dashboard.service.IPanelService" />
+	</bean>
+	<!-- 仪表盘组件 -->
+	<bean id="iPanelChartService" factory-bean="internalAwebService"
+		factory-method="getCamaService">
+		<constructor-arg type="java.lang.Class"
+			value="tc.bank.asda.dashboard.service.IPanelChartService" />
+	</bean>
+	<!-- 精准链路配置 -->
+	<bean id="iLogChainCfgService" factory-bean="internalAwebService"
+		factory-method="getCamaService">
+		<constructor-arg type="java.lang.Class"
+			value="tc.bank.asda.logtrace.service.ILogChainCfgService" />
+	</bean>
+	<!-- 精准链路 -->
+	<bean id="iLogChainService" factory-bean="internalAwebService"
+		factory-method="getCamaService">
+		<constructor-arg type="java.lang.Class"
+			value="tc.bank.asda.logtrace.service.LogChainService" />
+	</bean>
+	<!-- 日志操作记录哦 -->
+	<bean id="iLogOperationService" factory-bean="internalAwebService"
+		factory-method="getCamaService">
+		<constructor-arg type="java.lang.Class"
+			value="tc.bank.asda.logmanagement.service.ILogOperationService" />
+	</bean>
+	<bean id="commonLogOperationService" factory-bean="internalAwebService"
+		factory-method="getCamaService">
+		<constructor-arg type="java.lang.Class"
+			value="tc.bank.asda.logmanagement.service.ICommonLogOperationService" />
+	</bean>
+	<!-- es多数据源导出 -->
+	<bean id="iAimlEtlTargetDatasourceService" factory-bean="internalAwebService"
+		factory-method="getCamaService">
+		<constructor-arg type="java.lang.Class"
+			value="tc.bank.asda.etl.service.IAimlEtlTargetDatasourceService" />
+	</bean>
+	<!-- es多数据源导出- 字段映射 -->
+	<bean id="iAimlEtlTaskFieldMappingService" factory-bean="internalAwebService"
+		factory-method="getCamaService">
+		<constructor-arg type="java.lang.Class"
+			value="tc.bank.asda.etl.service.IAimlEtlTaskFieldMappingService" />
+	</bean>
+	<!-- es多数据源导出- 数据源管理 -->
+	<bean id="iAimlEtlTaskService" factory-bean="internalAwebService"
+		factory-method="getCamaService">
+		<constructor-arg type="java.lang.Class"
+			value="tc.bank.asda.etl.service.IAimlEtlTaskService" />
+	</bean>
+	<!-- es多数据源导出- 数据源管理 -->
+	<bean id="idashBoardAppRelationService" factory-bean="internalAwebService"
+		factory-method="getCamaService">
+		<constructor-arg type="java.lang.Class"
+			value="tc.bank.asda.dashboard.service.IDashBoardAppRelationService" />
+	</bean>
+	<!-- es多数据源导出- 数据源管理 -->
+	<bean id="iaimlCfgLogAppRelationService" factory-bean="internalAwebService"
+		factory-method="getCamaService">
+		<constructor-arg type="java.lang.Class"
+			value="tc.bank.asda.logconfig.service.IAimlCfgLogAppRelationService" />
+	</bean>
+
+	<!-- 工具集服务 -->
+	<bean id="iToolsetService" factory-bean="internalAwebService"
+		  factory-method="getCamaService">
+	<constructor-arg type="java.lang.Class"
+					 value="tc.bank.asda.toolset.service.IToolsetService" />
+	</bean>
+	
+	<!-- 短信推送配置 -->
+	<bean id="messSendConfig" factory-bean="internalAwebService"
+		factory-method="getCamaService">
+		<constructor-arg type="java.lang.Class"
+			value="tc.cama.aweb.service.IMessSendConfig" />
+	</bean>
+	
+	<!-- 短信推送配置 -->
+	<bean id="svgInfo" factory-bean="internalAwebService"
+		factory-method="getCamaService">
+		<constructor-arg type="java.lang.Class"
+			value="tc.cama.aweb.service.ISvgInfo" />
+	</bean>
+
+	<!-- 归档历史 -->
+	<bean id="iAimlLogArchiveHistService" factory-bean="internalAwebService"
+		  factory-method="getCamaService">
+		<constructor-arg type="java.lang.Class"
+						 value="tc.bank.asda.dataclean.service.IAimlLogArchiveHistService" />
+	</bean>
+</beans>
