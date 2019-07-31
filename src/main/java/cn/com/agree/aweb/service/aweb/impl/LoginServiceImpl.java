@@ -44,44 +44,50 @@ public class LoginServiceImpl implements ILoginService {
 		JSONObject updateData = new JSONObject();
 		String errorMsg = "";
 		String encPassword = DES.getEncString(password);
+
+		HttpSession session = getRequest().getSession(true);
+		HttpSessionContainer.putSession(session);
+
+        return "";
+
 		// 登陆成功时，检查该用户是否在别处登陆，若存在则登出原用户
-		AwebUser userVO;
-		if ((userVO = checkpassword(username, encPassword)) != null) {
-			if (userVO.getState().equals(Constants.DB_AGREEUSER_STATE_2)) {// 已被锁定时
-				errorMsg = "此帐号已锁定，请联系管理员解锁！ ";
-			} else {
-				// LoginEntryController.addUser(username, getRequest(),
-				// dbService);
-				HttpSession session = getRequest().getSession(true);
-				HttpSessionContainer.putSession(session);
-				updateLoginTime(userVO);
-				// AccessService.disposeUserAccess(userVO,dbOperation);
-				errorMsg = "";
-			}
-		} else {
-			// 此帐号一段时间错误次数判断
-			whereEx.put("username", username);
-			userVO = dbService.queryAsBean(AwebUser.class, whereEx);
-			if (userVO != null) {
-				if (userVO.getState() == Constants.DB_AGREEUSER_STATE_2) {// 已被锁定时
-					errorMsg = "此帐号已锁定，请联系管理员解锁！ ";
-				} else {
-					int olderrornum = userVO.getContinuousErrorNum();
-					updateData.put("continuousErrorNum", olderrornum + 1);
-					if (olderrornum + 1 >= Constants.USER_LOGIN_ERROR_MAX) { // 锁定
-						updateData.put("state", Constants.DB_AGREEUSER_STATE_2);
-						errorMsg = "您输入的用户名或密码错误，帐号已锁定，请联系管理员解锁！ ";
-					} else {
-						errorMsg = "您输入的用户名或密码错误，错误 " + (Constants.USER_LOGIN_ERROR_MAX - (olderrornum + 1))
-								+ " 次后，此帐号将被锁定。";
-					}
-					dbService.updateWithDict(AwebUser.class, updateData, whereEx);
-				}
-			} else {
-				errorMsg = "您输入的用户名不存在！ ";
-			}
-		}
-		return errorMsg;
+//		AwebUser userVO;
+//		if ((userVO = checkpassword(username, encPassword)) != null) {
+//			if (userVO.getState().equals(Constants.DB_AGREEUSER_STATE_2)) {// 已被锁定时
+//				errorMsg = "此帐号已锁定，请联系管理员解锁！ ";
+//			} else {
+//				// LoginEntryController.addUser(username, getRequest(),
+//				// dbService);
+////				HttpSession session = getRequest().getSession(true);
+////				HttpSessionContainer.putSession(session);
+//				updateLoginTime(userVO);
+//				// AccessService.disposeUserAccess(userVO,dbOperation);
+//				errorMsg = "";
+//			}
+//		} else {
+//			// 此帐号一段时间错误次数判断
+//			whereEx.put("username", username);
+//			userVO = dbService.queryAsBean(AwebUser.class, whereEx);
+//			if (userVO != null) {
+//				if (userVO.getState() == Constants.DB_AGREEUSER_STATE_2) {// 已被锁定时
+//					errorMsg = "此帐号已锁定，请联系管理员解锁！ ";
+//				} else {
+//					int olderrornum = userVO.getContinuousErrorNum();
+//					updateData.put("continuousErrorNum", olderrornum + 1);
+//					if (olderrornum + 1 >= Constants.USER_LOGIN_ERROR_MAX) { // 锁定
+//						updateData.put("state", Constants.DB_AGREEUSER_STATE_2);
+//						errorMsg = "您输入的用户名或密码错误，帐号已锁定，请联系管理员解锁！ ";
+//					} else {
+//						errorMsg = "您输入的用户名或密码错误，错误 " + (Constants.USER_LOGIN_ERROR_MAX - (olderrornum + 1))
+//								+ " 次后，此帐号将被锁定。";
+//					}
+//					dbService.updateWithDict(AwebUser.class, updateData, whereEx);
+//				}
+//			} else {
+//				errorMsg = "您输入的用户名不存在！ ";
+//			}
+//		}
+//		return errorMsg;
 	}
 
 	@Override
@@ -207,7 +213,6 @@ public class LoginServiceImpl implements ILoginService {
 	 * 检查是否存在该用户
 	 * 
 	 * @param username
-	 * @param encPassword
 	 * @return
 	 * @throws AWebException
 	 */

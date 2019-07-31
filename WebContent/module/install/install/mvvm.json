@@ -1,0 +1,19 @@
+{
+	"views": {
+		"install": {
+			"template": "install.jsp",
+			"js": "install.js"
+		}
+	}, 
+	
+	"models": {
+	}, 
+	
+	"flows": [
+		{
+			"id": "install"
+		}
+	],
+
+	"stepBar": false
+}

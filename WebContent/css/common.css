@@ -1296,7 +1296,7 @@ a#newAlertMsgTab {
 }
 
 .tabs-left-group:HOVER{
-    background: #ecebf0 url('../img/menu/tableft.png') center no-repeat;
+    background: #ecebf0  center no-repeat;
 }
 .tabs-left-group{
     left: 0;

@@ -365,7 +365,7 @@ li.aweb-navibar-personal > a:hover {
 					<li data-id="6"><a data-href="#">es配置</a></li>
 					<li data-id="7"><a data-href="#">kafka配置</a></li>
 					<li data-id="8"><a data-href="#">hbase配置</a></li>
-					<li data-id="26354636"><a data-href="toolset">工具集</a></li>
+					<li data-id="9"><a data-href="install#install">安装</a></li>
 				</ul></li>
 
 		</ul>

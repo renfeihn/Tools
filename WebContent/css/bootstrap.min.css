@@ -4485,7 +4485,7 @@ button.btn::-moz-focus-inner, input[type=submit].btn::-moz-focus-inner {
 }
 
 .Login-bg {
-	background: url(../img/login/login-bg.png)
+	/*background: url(../img/login/login-bg.png)*/
 }
 
 .login-container {

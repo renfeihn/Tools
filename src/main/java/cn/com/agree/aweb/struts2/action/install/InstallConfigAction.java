@@ -30,7 +30,15 @@ public class InstallConfigAction extends StandardActionSupport {
     static String classesPath = InstallConfigAction.class.getClassLoader().getResource("").getPath();
 
 
+    /**
+     * 文件名
+     */
     private String fileName;
+
+    /**
+     * 文件内容 json格式
+     */
+    private String fileContent;
 
     /**
      * 功能说明：数据文件名称
@@ -881,11 +889,13 @@ public class InstallConfigAction extends StandardActionSupport {
     }
 
 
+
+
     /**
      * 查询文件内容
      * @return
      */
-    public String getFileData() {
+    public String getFileData(){
         try {
 
             JSONObject object = getFileContent(fileName);
@@ -899,6 +909,29 @@ public class InstallConfigAction extends StandardActionSupport {
         }
     }
 
+    /**
+     * 保存文件
+     * @return
+     */
+    public String saveFileData() {
+        try {
+
+            String fileNameAll = classesPath + "configData/" + fileName;
+
+            System.out.println(fileNameAll);
+            System.out.println(fileContent);
+
+            FileUtils.writeFile(fileNameAll, fileContent);
+
+            setStrutsMessage(
+                    StrutsMessage.successMessage().addParameter("result", true));
+            return SUCCESS;
+        } catch (Exception e) {
+            e.printStackTrace();
+            setStrutsMessage(StrutsMessage.errorMessage(ExceptionTypes.AWEB.AWEB99, e));
+            return ERROR;
+        }
+    }
 
     /**
      * 功能说明：获取服务器配置
@@ -908,9 +941,9 @@ public class InstallConfigAction extends StandardActionSupport {
     public String getServerConfig() {
         try {
 
-            FileUtils.delFolder(classesPath + "\\outConfig\\");
+//            FileUtils.delFolder(classesPath + "\\outConfig\\");
 
-            genJava();
+//            genJava();
 //            genZookeeper();
 //            genStorm();
 //            genMysql();
@@ -931,4 +964,47 @@ public class InstallConfigAction extends StandardActionSupport {
     }
 
 
+    /**
+     * 功能说明：获取服务器配置
+     *
+     * @return
+     */
+    public String install() {
+        try {
+
+            FileUtils.delFolder(classesPath + "\\outConfig\\");
+
+            genJava();
+            genZookeeper();
+            genStorm();
+            genMysql();
+            genEs();
+            genKafka();
+            genHbase();
+
+            setStrutsMessage(
+                    StrutsMessage.successMessage().addParameter("result", true));
+            return SUCCESS;
+        } catch (Exception e) {
+            e.printStackTrace();
+            setStrutsMessage(StrutsMessage.errorMessage(ExceptionTypes.AWEB.AWEB99, e));
+            return ERROR;
+        }
+    }
+
+    public String getFileName() {
+        return fileName;
+    }
+
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
+    }
+
+    public String getFileContent() {
+        return fileContent;
+    }
+
+    public void setFileContent(String fileContent) {
+        this.fileContent = fileContent;
+    }
 }
