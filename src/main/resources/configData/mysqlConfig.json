@@ -1,0 +1,16 @@
+{
+  "list": [
+    {
+      "id": "1",
+      "server_id": "1"
+    },
+    {
+      "id": "2",
+      "server_id": "2"
+    }
+  ],
+  "home_path": "/home/mysql",
+  "user": "mysql",
+  "port": "3306",
+  "server_id ": "11"
+}

@@ -1,0 +1,10 @@
+storm.local.hostname: ${storm_local_hostname}
+storm.zookeeper.servers:${storm_zookeeper_servers}
+storm.zookeeper.port: ${storm_zookeeper_port}
+storm.zookeeper.root: "${storm_zookeeper_root}"
+transactional.zookeeper.root: "${transactional_zookeeper_root}"
+nimbus.seeds: [${nimbus_seeds}]
+storm.local.dir: "${storm_local_dir}"
+storm.log.dir: "${storm_log_dir}"
+ui.port: ${ui_port}
+logviewer.port: ${logviewer_port}

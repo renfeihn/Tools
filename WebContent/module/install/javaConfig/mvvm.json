@@ -1,0 +1,12 @@
+{
+    "views": {
+        "javaConfig": {
+            "template": "javaConfig.jsp",
+            "js": "javaConfig.js"
+        }
+    },
+    "models": {},
+    "flows": [{
+        "id": "javaConfig"
+    }]
+}

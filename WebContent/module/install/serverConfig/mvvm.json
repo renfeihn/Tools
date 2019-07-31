@@ -1,0 +1,19 @@
+{
+	"views": {
+		"serverConfig": {
+			"template": "serverConfig.jsp",
+			"js": "serverConfig.js"
+		}
+	}, 
+	
+	"models": {
+	}, 
+	
+	"flows": [
+		{
+			"id": "serverConfig"
+		}
+	],
+
+	"stepBar": false
+}

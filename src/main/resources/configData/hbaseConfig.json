@@ -1,0 +1,58 @@
+{
+  "list": [
+    {
+      "id": "1",
+      "server_id": "1",
+      "is_master": true,
+      "hadoop_nn": true,
+      "hadoop_jn": true,
+      "hadoop_rm": true,
+      "hadoop_dn": true,
+      "hbase_ha": true,
+      "hbase_rs": true
+    },
+    {
+      "id": "2",
+      "server_id": "2",
+      "hadoop_nn": true,
+      "hadoop_jn": true,
+      "hadoop_rm": true,
+      "hadoop_dn": true,
+      "hbase_ha": true,
+      "hbase_rs": true
+    },
+    {
+      "id": "3",
+      "server_id": "3",
+      "hadoop_nn": false,
+      "hadoop_jn": false,
+      "hadoop_rm": false,
+      "hadoop_dn": true,
+      "hbase_ha": false,
+      "hbase_rs": true
+    },
+    {
+      "id": "4",
+      "server_id": "4",
+      "hadoop_nn": false,
+      "hadoop_jn": false,
+      "hadoop_rm": false,
+      "hadoop_dn": true,
+      "hbase_ha": false,
+      "hbase_rs": true
+    }
+  ],
+  "zkIds": [
+    "1",
+    "2",
+    "3",
+    "4"
+  ],
+  "hadoop_home": "/home/hadoop",
+  "fs_defaultFS": "asda",
+  "namenode_rpc_port": "9000",
+  "namenode_http_port": "50070",
+  "journalnode_share_port": "8485",
+  "yarn_resourcemanager_cluster_id": "asdayrc",
+  "yarn_resourcemanager_webapp_address":"8088"
+}

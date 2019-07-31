@@ -1,0 +1,11 @@
+cluster.name: ${cluster_name}
+node.name: ${HOSTNAME}
+path.data: ${DATA_DIR}/es
+path.logs: ${LOGS_DIR}/es
+network.host: 0.0.0.0
+http.port: ${http_port}
+transport.tcp.port: ${transport_tcp_port}
+discovery.zen.ping.unicast.hosts: [${discovery_zen_ping_unicast_hosts}]
+discovery.zen.minimum_master_nodes: 2
+bootstrap.memory_lock: false
+bootstrap.system_call_filter: false

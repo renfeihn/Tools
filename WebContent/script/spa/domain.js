@@ -97,14 +97,14 @@
              * [getSessionId 获取sessionId]
              */
             getSessionId: function () {
-                $.ajax({
-                    "method": "post",
-                    "async": false,
-                    "url": "SessionSyncAction_sessionId.do?random=" + new Date().getTime(),
-                    "success": function (data) {
-                        domain.sessionId = data.content.sessionId;
-                    }
-                });
+                // $.ajax({
+                //     "method": "post",
+                //     "async": false,
+                //     "url": "SessionSyncAction_sessionId.do?random=" + new Date().getTime(),
+                //     "success": function (data) {
+                //         domain.sessionId = data.content.sessionId;
+                //     }
+                // });
             },
             /**
 			 * [exportMenuParam 导出数据到全局共享域]

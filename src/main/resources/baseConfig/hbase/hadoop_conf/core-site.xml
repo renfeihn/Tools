@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+<configuration>
+  <property>
+    <name>fs.defaultFS</name>
+    <!--<value>hdfs://asda</value>-->
+    <value>hdfs://${fs_defaultFS}</value>
+  </property>
+  <property>
+    <name>hadoop.tmp.dir</name>
+    <value>${hadoop_home}/data/tmp/hadoop</value>
+  </property>
+  <property>
+    <name>ha.zookeeper.quorum</name>
+    <!--<value>10.7.1.37:2181,10.7.1.38:2181,10.7.1.39:2181</value>-->
+    <value>${ha_zookeeper_quorum}</value>
+  </property>
+</configuration>
+

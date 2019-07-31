@@ -22,30 +22,30 @@
 		<filter-name>initialize</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
-	<filter>
-		<filter-name>charset</filter-name>
-		<filter-class>cn.com.agree.aweb.filter.CharsetFilter</filter-class>
-		<init-param>
-			<param-name>exIncludeUrl</param-name>
-			<param-value>/ToolsetAction</param-value>
-		</init-param>
-		<init-param>
-			<param-name>encoding</param-name>
-			<param-value>UTF-8</param-value>
-		</init-param>
-		<init-param>
-			<param-name>escape-key</param-name>
-			<param-value>&amp;||&lt;||></param-value>
-		</init-param>
-		<init-param>
-			<param-name>escape-val</param-name>
-			<param-value>&amp;amp;||&amp;lt;||&amp;gt;</param-value>
-		</init-param>
-	</filter>
-	<filter-mapping>
-		<filter-name>charset</filter-name>
-		<url-pattern>*.do</url-pattern>
-	</filter-mapping>
+	<!--<filter>-->
+		<!--<filter-name>charset</filter-name>-->
+		<!--<filter-class>cn.com.agree.aweb.filter.CharsetFilter</filter-class>-->
+		<!--<init-param>-->
+			<!--<param-name>exIncludeUrl</param-name>-->
+			<!--<param-value>/ToolsetAction</param-value>-->
+		<!--</init-param>-->
+		<!--<init-param>-->
+			<!--<param-name>encoding</param-name>-->
+			<!--<param-value>UTF-8</param-value>-->
+		<!--</init-param>-->
+		<!--<init-param>-->
+			<!--<param-name>escape-key</param-name>-->
+			<!--<param-value>&amp;||&lt;||></param-value>-->
+		<!--</init-param>-->
+		<!--<init-param>-->
+			<!--<param-name>escape-val</param-name>-->
+			<!--<param-value>&amp;amp;||&amp;lt;||&amp;gt;</param-value>-->
+		<!--</init-param>-->
+	<!--</filter>-->
+	<!--<filter-mapping>-->
+		<!--<filter-name>charset</filter-name>-->
+		<!--<url-pattern>*.do</url-pattern>-->
+	<!--</filter-mapping>-->
 	<filter>
 		<filter-name>struts2</filter-name>
 		<filter-class>org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter</filter-class>

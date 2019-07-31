@@ -1,22 +1,22 @@
 $(function () {
 	onload = function (data) {
-		if(!isChrome()){
-			var r = confirm('为了更好的网站体验，建议您使用谷歌浏览器。\n当前浏览器非谷歌。\n\n点击 “确定” 前往下载谷歌浏览器；\n点击 “取消” 继续使用当前浏览器。');
-			
-			if(r){
-				// open('./navigatorDownload.html');
-				location.href = './navigatorDownload.html';
-			}
-		}else{
-			if(chromeVersionIsLow()){
-				var r = confirm('为了更好的网站体验，建议您使用新版谷歌浏览器。\n当前浏览器Chrome内核版本较低。\n\n点击 “确定” 前往下载新版谷歌浏览器；\n点击 “取消” 继续使用当前浏览器。');
-				
-				if(r){
-					// open('./navigatorDownload.html');
-					location.href = './navigatorDownload.html';
-				}
-			}
-		}
+		// if(!isChrome()){
+		// 	var r = confirm('为了更好的网站体验，建议您使用谷歌浏览器。\n当前浏览器非谷歌。\n\n点击 “确定” 前往下载谷歌浏览器；\n点击 “取消” 继续使用当前浏览器。');
+		//
+		// 	if(r){
+		// 		// open('./navigatorDownload.html');
+		// 		location.href = './navigatorDownload.html';
+		// 	}
+		// }else{
+		// 	if(chromeVersionIsLow()){
+		// 		var r = confirm('为了更好的网站体验，建议您使用新版谷歌浏览器。\n当前浏览器Chrome内核版本较低。\n\n点击 “确定” 前往下载新版谷歌浏览器；\n点击 “取消” 继续使用当前浏览器。');
+		//
+		// 		if(r){
+		// 			// open('./navigatorDownload.html');
+		// 			location.href = './navigatorDownload.html';
+		// 		}
+		// 	}
+		// }
 	}
 
 	var CODE_ENTER = 13,

@@ -1,0 +1,20 @@
+fdsfds
+vm.max_map_count=655360
+
+vm.swappiness=1
+
+* soft nofile 65536
+* hard nofile 65536
+
+*          soft    nproc     4096
+
+* soft nofile 65536
+* hard nofile 65536
+
+*          soft    nproc     4096
+
+* soft nofile 65536
+* hard nofile 65536
+
+*          soft    nproc     4096
+

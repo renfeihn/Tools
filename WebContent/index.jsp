@@ -4,10 +4,10 @@
 <%@ page import="cn.com.agree.aweb.Constants"%>
 <%@ page session="false"%>
 <%
-	HttpSession session = request.getSession(false);
+//	HttpSession session = request.getSession(false);
 	//获取权限信息集合
-	Object accessList = session
-			.getAttribute(Constants.SESSION_USER_ACCESS_LIST_MENU);
+//	Object accessList = session
+//			.getAttribute(Constants.SESSION_USER_ACCESS_LIST_MENU);
 %>
 <html>
 <head>
@@ -337,18 +337,9 @@ li.aweb-navibar-personal > a:hover {
     <link rel="stylesheet" type="text/css" href="css/compatibleIE.css"/>
     <![endif]-->
 </head>
-<body class="body-autoHeight">
-	<%--背景 Start--%>
-	<!-- <div id="imgBg" class="bg"></div> -->
-	<%--背景 End--%>
+<body class="body-autoHeight lock-Menu">
 	<%--左侧边栏 Start--%>
 	<div data-role="leftAside" id="leftAside" class="aside aside-left">
-		<!-- 菜单上方的横向黑条 -->
-		<!-- <div class="menu-search">
-		<button type="button" id="menuBtn"></button>
-			<input type="text" id="seachMenu" class="search-query" placeholder="请输入查询条件"
-				style="margin-left: 5px; border-color: #fff; color: #FFF;" />
-		</div> -->
 		<!-- logo -->
 		<div class="bank-logo-content" style="cursor: pointer;">
 			<!-- <img src="img/bank/logo-dgns.png" > -->
@@ -357,11 +348,27 @@ li.aweb-navibar-personal > a:hover {
 		<!-- logo -->
 		
 		<!-- 创建工单 -->
-		<button type="button" class="index-add-flow-btn"><i class="fa fa-search"></i>&nbsp;日志搜索</button>
+		<%--<button type="button" class="index-add-flow-btn"><i class="fa fa-search"></i>&nbsp;日志搜索</button>--%>
 		<!-- 创建工单 -->
 
 		<!-- 主菜单按钮 -->
-		<ul class="menu-firstLevel" id="bannerMenu"></ul>
+		<ul class="menu-firstLevel" id="bannerMenu">
+
+
+			<li title="个人中心" data-id="104"><a class="menu" style="background-image:url(img//menu//menu6-check.png)"></a><span>个人中心</span>
+				<ul class="menu-secondLevel">
+					<li data-id="1"><a data-href="install#serverConfig">服务器配置</a></li>
+					<li data-id="2"><a data-href="install#javaConfig">java配置</a></li>
+					<li data-id="3"><a data-href="#">Zookeeper配置</a></li>
+					<li data-id="4"><a data-href="#">storm配置</a></li>
+					<li data-id="5"><a data-href="#">mysql配置</a></li>
+					<li data-id="6"><a data-href="#">es配置</a></li>
+					<li data-id="7"><a data-href="#">kafka配置</a></li>
+					<li data-id="8"><a data-href="#">hbase配置</a></li>
+					<li data-id="26354636"><a data-href="toolset">工具集</a></li>
+				</ul></li>
+
+		</ul>
 
 		<!-- 锁定宽度 -->
 		<div class="text-center lock-width">
@@ -383,7 +390,7 @@ li.aweb-navibar-personal > a:hover {
 			</li>
 			<li class="aweb-navibar-alert"><label class="aweb-navibar-alert-num"></label><i id="showWangingBtn" href="javascript:" class="fa fa-bell" title="最新消息 [快捷键Shift+Enter]"></i></li><!-- 
 			<i id="showWangingBtn" class="fa fa-bell" title="最新消息 [快捷键Shift+Enter]"></i> -->
-			<i class="fa fa-unlock" title="锁定宽度"></i>
+			<i class="fa fa-lock" title="锁定宽度"></i>
 		</div>
 	</div>
 	<%--左侧边栏 End--%>
@@ -398,38 +405,7 @@ li.aweb-navibar-personal > a:hover {
 		<form class="form-horizontal"></form>
 	</div>
 	<%--右侧边栏 End--%>
-	<%--导航栏 Start--%>
-	<!-- <div id="banner" data-role="banner" class="navbar banner" >
-		<div class="navbar-inner" style="height:70px;">
-            <ul class="nav pull-left banner-menu">
-            	<li class="aweb-navibar-logo"></li>
-			</ul>
-			<div class="pull-left userInfo">
-				<img id="photo" src="" alt="头像">
-				<span id="username"></span>
-				<i class="fa fa-caret-down" style="margin-left: 6px;"></i>
-			</div>
-            <ul class="aweb-navibar-menu">
-                <li class="aweb-navibar-alert"><label class="aweb-navibar-alert-num"></label><a id="showWangingBtn" href="javascript:" class="hide" title="最新消息 [快捷键Shift+Enter]"></a></li>
-                <li class="aweb-navibar-personal dropdown" >
-                	<a data-toggle="dropdown" href="javascript:" title="用户管理"></a>
-                    <ul class="dropdown-menu"
-						style="top: 50px; right: 0px; left: inherit;">
-						<li><a id="username" style="cursor: default;"><i
-								class="fa fa-home"></i>&nbsp;&nbsp;</a></li>
-						<li><a id="userInfo"><i
-                                class="fa fa-newspaper-o"></i>&nbsp;基本信息</a></li>
-						<li><a id="usersafebtn" href="javascript:">&nbsp;<i
-								class="fa fa-unlock-alt"></i>&nbsp;&nbsp;修改密码
-						</a></li>
-						<li><a id="signOut" href="javascript:" title="退出登录">&nbsp;<i
-								class="fa fa-sign-out"></i>&nbsp;退出登录
-						</a></li>
-					</ul>
-				</li>
-            </ul>
-		</div>
-	</div> -->
+
 	<%--导航栏 End--%>
 	<!-- 个人信息 Start -->
 	<div id="userInfoTemp" class="modal fade hide" tabindex="-1"
@@ -516,105 +492,7 @@ li.aweb-navibar-personal > a:hover {
 		<%--显示内容 End--%>
 	</div>
 	<%--内容 End--%>
-	<%--报警信息块 start --%>
-	<div class="aweb-alert-msg" style="z-index: 100;">
-		<div id="warningBar" class="warning-bar hidden hide"></div>
-		<div id="warningDiv" class="content-warning hidden hide">
-			<div class="warning-title">
-				<p style="padding-bottom: 10px;">
-					<span class="pull-right">
-						<i id="minmaximize" class="fa fa-expand" title="全屏"></i>
-						<i id="closeWarning" class="fa fa-times-circle" title="关闭"></i>
-					</span>
-				</p>
-			</div>
-			<div class="aweb-alert-content">
-				<div class="warning-content" style="width: 100%">
-					<table id="globalAlertEvent" class="display dataTable table no-footer" style="table-layout: fixed;">
-						<thead>
-							<tr>
-								<th width="6%">序号</th>
-								<th width="6%">事件类型</th>
-								<th width="12%">应用名称</th>
-								<th width="12%">对象名称</th>
-								<th width="20%">事件摘要</th>
-								<th width="6%">事件状态</th>
-								<th width="6%">工单状态</th>
-								<th width="6%">处理状态</th>
-								<th width="6%">发生次数</th>
-								<th width="10%">首次发生时间</th>
-								<th width="10%">最后发生时间</th>					
-							</tr>
-						</thead>
-						<tbody></tbody>
-					</table>
-				</div>
-			</div>
-			<!-- 原预警 -->
-			<!-- <div class="warning-title">
-				<ul class="warning-title-tabs">
-					<li class="underLine"><a id="newAlertMsgTab" class="warning-title-tab warning-title-tab-active">最新消息</a></li>
-					<li><a id="svListTab" class="warning-title-tab">督办列表</a></li>
-				</ul>
-				<p>
-					<span class="pull-right">
-						<i id="clearEvent" class="fa fa-trash" title="清除"></i>
-						<i id="eventList" class="fa fa-reorder" title="事件列表"></i>
-						<i id="minmaximize" class="fa fa-expand" title="全屏"></i>
-						<i id="closeWarning" class="fa fa-times-circle" title="关闭"></i>
-					</span>
-				</p>
-			</div>
-			<div class="aweb-alert-content">
-				<div class="warning-content">
-					<table class="display dataTable table" id="globalAlertEvent" style="width:100%;">
-						<colgroup>
-							<col width="7%"/>
-							<col width="6%"/>
-							<col width="8%"/>
-							<col width="60%"/>
-							<col width="9%"/>
-							<col width="10%"/>
-						</colgroup>
-						<thead>
-						<tr>
-							<th>事件类型</th>
-							<th>指标类型</th>
-							<th>分组</th>
-							<th>事件信息</th>
-							<th>记录时间</th>
-							<th>操作</th>
-						</tr>
-						</thead>
-					</table>
-				</div>
-				<div class="sv-content">
-					<table class="display dataTable table" id="globalEventUrge" style="width:100%;">
-						<colgroup>
-							<col width="7%"/>
-							<col width="6%"/>
-							<col width="8%"/>
-							<col width="60%"/>
-							<col width="9%"/>
-							<col width="10%"/>
-						</colgroup>
-						<thead>
-						<tr>
-							<th>事件类型</th>
-							<th>指标类型</th>
-							<th>分组</th>
-							<th>事件信息</th>
-							<th>记录时间</th>
-							<th>操作</th>
-						</tr>
-						</thead>
-					</table>
-				</div>
-			</div> -->
-		</div>
-	</div>
-	<%--报警信息块 end --%>
-	
+
 	<%--遮罩 Start--%>
 	<div id="mask" class="mask" style="z-index: 4"></div>
 	<%--遮罩 End--%>
@@ -713,48 +591,7 @@ li.aweb-navibar-personal > a:hover {
 		<!-- 搜索obj模型End -->
 	</div>
 	<%--搜索框模板End --%>
-		<!-- 事件信息悬浮框start -->
-	<!-- <div id="eventFloat" class="event-float">
-		<i id="iconClose" class="icon-remove-circle icon-white" title="关闭"></i>
-		<img id="eventImg" class="eventimg" src="img/director.png">
-	</div>
-	<div id="eventFloatDetail" class="event-float-detail hide">
-		<i id="floatClose" class="icon-remove icon-gray" title="关闭"></i>
-		<table class="event-table" data-role="tabledetail">
-			<tr>
-				<td class="table-td1" style=""></td>
-				<td class="table-td2" style=""></td>
-			</tr>
-			<tr>
-				<td class="table-td1"></td>
-				<td class="table-td2"></td>
-			</tr>
-			<tr>
-				<td class="table-td1"></td>
-				<td class="table-td2"></td>
-			</tr>
-			<tr>
-				<td class="table-td1"></td>
-				<td class="table-td2"></td>
-			</tr>
-			<tr>
-				<td class="table-td1"></td>
-				<td class="table-td2"></td>
-			</tr>
-			<tr>
-				<td class="table-td1"></td>
-				<td class="table-td2"></td>
-			</tr>
-		</table>
-	</div> -->
-	<!-- 事件信息悬浮框end -->
-	
-	<!-- 事件详情缩略图start -->
-	 <!--  <div class="eventdetail-float">
-	    <i class="fa fa-compress" id="minflag"></i>
-		<div id="minEventDetail">点击返回事件详情</div>
-	</div>   -->
-	<!-- 事件详情缩略图end -->
+
 	<div class="coverGuide"></div>
 	<!--事件詳情模板Start -->
 	<div id="awebEventDetails"></div>
@@ -768,18 +605,7 @@ li.aweb-navibar-personal > a:hover {
 	<%--登出跳转到登陆页面 Start--%>
 	<form id="redirectForm" action="LoginAction_redirect.do" method="POST"></form>
 	<%--登出跳转到登陆页面 End--%>
-	<!-- <div class="upload-file-container">
-		<div class="upload-file-content">
-			<div class="upload-file-list">
-				<span class="file-name">正在下载</span>
-				<span class="file-process">80%</span>
-			</div>
-		</div>
-		<div class="upload-close">
-			<button type="button">收起</button>
-			<button type="button">关闭</button>
-		</div>
-	</div> -->
+
 	<a id="configUpdateA"></a>
 </body>
 </html>

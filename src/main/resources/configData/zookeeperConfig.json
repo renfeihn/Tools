@@ -1,0 +1,27 @@
+{
+  "list": [
+    {
+      "id": "1",
+      "server_id": "1"
+    },
+    {
+      "id": "2",
+      "server_id": "2"
+    },
+    {
+      "id": "3",
+      "server_id": "3"
+    },
+    {
+      "id": "4",
+      "server_id": "4"
+    },
+    {
+      "id": "5",
+      "server_id": "5"
+    }
+  ],
+  "dataDir": "/home/zookeeper/data/zk",
+  "dataLogDir": "/home/zookeeper/logs/zk",
+  "clientPort": "2181"
+}

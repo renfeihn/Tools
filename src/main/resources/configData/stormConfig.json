@@ -1,0 +1,34 @@
+{
+  "list": [
+    {
+      "id": "1",
+      "server_id": "1",
+      "exec_asda": true
+    },
+    {
+      "id": "2",
+      "server_id": "2"
+    },
+    {
+      "id": "3",
+      "server_id": "3"
+    }
+  ],
+
+  "zkIds": [
+    "1",
+    "2",
+    "3"
+  ],
+  "storm.zookeeper.port": "2181",
+  "storm.zookeeper.root": "/storm",
+  "transactional.zookeeper.root": "/transactional",
+  "storm.local.dir": "/home/storm/data/storm/storm-local",
+  "storm.log.dir": "/home/storm/logs/storm",
+  "ui.port": "8078",
+  "logviewer.port": "8079",
+
+  "topology.name":"asda",
+  "redis.sentinel.ip.port":"10.9.3.132:26379",
+  "afa.urls":"10.9.3.132:9100,10.9.3.140:9100"
+}

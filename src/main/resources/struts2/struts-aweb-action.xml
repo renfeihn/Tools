@@ -879,5 +879,22 @@
                 <param name="root">strutsMessage</param>
             </result>
         </action>
+
+
+		<!-- 工具集(包含：jdbc查询，文件服务，SQL圈) -->
+		<action name="InstallConfigAction_*" class="InstallConfigActionBean" method="{1}">
+			<result name="success" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+			<result name="error" type="json">
+				<param name="root">strutsMessage</param>
+			</result>
+			<result name="stream" type="stream">
+				<param name="contentType">application/octet-stream;charset=UTF-8</param>
+				<param name="inputName">inStream</param>
+				<param name="contentDisposition">attachment;filename=${fileName}</param>
+				<param name="bufferSize">8192</param>
+			</result>
+		</action>
 	</package>
 </struts>

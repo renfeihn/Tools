@@ -1,0 +1,27 @@
+{
+  "list": [
+    {
+      "id": "1",
+      "server_id": "1"
+    },
+    {
+      "id": "2",
+      "server_id": "2"
+    },
+    {
+      "id": "3",
+      "server_id": "3"
+    },
+    {
+      "id": "4",
+      "server_id": "4"
+    }
+  ],
+  "zkIds": [
+    "1",
+    "2",
+    "3"
+  ],
+  "listeners_prot": "9092",
+  "kafka_home": "/home/kafka"
+}

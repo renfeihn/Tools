@@ -1,0 +1,110 @@
+{
+  "topology.name": "${topology_name}",
+  "topology.max.spout.pending": 2,
+  "topology.workers": 2,
+  "topology.spout.max.batch.size": 500,
+  "worker.heap.memory.mb": 1000,
+  "topology.debug": false,
+  "topology.message.timeout.secs": 20,
+  "topology.acker.executors": 1,
+  "asda.spout.hint": 4,
+  "asda.debug": false,
+  "asda.parser.tslimit.days": 0,
+  "asda.parser.zookeeper.hosts": "${asda_parser_zookeeper_hosts}/logana",
+  "asda.spout": "kafka",
+  "asda.applog.save": true,
+  "redis": {
+    "uri": "redis-sentinel://${redis_sentinel_ip_port}?sentinelMasterId=master1"
+  },
+  "kafka": [
+    {
+      "bootstrap": "${kafka_bootstrap_ip_port}",
+      "topic": [
+        "asda",
+        "asdafiles"
+      ],
+      "startOffsetTime": false,
+      "pollSize": 20000,
+      "pollKbytes": 10240
+    },
+    {
+      "enabled": false,
+      "bootstrap": "IP:PORT",
+      "topic": "主题",
+      "startOffsetTime": false,
+      "schema": {
+        "type": "string",
+        "fields": [
+          {
+            "name": "_head_.acqtime",
+            "defaultValue": null
+          },
+          {
+            "name": "_head_.hostip",
+            "defaultValue": null
+          },
+          {
+            "name": "_head_.sourceid",
+            "defaultValue": null
+          },
+          {
+            "name": "_file_",
+            "defaultValue": null
+          },
+          {
+            "name": "__head_.logsn",
+            "defaultValue": null
+          },
+          {
+            "name": "_head_.eventsize",
+            "defaultValue": null
+          },
+          {
+            "name": "_context_",
+            "defaultValue": null
+          }
+        ]
+      }
+    }
+  ],
+  "es": {
+    "enabled": true,
+    "clusterName": "${es_clusterName}",
+    "nodes": "${es_nodes}",
+    "timeout": "30s",
+    "batchSize": -1,
+    "mergeTrans": true
+  },
+  "jdbc": {
+    "enabled": true,
+    "upsert": true,
+    "tableName": "asda.applog",
+    "batchSize": 20000,
+    "pool": {
+      "jdbcUrl": "jdbc:phoenix:${jdbc_pool_zk_ip_port};UpsertBatchSize=30000",
+      "jdbcUrl2": "jdbc:phoenix:thin:url=http://${jdbc_pool_hbase_ip}:8765;serialization=PROTOBUF",
+      "dataSource.phoenix.schema.isNamespaceMappingEnabled": "true",
+      "dataSource.phoenix.schema.mapSystemTablesToNamespace": "true",
+      "username": "",
+      "password": "",
+      "connectionTestQuery": "select 1",
+      "autoCommit": false
+    }
+  },
+  "afa": {
+    "agentType": "5",
+    "agentName": "",
+    "defaultTo": "afacsl",
+    "ioThreads": "1",
+    "timeoutMills": "20000",
+    "urls": "${afa_urls}",
+    "registerMc": "",
+    "registerTc": "",
+    "unregisterMc": "",
+    "unregisterTc": "",
+    "syncConfigIntevalSeconds": 60,
+    "serviceMc": "aweb",
+    "serviceTc": "C016"
+  }
+}
+

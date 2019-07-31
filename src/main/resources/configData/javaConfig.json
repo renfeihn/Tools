@@ -1,0 +1,15 @@
+{
+  "list": [
+    {
+      "id": "1",
+      "server_id": "1",
+      "java_path": "/opt"
+    },
+    {
+      "id": "2",
+      "server_id": "2",
+      "java_path": "/usr/local"
+    }
+  ],
+  "java_path":"/opt"
+}
