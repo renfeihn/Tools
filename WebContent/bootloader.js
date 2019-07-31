@@ -200,7 +200,7 @@
 			 */
 			lodash: 'script/spa/dataBorad/gridstack/loadsh',
 		    gridstack: 'script/spa/dataBorad/gridstack/gridstack',
-		    jqueryUi: 'script/spa/dataBorad/gridstack/jquery-ui',
+		    // jqueryUi: 'script/spa/dataBorad/gridstack/jquery-ui',
 		    GridStackUI: 'script/spa/dataBorad/gridstack/gridstack.jQueryUI',
 		    sham: 'script/spa/dataBorad/gridstack/es6-sham.min',
 		    
