@@ -1,0 +1,12 @@
+{
+    "views": {
+        "esConfig": {
+            "template": "esConfig.jsp",
+            "js": "esConfig.js"
+        }
+    },
+    "models": {},
+    "flows": [{
+        "id": "esConfig"
+    }]
+}

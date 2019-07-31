@@ -14,7 +14,7 @@ define(["jquery"], function () {
                 }, {
                     data: 'null', defaultContent: ''
                 }, {
-                    data: 'java_id', defaultContent: '-'
+                    data: 'zookeeper_id', defaultContent: '-'
                 }, {
                     data: 'ip', defaultContent: '-'
                 }, {
@@ -24,7 +24,7 @@ define(["jquery"], function () {
                 }],
                 'aoColumnDefs': [{
                     "render": function (data, type, row, meta) {
-                        if (null != row.java_id && '' != row.java_id) {
+                        if (null != row.zookeeper_id && '' != row.zookeeper_id) {
                             return '<input type="checkbox" checked />';
                         } else {
                             return '<input type="checkbox" />';
@@ -48,24 +48,26 @@ define(["jquery"], function () {
 
                 let p2 = app.common.ajaxWithAfa({
                     url: "InstallConfigAction_getFileData.do",
-                    data: {fileName: "javaConfig"}
+                    data: {fileName: "zookeeperConfig"}
                 });
 
                 Promise.all([p1, p2]).then(res => {
                     var serverObj = res[0].result;
-                    var javaObj = res[1].result;
+                    var zookeeperObj = res[1].result;
 
                     if (null != serverObj) {
                         var list = serverObj.list;
-                        if (javaObj) {
-                            $('#java_path').val(javaObj.java_path);
+                        if (zookeeperObj) {
+                            $('#dataDir').val(zookeeperObj.dataDir);
+                            $('#dataLogDir').val(zookeeperObj.dataLogDir);
+                            $('#clientPort').val(zookeeperObj.clientPort);
 
-                            let javaList = javaObj.list;
-                            if (javaList.length > 0) {
+                            let zookeeperList = zookeeperObj.list;
+                            if (zookeeperList.length > 0) {
                                 $(list).each(function (i, server) {
-                                    $(javaList).each(function (j, java) {
-                                        if (server.id == java.server_id) {
-                                            list[i].java_id = java.id;
+                                    $(zookeeperList).each(function (j, zookeeper) {
+                                        if (server.id == zookeeper.server_id) {
+                                            list[i].zookeeper_id = zookeeper.id;
                                         }
                                     });
                                 });
@@ -92,18 +94,20 @@ define(["jquery"], function () {
                     var list = [];
                     $(selectList).each(function (index, row) {
                         var obj = {};
-                        obj.id = row.java_id;
+                        obj.id = row.zookeeper_id;
                         obj.server_id = row.id;
                         list.push(obj)
                     });
                     data.list = list;
-                    data.java_path = $('#java_path').val();
+                    data.dataDir = $('#dataDir').val();
+                    data.dataLogDir = $('#dataLogDir').val();
+                    data.clientPort = $('#clientPort').val();
 
                     if (data) {
                         app.common.ajaxWithAfa({
                             url: 'InstallConfigAction_saveFileData.do',
                             data: {
-                                fileName: "javaConfig",
+                                fileName: "zookeeperConfig",
                                 fileContent: JSON.stringify(data)
                             }
                         }).done(function (d) {
@@ -124,20 +128,20 @@ define(["jquery"], function () {
                 var data = $dataTable.row($(this).parents("tr")).data();
                 var checked = $(this).is(':checked');
                 var id = data.id;
-                var java_id_temp = '';
+                var zookeeper_id_temp = '';
                 if (checked) {
-                    // 生成ID 优先查询原list中java_id是否有值，如果有取回来，没有则生成
+                    // 生成ID 优先查询原list中zookeeper_id是否有值，如果有取回来，没有则生成
                     $(listData).each(function (index, row) {
                         if (id == row.id) {
-                            java_id_temp = row.java_id;
+                            zookeeper_id_temp = row.zookeeper_id;
                         }
                     });
 
-                    if (!java_id_temp) {
-                        java_id_temp = app.global.getUniqueId();
+                    if (!zookeeper_id_temp) {
+                        zookeeper_id_temp = app.global.getUniqueId();
                     }
                 }
-                data.java_id = java_id_temp;
+                data.zookeeper_id = zookeeper_id_temp;
                 $dataTable.row($(this).parents("tr")).data(data).draw();
             });
 

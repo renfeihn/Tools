@@ -359,12 +359,12 @@ li.aweb-navibar-personal > a:hover {
 				<ul class="menu-secondLevel">
 					<li data-id="1"><a data-href="install#serverConfig">服务器配置</a></li>
 					<li data-id="2"><a data-href="install#javaConfig">java配置</a></li>
-					<li data-id="3"><a data-href="#">Zookeeper配置</a></li>
-					<li data-id="4"><a data-href="#">storm配置</a></li>
-					<li data-id="5"><a data-href="#">mysql配置</a></li>
-					<li data-id="6"><a data-href="#">es配置</a></li>
-					<li data-id="7"><a data-href="#">kafka配置</a></li>
-					<li data-id="8"><a data-href="#">hbase配置</a></li>
+					<li data-id="3"><a data-href="install#zookeeperConfig">zookeeper配置</a></li>
+					<li data-id="5"><a data-href="install#mysqlConfig">mysql配置</a></li>
+					<li data-id="6"><a data-href="install#esConfig">es配置</a></li>
+					<li data-id="7"><a data-href="install#kafkaConfig">kafka配置</a></li>
+					<li data-id="8"><a data-href="install#hbaseConfig">hbase配置</a></li>
+					<li data-id="4"><a data-href="install#stormConfig">storm配置</a></li>
 					<li data-id="9"><a data-href="install#install">安装</a></li>
 				</ul></li>
 

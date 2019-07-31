@@ -11,6 +11,5 @@
   ],
   "home_path": "/home/mysql",
   "user": "mysql",
-  "port": "3306",
-  "server_id ": "11"
+  "port": "3306"
 }

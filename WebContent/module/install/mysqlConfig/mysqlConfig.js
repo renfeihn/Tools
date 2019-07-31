@@ -14,7 +14,7 @@ define(["jquery"], function () {
                 }, {
                     data: 'null', defaultContent: ''
                 }, {
-                    data: 'java_id', defaultContent: '-'
+                    data: 'mysql_id', defaultContent: '-'
                 }, {
                     data: 'ip', defaultContent: '-'
                 }, {
@@ -24,7 +24,7 @@ define(["jquery"], function () {
                 }],
                 'aoColumnDefs': [{
                     "render": function (data, type, row, meta) {
-                        if (null != row.java_id && '' != row.java_id) {
+                        if (null != row.mysql_id && '' != row.mysql_id) {
                             return '<input type="checkbox" checked />';
                         } else {
                             return '<input type="checkbox" />';
@@ -48,24 +48,26 @@ define(["jquery"], function () {
 
                 let p2 = app.common.ajaxWithAfa({
                     url: "InstallConfigAction_getFileData.do",
-                    data: {fileName: "javaConfig"}
+                    data: {fileName: "mysqlConfig"}
                 });
 
                 Promise.all([p1, p2]).then(res => {
                     var serverObj = res[0].result;
-                    var javaObj = res[1].result;
+                    var mysqlObj = res[1].result;
 
                     if (null != serverObj) {
                         var list = serverObj.list;
-                        if (javaObj) {
-                            $('#java_path').val(javaObj.java_path);
+                        if (mysqlObj) {
+                            $('#home_path').val(mysqlObj.home_path);
+                            $('#user').val(mysqlObj.user);
+                            $('#port').val(mysqlObj.port);
 
-                            let javaList = javaObj.list;
-                            if (javaList.length > 0) {
+                            let mysqlList = mysqlObj.list;
+                            if (mysqlList.length > 0) {
                                 $(list).each(function (i, server) {
-                                    $(javaList).each(function (j, java) {
-                                        if (server.id == java.server_id) {
-                                            list[i].java_id = java.id;
+                                    $(mysqlList).each(function (j, mysql) {
+                                        if (server.id == mysql.server_id) {
+                                            list[i].mysql_id = mysql.id;
                                         }
                                     });
                                 });
@@ -86,24 +88,25 @@ define(["jquery"], function () {
              */
             $('[data-role="saveBtn"]', $el).on('click', function () {
                 var selectList = getSelectedDatas();
-                console.log(JSON.stringify(selectList));
                 var data = {};
                 if (selectList.length > 0) {
                     var list = [];
                     $(selectList).each(function (index, row) {
                         var obj = {};
-                        obj.id = row.java_id;
+                        obj.id = row.mysql_id;
                         obj.server_id = row.id;
                         list.push(obj)
                     });
                     data.list = list;
-                    data.java_path = $('#java_path').val();
+                    data.home_path = $('#home_path').val();
+                    data.user = $('#user').val();
+                    data.port = $('#port').val();
 
                     if (data) {
                         app.common.ajaxWithAfa({
                             url: 'InstallConfigAction_saveFileData.do',
                             data: {
-                                fileName: "javaConfig",
+                                fileName: "mysqlConfig",
                                 fileContent: JSON.stringify(data)
                             }
                         }).done(function (d) {
@@ -121,23 +124,32 @@ define(["jquery"], function () {
              * checkbox点击事件
              */
             $('#dataTable', $el).on('click', 'input[type="checkbox"]', function (event) {
+                // 校验mysql最多能选中两台
+                var checkList = $("input:checkbox:checked");
+                if (checkList.length > 2) {
+                    app.alert("mysql一次最多配置两台服务器！");
+                    $(this).attr("checked", false);
+                    return;
+                }
+
                 var data = $dataTable.row($(this).parents("tr")).data();
                 var checked = $(this).is(':checked');
                 var id = data.id;
-                var java_id_temp = '';
+                var mysql_id_temp = '';
+
                 if (checked) {
-                    // 生成ID 优先查询原list中java_id是否有值，如果有取回来，没有则生成
+                    // 生成ID 优先查询原list中mysql_id是否有值，如果有取回来，没有则生成
                     $(listData).each(function (index, row) {
                         if (id == row.id) {
-                            java_id_temp = row.java_id;
+                            mysql_id_temp = row.mysql_id;
                         }
                     });
 
-                    if (!java_id_temp) {
-                        java_id_temp = app.global.getUniqueId();
+                    if (!mysql_id_temp) {
+                        mysql_id_temp = app.global.getUniqueId();
                     }
                 }
-                data.java_id = java_id_temp;
+                data.mysql_id = mysql_id_temp;
                 $dataTable.row($(this).parents("tr")).data(data).draw();
             });
 

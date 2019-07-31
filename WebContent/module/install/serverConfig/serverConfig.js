@@ -35,11 +35,12 @@ define(["jquery"],function(){
 			 */
 			function loadSearchTableData() {
 				app.common.ajaxWithAfa({
-					url:'InstallConfigAction_getServerConfig.do'
+					url:'InstallConfigAction_getFileData.do',
+					data: {fileName: "serverConfig"}
 				}).done(function (data) {
 					$searchTable.clear();
 
-					var result = data.result;
+					var result = data.result.list;
 					console.log(data);
 					if(result && result.length > 0){
 						result.forEach(function (item, index) {

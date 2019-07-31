@@ -1,0 +1,12 @@
+{
+    "views": {
+        "zookeeperConfig": {
+            "template": "zookeeperConfig.jsp",
+            "js": "zookeeperConfig.js"
+        }
+    },
+    "models": {},
+    "flows": [{
+        "id": "zookeeperConfig"
+    }]
+}

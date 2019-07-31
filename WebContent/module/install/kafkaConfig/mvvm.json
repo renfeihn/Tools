@@ -1,0 +1,12 @@
+{
+    "views": {
+        "kafkaConfig": {
+            "template": "kafkaConfig.jsp",
+            "js": "kafkaConfig.js"
+        }
+    },
+    "models": {},
+    "flows": [{
+        "id": "kafkaConfig"
+    }]
+}

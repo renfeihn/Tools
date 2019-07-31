@@ -111,7 +111,7 @@
             <tr>
                 <th style="width: 0px;">server_id</th>
                 <th style="width: 80px;">选中安装</th>
-                <th style="width: 0px;">java_id</th>
+                <th style="width: 0px;">zookeeper_id</th>
                 <th>服务器IP</th>
                 <th>用户</th>
                 <th>密码</th>
@@ -125,8 +125,18 @@
         <form class="logStorage-grid form-horizontal">
 
             <div>
-                <label class="control-label required">安装目录</label>
-                <input type="text" value="" readonly="readonly" id="java_path">
+                <label class="control-label required">数据目录</label>
+                <input type="text" value="" id="dataDir">
+            </div>
+
+            <div>
+                <label class="control-label required">日志目录</label>
+                <input type="text" value="" id="dataLogDir">
+            </div>
+
+            <div>
+                <label class="control-label required">客户端端口</label>
+                <input type="text" value="" id="clientPort">
             </div>
 
         </form>

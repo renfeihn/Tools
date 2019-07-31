@@ -1,0 +1,12 @@
+{
+    "views": {
+        "mysqlConfig": {
+            "template": "mysqlConfig.jsp",
+            "js": "mysqlConfig.js"
+        }
+    },
+    "models": {},
+    "flows": [{
+        "id": "mysqlConfig"
+    }]
+}

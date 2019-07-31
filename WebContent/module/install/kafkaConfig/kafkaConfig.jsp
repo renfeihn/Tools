@@ -111,7 +111,7 @@
             <tr>
                 <th style="width: 0px;">server_id</th>
                 <th style="width: 80px;">选中安装</th>
-                <th style="width: 0px;">java_id</th>
+                <th style="width: 0px;">mysql_id</th>
                 <th>服务器IP</th>
                 <th>用户</th>
                 <th>密码</th>
@@ -125,8 +125,18 @@
         <form class="logStorage-grid form-horizontal">
 
             <div>
-                <label class="control-label required">安装目录</label>
-                <input type="text" value="" readonly="readonly" id="java_path">
+                <label class="control-label required">zk列表</label>
+                <span id="zkSpanId"></span>
+            </div>
+
+            <div>
+                <label class="control-label required">kafka端口</label>
+                <input type="text" value="" id="listeners_prot">
+            </div>
+
+            <div>
+                <label class="control-label required">kafka主目录</label>
+                <input type="text" value="" id="kafka_home">
             </div>
 
         </form>

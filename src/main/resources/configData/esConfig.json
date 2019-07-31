@@ -19,6 +19,5 @@
   ],
   "cluster_name": "asda",
   "http_port": 9200,
-  "transport_tcp_port": 9300,
-  "server_id ": "11"
+  "transport_tcp_port": 9300
 }

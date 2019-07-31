@@ -30,6 +30,8 @@ public class InstallConfigAction extends StandardActionSupport {
     static String classesPath = InstallConfigAction.class.getClassLoader().getResource("").getPath();
 
 
+    private String id;
+
     /**
      * 文件名
      */
@@ -83,10 +85,13 @@ public class InstallConfigAction extends StandardActionSupport {
      * @throws IOException
      */
     private JSONObject getFileContent(String fileName) throws IOException {
-        Resource resource = new ClassPathResource("configData/" + fileName + ".json");
+        String filePathAll = classesPath + "configData/" + fileName + ".json";
+        System.out.println("读取文件路径：" + filePathAll);
+//        Resource resource = new ClassPathResource("configData/" + fileName + ".json");
+        File file = new File(filePathAll);
 
         // 读文件到字符串
-        String data = org.apache.commons.io.FileUtils.readFileToString(resource.getFile(), "UTF-8");
+        String data = org.apache.commons.io.FileUtils.readFileToString(file, "UTF-8");
         return JSON.parseObject(data);
     }
 
@@ -445,6 +450,7 @@ public class InstallConfigAction extends StandardActionSupport {
                 JSONObject obj = list.getJSONObject(i);
                 JSONObject serverObj = this.getInfoById(DataFileName.serverConfig.name(), obj.getString("server_id"));
                 String ip = serverObj.getString("ip");
+                String server_id = ip.substring(ip.lastIndexOf(".") + 1, ip.length());
 
                 String sourcePath = classesPath + "/baseConfig/mysql_install";
                 String targetPath = classesPath + "/outConfig/" + ip + "/mysql_install/";
@@ -459,7 +465,9 @@ public class InstallConfigAction extends StandardActionSupport {
                 String content = FileUtils.readFile(my_cnf);
 
                 map.put("home_path", mysqlObj.getString("home_path"));
-                map.put("server_id", mysqlObj.get("server_id"));
+                map.put("user", mysqlObj.getString("user"));
+                map.put("port", mysqlObj.getString("port"));
+                map.put("server_id", server_id);
                 // 双活对方
                 int slave_parallel_workers = 2;
                 if (list.size() < 2 || i > 0) {
@@ -889,16 +897,36 @@ public class InstallConfigAction extends StandardActionSupport {
     }
 
 
-
-
     /**
      * 查询文件内容
+     *
      * @return
      */
-    public String getFileData(){
+    public String getFileData() {
         try {
 
             JSONObject object = getFileContent(fileName);
+//            System.out.println(JSONObject.toJSONString(object));
+            setStrutsMessage(
+                    StrutsMessage.successMessage().addParameter("result", object));
+            return SUCCESS;
+        } catch (Exception e) {
+            e.printStackTrace();
+            setStrutsMessage(StrutsMessage.errorMessage(ExceptionTypes.AWEB.AWEB99, e));
+            return ERROR;
+        }
+    }
+
+    /**
+     * 查询文件内容
+     *
+     * @return
+     */
+    public String getFileDataById() {
+        try {
+
+            JSONObject object = getInfoById(fileName, id);
+//            System.out.println(JSONObject.toJSONString(object));
             setStrutsMessage(
                     StrutsMessage.successMessage().addParameter("result", object));
             return SUCCESS;
@@ -911,12 +939,13 @@ public class InstallConfigAction extends StandardActionSupport {
 
     /**
      * 保存文件
+     *
      * @return
      */
     public String saveFileData() {
         try {
 
-            String fileNameAll = classesPath + "configData/" + fileName;
+            String fileNameAll = classesPath + "configData/" + fileName + ".json";
 
             System.out.println(fileNameAll);
             System.out.println(fileContent);
@@ -972,7 +1001,7 @@ public class InstallConfigAction extends StandardActionSupport {
     public String install() {
         try {
 
-            FileUtils.delFolder(classesPath + "\\outConfig\\");
+            FileUtils.delFolder(classesPath + "/outConfig/");
 
             genJava();
             genZookeeper();
@@ -1006,5 +1035,13 @@ public class InstallConfigAction extends StandardActionSupport {
 
     public void setFileContent(String fileContent) {
         this.fileContent = fileContent;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }

@@ -14,7 +14,7 @@ define(["jquery"], function () {
                 }, {
                     data: 'null', defaultContent: ''
                 }, {
-                    data: 'java_id', defaultContent: '-'
+                    data: 'es_id', defaultContent: '-'
                 }, {
                     data: 'ip', defaultContent: '-'
                 }, {
@@ -24,7 +24,7 @@ define(["jquery"], function () {
                 }],
                 'aoColumnDefs': [{
                     "render": function (data, type, row, meta) {
-                        if (null != row.java_id && '' != row.java_id) {
+                        if (null != row.es_id && '' != row.es_id) {
                             return '<input type="checkbox" checked />';
                         } else {
                             return '<input type="checkbox" />';
@@ -48,24 +48,26 @@ define(["jquery"], function () {
 
                 let p2 = app.common.ajaxWithAfa({
                     url: "InstallConfigAction_getFileData.do",
-                    data: {fileName: "javaConfig"}
+                    data: {fileName: "esConfig"}
                 });
 
                 Promise.all([p1, p2]).then(res => {
                     var serverObj = res[0].result;
-                    var javaObj = res[1].result;
+                    var esObj = res[1].result;
 
                     if (null != serverObj) {
                         var list = serverObj.list;
-                        if (javaObj) {
-                            $('#java_path').val(javaObj.java_path);
+                        if (esObj) {
+                            $('#cluster_name').val(esObj.cluster_name);
+                            $('#http_port').val(esObj.http_port);
+                            $('#transport_tcp_port').val(esObj.transport_tcp_port);
 
-                            let javaList = javaObj.list;
-                            if (javaList.length > 0) {
+                            let esList = esObj.list;
+                            if (esList.length > 0) {
                                 $(list).each(function (i, server) {
-                                    $(javaList).each(function (j, java) {
-                                        if (server.id == java.server_id) {
-                                            list[i].java_id = java.id;
+                                    $(esList).each(function (j, es) {
+                                        if (server.id == es.server_id) {
+                                            list[i].es_id = es.id;
                                         }
                                     });
                                 });
@@ -86,24 +88,25 @@ define(["jquery"], function () {
              */
             $('[data-role="saveBtn"]', $el).on('click', function () {
                 var selectList = getSelectedDatas();
-                console.log(JSON.stringify(selectList));
                 var data = {};
                 if (selectList.length > 0) {
                     var list = [];
                     $(selectList).each(function (index, row) {
                         var obj = {};
-                        obj.id = row.java_id;
+                        obj.id = row.es_id;
                         obj.server_id = row.id;
                         list.push(obj)
                     });
                     data.list = list;
-                    data.java_path = $('#java_path').val();
+                    data.cluster_name = $('#cluster_name').val();
+                    data.http_port = $('#http_port').val();
+                    data.transport_tcp_port = $('#transport_tcp_port').val();
 
                     if (data) {
                         app.common.ajaxWithAfa({
                             url: 'InstallConfigAction_saveFileData.do',
                             data: {
-                                fileName: "javaConfig",
+                                fileName: "esConfig",
                                 fileContent: JSON.stringify(data)
                             }
                         }).done(function (d) {
@@ -124,20 +127,21 @@ define(["jquery"], function () {
                 var data = $dataTable.row($(this).parents("tr")).data();
                 var checked = $(this).is(':checked');
                 var id = data.id;
-                var java_id_temp = '';
+                var es_id_temp = '';
+
                 if (checked) {
-                    // 生成ID 优先查询原list中java_id是否有值，如果有取回来，没有则生成
+                    // 生成ID 优先查询原list中es_id是否有值，如果有取回来，没有则生成
                     $(listData).each(function (index, row) {
                         if (id == row.id) {
-                            java_id_temp = row.java_id;
+                            es_id_temp = row.es_id;
                         }
                     });
 
-                    if (!java_id_temp) {
-                        java_id_temp = app.global.getUniqueId();
+                    if (!es_id_temp) {
+                        es_id_temp = app.global.getUniqueId();
                     }
                 }
-                data.java_id = java_id_temp;
+                data.es_id = es_id_temp;
                 $dataTable.row($(this).parents("tr")).data(data).draw();
             });
 
