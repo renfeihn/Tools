@@ -154,8 +154,7 @@ define(["jquery"], function () {
                         zkIds.push($(this).val());
                     });
 
-                    console.log(zkIds);
-
+                    // console.log(zkIds);
                     data.zkIds = zkIds;
                     data.listeners_prot = $('#listeners_prot').val();
                     data.kafka_home = $('#kafka_home').val();
