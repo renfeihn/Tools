@@ -14,7 +14,7 @@ import com.opensymphony.xwork2.ActionSupport;
 import cn.com.agree.aweb.Constants;
 import cn.com.agree.aweb.exception.AWebException;
 import cn.com.agree.aweb.exception.ExceptionTypes;
-import tc.cama.aweb.model.AwebUser;
+//import tc.cama.aweb.model.AwebUser;
 
 
 /**
@@ -67,20 +67,20 @@ public class StandardActionSupport extends ActionSupport{
 	 * 获取登陆用户名
 	 * @return
 	 */
-	public String getUserName(){
-		AwebUser user = (AwebUser) getSession().getAttribute(Constants.SESSION_USERVO);
-		String username = user.getUsername();
-		return username;
-	}
+//	public String getUserName(){
+//		AwebUser user = (AwebUser) getSession().getAttribute(Constants.SESSION_USERVO);
+//		String username = user.getUsername();
+//		return username;
+//	}
 	
-	/**
-	 * 获取登陆用户对象
-	 * @return
-	 */
-	protected AwebUser getUserVO(){
-		AwebUser user = (AwebUser) getSession().getAttribute(Constants.SESSION_USERVO);
-		return user;
-	}
+//	/**
+//	 * 获取登陆用户对象
+//	 * @return
+//	 */
+//	protected AwebUser getUserVO(){
+//		AwebUser user = (AwebUser) getSession().getAttribute(Constants.SESSION_USERVO);
+//		return user;
+//	}
 	
 	
 	/**
@@ -107,7 +107,6 @@ public class StandardActionSupport extends ActionSupport{
 	/**
 	 * 异常处理
 	 * 
-	 * @param code
 	 * @param cause
 	 * @throws Throwable 
 	 */

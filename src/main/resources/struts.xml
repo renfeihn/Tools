@@ -25,9 +25,5 @@
 
 	<!-- map -->
 	<include file="struts2/struts-aweb-action.xml"></include>
-	<include file="struts2/struts-aweb-luotong.xml"></include>
-	<include file="struts2/struts-aweb-zhangkun.xml"></include>
-	<include file="struts2/struts-aweb-fengjiao.xml"></include>
-	<include file="struts2/struts-aweb-yuanf.xml"></include>
-	
+
 </struts>

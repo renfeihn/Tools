@@ -2,7 +2,7 @@ package cn.com.agree.aweb.service.aweb;
 
 import java.text.ParseException;
 
-import tc.cama.aweb.model.AwebUser;
+//import tc.cama.aweb.model.AwebUser;
 
 public interface ILoginService {
 
@@ -39,6 +39,6 @@ public interface ILoginService {
 	 * @param id
 	 * @return
 	 */
-	AwebUser getUserById(Integer id);
+//	AwebUser getUserById(Integer id);
 	
 }

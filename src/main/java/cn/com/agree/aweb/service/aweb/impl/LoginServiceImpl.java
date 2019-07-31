@@ -18,8 +18,8 @@ import cn.com.agree.aweb.service.aweb.ILoginService;
 import cn.com.agree.aweb.session.HttpSessionContainer;
 import cn.com.agree.aweb.util.CommonUtils;
 import cn.com.agree.aweb.util.DES;
-import tc.bank.common.db.IDbService;
-import tc.cama.aweb.model.AwebUser;
+//import tc.bank.common.db.IDbService;
+//import tc.cama.aweb.model.AwebUser;
 
 public class LoginServiceImpl implements ILoginService {
 
@@ -28,15 +28,15 @@ public class LoginServiceImpl implements ILoginService {
 	 */
 	private static final Logger log = LoggerFactory.getLogger(LoginServiceImpl.class);
 
-	private IDbService dbService;
-
-	public IDbService getDbService() {
-		return dbService;
-	}
-
-	public void setDbService(IDbService dbService) {
-		this.dbService = dbService;
-	}
+//	private IDbService dbService;
+//
+//	public IDbService getDbService() {
+//		return dbService;
+//	}
+//
+//	public void setDbService(IDbService dbService) {
+//		this.dbService = dbService;
+//	}
 
 	@Override
 	public String signIn(String username, String password) throws Exception {
@@ -94,22 +94,22 @@ public class LoginServiceImpl implements ILoginService {
 	public String userIfExist(String username) throws Exception {
 		String errorMsg = "";
 		// 登陆成功时，检查该用户是否在别处登陆，若存在则登出原用户
-		AwebUser userVO;
-		if ((userVO = checkUserExist(username)) != null) {
-			if (userVO.getState().equals(Constants.DB_AGREEUSER_STATE_2)) {// 已被锁定时
-				errorMsg = "此帐号已锁定，请联系管理员解锁！ ";
-			} else {
-				// LoginEntryController.addUser(username, getRequest(),
-				// dbService);
-				HttpSession session = getRequest().getSession(true);
-				HttpSessionContainer.putSession(session);
-				updateLoginTime(userVO);
-				// AccessService.disposeUserAccess(userVO,dbOperation);
-				errorMsg = "";
-			}
-		} else {
-			errorMsg = "您输入的用户名不存在！ ";
-		}
+//		AwebUser userVO;
+//		if ((userVO = checkUserExist(username)) != null) {
+//			if (userVO.getState().equals(Constants.DB_AGREEUSER_STATE_2)) {// 已被锁定时
+//				errorMsg = "此帐号已锁定，请联系管理员解锁！ ";
+//			} else {
+//				// LoginEntryController.addUser(username, getRequest(),
+//				// dbService);
+//				HttpSession session = getRequest().getSession(true);
+//				HttpSessionContainer.putSession(session);
+//				updateLoginTime(userVO);
+//				// AccessService.disposeUserAccess(userVO,dbOperation);
+//				errorMsg = "";
+//			}
+//		} else {
+//			errorMsg = "您输入的用户名不存在！ ";
+//		}
 		return errorMsg;
 	}
 
@@ -159,35 +159,35 @@ public class LoginServiceImpl implements ILoginService {
 		JSONObject whereEx = new JSONObject();
 		JSONObject updateData = new JSONObject();
 		String errorMsg = "";
-		if (username != null && !username.equals("")) {
-			whereEx.put("username", username);
-			AwebUser vo = dbService.queryAsBean(AwebUser.class, whereEx);
-			if (vo != null) {
-				if (password != null && !username.equals("")) {
-					if (vo.getPassword().equals(DES.getEncString(oldPassword))) {
-						if (!vo.getPassword().equals(DES.getEncString(password))) {
-							updateData.put("password", DES.getEncString(password));
-							updateData.put("updateTime", CommonUtils.getDateTime());
-							if (dbService.updateWithDict(AwebUser.class, updateData, whereEx) == 0) {
-								errorMsg = "密码修改失败";
-							} else {
-								log.info("修改用户密码", username + "成功");
-							}
-						} else {
-							errorMsg = "密码不能和原密码相同！";
-						}
-					} else {
-						errorMsg = "旧密码输入有误";
-					}
-				} else {
-					errorMsg = "密码不符合格式";
-				}
-			} else {
-				errorMsg = "用户不存在！";
-			}
-		} else {
-			errorMsg = "用户不存在！";
-		}
+//		if (username != null && !username.equals("")) {
+//			whereEx.put("username", username);
+//			AwebUser vo = dbService.queryAsBean(AwebUser.class, whereEx);
+//			if (vo != null) {
+//				if (password != null && !username.equals("")) {
+//					if (vo.getPassword().equals(DES.getEncString(oldPassword))) {
+//						if (!vo.getPassword().equals(DES.getEncString(password))) {
+//							updateData.put("password", DES.getEncString(password));
+//							updateData.put("updateTime", CommonUtils.getDateTime());
+//							if (dbService.updateWithDict(AwebUser.class, updateData, whereEx) == 0) {
+//								errorMsg = "密码修改失败";
+//							} else {
+//								log.info("修改用户密码", username + "成功");
+//							}
+//						} else {
+//							errorMsg = "密码不能和原密码相同！";
+//						}
+//					} else {
+//						errorMsg = "旧密码输入有误";
+//					}
+//				} else {
+//					errorMsg = "密码不符合格式";
+//				}
+//			} else {
+//				errorMsg = "用户不存在！";
+//			}
+//		} else {
+//			errorMsg = "用户不存在！";
+//		}
 
 		log.error("修改用户密码", username + "失败");
 		return errorMsg;
@@ -202,12 +202,12 @@ public class LoginServiceImpl implements ILoginService {
 	 * @throws AWebException
 	 * @throws Throwable
 	 */
-	private AwebUser checkpassword(String username, String encPassword) throws AWebException {
-		JSONObject whereEx = new JSONObject();
-		whereEx.put("username", username);
-		whereEx.put("password", encPassword);
-		return dbService.queryAsBean(AwebUser.class, whereEx);
-	}
+//	private AwebUser checkpassword(String username, String encPassword) throws AWebException {
+//		JSONObject whereEx = new JSONObject();
+//		whereEx.put("username", username);
+//		whereEx.put("password", encPassword);
+//		return dbService.queryAsBean(AwebUser.class, whereEx);
+//	}
 
 	/**
 	 * 检查是否存在该用户
@@ -216,11 +216,11 @@ public class LoginServiceImpl implements ILoginService {
 	 * @return
 	 * @throws AWebException
 	 */
-	private AwebUser checkUserExist(String username) throws AWebException {
-		JSONObject whereEx = new JSONObject();
-		whereEx.put("username", username);
-		return dbService.queryAsBean(AwebUser.class, whereEx);
-	}
+//	private AwebUser checkUserExist(String username) throws AWebException {
+//		JSONObject whereEx = new JSONObject();
+//		whereEx.put("username", username);
+//		return dbService.queryAsBean(AwebUser.class, whereEx);
+//	}
 
 	/**
 	 * 更新最后登陆时间
@@ -228,22 +228,22 @@ public class LoginServiceImpl implements ILoginService {
 	 * @param userVO
 	 * @throws ParseException
 	 */
-	private void updateLoginTime(AwebUser userVO) throws ParseException {
-		JSONObject whereEx = new JSONObject();
-		JSONObject updateData = new JSONObject();
-		updateData.put("loginTime", CommonUtils.getDateTime());
-		updateData.put("continuousErrorNum", Constants.DB_AGREEUSER_CONTINUOUSERRORNUM_MIX);
-		whereEx.put("username", userVO.getUsername());
-		dbService.updateWithDict(AwebUser.class, updateData, whereEx);
-		// 将当前用户名存入session
-		getSession().setAttribute(Constants.SESSION_USERNAME, userVO.getUsername());
-		getSession().setAttribute(Constants.SESSION_USERVO, userVO);
-	}
+//	private void updateLoginTime(AwebUser userVO) throws ParseException {
+//		JSONObject whereEx = new JSONObject();
+//		JSONObject updateData = new JSONObject();
+//		updateData.put("loginTime", CommonUtils.getDateTime());
+//		updateData.put("continuousErrorNum", Constants.DB_AGREEUSER_CONTINUOUSERRORNUM_MIX);
+//		whereEx.put("username", userVO.getUsername());
+//		dbService.updateWithDict(AwebUser.class, updateData, whereEx);
+//		// 将当前用户名存入session
+//		getSession().setAttribute(Constants.SESSION_USERNAME, userVO.getUsername());
+//		getSession().setAttribute(Constants.SESSION_USERVO, userVO);
+//	}
 
-	@Override
-	public AwebUser getUserById(Integer id) {
-		JSONObject whereEx = new JSONObject(1);
-		whereEx.put("id", id);
-		return dbService.queryAsBean(AwebUser.class, whereEx);
-	}
+//	@Override
+//	public AwebUser getUserById(Integer id) {
+//		JSONObject whereEx = new JSONObject(1);
+//		whereEx.put("id", id);
+//		return dbService.queryAsBean(AwebUser.class, whereEx);
+//	}
 }
