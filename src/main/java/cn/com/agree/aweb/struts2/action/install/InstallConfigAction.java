@@ -372,31 +372,32 @@ public class InstallConfigAction extends StandardActionSupport {
 
                 map.put("storm_local_hostname", "\"" + ip + "\"");
                 map.put("storm_zookeeper_servers", storm_zookeeper_servers.toString());
-                map.put("storm_zookeeper_port", stormObj.get("storm.zookeeper.port"));
-                map.put("storm_zookeeper_root", stormObj.get("storm.zookeeper.root"));
-                map.put("transactional_zookeeper_root", stormObj.get("transactional.zookeeper.root"));
+                map.put("storm_zookeeper_port", zkObj.get("clientPort"));
+                map.put("storm_zookeeper_root", stormObj.get("storm.zookeeper_root"));
+                map.put("transactional_zookeeper_root", stormObj.get("transactional_zookeeper_root"));
                 map.put("nimbus_seeds", nimbus_seeds);
 
-                map.put("storm_local_dir", stormObj.get("storm.local.dir"));
-                map.put("storm_log_dir", stormObj.get("storm.log.dir"));
-                map.put("ui_port", stormObj.get("ui.port"));
-                map.put("logviewer_port", stormObj.get("logviewer.port"));
+//                map.put("storm_local_dir", stormObj.get("storm_local_dir"));
+//                map.put("storm_log_dir", stormObj.get("storm_log_dir"));
+                map.put("storm_home", stormObj.get("storm_home"));
+                map.put("ui_port", stormObj.get("ui_port"));
+                map.put("logviewer_port", stormObj.get("logviewer_port"));
 
                 content = this.processTemplate(content, map);
 //                System.out.println("content: " + content);
                 FileUtils.writeFile(storm_yaml, content);
 
 
-                // TODO 回头补 需要安装拓扑 拓扑配置文件 asda.json
+                // 需要安装拓扑 拓扑配置文件 asda.json
                 String asda_json = targetPath + "asda.json";
 
                 if (exec_asda) {
                     // 修改拓扑配置文件 asda.json
                     content = FileUtils.readFile(asda_json);
 
-                    map.put("topology_name", serverObj.get("topology.name"));
+                    map.put("topology_name", serverObj.get("topology_name"));
                     map.put("asda_parser_zookeeper_hosts", asda_parser_zookeeper_hosts.toString());
-                    map.put("redis_sentinel_ip_port", stormObj.get("redis.sentinel.ip.port"));
+                    map.put("redis_sentinel_ip_port", stormObj.get("redis_sentinel_ip_port"));
                     map.put("kafka_bootstrap_ip_port", kafka_bootstrap_ip_port.toString());
 
                     map.put("es_clusterName", es_clusterName);
@@ -406,10 +407,7 @@ public class InstallConfigAction extends StandardActionSupport {
                     map.put("jdbc_pool_zk_ip_port", jdbc_pool_zk_ip_port.toString());
                     map.put("jdbc_pool_hbase_ip", jdbc_pool_hbase_ip.toString());
 
-                    map.put("afa_urls", stormObj.get("afa.urls"));
-                    map.put("storm_log_dir", stormObj.get("storm.log.dir"));
-                    map.put("ui_port", stormObj.get("ui.port"));
-                    map.put("logviewer_port", stormObj.get("logviewer.port"));
+                    map.put("afa_urls", stormObj.get("afa_urls"));
 
                     content = this.processTemplate(content, map);
                     System.out.println("content: " + content);

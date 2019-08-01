@@ -84,35 +84,39 @@ define(["jquery"], function () {
                                 });
                             }
 
-                            // kafka 配置中关联的zk
-                            let zkIds = kafkaObj.zkIds;
-                            var html = '';
-                            if (zkList) {
-                                $(zkList).each(function (i, zk) {
-                                    var checked = false;
+
+                        }
+
+                        // kafka 配置中关联的zk
+                        let zkIds = kafkaObj.zkIds;
+                        var html = '';
+                        if (zkList) {
+                            $(zkList).each(function (i, zk) {
+                                var checked = false;
+                                if(zkIds){
                                     $(zkIds).each(function (j, id) {
                                         if (zk.id == id) {
                                             checked = true;
                                         }
                                     });
-                                    var append = '';
+                                }
+                                var append = '';
 
-                                    // 获取zk的服务器IP
-                                    if (checked) {
-                                        append = '<input name="zk" type="checkbox" value="' + zk.id + '" checked/>';
-                                    } else {
-                                        append = '<input name="zk" type="checkbox" value="' + zk.id + '" />';
-                                    }
+                                // 获取zk的服务器IP
+                                if (checked) {
+                                    append = '<input name="zk" type="checkbox" value="' + zk.id + '" checked/>';
+                                } else {
+                                    append = '<input name="zk" type="checkbox" value="' + zk.id + '" />';
+                                }
 
-                                    let server = getObjById(list, zk.id);
-                                    append = append + '' + server.ip;
+                                let server = getObjById(list, zk.id);
+                                append = append + '' + server.ip;
 
-                                    html = html + append;
-                                });
-                            }
-
-                            $('#zkSpanId').html(html);
+                                html = html + append;
+                            });
                         }
+
+                        $('#zkSpanId').html(html);
 
                         $dataTable.clear();
                         $dataTable.rows.add(list).draw();
