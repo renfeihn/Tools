@@ -126,17 +126,20 @@
 
             <div>
                 <label class="control-label required">mysql主目录</label>
-                <input type="text" value="" id="home_path">
+                <input type="text" value="" id="home_path" />
+                推荐：/home/mysql
             </div>
 
             <div>
                 <label class="control-label required">mysql用户</label>
-                <input type="text" value="" id="user">
+                <input type="text" value="" id="user" />
+                推荐：mysql
             </div>
 
             <div>
                 <label class="control-label required">端口</label>
-                <input type="text" value="" id="port">
+                <input type="text" value="" id="port" />
+                推荐：3306
             </div>
 
         </form>

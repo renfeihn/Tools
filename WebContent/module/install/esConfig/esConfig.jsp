@@ -126,17 +126,20 @@
 
             <div>
                 <label class="control-label required">簇名称</label>
-                <input type="text" value="" id="cluster_name">
+                <input type="text" value="" id="cluster_name" />
+                推荐：asda
             </div>
 
             <div>
                 <label class="control-label required">http端口</label>
-                <input type="text" value="" id="http_port">
+                <input type="text" value="" id="http_port" />
+                推荐：9200
             </div>
 
             <div>
                 <label class="control-label required">tcp端口</label>
-                <input type="text" value="" id="transport_tcp_port">
+                <input type="text" value="" id="transport_tcp_port" />
+                推荐：9300
             </div>
 
         </form>

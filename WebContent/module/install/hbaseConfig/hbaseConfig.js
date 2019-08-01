@@ -2,11 +2,11 @@ define(["jquery"], function () {
     return {
         load: function ($el, scope, handler) {
 
-
             var listData;
 
             var $dataTable = $('#dataTable', $el).DataTable({
                 "pagingType": 'full_numbers',
+                "paging": false, // 禁止分页
                 'searching': true,
                 'bSort': false,
                 'columns': [{
@@ -151,7 +151,7 @@ define(["jquery"], function () {
 
                             let hbaseList = hbaseObj.list;
                             // console.log(JSON.stringify(hbaseList));
-                            if (hbaseList.length > 0) {
+                            if (hbaseList) {
                                 $(list).each(function (i, server) {
                                     $(hbaseList).each(function (j, hbase) {
                                         if (server.id == hbase.server_id) {
@@ -194,7 +194,7 @@ define(["jquery"], function () {
                                     append = '<input name="zk" type="checkbox" value="' + zk.id + '" />';
                                 }
 
-                                let server = getObjById(list, zk.id);
+                                let server = getObjById(list, zk.server_id);
                                 append = append + '' + server.ip;
 
                                 html = html + append;
@@ -346,21 +346,22 @@ define(["jquery"], function () {
                     data.yarn_resourcemanager_cluster_id = $('#yarn_resourcemanager_cluster_id').val();
                     data.yarn_resourcemanager_webapp_address = $('#yarn_resourcemanager_webapp_address').val();
 
-                    console.log('hbase: ' + JSON.stringify(data));
-                    // if (data) {
-                    //     app.common.ajaxWithAfa({
-                    //         url: 'InstallConfigAction_saveFileData.do',
-                    //         data: {
-                    //             fileName: "hbaseConfig",
-                    //             fileContent: JSON.stringify(data)
-                    //         }
-                    //     }).done(function (d) {
-                    //         let result = d.result;
-                    //         if (result) {
-                    //             loadData();
-                    //         }
-                    //     });
-                    // }
+                    // console.log('hbase: ' + JSON.stringify(data));
+                    if (data) {
+                        app.common.ajaxWithAfa({
+                            url: 'InstallConfigAction_saveFileData.do',
+                            data: {
+                                fileName: "hbaseConfig",
+                                fileContent: JSON.stringify(data)
+                            }
+                        }).done(function (d) {
+                            let result = d.result;
+                            if (result) {
+                                app.alert('保存成功！');
+                                loadData();
+                            }
+                        });
+                    }
                 }
             });
 

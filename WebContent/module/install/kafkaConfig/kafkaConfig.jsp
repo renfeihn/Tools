@@ -128,15 +128,15 @@
                 <label class="control-label required">zk列表</label>
                 <span id="kafkaZkId"></span>
             </div>
-
-            <div>
-                <label class="control-label required">kafka端口</label>
-                <input type="text" value="" id="listeners_prot">
-            </div>
-
             <div>
                 <label class="control-label required">kafka主目录</label>
                 <input type="text" value="" id="kafka_home">
+                推荐：/home/kafka
+            </div>
+            <div>
+                <label class="control-label required">kafka端口</label>
+                <input type="text" value="" id="listeners_prot">
+                推荐：9092
             </div>
 
         </form>

@@ -2,11 +2,11 @@ define(["jquery"], function () {
     return {
         load: function ($el, scope, handler) {
 
-
             var listData;
 
             var $dataTable = $('#dataTable', $el).DataTable({
                 "pagingType": 'full_numbers',
+                "paging": false, // 禁止分页
                 'searching': true,
                 'bSort': false,
                 'columns': [{
@@ -63,7 +63,7 @@ define(["jquery"], function () {
                             $('#clientPort').val(zookeeperObj.clientPort);
 
                             let zookeeperList = zookeeperObj.list;
-                            if (zookeeperList.length > 0) {
+                            if (zookeeperList) {
                                 $(list).each(function (i, server) {
                                     $(zookeeperList).each(function (j, zookeeper) {
                                         if (server.id == zookeeper.server_id) {
@@ -113,6 +113,7 @@ define(["jquery"], function () {
                         }).done(function (d) {
                             let result = d.result;
                             if (result) {
+                                app.alert('保存成功！');
                                 loadData();
                             }
                         });

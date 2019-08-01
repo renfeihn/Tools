@@ -125,18 +125,21 @@
         <form class="logStorage-grid form-horizontal">
 
             <div>
-                <label class="control-label required">数据目录</label>
-                <input type="text" value="" id="dataDir">
+                <label class="control-label required">数据路径</label>
+                <input type="text" value="" id="dataDir" placeholder="请输入数据路径"/>
+                推荐：/home/zookeeper/data/zk
             </div>
 
             <div>
-                <label class="control-label required">日志目录</label>
-                <input type="text" value="" id="dataLogDir">
+                <label class="control-label required">日志路径</label>
+                <input type="text" value="" id="dataLogDir" placeholder="请输入日志路径"/>
+                推荐：/home/zookeeper/logs/zk
             </div>
 
             <div>
                 <label class="control-label required">客户端端口</label>
-                <input type="text" value="" id="clientPort">
+                <input type="text" value="" id="clientPort" placeholder="请输入客户端端口"/>
+                推荐：2181
             </div>
 
         </form>

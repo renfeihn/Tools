@@ -3,13 +3,18 @@ package cn.com.agree.aweb.struts2.action.install;
 import cn.com.agree.aweb.exception.ExceptionTypes;
 import cn.com.agree.aweb.struts2.action.support.StandardActionSupport;
 import cn.com.agree.aweb.struts2.action.support.StrutsMessage;
+import cn.com.agree.aweb.struts2.action.system.NoPasswdLogAction;
+import cn.com.agree.logging.Logger;
+import cn.com.agree.logging.LoggerFactory;
 import com.aim.alibaba.fastjson.JSON;
 import com.aim.alibaba.fastjson.JSONArray;
 import com.aim.alibaba.fastjson.JSONObject;
+import org.apache.commons.io.FileUtils;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -22,6 +27,8 @@ import java.util.regex.Pattern;
 @Controller("InstallConfigActionBean")
 @Scope("prototype")
 public class InstallConfigAction extends StandardActionSupport {
+
+    private Logger logger = LoggerFactory.getLogger(InstallConfigAction.class);
 
 
     static String classesPath = InstallConfigAction.class.getClassLoader().getResource("").getPath();
@@ -88,8 +95,13 @@ public class InstallConfigAction extends StandardActionSupport {
         File file = new File(filePathAll);
 
         // 读文件到字符串
-        String data = org.apache.commons.io.FileUtils.readFileToString(file, "UTF-8");
-        return JSON.parseObject(data);
+        try {
+            String data = FileUtils.readFileToString(file, "UTF-8");
+            return JSON.parseObject(data);
+        } catch (FileNotFoundException e) {
+            logger.error(e.getMessage());
+        }
+        return new JSONObject();
     }
 
     /**
@@ -151,16 +163,16 @@ public class InstallConfigAction extends StandardActionSupport {
                 String sourcePath = classesPath + "/baseConfig/java";
                 String targetPath = classesPath + "/outConfig/" + ip + "/java/";
 
-                FileUtils.copyDirectiory(sourcePath, targetPath);
+                FileCommon.copyDirectiory(sourcePath, targetPath);
 
                 //修改文件
                 String install_jdk8_path = targetPath + "install_jdk8.sh";
-                String content = FileUtils.readFile(install_jdk8_path);
-                Map<String,Object> map = new HashMap<String,Object>();
+                String content = FileCommon.readFile(install_jdk8_path);
+                Map<String, Object> map = new HashMap<String, Object>();
                 map.put("javaPath", javaPath);
                 content = processTemplate(content, map);
 //                System.out.println("content: " + content);
-                FileUtils.writeFile(install_jdk8_path, content);
+                FileCommon.writeFile(install_jdk8_path, content);
             }
         }
 
@@ -206,20 +218,20 @@ public class InstallConfigAction extends StandardActionSupport {
                 String sourcePath = classesPath + "/baseConfig/zookeeper";
                 String targetPath = classesPath + "/outConfig/" + ip + "/zookeeper/";
 
-                FileUtils.copyDirectiory(sourcePath, targetPath);
+                FileCommon.copyDirectiory(sourcePath, targetPath);
 
                 //修改 install_zk.sh
                 String install_zookeeper = targetPath + "install_zk.sh";
-                String content = FileUtils.readFile(install_zookeeper);
-                Map<String,Object> map = new HashMap<String,Object>();
+                String content = FileCommon.readFile(install_zookeeper);
+                Map<String, Object> map = new HashMap<String, Object>();
                 map.put("serverId", i + 1);
                 content = processTemplate(content, map);
-                FileUtils.writeFile(install_zookeeper, content);
+                FileCommon.writeFile(install_zookeeper, content);
 
                 // 修改 zoo.cfg
                 String zoo_cfg = targetPath + "zoo.cfg";
 
-                content = FileUtils.readFile(zoo_cfg);
+                content = FileCommon.readFile(zoo_cfg);
                 map.put("dataDir", zkObj.get("dataDir"));
                 map.put("dataLogDir", zkObj.get("dataLogDir"));
                 map.put("clientPort", zkObj.get("clientPort"));
@@ -227,7 +239,7 @@ public class InstallConfigAction extends StandardActionSupport {
                 // 文件追加内容
                 content = content + "\n" + appendStr;
 //                System.out.println("content: " + content);
-                FileUtils.writeFile(zoo_cfg, content);
+                FileCommon.writeFile(zoo_cfg, content);
             }
         }
 
@@ -353,22 +365,22 @@ public class InstallConfigAction extends StandardActionSupport {
                 String sourcePath = classesPath + "/baseConfig/storm";
                 String targetPath = classesPath + "/outConfig/" + ip + "/storm/";
 
-                FileUtils.copyDirectiory(sourcePath, targetPath);
+                FileCommon.copyDirectiory(sourcePath, targetPath);
 
                 //修改 install_storm.sh
                 String install_zookeeper = targetPath + "install_storm.sh";
-                String content = FileUtils.readFile(install_zookeeper);
-                Map<String,Object> map = new HashMap<String,Object>();
+                String content = FileCommon.readFile(install_zookeeper);
+                Map<String, Object> map = new HashMap<String, Object>();
                 // 是否安装拓扑
                 Boolean exec_asda = obj.getBooleanValue("exec_asda");
                 map.put("exec_asda", exec_asda);
                 content = processTemplate(content, map);
-                FileUtils.writeFile(install_zookeeper, content);
+                FileCommon.writeFile(install_zookeeper, content);
 
                 // 修改 storm.yaml
                 String storm_yaml = targetPath + "storm.yaml";
 
-                content = FileUtils.readFile(storm_yaml);
+                content = FileCommon.readFile(storm_yaml);
 
                 map.put("storm_local_hostname", "\"" + ip + "\"");
                 map.put("storm_zookeeper_servers", storm_zookeeper_servers.toString());
@@ -385,7 +397,7 @@ public class InstallConfigAction extends StandardActionSupport {
 
                 content = processTemplate(content, map);
 //                System.out.println("content: " + content);
-                FileUtils.writeFile(storm_yaml, content);
+                FileCommon.writeFile(storm_yaml, content);
 
 
                 // 需要安装拓扑 拓扑配置文件 asda.json
@@ -393,7 +405,7 @@ public class InstallConfigAction extends StandardActionSupport {
 
                 if (exec_asda) {
                     // 修改拓扑配置文件 asda.json
-                    content = FileUtils.readFile(asda_json);
+                    content = FileCommon.readFile(asda_json);
 
                     map.put("topology_name", serverObj.get("topology_name"));
                     map.put("asda_parser_zookeeper_hosts", asda_parser_zookeeper_hosts.toString());
@@ -411,7 +423,7 @@ public class InstallConfigAction extends StandardActionSupport {
 
                     content = processTemplate(content, map);
 //                    System.out.println("content: " + content);
-                    FileUtils.writeFile(asda_json, content);
+                    FileCommon.writeFile(asda_json, content);
 
                 } else {
                     // 不安装拓扑的机器上删除 asda.json
@@ -450,14 +462,14 @@ public class InstallConfigAction extends StandardActionSupport {
                 String sourcePath = classesPath + "/baseConfig/mysql_install";
                 String targetPath = classesPath + "/outConfig/" + ip + "/mysql_install/";
 
-                FileUtils.copyDirectiory(sourcePath, targetPath);
+                FileCommon.copyDirectiory(sourcePath, targetPath);
 
                 //修改 install_storm.sh
-                Map<String,Object> map = new HashMap<String,Object>();
+                Map<String, Object> map = new HashMap<String, Object>();
                 // 修改 my.cnf
                 String my_cnf = targetPath + "my.cnf";
 
-                String content = FileUtils.readFile(my_cnf);
+                String content = FileCommon.readFile(my_cnf);
 
                 map.put("home_path", mysqlObj.getString("home_path"));
                 map.put("user", mysqlObj.getString("user"));
@@ -476,7 +488,7 @@ public class InstallConfigAction extends StandardActionSupport {
 
                 content = processTemplate(content, map);
 //                System.out.println("content: " + content);
-                FileUtils.writeFile(my_cnf, content);
+                FileCommon.writeFile(my_cnf, content);
 
             }
         }
@@ -525,13 +537,13 @@ public class InstallConfigAction extends StandardActionSupport {
                 String sourcePath = classesPath + "/baseConfig/es";
                 String targetPath = classesPath + "/outConfig/" + ip + "/es/";
 
-                FileUtils.copyDirectiory(sourcePath, targetPath);
+                FileCommon.copyDirectiory(sourcePath, targetPath);
 
-                Map<String,Object> map = new HashMap<String,Object>();
+                Map<String, Object> map = new HashMap<String, Object>();
                 // 修改 elasticsearch.yml
                 String elasticsearch_yml = targetPath + "elasticsearch.yml";
 
-                String content = FileUtils.readFile(elasticsearch_yml);
+                String content = FileCommon.readFile(elasticsearch_yml);
 
                 map.put("cluster_name", esObj.getString("cluster_name"));
                 map.put("http_port", esObj.get("http_port"));
@@ -541,7 +553,7 @@ public class InstallConfigAction extends StandardActionSupport {
 
                 content = processTemplate(content, map);
 //                System.out.println("content: " + content);
-                FileUtils.writeFile(elasticsearch_yml, content);
+                FileCommon.writeFile(elasticsearch_yml, content);
 
             }
         }
@@ -588,13 +600,13 @@ public class InstallConfigAction extends StandardActionSupport {
                 String sourcePath = classesPath + "/baseConfig/kafka";
                 String targetPath = classesPath + "/outConfig/" + ip + "/kafka/";
 
-                FileUtils.copyDirectiory(sourcePath, targetPath);
+                FileCommon.copyDirectiory(sourcePath, targetPath);
 
-                Map<String,Object> map = new HashMap<String,Object>();
+                Map<String, Object> map = new HashMap<String, Object>();
                 // 修改 server.properties
                 String server_properties = targetPath + "server.properties";
 
-                String content = FileUtils.readFile(server_properties);
+                String content = FileCommon.readFile(server_properties);
 
                 map.put("broker_id", i + 1);
                 map.put("ip", ip);
@@ -605,7 +617,7 @@ public class InstallConfigAction extends StandardActionSupport {
 
                 content = processTemplate(content, map);
 //                System.out.println("content: " + content);
-                FileUtils.writeFile(server_properties, content);
+                FileCommon.writeFile(server_properties, content);
 
             }
         }
@@ -771,13 +783,13 @@ public class InstallConfigAction extends StandardActionSupport {
                 }
 
                 // 只生成主节点文件，其它节点通过copy模式下发
-                FileUtils.copyDirectiory(sourcePath, targetPath);
+                FileCommon.copyDirectiory(sourcePath, targetPath);
 
-                Map<String, Object> map = new HashMap<String,Object>();
+                Map<String, Object> map = new HashMap<String, Object>();
                 // 修改 hdoop_conf/core-site.xml start -----------------------
                 String core_site = targetPath + "hadoop_conf/core-site.xml";
                 // 获取文件内容
-                String content = FileUtils.readFile(core_site);
+                String content = FileCommon.readFile(core_site);
 
                 map.put("fs_defaultFS", hbaseObj.get("fs_defaultFS"));
                 map.put("hadoop_home", hbaseObj.get("hadoop_home"));
@@ -786,13 +798,13 @@ public class InstallConfigAction extends StandardActionSupport {
                 content = processTemplate(content, map);
 //                System.out.println("core_site: " + content);
                 // 修改完内容 写入文件
-                FileUtils.writeFile(core_site, content);
+                FileCommon.writeFile(core_site, content);
                 // 修改 hdoop_conf/core-site.xml  end -----------------------
 
                 // 修改 hdoop_conf/hdfs-site.xml start -----------------------
                 String hdfs_site = targetPath + "hadoop_conf/hdfs-site.xml";
                 // 获取文件内容
-                content = FileUtils.readFile(hdfs_site);
+                content = FileCommon.readFile(hdfs_site);
 
                 map.put("fs_defaultFS", hbaseObj.get("fs_defaultFS"));
                 map.put("hadoop_home", hbaseObj.get("hadoop_home"));
@@ -803,7 +815,7 @@ public class InstallConfigAction extends StandardActionSupport {
                 content = processTemplate(content, map);
 //                System.out.println("hdfs_site: " + content);
                 // 修改完内容 写入文件
-                FileUtils.writeFile(hdfs_site, content);
+                FileCommon.writeFile(hdfs_site, content);
                 // 修改 hdoop_conf/hdfs-site.xml  end -----------------------
 
 
@@ -811,7 +823,7 @@ public class InstallConfigAction extends StandardActionSupport {
                 map.clear();
                 String yarn_site = targetPath + "hadoop_conf/yarn-site.xml";
                 // 获取文件内容
-                content = FileUtils.readFile(yarn_site);
+                content = FileCommon.readFile(yarn_site);
 
                 map.put("yarn_resourcemanager_cluster_id", hbaseObj.get("yarn_resourcemanager_cluster_id"));
 
@@ -824,7 +836,7 @@ public class InstallConfigAction extends StandardActionSupport {
                 content = processTemplate(content, map);
 //                System.out.println("yarn_site: " + content);
                 // 修改完内容 写入文件
-                FileUtils.writeFile(yarn_site, content);
+                FileCommon.writeFile(yarn_site, content);
                 // 修改 hdoop_conf/yarn-site.xml  end -----------------------
 
 
@@ -832,13 +844,13 @@ public class InstallConfigAction extends StandardActionSupport {
                 map.clear();
                 String slaves = targetPath + "hadoop_conf/slaves";
                 // 获取文件内容
-                content = FileUtils.readFile(slaves);
+                content = FileCommon.readFile(slaves);
                 map.put("slaves_ip", slaves_ip.toString());
 
                 content = processTemplate(content, map);
 //                System.out.println("slaves: " + content);
                 // 修改完内容 写入文件
-                FileUtils.writeFile(slaves, content);
+                FileCommon.writeFile(slaves, content);
                 // 修改 hdoop_conf/slaves  end -----------------------
 
 
@@ -846,7 +858,7 @@ public class InstallConfigAction extends StandardActionSupport {
                 map.clear();
                 String hbase_site = targetPath + "hbase_conf/hbase-site.xml";
                 // 获取文件内容
-                content = FileUtils.readFile(hbase_site);
+                content = FileCommon.readFile(hbase_site);
                 map.put("fs_defaultFS", hbaseObj.get("fs_defaultFS"));
                 map.put("hadoop_home", hbaseObj.get("hadoop_home"));
                 map.put("hbase_zookeeper_quorum", hbase_zookeeper_quorum.toString());
@@ -855,7 +867,7 @@ public class InstallConfigAction extends StandardActionSupport {
                 content = processTemplate(content, map);
 //                System.out.println("hbase_site: " + content);
                 // 修改完内容 写入文件
-                FileUtils.writeFile(hbase_site, content);
+                FileCommon.writeFile(hbase_site, content);
                 // 修改 hbase_conf/hbase-site.xml  end -----------------------
 
 
@@ -863,13 +875,13 @@ public class InstallConfigAction extends StandardActionSupport {
                 map.clear();
                 String regionservers = targetPath + "hbase_conf/regionservers";
                 // 获取文件内容
-                content = FileUtils.readFile(regionservers);
+                content = FileCommon.readFile(regionservers);
                 map.put("regionservers", regionservers_ip.toString());
 
                 content = processTemplate(content, map);
 //                System.out.println("regionservers: " + content);
                 // 修改完内容 写入文件
-                FileUtils.writeFile(regionservers, content);
+                FileCommon.writeFile(regionservers, content);
                 // 修改 hbase_conf/regionservers  end -----------------------
 
 
@@ -877,13 +889,13 @@ public class InstallConfigAction extends StandardActionSupport {
                 map.clear();
                 String backup_masters = targetPath + "hbase_conf/backup-masters";
                 // 获取文件内容
-                content = FileUtils.readFile(backup_masters);
+                content = FileCommon.readFile(backup_masters);
                 map.put("masters_ip", masters_ip.toString());
 
                 content = processTemplate(content, map);
 //                System.out.println("backup_masters: " + content);
                 // 修改完内容 写入文件
-                FileUtils.writeFile(backup_masters, content);
+                FileCommon.writeFile(backup_masters, content);
                 // 修改 hbase_conf/regionservers  end -----------------------
 
             }
@@ -945,7 +957,7 @@ public class InstallConfigAction extends StandardActionSupport {
 //            System.out.println(fileNameAll);
 //            System.out.println(fileContent);
 
-            FileUtils.writeFile(fileNameAll, fileContent);
+            FileCommon.writeFile(fileNameAll, fileContent);
 
             setStrutsMessage(
                     StrutsMessage.successMessage().addParameter("result", true));
@@ -996,7 +1008,7 @@ public class InstallConfigAction extends StandardActionSupport {
 //            System.out.println(serverObj.toString());
 
             String fileNameAll = classesPath + "configData/" + DataFileName.serverConfig + ".json";
-            FileUtils.writeFile(fileNameAll, serverObj.toString());
+            FileCommon.writeFile(fileNameAll, serverObj.toString());
 
             setStrutsMessage(
                     StrutsMessage.successMessage().addParameter("result", true));
@@ -1031,7 +1043,7 @@ public class InstallConfigAction extends StandardActionSupport {
 //            System.out.println(serverObj.toString());
 
             String fileNameAll = classesPath + "configData/" + DataFileName.serverConfig + ".json";
-            FileUtils.writeFile(fileNameAll, serverObj.toString());
+            FileCommon.writeFile(fileNameAll, serverObj.toString());
 
             setStrutsMessage(
                     StrutsMessage.successMessage().addParameter("result", true));
@@ -1051,7 +1063,7 @@ public class InstallConfigAction extends StandardActionSupport {
     public String install() {
         try {
 
-            FileUtils.delFolder(classesPath + "/outConfig/");
+            FileCommon.delFolder(classesPath + "/outConfig/");
 
             genJava();
             genZookeeper();
@@ -1071,12 +1083,20 @@ public class InstallConfigAction extends StandardActionSupport {
         }
     }
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
     public String getFileName() {
         return fileName;
     }
 
     public void setFileName(String fileName) {
-        fileName = fileName;
+        this.fileName = fileName;
     }
 
     public String getFileContent() {
@@ -1084,14 +1104,6 @@ public class InstallConfigAction extends StandardActionSupport {
     }
 
     public void setFileContent(String fileContent) {
-        fileContent = fileContent;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        id = id;
+        this.fileContent = fileContent;
     }
 }

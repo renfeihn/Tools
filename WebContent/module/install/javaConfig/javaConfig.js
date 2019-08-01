@@ -2,11 +2,11 @@ define(["jquery"], function () {
     return {
         load: function ($el, scope, handler) {
 
-
             var listData;
 
             var $dataTable = $('#dataTable', $el).DataTable({
                 "pagingType": 'full_numbers',
+                "paging": false, // 禁止分页
                 'searching': true,
                 'bSort': false,
                 'columns': [{
@@ -58,10 +58,15 @@ define(["jquery"], function () {
                     if (null != serverObj) {
                         var list = serverObj.list;
                         if (javaObj) {
-                            $('#java_path').val(javaObj.java_path);
+                            var java_path = javaObj.java_path;
+                            if(!java_path){
+                                java_path = "/opt/java";
+                            }
+                            $('#java_path').val(java_path);
 
                             let javaList = javaObj.list;
-                            if (javaList.length > 0) {
+
+                            if (javaList) {
                                 $(list).each(function (i, server) {
                                     $(javaList).each(function (j, java) {
                                         if (server.id == java.server_id) {

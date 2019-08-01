@@ -105,7 +105,7 @@
 
 <div >
     <section class="panel" style="margin: 20px 20px 20px;">
-        <p class="title">服务器列表</p>
+        <p class="title">storm 服务器列表</p>
         <table id="dataTable" class="display dataTable table">
             <thead>
             <tr>
@@ -132,16 +132,19 @@
 
             <div>
                 <label class="control-label required">storm 根目录</label>
-                <input type="text" value="" id="storm_home">
+                <input type="text" value="" id="storm_home" />
+                推荐：/home/storm
             </div>
             <div>
                 <label class="control-label required">storm zk 根路径</label>
-                <input type="text" value="" id="storm_zookeeper_root">
+                <input type="text" value="" id="storm_zookeeper_root" />
+                推荐：/storm
             </div>
 
             <div>
                 <label class="control-label required">transactional zk 根路径</label>
-                <input type="text" value="" id="transactional_zookeeper_root">
+                <input type="text" value="" id="transactional_zookeeper_root" />
+                推荐：/transactional
             </div>
             <%--<div>--%>
                 <%--<label class="control-label required">storm 本地目录</label>--%>
@@ -153,24 +156,29 @@
             <%--</div>--%>
             <div>
                 <label class="control-label required">WEB 端口</label>
-                <input type="text" value="" id="ui_port">
+                <input type="text" value="" id="ui_port" />
+                推荐：8078
             </div>
             <div>
                 <label class="control-label required">logviewer 端口</label>
-                <input type="text" value="" id="logviewer_port">
+                <input type="text" value="" id="logviewer_port" />
+                推荐：8079
             </div>
 
             <div>
                 <label class="control-label required">拓扑名字</label>
-                <input type="text" value="" id="topology_name">
+                <input type="text" value="" id="topology_name" />
+                推荐：asda
             </div>
             <div>
                 <label class="control-label required">redis sentinel 地址</label>
-                <input type="text" value="" id="redis_sentinel_ip_port">
+                <input type="text" value="" id="redis_sentinel_ip_port" />
+                示例：10.9.3.132:26379
             </div>
             <div>
                 <label class="control-label required">AFA 地址</label>
-                <input type="text" value="" id="afa_urls">
+                <input type="text" value="" id="afa_urls" />
+                示例：10.9.3.132:9100,10.9.3.140:9100
             </div>
 
         </form>

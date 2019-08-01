@@ -2,11 +2,11 @@ define(["jquery"], function () {
     return {
         load: function ($el, scope, handler) {
 
-
             var listData;
 
             var $dataTable = $('#dataTable', $el).DataTable({
                 "pagingType": 'full_numbers',
+                "paging": false, // 禁止分页
                 'searching': true,
                 'bSort': false,
                 'columns': [{
@@ -95,7 +95,7 @@ define(["jquery"], function () {
                             $('#afa_urls').val(stormObj.afa_urls);
 
                             let stormList = stormObj.list;
-                            if (stormList.length > 0) {
+                            if (stormList) {
                                 $(list).each(function (i, server) {
                                     $(stormList).each(function (j, storm) {
                                         if (server.id == storm.server_id) {
@@ -129,7 +129,7 @@ define(["jquery"], function () {
                                     append = '<input name="zk" type="checkbox" value="' + zk.id + '" />';
                                 }
 
-                                let server = getObjById(list, zk.id);
+                                let server = getObjById(list, zk.server_id);
                                 append = append + '' + server.ip;
 
                                 html = html + append;
@@ -205,22 +205,23 @@ define(["jquery"], function () {
                     data.redis_sentinel_ip_port = $('#redis_sentinel_ip_port').val();
                     data.afa_urls = $('#afa_urls').val();
 
-                    console.log('storm: ' + JSON.stringify(data));
+                    // console.log('storm: ' + JSON.stringify(data));
 
-                    // if (data) {
-                    //     app.common.ajaxWithAfa({
-                    //         url: 'InstallConfigAction_saveFileData.do',
-                    //         data: {
-                    //             fileName: "stormConfig",
-                    //             fileContent: JSON.stringify(data)
-                    //         }
-                    //     }).done(function (d) {
-                    //         let result = d.result;
-                    //         if (result) {
-                    //             loadData();
-                    //         }
-                    //     });
-                    // }
+                    if (data) {
+                        app.common.ajaxWithAfa({
+                            url: 'InstallConfigAction_saveFileData.do',
+                            data: {
+                                fileName: "stormConfig",
+                                fileContent: JSON.stringify(data)
+                            }
+                        }).done(function (d) {
+                            let result = d.result;
+                            if (result) {
+                                app.alert('保存成功！');
+                                loadData();
+                            }
+                        });
+                    }
                 }
             });
 

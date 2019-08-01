@@ -2,11 +2,11 @@ define(["jquery"], function () {
     return {
         load: function ($el, scope, handler) {
 
-
             var listData;
 
             var $dataTable = $('#dataTable', $el).DataTable({
                 "pagingType": 'full_numbers',
+                "paging": false, // 禁止分页
                 'searching': true,
                 'bSort': false,
                 'columns': [{
@@ -63,7 +63,7 @@ define(["jquery"], function () {
                             $('#port').val(mysqlObj.port);
 
                             let mysqlList = mysqlObj.list;
-                            if (mysqlList.length > 0) {
+                            if (mysqlList) {
                                 $(list).each(function (i, server) {
                                     $(mysqlList).each(function (j, mysql) {
                                         if (server.id == mysql.server_id) {
@@ -112,6 +112,7 @@ define(["jquery"], function () {
                         }).done(function (d) {
                             let result = d.result;
                             if (result) {
+                                app.alert('保存成功！');
                                 loadData();
                             }
                         });

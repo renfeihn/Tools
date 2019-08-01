@@ -7,6 +7,7 @@ define(["jquery"], function () {
             //agent采集Table
             var $searchTable = $('#searchTable', $el).DataTable({
                 "pagingType": 'full_numbers',
+                "paging": false, // 禁止分页
                 'searching': true,
                 'bSort': false,
                 'columns': [{
@@ -40,14 +41,17 @@ define(["jquery"], function () {
                 }).done(function (data) {
                     $searchTable.clear();
 
-                    var result = data.result.list;
-                    // console.log(data);
-                    if (result && result.length > 0) {
-                        result.forEach(function (item, index) {
-                            item.index = index + 1;
-                        })
+                    if (data.result) {
+                        var result = data.result.list;
+                        // console.log(data);
+                        if (result) {
+                            result.forEach(function (item, index) {
+                                item.index = index + 1;
+                            })
+                            $searchTable.rows.add(result).draw();
+                        }
                     }
-                    $searchTable.rows.add(result).draw();
+
                 })
             }
 
@@ -89,7 +93,7 @@ define(["jquery"], function () {
             // 预警模态框事件
             $serverModal.on('click', '.confirmBtn', function (event) {
                 var id = $serverModal.attr('data-id');
-                console.log('id: ' + id);
+                // console.log('id: ' + id);
                 if (!id) {
                     id = app.global.getUniqueId();
                 }

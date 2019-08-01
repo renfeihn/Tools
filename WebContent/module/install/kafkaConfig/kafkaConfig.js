@@ -2,11 +2,11 @@ define(["jquery"], function () {
     return {
         load: function ($el, scope, handler) {
 
-
             var listData;
 
             var $dataTable = $('#dataTable', $el).DataTable({
                 "pagingType": 'full_numbers',
+                "paging": false, // 禁止分页
                 'searching': true,
                 'bSort': false,
                 'columns': [{
@@ -73,7 +73,7 @@ define(["jquery"], function () {
                             $('#kafka_home').val(kafkaObj.kafka_home);
 
                             let kafkaList = kafkaObj.list;
-                            if (kafkaList.length > 0) {
+                            if (kafkaList) {
                                 $(list).each(function (i, server) {
                                     $(kafkaList).each(function (j, kafka) {
                                         if (server.id == kafka.server_id) {
@@ -108,7 +108,7 @@ define(["jquery"], function () {
                                     append = '<input name="zk" type="checkbox" value="' + zk.id + '" />';
                                 }
 
-                                let server = getObjById(list, zk.id);
+                                let server = getObjById(list, zk.server_id);
                                 append = append + '' + server.ip;
 
                                 html = html + append;
@@ -172,6 +172,7 @@ define(["jquery"], function () {
                         }).done(function (d) {
                             let result = d.result;
                             if (result) {
+                                app.alert('保存成功！');
                                 loadData();
                             }
                         });

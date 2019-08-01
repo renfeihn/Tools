@@ -10,7 +10,7 @@ import java.nio.channels.FileChannel;
 /**
  * 复制文件夹或文件夹
  */
-public class FileUtils {
+public class FileCommon {
 
 
     public static void main(String args[]) throws IOException {
@@ -36,12 +36,12 @@ public class FileUtils {
         //修改文件
 //        String zoo_cfg = sourcePath + "/zoo.cfg";
 
-//        String content = FileUtils.readFile(url1);
+//        String content = FileCommon.readFile(url1);
 //        // 文件追加内容
 //        String append = "server." + 1 + "=192.168.1.1:2888:3888";
 //        content = content + "\n" + append;
 //        System.out.println("content: " + content);
-//        FileUtils.writeFile(url1, content);
+//        FileCommon.writeFile(url1, content);
 
         String s = "{\"zkIds\": [\n" +
                 "    \"1\",\n" +

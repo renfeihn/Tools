@@ -136,38 +136,45 @@
 
             <div>
                 <label class="control-label required">hadoop主目录</label>
-                <input type="text" value="" id="hadoop_home">
+                <input type="text" value="" id="hadoop_home" />
+                推荐：/home/hadoop
             </div>
 
             <div>
                 <label class="control-label required">fs_defaultFS</label>
-                <input type="text" value="" id="fs_defaultFS">
+                <input type="text" value="" id="fs_defaultFS" />
+                推荐：asda
             </div>
 
             <div>
                 <label class="control-label required">HDFS RPC 端口</label>
-                <input type="text" value="" id="namenode_rpc_port">
+                <input type="text" value="" id="namenode_rpc_port" />
+                推荐：9000
             </div>
 
             <div>
                 <label class="control-label required">HDFS HTTP 端口</label>
-                <input type="text" value="" id="namenode_http_port">
+                <input type="text" value="" id="namenode_http_port" />
+                推荐：50070
             </div>
 
             <div>
                 <label class="control-label required">HDFS JournalNode share 端口</label>
-                <input type="text" value="" id="journalnode_share_port">
+                <input type="text" value="" id="journalnode_share_port" />
+                推荐：8485
             </div>
 
             <div>
                 <label class="control-label required">ResourceManager 簇ID</label>
-                <input type="text" value="" id="yarn_resourcemanager_cluster_id">
+                <input type="text" value="" id="yarn_resourcemanager_cluster_id" />
+                推荐：asdayrc
             </div>
 
 
             <div>
                 <label class="control-label required">ResourceManager WEB 端口</label>
-                <input type="text" value="" id="yarn_resourcemanager_webapp_address">
+                <input type="text" value="" id="yarn_resourcemanager_webapp_address" />
+                推荐：8088
             </div>
 
         </form>
