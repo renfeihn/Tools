@@ -5,7 +5,6 @@ package cn.com.agree.aweb.struts2.action.support;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import cn.com.agree.aweb.service.IRemoteService;
 import cn.com.agree.aweb.struts2.action.support.bean.SerialBean;
 import cn.com.agree.aweb.struts2.action.support.interfaces.IAimServer;
 

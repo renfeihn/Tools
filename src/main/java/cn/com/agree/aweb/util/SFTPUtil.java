@@ -13,7 +13,8 @@ import java.io.UnsupportedEncodingException;
 import java.util.Properties;
 import java.util.Vector;
 
-import org.apache.poi.util.IOUtils;
+//import org.apache.poi.util.IOUtils;
+import org.apache.commons.compress.utils.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -45,7 +46,7 @@ public class SFTPUtil {
     
     /**  
      * 构造基于密码认证的sftp对象  
-     * @param userName  
+     * @param username
      * @param password  
      * @param host  
      * @param port  
@@ -59,7 +60,7 @@ public class SFTPUtil {
     
     /**  
      * 构造基于秘钥认证的sftp对象 
-     * @param userName 
+     * @param username
      * @param host 
      * @param port 
      * @param privateKey 
@@ -135,7 +136,7 @@ public class SFTPUtil {
      *            上传到该目录  
      * @param sftpFileName  
      *            sftp端文件名  
-     * @param in  
+     * @param input
      *            输入流  
      * @throws SftpException   
      * @throws Exception  
@@ -239,7 +240,7 @@ public class SFTPUtil {
         }  
         InputStream is = sftp.get(downloadFile);  
           
-        byte[] fileData = IOUtils.toByteArray(is);  
+        byte[] fileData = IOUtils.toByteArray(is);
           
         log.info("file:{} is download successful" , downloadFile);  
         return fileData;  
@@ -265,8 +266,7 @@ public class SFTPUtil {
      *  
      * @param directory 
      *            要列出的目录 
-     * @param sftp 
-     * @return 
+     * @return
      * @throws SftpException 
      */  
     public Vector<?> listFiles(String directory) throws SftpException {  
