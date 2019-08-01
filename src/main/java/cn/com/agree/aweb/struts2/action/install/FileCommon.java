@@ -57,6 +57,15 @@ public class FileCommon {
         }
     }
 
+    public static String throwableToString(Throwable e) {
+        StringWriter sw = new StringWriter();
+        PrintWriter pw = new PrintWriter(sw, true);
+        e.printStackTrace(pw);
+        pw.flush();
+        sw.flush();
+        return sw.toString();
+    }
+
     // 复制文件
     public static void copyFile(File sourceFile, File targetFile)
             throws IOException {
@@ -72,6 +81,49 @@ public class FileCommon {
         }
     }
 
+    /**
+     * 在已有的文件后面追加信息
+     *
+     * @param fileName
+     * @param info
+     * @throws IOException
+     */
+    public static void appendInfoToFile(String fileName, String info) {
+        try {
+            File file = new File(fileName);
+            if (!file.exists()) {
+                file.createNewFile();
+            }
+            FileWriter fileWriter = new FileWriter(file, true);
+            info = info + System.getProperty("line.separator");
+            fileWriter.write(info);
+            fileWriter.flush();
+            fileWriter.close();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 清空已有的文件内容，以便下次重新写入新的内容
+     *
+     * @param fileName
+     */
+    public static void clearInfoForFile(String fileName) {
+        File file = new File(fileName);
+        try {
+            if (!file.exists()) {
+                file.createNewFile();
+            }
+            FileWriter fileWriter = new FileWriter(file);
+            fileWriter.write("");
+            fileWriter.flush();
+            fileWriter.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     // 读文件内容
     public static String readFile(String fileName) {

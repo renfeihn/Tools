@@ -10,12 +10,15 @@ import com.aim.alibaba.fastjson.JSON;
 import com.aim.alibaba.fastjson.JSONArray;
 import com.aim.alibaba.fastjson.JSONObject;
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Matcher;
@@ -31,7 +34,7 @@ public class InstallConfigAction extends StandardActionSupport {
     private Logger logger = LoggerFactory.getLogger(InstallConfigAction.class);
 
 
-    static String classesPath = InstallConfigAction.class.getClassLoader().getResource("").getPath();
+    private final static String classesPath = InstallConfigAction.class.getClassLoader().getResource("/").getPath();
 
 
     private String id;
@@ -163,6 +166,7 @@ public class InstallConfigAction extends StandardActionSupport {
                 String sourcePath = classesPath + "/baseConfig/java";
                 String targetPath = classesPath + "/outConfig/" + ip + "/java/";
 
+                writeLog("开始生成 " + ip + " 安装文件！");
                 FileCommon.copyDirectiory(sourcePath, targetPath);
 
                 //修改文件
@@ -173,6 +177,7 @@ public class InstallConfigAction extends StandardActionSupport {
                 content = processTemplate(content, map);
 //                System.out.println("content: " + content);
                 FileCommon.writeFile(install_jdk8_path, content);
+                writeLog("生成 " + ip + " 安装文件完成！");
             }
         }
 
@@ -903,7 +908,6 @@ public class InstallConfigAction extends StandardActionSupport {
         System.out.println("gen hbase end");
     }
 
-
     /**
      * 查询文件内容
      *
@@ -1055,6 +1059,27 @@ public class InstallConfigAction extends StandardActionSupport {
         }
     }
 
+
+    /**
+     * 功能说明：根据配置生成安装信息
+     *
+     * @return
+     */
+    public String clearLog() {
+        try {
+            // 清空日志文件
+            FileCommon.clearInfoForFile(install_log_file);
+            setStrutsMessage(
+                    StrutsMessage.successMessage().addParameter("result", true));
+            return SUCCESS;
+        } catch (Exception e) {
+            e.printStackTrace();
+            setStrutsMessage(StrutsMessage.errorMessage(ExceptionTypes.AWEB.AWEB99, e));
+            return ERROR;
+        }
+    }
+
+
     /**
      * 功能说明：根据配置生成安装信息
      *
@@ -1063,15 +1088,11 @@ public class InstallConfigAction extends StandardActionSupport {
     public String install() {
         try {
 
-            FileCommon.delFolder(classesPath + "/outConfig/");
+            // 清空日志文件
+            FileCommon.clearInfoForFile(install_log_file);
 
-            genJava();
-            genZookeeper();
-            genStorm();
-            genMysql();
-            genEs();
-            genKafka();
-            genHbase();
+            Thread process = new ProcessTread();
+            process.start(); //启动线程
 
             setStrutsMessage(
                     StrutsMessage.successMessage().addParameter("result", true));
@@ -1082,6 +1103,146 @@ public class InstallConfigAction extends StandardActionSupport {
             return ERROR;
         }
     }
+
+    String install_log_file = classesPath + "install.log";
+
+    public String getInstallLog() {
+        try {
+
+            String content = FileCommon.readFile(install_log_file);
+
+            setStrutsMessage(StrutsMessage.successMessage().addParameter("result", content));
+            return SUCCESS;
+        } catch (Exception e) {
+            e.printStackTrace();
+            setStrutsMessage(StrutsMessage.errorMessage(ExceptionTypes.AWEB.AWEB99, e));
+            return ERROR;
+        }
+    }
+
+    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+    private void writeLog(String s) {
+        String date = sdf.format(new Date());
+        s = date + " : " + s;
+        FileCommon.appendInfoToFile(install_log_file, s);
+    }
+
+    /**
+     * 线程启动去生成文件
+     */
+    class ProcessTread extends Thread {
+
+        public void run() {
+
+            if (StringUtils.isEmpty(fileName)) {
+                writeLog("没有软件需要生成安装文件！");
+                return;
+            }
+            writeLog("开始生成安装文件！");
+
+            writeLog("开始清理原生成的安装文件！");
+            FileCommon.delFolder(classesPath + "/outConfig/");
+            writeLog("清理原生成的安装文件完成！");
+
+            if (fileName.contains("java")) {
+                writeLog("开始生成java安装文件！");
+
+                try {
+                    genJava();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    writeLog(FileCommon.throwableToString(e));
+                }
+                writeLog("生成java安装文件完成！");
+            }
+
+            if (fileName.contains("zookeeper")) {
+                writeLog("开始生成zookeeper安装文件！");
+
+                try {
+                    genZookeeper();
+                    throw new IOException("文件不存在");
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    writeLog(FileCommon.throwableToString(e));
+                }
+                writeLog("生成zookeeper安装文件完成！");
+            }
+
+            if (fileName.contains("mysql")) {
+                writeLog("开始生成mysql安装文件！");
+
+                try {
+                    genMysql();
+                    throw new IOException("文件不存在");
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    writeLog(FileCommon.throwableToString(e));
+                }
+                writeLog("生成mysql安装文件完成！");
+            }
+            if (fileName.contains("es")) {
+                writeLog("开始生成es安装文件！");
+
+                try {
+                    genEs();
+                    throw new IOException("文件不存在");
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    writeLog(FileCommon.throwableToString(e));
+                }
+                writeLog("生成es安装文件完成！");
+            }
+            if (fileName.contains("kafka")) {
+                writeLog("开始生成kafka安装文件！");
+
+                try {
+                    genKafka();
+                    throw new IOException("文件不存在");
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    writeLog(FileCommon.throwableToString(e));
+                }
+                writeLog("生成kafka安装文件完成！");
+            }
+            if (fileName.contains("hbase")) {
+                writeLog("开始生成hbase安装文件！");
+
+                try {
+                    genHbase();
+                    throw new IOException("文件不存在");
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    writeLog(FileCommon.throwableToString(e));
+                }
+                writeLog("生成hbase安装文件完成！");
+            }
+            if (fileName.contains("storm")) {
+                writeLog("开始生成storm安装文件！");
+
+                try {
+                    genStorm();
+                    throw new IOException("文件不存在");
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    writeLog(FileCommon.throwableToString(e));
+                }
+                writeLog("生成storm安装文件完成！");
+            }
+
+            writeLog("生成全部安装文件完成！");
+
+            String fullPath = classesPath + "outConfig/";
+            String os = System.getProperty("os.name");
+            if (os.toLowerCase().startsWith("win")) {
+                fullPath = fullPath.substring(1, fullPath.length());
+            }
+
+            writeLog("生成文件服务器路径：" + fullPath);
+        }
+    }
+
 
     public String getId() {
         return id;
@@ -1106,4 +1267,7 @@ public class InstallConfigAction extends StandardActionSupport {
     public void setFileContent(String fileContent) {
         this.fileContent = fileContent;
     }
+
+
 }
+
