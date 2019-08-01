@@ -1,0 +1,12 @@
+{
+    "views": {
+        "stormConfig": {
+            "template": "stormConfig.jsp",
+            "js": "stormConfig.js"
+        }
+    },
+    "models": {},
+    "flows": [{
+        "id": "stormConfig"
+    }]
+}

@@ -1,0 +1,12 @@
+{
+    "views": {
+        "hbaseConfig": {
+            "template": "hbaseConfig.jsp",
+            "js": "hbaseConfig.js"
+        }
+    },
+    "models": {},
+    "flows": [{
+        "id": "hbaseConfig"
+    }]
+}
