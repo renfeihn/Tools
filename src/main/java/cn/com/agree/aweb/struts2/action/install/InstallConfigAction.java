@@ -47,7 +47,7 @@ public class InstallConfigAction extends StandardActionSupport {
 
         @Override
         public String toString() {
-            return this.name();
+            return name();
         }
     }
 
@@ -145,7 +145,7 @@ public class InstallConfigAction extends StandardActionSupport {
             for (int i = 0; i < list.size(); i++) {
                 JSONObject javaObj = list.getJSONObject(i);
                 String javaPath = java.getString("java_path");
-                JSONObject serverObj = this.getInfoById(DataFileName.serverConfig.name(), javaObj.getString("server_id"));
+                JSONObject serverObj = getInfoById(DataFileName.serverConfig.name(), javaObj.getString("server_id"));
                 String ip = serverObj.getString("ip");
 
                 String sourcePath = classesPath + "/baseConfig/java";
@@ -156,9 +156,9 @@ public class InstallConfigAction extends StandardActionSupport {
                 //修改文件
                 String install_jdk8_path = targetPath + "install_jdk8.sh";
                 String content = FileUtils.readFile(install_jdk8_path);
-                Map map = new HashMap();
+                Map<String,Object> map = new HashMap<String,Object>();
                 map.put("javaPath", javaPath);
-                content = this.processTemplate(content, map);
+                content = processTemplate(content, map);
 //                System.out.println("content: " + content);
                 FileUtils.writeFile(install_jdk8_path, content);
             }
@@ -187,7 +187,7 @@ public class InstallConfigAction extends StandardActionSupport {
             // 修改原文件
             for (int i = 0; i < list.size(); i++) {
                 JSONObject javaObj = list.getJSONObject(i);
-                JSONObject serverObj = this.getInfoById(DataFileName.serverConfig.name(), javaObj.getString("server_id"));
+                JSONObject serverObj = getInfoById(DataFileName.serverConfig.name(), javaObj.getString("server_id"));
                 String ip = serverObj.getString("ip");
 
                 // 文件追加内容
@@ -200,7 +200,7 @@ public class InstallConfigAction extends StandardActionSupport {
             // 生成下发文件
             for (int i = 0; i < list.size(); i++) {
                 JSONObject javaObj = list.getJSONObject(i);
-                JSONObject serverObj = this.getInfoById(DataFileName.serverConfig.name(), javaObj.getString("server_id"));
+                JSONObject serverObj = getInfoById(DataFileName.serverConfig.name(), javaObj.getString("server_id"));
                 String ip = serverObj.getString("ip");
 
                 String sourcePath = classesPath + "/baseConfig/zookeeper";
@@ -211,9 +211,9 @@ public class InstallConfigAction extends StandardActionSupport {
                 //修改 install_zk.sh
                 String install_zookeeper = targetPath + "install_zk.sh";
                 String content = FileUtils.readFile(install_zookeeper);
-                Map map = new HashMap();
+                Map<String,Object> map = new HashMap<String,Object>();
                 map.put("serverId", i + 1);
-                content = this.processTemplate(content, map);
+                content = processTemplate(content, map);
                 FileUtils.writeFile(install_zookeeper, content);
 
                 // 修改 zoo.cfg
@@ -223,7 +223,7 @@ public class InstallConfigAction extends StandardActionSupport {
                 map.put("dataDir", zkObj.get("dataDir"));
                 map.put("dataLogDir", zkObj.get("dataLogDir"));
                 map.put("clientPort", zkObj.get("clientPort"));
-                content = this.processTemplate(content, map);
+                content = processTemplate(content, map);
                 // 文件追加内容
                 content = content + "\n" + appendStr;
 //                System.out.println("content: " + content);
@@ -254,7 +254,7 @@ public class InstallConfigAction extends StandardActionSupport {
             // 修改原文件
             for (int i = 0; i < list.size(); i++) {
                 JSONObject javaObj = list.getJSONObject(i);
-                JSONObject serverObj = this.getInfoById(DataFileName.serverConfig.name(), javaObj.getString("server_id"));
+                JSONObject serverObj = getInfoById(DataFileName.serverConfig.name(), javaObj.getString("server_id"));
                 String ip = serverObj.getString("ip");
 
                 // 文件追加内容
@@ -276,8 +276,8 @@ public class InstallConfigAction extends StandardActionSupport {
             JSONArray zkIds = stormObj.getJSONArray("zkIds");
             for (int i = 0; i < zkIds.size(); i++) {
                 String zkId = zkIds.getString(i);
-                JSONObject zk = this.getInfoById(DataFileName.zookeeperConfig.name(), zkId);
-                JSONObject server = this.getInfoById(DataFileName.serverConfig.name(), zk.getString("server_id"));
+                JSONObject zk = getInfoById(DataFileName.zookeeperConfig.name(), zkId);
+                JSONObject server = getInfoById(DataFileName.serverConfig.name(), zk.getString("server_id"));
                 storm_zookeeper_servers.append("  - \"" + server.get("ip") + "\"").append("\n");
 
                 if (i > 0) {
@@ -296,12 +296,12 @@ public class InstallConfigAction extends StandardActionSupport {
             StringBuffer kafka_bootstrap_ip_port = new StringBuffer();
 
             // 获取所有kafka配置
-            JSONObject kafkaObj = this.getFileContent(DataFileName.kafkaConfig.name());
+            JSONObject kafkaObj = getFileContent(DataFileName.kafkaConfig.name());
             JSONArray kafkaList = kafkaObj.getJSONArray("list");
             if (null != kafkaList && kafkaList.size() > 0) {
                 for (int i = 0; i < kafkaList.size(); i++) {
                     JSONObject kafka = kafkaList.getJSONObject(i);
-                    JSONObject serverObj = this.getInfoById(DataFileName.serverConfig.name(), kafka.getString("server_id"));
+                    JSONObject serverObj = getInfoById(DataFileName.serverConfig.name(), kafka.getString("server_id"));
 
                     if (i > 0) {
                         kafka_bootstrap_ip_port.append(",");
@@ -313,13 +313,13 @@ public class InstallConfigAction extends StandardActionSupport {
             // asda es
             String es_clusterName = "";
             StringBuffer es_nodes = new StringBuffer();
-            JSONObject esObj = this.getFileContent(DataFileName.esConfig.name());
+            JSONObject esObj = getFileContent(DataFileName.esConfig.name());
             JSONArray esList = kafkaObj.getJSONArray("list");
             if (null != esList && esList.size() > 0) {
                 for (int i = 0; i < esList.size(); i++) {
                     JSONObject es = esList.getJSONObject(i);
                     es_clusterName = es.getString("clusterName");
-                    JSONObject serverObj = this.getInfoById(DataFileName.serverConfig.name(), es.getString("server_id"));
+                    JSONObject serverObj = getInfoById(DataFileName.serverConfig.name(), es.getString("server_id"));
 
                     if (i > 0) {
                         es_nodes.append(",");
@@ -331,11 +331,11 @@ public class InstallConfigAction extends StandardActionSupport {
 
             // asda phoenix
             StringBuffer jdbc_pool_hbase_ip = new StringBuffer();
-            JSONArray hbaseList = this.getListByFileName(DataFileName.hbaseConfig.name());
+            JSONArray hbaseList = getListByFileName(DataFileName.hbaseConfig.name());
             if (null != hbaseList && hbaseList.size() > 0) {
                 for (int i = 0; i < hbaseList.size(); i++) {
                     JSONObject hbase = esList.getJSONObject(i);
-                    JSONObject serverObj = this.getInfoById(DataFileName.serverConfig.name(), hbase.getString("server_id"));
+                    JSONObject serverObj = getInfoById(DataFileName.serverConfig.name(), hbase.getString("server_id"));
 
                     if (i > 0) {
                         jdbc_pool_hbase_ip.append(",");
@@ -347,7 +347,7 @@ public class InstallConfigAction extends StandardActionSupport {
             // 生成下发文件
             for (int i = 0; i < list.size(); i++) {
                 JSONObject obj = list.getJSONObject(i);
-                JSONObject serverObj = this.getInfoById(DataFileName.serverConfig.name(), obj.getString("server_id"));
+                JSONObject serverObj = getInfoById(DataFileName.serverConfig.name(), obj.getString("server_id"));
                 String ip = serverObj.getString("ip");
 
                 String sourcePath = classesPath + "/baseConfig/storm";
@@ -358,11 +358,11 @@ public class InstallConfigAction extends StandardActionSupport {
                 //修改 install_storm.sh
                 String install_zookeeper = targetPath + "install_storm.sh";
                 String content = FileUtils.readFile(install_zookeeper);
-                Map map = new HashMap();
+                Map<String,Object> map = new HashMap<String,Object>();
                 // 是否安装拓扑
                 Boolean exec_asda = obj.getBooleanValue("exec_asda");
                 map.put("exec_asda", exec_asda);
-                content = this.processTemplate(content, map);
+                content = processTemplate(content, map);
                 FileUtils.writeFile(install_zookeeper, content);
 
                 // 修改 storm.yaml
@@ -383,7 +383,7 @@ public class InstallConfigAction extends StandardActionSupport {
                 map.put("ui_port", stormObj.get("ui_port"));
                 map.put("logviewer_port", stormObj.get("logviewer_port"));
 
-                content = this.processTemplate(content, map);
+                content = processTemplate(content, map);
 //                System.out.println("content: " + content);
                 FileUtils.writeFile(storm_yaml, content);
 
@@ -409,7 +409,7 @@ public class InstallConfigAction extends StandardActionSupport {
 
                     map.put("afa_urls", stormObj.get("afa_urls"));
 
-                    content = this.processTemplate(content, map);
+                    content = processTemplate(content, map);
 //                    System.out.println("content: " + content);
                     FileUtils.writeFile(asda_json, content);
 
@@ -443,7 +443,7 @@ public class InstallConfigAction extends StandardActionSupport {
             // 复制文件并 生成最新文件
             for (int i = 0; i < list.size(); i++) {
                 JSONObject obj = list.getJSONObject(i);
-                JSONObject serverObj = this.getInfoById(DataFileName.serverConfig.name(), obj.getString("server_id"));
+                JSONObject serverObj = getInfoById(DataFileName.serverConfig.name(), obj.getString("server_id"));
                 String ip = serverObj.getString("ip");
                 String server_id = ip.substring(ip.lastIndexOf(".") + 1, ip.length());
 
@@ -453,7 +453,7 @@ public class InstallConfigAction extends StandardActionSupport {
                 FileUtils.copyDirectiory(sourcePath, targetPath);
 
                 //修改 install_storm.sh
-                Map map = new HashMap();
+                Map<String,Object> map = new HashMap<String,Object>();
                 // 修改 my.cnf
                 String my_cnf = targetPath + "my.cnf";
 
@@ -474,7 +474,7 @@ public class InstallConfigAction extends StandardActionSupport {
                 map.put("auto_increment_offset", i + 1);
 
 
-                content = this.processTemplate(content, map);
+                content = processTemplate(content, map);
 //                System.out.println("content: " + content);
                 FileUtils.writeFile(my_cnf, content);
 
@@ -504,7 +504,7 @@ public class InstallConfigAction extends StandardActionSupport {
             // 修改原文件
             for (int i = 0; i < list.size(); i++) {
                 JSONObject javaObj = list.getJSONObject(i);
-                JSONObject serverObj = this.getInfoById(DataFileName.serverConfig.name(), javaObj.getString("server_id"));
+                JSONObject serverObj = getInfoById(DataFileName.serverConfig.name(), javaObj.getString("server_id"));
                 String ip = serverObj.getString("ip");
 
                 // 文件追加内容
@@ -519,7 +519,7 @@ public class InstallConfigAction extends StandardActionSupport {
             // 复制文件并 生成最新文件
             for (int i = 0; i < list.size(); i++) {
                 JSONObject obj = list.getJSONObject(i);
-                JSONObject serverObj = this.getInfoById(DataFileName.serverConfig.name(), obj.getString("server_id"));
+                JSONObject serverObj = getInfoById(DataFileName.serverConfig.name(), obj.getString("server_id"));
                 String ip = serverObj.getString("ip");
 
                 String sourcePath = classesPath + "/baseConfig/es";
@@ -527,7 +527,7 @@ public class InstallConfigAction extends StandardActionSupport {
 
                 FileUtils.copyDirectiory(sourcePath, targetPath);
 
-                Map map = new HashMap();
+                Map<String,Object> map = new HashMap<String,Object>();
                 // 修改 elasticsearch.yml
                 String elasticsearch_yml = targetPath + "elasticsearch.yml";
 
@@ -539,7 +539,7 @@ public class InstallConfigAction extends StandardActionSupport {
                 // 本机
                 map.put("discovery_zen_ping_unicast_hosts", discovery_zen_ping_unicast_hosts);
 
-                content = this.processTemplate(content, map);
+                content = processTemplate(content, map);
 //                System.out.println("content: " + content);
                 FileUtils.writeFile(elasticsearch_yml, content);
 
@@ -570,9 +570,9 @@ public class InstallConfigAction extends StandardActionSupport {
             JSONArray zkIds = kafkaObj.getJSONArray("zkIds");
             for (int i = 0; i < zkIds.size(); i++) {
                 String zkId = zkIds.getString(i);
-                JSONObject zkObj = this.getFileContent(DataFileName.zookeeperConfig.name());
-                JSONObject zk = this.getInfoById(DataFileName.zookeeperConfig.name(), zkId);
-                JSONObject server = this.getInfoById(DataFileName.serverConfig.name(), zk.getString("server_id"));
+                JSONObject zkObj = getFileContent(DataFileName.zookeeperConfig.name());
+                JSONObject zk = getInfoById(DataFileName.zookeeperConfig.name(), zkId);
+                JSONObject server = getInfoById(DataFileName.serverConfig.name(), zk.getString("server_id"));
                 if (i > 0 && i < list.size()) {
                     zookeeper_connect.append(",");
                 }
@@ -582,7 +582,7 @@ public class InstallConfigAction extends StandardActionSupport {
             // 复制文件并 生成最新文件
             for (int i = 0; i < list.size(); i++) {
                 JSONObject obj = list.getJSONObject(i);
-                JSONObject serverObj = this.getInfoById(DataFileName.serverConfig.name(), obj.getString("server_id"));
+                JSONObject serverObj = getInfoById(DataFileName.serverConfig.name(), obj.getString("server_id"));
                 String ip = serverObj.getString("ip");
 
                 String sourcePath = classesPath + "/baseConfig/kafka";
@@ -590,7 +590,7 @@ public class InstallConfigAction extends StandardActionSupport {
 
                 FileUtils.copyDirectiory(sourcePath, targetPath);
 
-                Map map = new HashMap();
+                Map<String,Object> map = new HashMap<String,Object>();
                 // 修改 server.properties
                 String server_properties = targetPath + "server.properties";
 
@@ -603,7 +603,7 @@ public class InstallConfigAction extends StandardActionSupport {
                 // 本机
                 map.put("zookeeper_connect", zookeeper_connect);
 
-                content = this.processTemplate(content, map);
+                content = processTemplate(content, map);
 //                System.out.println("content: " + content);
                 FileUtils.writeFile(server_properties, content);
 
@@ -624,7 +624,7 @@ public class InstallConfigAction extends StandardActionSupport {
         // 先修改文件
         JSONArray list = getListByFileName(DataFileName.hbaseConfig.name());
         JSONObject hbaseObj = getFileContent(DataFileName.hbaseConfig.name());
-        JSONObject zkObj = this.getFileContent(DataFileName.zookeeperConfig.name());
+        JSONObject zkObj = getFileContent(DataFileName.zookeeperConfig.name());
 
         if (null != list && list.size() > 0) {
 
@@ -639,8 +639,8 @@ public class InstallConfigAction extends StandardActionSupport {
             JSONArray zkIds = hbaseObj.getJSONArray("zkIds");
             for (int i = 0; i < zkIds.size(); i++) {
                 String zkId = zkIds.getString(i);
-                JSONObject zk = this.getInfoById(DataFileName.zookeeperConfig.name(), zkId);
-                JSONObject server = this.getInfoById(DataFileName.serverConfig.name(), zk.getString("server_id"));
+                JSONObject zk = getInfoById(DataFileName.zookeeperConfig.name(), zkId);
+                JSONObject server = getInfoById(DataFileName.serverConfig.name(), zk.getString("server_id"));
                 if (i > 0 && i < list.size()) {
                     ha_zookeeper_quorum.append(",");
                     hbase_zookeeper_quorum.append(",");
@@ -678,7 +678,7 @@ public class InstallConfigAction extends StandardActionSupport {
             // 组建数据
             for (int i = 0; i < list.size(); i++) {
                 JSONObject obj = list.getJSONObject(i);
-                JSONObject serverObj = this.getInfoById(DataFileName.serverConfig.name(), obj.getString("server_id"));
+                JSONObject serverObj = getInfoById(DataFileName.serverConfig.name(), obj.getString("server_id"));
                 String ip = serverObj.getString("ip");
 
                 // hadoop 管理主节点 NameNode
@@ -759,7 +759,7 @@ public class InstallConfigAction extends StandardActionSupport {
             // 复制文件并 生成最新文件
             for (int i = 0; i < list.size(); i++) {
                 JSONObject obj = list.getJSONObject(i);
-                JSONObject serverObj = this.getInfoById(DataFileName.serverConfig.name(), obj.getString("server_id"));
+                JSONObject serverObj = getInfoById(DataFileName.serverConfig.name(), obj.getString("server_id"));
                 String ip = serverObj.getString("ip");
 
                 String sourcePath = classesPath + "/baseConfig/hbase";
@@ -773,7 +773,7 @@ public class InstallConfigAction extends StandardActionSupport {
                 // 只生成主节点文件，其它节点通过copy模式下发
                 FileUtils.copyDirectiory(sourcePath, targetPath);
 
-                Map<String, Object> map = new HashMap();
+                Map<String, Object> map = new HashMap<String,Object>();
                 // 修改 hdoop_conf/core-site.xml start -----------------------
                 String core_site = targetPath + "hadoop_conf/core-site.xml";
                 // 获取文件内容
@@ -783,7 +783,7 @@ public class InstallConfigAction extends StandardActionSupport {
                 map.put("hadoop_home", hbaseObj.get("hadoop_home"));
                 map.put("ha_zookeeper_quorum", ha_zookeeper_quorum);
 
-                content = this.processTemplate(content, map);
+                content = processTemplate(content, map);
 //                System.out.println("core_site: " + content);
                 // 修改完内容 写入文件
                 FileUtils.writeFile(core_site, content);
@@ -800,7 +800,7 @@ public class InstallConfigAction extends StandardActionSupport {
                 map.put("dfs_namenode_address", dfs_namenode_address.toString());
                 map.put("dfs_journalnode_shared", dfs_journalnode_shared);
 
-                content = this.processTemplate(content, map);
+                content = processTemplate(content, map);
 //                System.out.println("hdfs_site: " + content);
                 // 修改完内容 写入文件
                 FileUtils.writeFile(hdfs_site, content);
@@ -821,7 +821,7 @@ public class InstallConfigAction extends StandardActionSupport {
                 map.put("yarn_resourcemanager_hostname", yarn_resourcemanager_hostname.toString());
                 map.put("yarn_resourcemanager_ids", yarn_resourcemanager_ids);
 
-                content = this.processTemplate(content, map);
+                content = processTemplate(content, map);
 //                System.out.println("yarn_site: " + content);
                 // 修改完内容 写入文件
                 FileUtils.writeFile(yarn_site, content);
@@ -835,7 +835,7 @@ public class InstallConfigAction extends StandardActionSupport {
                 content = FileUtils.readFile(slaves);
                 map.put("slaves_ip", slaves_ip.toString());
 
-                content = this.processTemplate(content, map);
+                content = processTemplate(content, map);
 //                System.out.println("slaves: " + content);
                 // 修改完内容 写入文件
                 FileUtils.writeFile(slaves, content);
@@ -852,7 +852,7 @@ public class InstallConfigAction extends StandardActionSupport {
                 map.put("hbase_zookeeper_quorum", hbase_zookeeper_quorum.toString());
                 map.put("zookeeper_clientPort", zookeeper_clientPort);
 
-                content = this.processTemplate(content, map);
+                content = processTemplate(content, map);
 //                System.out.println("hbase_site: " + content);
                 // 修改完内容 写入文件
                 FileUtils.writeFile(hbase_site, content);
@@ -866,7 +866,7 @@ public class InstallConfigAction extends StandardActionSupport {
                 content = FileUtils.readFile(regionservers);
                 map.put("regionservers", regionservers_ip.toString());
 
-                content = this.processTemplate(content, map);
+                content = processTemplate(content, map);
 //                System.out.println("regionservers: " + content);
                 // 修改完内容 写入文件
                 FileUtils.writeFile(regionservers, content);
@@ -880,7 +880,7 @@ public class InstallConfigAction extends StandardActionSupport {
                 content = FileUtils.readFile(backup_masters);
                 map.put("masters_ip", masters_ip.toString());
 
-                content = this.processTemplate(content, map);
+                content = processTemplate(content, map);
 //                System.out.println("backup_masters: " + content);
                 // 修改完内容 写入文件
                 FileUtils.writeFile(backup_masters, content);
@@ -1076,7 +1076,7 @@ public class InstallConfigAction extends StandardActionSupport {
     }
 
     public void setFileName(String fileName) {
-        this.fileName = fileName;
+        fileName = fileName;
     }
 
     public String getFileContent() {
@@ -1084,7 +1084,7 @@ public class InstallConfigAction extends StandardActionSupport {
     }
 
     public void setFileContent(String fileContent) {
-        this.fileContent = fileContent;
+        fileContent = fileContent;
     }
 
     public String getId() {
@@ -1092,6 +1092,6 @@ public class InstallConfigAction extends StandardActionSupport {
     }
 
     public void setId(String id) {
-        this.id = id;
+        id = id;
     }
 }
