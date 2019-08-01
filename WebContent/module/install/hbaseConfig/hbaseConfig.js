@@ -41,7 +41,7 @@ define(["jquery"], function () {
                         }
                     },
                     "targets": 1
-                },{
+                }, {
                     "render": function (data, type, row, meta) {
                         if (data) {
                             return '<input name="is_master" type="checkbox" checked />';
@@ -50,7 +50,7 @@ define(["jquery"], function () {
                         }
                     },
                     "targets": 4
-                },{
+                }, {
                     "render": function (data, type, row, meta) {
                         if (data) {
                             return '<input name="hadoop_nn" type="checkbox" checked />';
@@ -59,7 +59,7 @@ define(["jquery"], function () {
                         }
                     },
                     "targets": 5
-                },{
+                }, {
                     "render": function (data, type, row, meta) {
                         if (data) {
                             return '<input name="hadoop_jn" type="checkbox" checked />';
@@ -68,7 +68,7 @@ define(["jquery"], function () {
                         }
                     },
                     "targets": 6
-                },{
+                }, {
                     "render": function (data, type, row, meta) {
                         if (data) {
                             return '<input name="hadoop_rm" type="checkbox" checked />';
@@ -77,7 +77,7 @@ define(["jquery"], function () {
                         }
                     },
                     "targets": 7
-                },{
+                }, {
                     "render": function (data, type, row, meta) {
                         if (data) {
                             return '<input name="hadoop_dn" type="checkbox" checked />';
@@ -86,7 +86,7 @@ define(["jquery"], function () {
                         }
                     },
                     "targets": 8
-                },{
+                }, {
                     "render": function (data, type, row, meta) {
                         if (data) {
                             return '<input name="hbase_ha" type="checkbox" checked />';
@@ -95,7 +95,7 @@ define(["jquery"], function () {
                         }
                     },
                     "targets": 9
-                },{
+                }, {
                     "render": function (data, type, row, meta) {
                         if (data) {
                             return '<input name="hbase_rs" type="checkbox" checked />';
@@ -202,7 +202,7 @@ define(["jquery"], function () {
                         }
 
                         // console.log(html);
-                        $('#zkSpanId').html(html);
+                        $('#hbaseZkId').html(html);
 
                         // console.log(JSON.stringify(list));
                         // 加载table数据
@@ -230,7 +230,23 @@ define(["jquery"], function () {
              * 保存数据
              */
             $('[data-role="saveBtn"]', $el).on('click', function () {
+                // 选中的服务器
                 var selectList = getSelectedDatas('server');
+                // 是否主节点
+                var is_master_selectList = getSelectedDatas('is_master');
+                // hadoop_NameNode
+                var hadoop_nn_selectList = getSelectedDatas('hadoop_nn');
+                // hadoop_JournalNode
+                var hadoop_jn_selectList = getSelectedDatas('hadoop_jn');
+                // hadoop_ResourceManager
+                var hadoop_rm_selectList = getSelectedDatas('hadoop_rm');
+                // hadoop_DataNode
+                var hadoop_dn_selectList = getSelectedDatas('hadoop_dn');
+                // hbase_HA
+                var hbase_ha_selectList = getSelectedDatas('hbase_ha');
+                // hbase_RegionServers
+                var hbase_rs_selectList = getSelectedDatas('hbase_rs');
+
                 var data = {};
                 if (selectList.length > 0) {
                     var list = [];
@@ -238,12 +254,84 @@ define(["jquery"], function () {
                         var obj = {};
                         obj.id = row.hbase_id;
                         obj.server_id = row.id;
+
+                        obj.is_master = false;
+                        obj.hadoop_nn = false;
+                        obj.hadoop_jn = false;
+                        obj.hadoop_rm = false;
+                        obj.hadoop_dn = false;
+                        obj.hbase_ha = false;
+                        obj.hbase_rs = false;
+
+                        // is_master
+                        if (is_master_selectList) {
+                            $(is_master_selectList).each(function (i, o) {
+                                if (row.hbase_id == o.hbase_id) {
+                                    obj.is_master = true;
+                                }
+                            })
+                        }
+
+                        // hadoop_nn
+                        if (hadoop_nn_selectList) {
+                            $(hadoop_nn_selectList).each(function (i, o) {
+                                if (row.hbase_id == o.hbase_id) {
+                                    obj.hadoop_nn = true;
+                                }
+                            })
+                        }
+
+                        // hadoop_jn
+                        if (hadoop_jn_selectList) {
+                            $(hadoop_jn_selectList).each(function (i, o) {
+                                if (row.hbase_id == o.hbase_id) {
+                                    obj.hadoop_jn = true;
+                                }
+                            })
+                        }
+
+                        // hadoop_rm
+                        if (hadoop_rm_selectList) {
+                            $(hadoop_rm_selectList).each(function (i, o) {
+                                if (row.hbase_id == o.hbase_id) {
+                                    obj.hadoop_rm = true;
+                                }
+                            })
+                        }
+
+                        // hadoop_dn
+                        if (hadoop_dn_selectList) {
+                            $(hadoop_dn_selectList).each(function (i, o) {
+                                if (row.hbase_id == o.hbase_id) {
+                                    obj.hadoop_dn = true;
+                                }
+                            })
+                        }
+
+                        // hbase_ha
+                        if (hbase_ha_selectList) {
+                            $(hbase_ha_selectList).each(function (i, o) {
+                                if (row.hbase_id == o.hbase_id) {
+                                    obj.hbase_ha = true;
+                                }
+                            })
+                        }
+
+                        // hbase_rs
+                        if (hbase_rs_selectList) {
+                            $(hbase_rs_selectList).each(function (i, o) {
+                                if (row.hbase_id == o.hbase_id) {
+                                    obj.hbase_rs = true;
+                                }
+                            })
+                        }
+
                         list.push(obj)
                     });
                     data.list = list;
 
                     var zkIds = [];
-                    $('input[name="zk"]:checked').each(function () {
+                    $('input[name="zk"]:checked', $el).each(function () {
                         zkIds.push($(this).val());
                     });
 
@@ -258,27 +346,113 @@ define(["jquery"], function () {
                     data.yarn_resourcemanager_cluster_id = $('#yarn_resourcemanager_cluster_id').val();
                     data.yarn_resourcemanager_webapp_address = $('#yarn_resourcemanager_webapp_address').val();
 
-                    console.log(JSON.stringify(data));
-                    if (data) {
-                        app.common.ajaxWithAfa({
-                            url: 'InstallConfigAction_saveFileData.do',
-                            data: {
-                                fileName: "hbaseConfig",
-                                fileContent: JSON.stringify(data)
-                            }
-                        }).done(function (d) {
-                            let result = d.result;
-                            if (result) {
-                                loadData();
-                            }
-                        });
-                    }
+                    console.log('hbase: ' + JSON.stringify(data));
+                    // if (data) {
+                    //     app.common.ajaxWithAfa({
+                    //         url: 'InstallConfigAction_saveFileData.do',
+                    //         data: {
+                    //             fileName: "hbaseConfig",
+                    //             fileContent: JSON.stringify(data)
+                    //         }
+                    //     }).done(function (d) {
+                    //         let result = d.result;
+                    //         if (result) {
+                    //             loadData();
+                    //         }
+                    //     });
+                    // }
                 }
             });
 
 
             /**
-             * checkbox点击事件
+             * 主节点选择点击事件
+             */
+            $('#dataTable', $el).on('click', 'input[name="is_master"]', function () {
+                var row = $dataTable.rows($(this).parents('tr')).data()[0];
+                // console.log(JSON.stringify(row));
+                if (row.hbase_id) {
+                    $(this).parent().parent().siblings().children('td').children('input[name="is_master"]').prop('checked', false)
+                } else {
+                    $(this).prop('checked', false);
+                    app.alert('只能选择安装的服务器中！');
+                }
+            });
+
+            /**
+             * hadoop_NameNode 选择点击事件
+             */
+            $('#dataTable', $el).on('click', 'input[name="hadoop_nn"]', function () {
+                var row = $dataTable.rows($(this).parents('tr')).data()[0];
+                // console.log(JSON.stringify(row));
+                if (!row.hbase_id) {
+                    $(this).prop('checked', false);
+                    app.alert('只能选择安装的服务器中！');
+                }
+            });
+
+            /**
+             * hadoop_JournalNode 选择点击事件
+             */
+            $('#dataTable', $el).on('click', 'input[name="hadoop_jn"]', function () {
+                var row = $dataTable.rows($(this).parents('tr')).data()[0];
+                // console.log(JSON.stringify(row));
+                if (!row.hbase_id) {
+                    $(this).prop('checked', false);
+                    app.alert('只能选择安装的服务器中！');
+                }
+            });
+
+            /**
+             * hadoop_ResourceManager 选择点击事件
+             */
+            $('#dataTable', $el).on('click', 'input[name="hadoop_rm"]', function () {
+                var row = $dataTable.rows($(this).parents('tr')).data()[0];
+                // console.log(JSON.stringify(row));
+                if (!row.hbase_id) {
+                    $(this).prop('checked', false);
+                    app.alert('只能选择安装的服务器中！');
+                }
+            });
+
+            /**
+             * hadoop_DataNode 选择点击事件
+             */
+            $('#dataTable', $el).on('click', 'input[name="hadoop_dn"]', function () {
+                var row = $dataTable.rows($(this).parents('tr')).data()[0];
+                // console.log(JSON.stringify(row));
+                if (!row.hbase_id) {
+                    $(this).prop('checked', false);
+                    app.alert('只能选择安装的服务器中！');
+                }
+            });
+
+            /**
+             * hbase_HA 选择点击事件
+             */
+            $('#dataTable', $el).on('click', 'input[name="hbase_ha"]', function () {
+                var row = $dataTable.rows($(this).parents('tr')).data()[0];
+                // console.log(JSON.stringify(row));
+                if (!row.hbase_id) {
+                    $(this).prop('checked', false);
+                    app.alert('只能选择安装的服务器中！');
+                }
+            });
+
+            /**
+             * hbase_RegionServers 选择点击事件
+             */
+            $('#dataTable', $el).on('click', 'input[name="hbase_rs"]', function () {
+                var row = $dataTable.rows($(this).parents('tr')).data()[0];
+                // console.log(JSON.stringify(row));
+                if (!row.hbase_id) {
+                    $(this).prop('checked', false);
+                    app.alert('只能选择安装的服务器中！');
+                }
+            });
+
+            /**
+             * server checkbox点击事件
              */
             $('#dataTable', $el).on('click', 'input[name="server"]', function (event) {
                 var data = $dataTable.row($(this).parents("tr")).data();

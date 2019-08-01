@@ -71,7 +71,7 @@
             <li id="installId">
                 <img alt="" src="./img/svgobj.png">
                 <p>安装</p>
-                <p>生成安装文件、配置文件，请将生成文件按服务器IP，上传。安装时阅读readme.txt </p>
+                <p>生成安装文件、配置文件，请将生成文件按服务器IP上传。安装时阅读readme.txt </p>
             </li>
 
         </ul>

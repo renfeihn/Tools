@@ -159,7 +159,7 @@ public class InstallConfigAction extends StandardActionSupport {
                 Map map = new HashMap();
                 map.put("javaPath", javaPath);
                 content = this.processTemplate(content, map);
-                System.out.println("content: " + content);
+//                System.out.println("content: " + content);
                 FileUtils.writeFile(install_jdk8_path, content);
             }
         }
@@ -226,7 +226,7 @@ public class InstallConfigAction extends StandardActionSupport {
                 content = this.processTemplate(content, map);
                 // 文件追加内容
                 content = content + "\n" + appendStr;
-                System.out.println("content: " + content);
+//                System.out.println("content: " + content);
                 FileUtils.writeFile(zoo_cfg, content);
             }
         }
@@ -410,7 +410,7 @@ public class InstallConfigAction extends StandardActionSupport {
                     map.put("afa_urls", stormObj.get("afa_urls"));
 
                     content = this.processTemplate(content, map);
-                    System.out.println("content: " + content);
+//                    System.out.println("content: " + content);
                     FileUtils.writeFile(asda_json, content);
 
                 } else {
@@ -604,7 +604,7 @@ public class InstallConfigAction extends StandardActionSupport {
                 map.put("zookeeper_connect", zookeeper_connect);
 
                 content = this.processTemplate(content, map);
-                System.out.println("content: " + content);
+//                System.out.println("content: " + content);
                 FileUtils.writeFile(server_properties, content);
 
             }
@@ -784,7 +784,7 @@ public class InstallConfigAction extends StandardActionSupport {
                 map.put("ha_zookeeper_quorum", ha_zookeeper_quorum);
 
                 content = this.processTemplate(content, map);
-                System.out.println("core_site: " + content);
+//                System.out.println("core_site: " + content);
                 // 修改完内容 写入文件
                 FileUtils.writeFile(core_site, content);
                 // 修改 hdoop_conf/core-site.xml  end -----------------------
@@ -801,7 +801,7 @@ public class InstallConfigAction extends StandardActionSupport {
                 map.put("dfs_journalnode_shared", dfs_journalnode_shared);
 
                 content = this.processTemplate(content, map);
-                System.out.println("hdfs_site: " + content);
+//                System.out.println("hdfs_site: " + content);
                 // 修改完内容 写入文件
                 FileUtils.writeFile(hdfs_site, content);
                 // 修改 hdoop_conf/hdfs-site.xml  end -----------------------
@@ -822,7 +822,7 @@ public class InstallConfigAction extends StandardActionSupport {
                 map.put("yarn_resourcemanager_ids", yarn_resourcemanager_ids);
 
                 content = this.processTemplate(content, map);
-                System.out.println("yarn_site: " + content);
+//                System.out.println("yarn_site: " + content);
                 // 修改完内容 写入文件
                 FileUtils.writeFile(yarn_site, content);
                 // 修改 hdoop_conf/yarn-site.xml  end -----------------------
@@ -836,7 +836,7 @@ public class InstallConfigAction extends StandardActionSupport {
                 map.put("slaves_ip", slaves_ip.toString());
 
                 content = this.processTemplate(content, map);
-                System.out.println("slaves: " + content);
+//                System.out.println("slaves: " + content);
                 // 修改完内容 写入文件
                 FileUtils.writeFile(slaves, content);
                 // 修改 hdoop_conf/slaves  end -----------------------
@@ -853,7 +853,7 @@ public class InstallConfigAction extends StandardActionSupport {
                 map.put("zookeeper_clientPort", zookeeper_clientPort);
 
                 content = this.processTemplate(content, map);
-                System.out.println("hbase_site: " + content);
+//                System.out.println("hbase_site: " + content);
                 // 修改完内容 写入文件
                 FileUtils.writeFile(hbase_site, content);
                 // 修改 hbase_conf/hbase-site.xml  end -----------------------
@@ -867,7 +867,7 @@ public class InstallConfigAction extends StandardActionSupport {
                 map.put("regionservers", regionservers_ip.toString());
 
                 content = this.processTemplate(content, map);
-                System.out.println("regionservers: " + content);
+//                System.out.println("regionservers: " + content);
                 // 修改完内容 写入文件
                 FileUtils.writeFile(regionservers, content);
                 // 修改 hbase_conf/regionservers  end -----------------------
@@ -881,7 +881,7 @@ public class InstallConfigAction extends StandardActionSupport {
                 map.put("masters_ip", masters_ip.toString());
 
                 content = this.processTemplate(content, map);
-                System.out.println("backup_masters: " + content);
+//                System.out.println("backup_masters: " + content);
                 // 修改完内容 写入文件
                 FileUtils.writeFile(backup_masters, content);
                 // 修改 hbase_conf/regionservers  end -----------------------
@@ -942,8 +942,8 @@ public class InstallConfigAction extends StandardActionSupport {
 
             String fileNameAll = classesPath + "configData/" + fileName + ".json";
 
-            System.out.println(fileNameAll);
-            System.out.println(fileContent);
+//            System.out.println(fileNameAll);
+//            System.out.println(fileContent);
 
             FileUtils.writeFile(fileNameAll, fileContent);
 
@@ -958,27 +958,48 @@ public class InstallConfigAction extends StandardActionSupport {
     }
 
     /**
-     * 功能说明：获取服务器配置
+     * 功能说明：marge服务器配置
      *
      * @return
      */
-    public String getServerConfig() {
+    public String margeServerConfig() {
         try {
 
-//            FileUtils.delFolder(classesPath + "\\outConfig\\");
+            JSONObject server = JSON.parseObject(fileContent);
+            JSONObject serverObj = getFileContent(DataFileName.serverConfig.name());
+            if (null != serverObj) {
+                JSONArray serverList = serverObj.getJSONArray("list");
+                Boolean update = false;
+                if (null != serverList && serverList.size() > 0) {
+                    for (int i = 0; i < serverList.size(); i++) {
+                        JSONObject object = serverList.getJSONObject(i);
+                        if (object.get("id").equals(server.get("id"))) {
+                            serverList.set(i, server);
+                            update = true;
+                        }
+                    }
+                } else {
+                    serverList = new JSONArray();
+                    serverObj.put("list", serverList);
+                }
+                if (!update) {
+                    serverList.add(server);
+                }
+            } else {
+                serverObj = new JSONObject();
+                JSONArray list = new JSONArray();
+                list.add(server);
 
-//            genJava();
-//            genZookeeper();
-//            genStorm();
-//            genMysql();
-//            genEs();
-//            genKafka();
-//            genHbase();
+                serverObj.put("list", list);
+            }
 
+//            System.out.println(serverObj.toString());
 
-            JSONArray array = getListByFileName(DataFileName.serverConfig.name());
+            String fileNameAll = classesPath + "configData/" + DataFileName.serverConfig + ".json";
+            FileUtils.writeFile(fileNameAll, serverObj.toString());
+
             setStrutsMessage(
-                    StrutsMessage.successMessage().addParameter("result", array));
+                    StrutsMessage.successMessage().addParameter("result", true));
             return SUCCESS;
         } catch (Exception e) {
             e.printStackTrace();
@@ -987,9 +1008,43 @@ public class InstallConfigAction extends StandardActionSupport {
         }
     }
 
+    /**
+     * 功能说明：根据ID删除服务器信息
+     *
+     * @return
+     */
+    public String deleteServerConfigById() {
+        try {
+
+            JSONObject serverObj = getFileContent(DataFileName.serverConfig.name());
+            JSONArray serverList = serverObj.getJSONArray("list");
+            if (null != serverList && serverList.size() > 0) {
+                for (int i = 0; i < serverList.size(); i++) {
+                    JSONObject object = serverList.getJSONObject(i);
+                    if (object.get("id").equals(id)) {
+                        serverList.remove(i);
+                        break;
+                    }
+                }
+            }
+
+//            System.out.println(serverObj.toString());
+
+            String fileNameAll = classesPath + "configData/" + DataFileName.serverConfig + ".json";
+            FileUtils.writeFile(fileNameAll, serverObj.toString());
+
+            setStrutsMessage(
+                    StrutsMessage.successMessage().addParameter("result", true));
+            return SUCCESS;
+        } catch (Exception e) {
+            e.printStackTrace();
+            setStrutsMessage(StrutsMessage.errorMessage(ExceptionTypes.AWEB.AWEB99, e));
+            return ERROR;
+        }
+    }
 
     /**
-     * 功能说明：获取服务器配置
+     * 功能说明：根据配置生成安装信息
      *
      * @return
      */

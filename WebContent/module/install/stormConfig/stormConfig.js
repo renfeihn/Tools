@@ -138,7 +138,7 @@ define(["jquery"], function () {
 
                         // console.log(html);
 
-                        $('#zkSpanId').html(html);
+                        $('#stormZkId').html(html);
 
                         $dataTable.clear();
                         $dataTable.rows.add(list).draw();
@@ -164,7 +164,7 @@ define(["jquery"], function () {
              */
             $('[data-role="saveBtn"]', $el).on('click', function () {
                 var selectList = getSelectedDatas('server');
-                var asdaSelectList = getSelectedDatas('asda');
+                var asda_selectList = getSelectedDatas('asda');
                 var data = {};
                 if (selectList.length > 0) {
                     var list = [];
@@ -173,8 +173,9 @@ define(["jquery"], function () {
                         obj.id = row.storm_id;
                         obj.server_id = row.id;
 
-                        if (asdaSelectList) {
-                            $(asdaSelectList).each(function (i, o) {
+                        // 拓扑
+                        if (asda_selectList) {
+                            $(asda_selectList).each(function (i, o) {
                                 if (row.storm_id == o.storm_id) {
                                     obj.exec_asda = true;
                                 }
@@ -186,7 +187,7 @@ define(["jquery"], function () {
                     data.list = list;
 
                     var zkIds = [];
-                    $('input[name="zk"]:checked').each(function () {
+                    $('input[name="zk"]:checked', $el).each(function () {
                         zkIds.push($(this).val());
                     });
 
@@ -204,7 +205,7 @@ define(["jquery"], function () {
                     data.redis_sentinel_ip_port = $('#redis_sentinel_ip_port').val();
                     data.afa_urls = $('#afa_urls').val();
 
-                    console.log(JSON.stringify(data))
+                    console.log('storm: ' + JSON.stringify(data));
 
                     // if (data) {
                     //     app.common.ajaxWithAfa({

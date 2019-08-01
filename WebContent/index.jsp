@@ -353,10 +353,8 @@ li.aweb-navibar-personal > a:hover {
 
 		<!-- 主菜单按钮 -->
 		<ul class="menu-firstLevel" id="bannerMenu">
-
-
-			<li title="个人中心" data-id="104"><a class="menu" style="background-image:url(img//menu//menu6-check.png)"></a><span>个人中心</span>
-				<ul class="menu-secondLevel">
+			<li title="个人中心" class="active" data-id="104"><a class="menu" style="background-image:url(img//menu//menu6-check.png)"></a><span>个人中心</span>
+				<ul class="menu-secondLevel show">
 					<li data-id="1"><a data-href="install#serverConfig">服务器配置</a></li>
 					<li data-id="2"><a data-href="install#javaConfig">java配置</a></li>
 					<li data-id="3"><a data-href="install#zookeeperConfig">zookeeper配置</a></li>
@@ -388,9 +386,9 @@ li.aweb-navibar-personal > a:hover {
 					</a></li>
 				</ul>
 			</li>
-			<li class="aweb-navibar-alert"><label class="aweb-navibar-alert-num"></label><i id="showWangingBtn" href="javascript:" class="fa fa-bell" title="最新消息 [快捷键Shift+Enter]"></i></li><!-- 
-			<i id="showWangingBtn" class="fa fa-bell" title="最新消息 [快捷键Shift+Enter]"></i> -->
-			<i class="fa fa-lock" title="锁定宽度"></i>
+			<%--<li class="aweb-navibar-alert"><label class="aweb-navibar-alert-num"></label><i id="showWangingBtn" href="javascript:" class="fa fa-bell" title="最新消息 [快捷键Shift+Enter]"></i></li><!-- --%>
+			<%--<i id="showWangingBtn" class="fa fa-bell" title="最新消息 [快捷键Shift+Enter]"></i> -->--%>
+			<%--<i class="fa fa-lock" title="锁定宽度"></i>--%>
 		</div>
 	</div>
 	<%--左侧边栏 End--%>

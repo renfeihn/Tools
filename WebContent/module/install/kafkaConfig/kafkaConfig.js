@@ -69,7 +69,6 @@ define(["jquery"], function () {
                         var list = serverObj.list;
                         var zkList = zkObj.list;
                         if (kafkaObj) {
-                            $('#home_path').val(kafkaObj.home_path);
                             $('#listeners_prot').val(kafkaObj.listeners_prot);
                             $('#kafka_home').val(kafkaObj.kafka_home);
 
@@ -93,7 +92,7 @@ define(["jquery"], function () {
                         if (zkList) {
                             $(zkList).each(function (i, zk) {
                                 var checked = false;
-                                if(zkIds){
+                                if (zkIds) {
                                     $(zkIds).each(function (j, id) {
                                         if (zk.id == id) {
                                             checked = true;
@@ -116,7 +115,7 @@ define(["jquery"], function () {
                             });
                         }
 
-                        $('#zkSpanId').html(html);
+                        $('#kafkaZkId').html(html);
 
                         $dataTable.clear();
                         $dataTable.rows.add(list).draw();
@@ -154,7 +153,7 @@ define(["jquery"], function () {
                     data.list = list;
 
                     var zkIds = [];
-                    $('input[name="zk"]:checked').each(function(){
+                    $('input[name="zk"]:checked', $el).each(function () {
                         zkIds.push($(this).val());
                     });
 
@@ -179,7 +178,6 @@ define(["jquery"], function () {
                     }
                 }
             });
-
 
             /**
              * checkbox点击事件

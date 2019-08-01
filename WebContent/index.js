@@ -1298,15 +1298,15 @@ $(function () {
 	}*/
 /* 主菜单点击事件Start */
 	// 离开菜单 收起所有二级菜单
-	$('#leftAside').mouseleave(function(){
-		if($('.lock-width>i').hasClass('fa-unlock') && $('.menu-secondLevel.show').length > 0){
-			$('.menu-secondLevel.show').removeClass('show');
-			// $('#bannerMenu>.active').removeClass('active');
-			$(".menu-firstLevel>li").each(function(){
-				// $(this).children('a').css('background-image', $(this).children('a').css('background-image').replace('-check.png','.png'));
-			})
-		}
-	});
+	// $('#leftAside').mouseleave(function(){
+	// 	if($('.lock-width>i').hasClass('fa-unlock') && $('.menu-secondLevel.show').length > 0){
+	// 		$('.menu-secondLevel.show').removeClass('show');
+	// 		// $('#bannerMenu>.active').removeClass('active');
+	// 		$(".menu-firstLevel>li").each(function(){
+	// 			// $(this).children('a').css('background-image', $(this).children('a').css('background-image').replace('-check.png','.png'));
+	// 		})
+	// 	}
+	// });
 
 	// 一级菜单点击
 	$(".menu-firstLevel>li").click(function (e){

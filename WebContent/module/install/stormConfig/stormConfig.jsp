@@ -127,7 +127,7 @@
 
             <div>
                 <label class="control-label required">zookeeper选择</label>
-                <span id="zkSpanId"></span>
+                <span id="stormZkId"></span>
             </div>
 
             <div>

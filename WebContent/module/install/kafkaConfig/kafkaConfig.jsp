@@ -126,7 +126,7 @@
 
             <div>
                 <label class="control-label required">zk列表</label>
-                <span id="zkSpanId"></span>
+                <span id="kafkaZkId"></span>
             </div>
 
             <div>

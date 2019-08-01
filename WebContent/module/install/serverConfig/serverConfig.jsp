@@ -39,7 +39,7 @@
 			<thead>
 				<tr>
 					<th style="width: 80px;">序号</th>
-					<th style="width: 0px;">id</th>
+					<th style="width: 10px;">id</th>
 					<th>服务器IP</th>
 					<th>用户名</th>
 					<th>密码</th>
@@ -55,32 +55,26 @@
 <div id="serverModal" class="modal hide fade SPC-modal" data-backdrop="false" aria-hidden="true" tabindex="-1" style="width: 800px">
 	<div class="modal-header">
 		<button class="close" type="button" data-dismiss="modal">×</button>
-		<h3 id="myModalLabel">参数修改</h3>
+		<h3 id="myModalLabel">详细信息</h3>
 	</div>
 	<div class="modal-body">
 		<form class="form-horizontal SPC-warningForm">
 			<div class="control-group">
-				<label for="searchName" class="control-label required">参数分类</label>
+				<label for="searchName" class="control-label required">IP</label>
 				<div class="controls">
-					<input type="text" id="category" name="category" disabled/>
+					<input type="text" id="ip" name="ip" placeholder="输入用IP：10.10.10.10" />
 				</div>
 			</div>
 			<div class="control-group">
-				<label for="searchName" class="control-label required">参数名</label>
+				<label for="searchName" class="control-label required">用户名</label>
 				<div class="controls">
-					<input type="text" id="name" name="name" placeholder="输入名称" disabled />
+					<input type="text" id="username" name="username" placeholder="输入用户名"  />
 				</div>
 			</div>
 			<div class="control-group">
-				<label for="searchName" class="control-label required">参数说明</label>
+				<label for="searchName" class="control-label required">密码</label>
 				<div class="controls">
-					<input type="text" id="val_desc" name="val_desc" placeholder="输入名称" />
-				</div>
-			</div>
-			<div class="control-group">
-				<label for="searchName" class="control-label required">参数值</label>
-				<div class="controls">
-					<textarea name="val" id="val" style="height: 150px; resize: none;"></textarea>
+					<input type="text" id="password" name="password" placeholder="输入密码" />
 				</div>
 			</div>
 		</form>
