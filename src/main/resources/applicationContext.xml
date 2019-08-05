@@ -15,7 +15,6 @@
     <!-- 该配置文件进行基本的Spring和Hibernate的集成配置。
           与业务相关的配置将放在其它的Spring配置文件中。 -->
     <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-        <!--bean id="propertyConfigurer" class="com.agree.util.ConfParser"-->
         <property name="locations">
             <list>
                 <value>WEB-INF/classes/conf.properties</value>

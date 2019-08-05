@@ -3,13 +3,13 @@ package cn.com.agree.aweb.struts2.action.install;
 import cn.com.agree.aweb.exception.ExceptionTypes;
 import cn.com.agree.aweb.struts2.action.support.StandardActionSupport;
 import cn.com.agree.aweb.struts2.action.support.StrutsMessage;
-import cn.com.agree.logging.Logger;
-import cn.com.agree.logging.LoggerFactory;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
