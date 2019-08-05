@@ -3,12 +3,11 @@ package cn.com.agree.aweb.struts2.action.install;
 import cn.com.agree.aweb.exception.ExceptionTypes;
 import cn.com.agree.aweb.struts2.action.support.StandardActionSupport;
 import cn.com.agree.aweb.struts2.action.support.StrutsMessage;
-import cn.com.agree.aweb.struts2.action.system.NoPasswdLogAction;
 import cn.com.agree.logging.Logger;
 import cn.com.agree.logging.LoggerFactory;
-import com.aim.alibaba.fastjson.JSON;
-import com.aim.alibaba.fastjson.JSONArray;
-import com.aim.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.context.annotation.Scope;
@@ -49,6 +48,19 @@ public class InstallConfigAction extends StandardActionSupport {
      */
     private String fileContent;
 
+    public String getOutFilePath() {
+        return outFilePath;
+    }
+
+    public void setOutFilePath(String outFilePath) {
+        this.outFilePath = outFilePath;
+    }
+
+    /**
+     * 生成安装配置文件路径
+     */
+    private String outFilePath;
+
     /**
      * 功能说明：数据文件名称
      */
@@ -77,7 +89,9 @@ public class InstallConfigAction extends StandardActionSupport {
         while (m.find()) {
             String param = m.group();
             Object value = params.get(param.substring(2, param.length() - 1));
-            m.appendReplacement(sb, value == null ? "" : value.toString());
+            if (value != null && StringUtils.isNotEmpty(value.toString())) {
+                m.appendReplacement(sb, value.toString());
+            }
         }
         m.appendTail(sb);
         return sb.toString();
@@ -164,7 +178,7 @@ public class InstallConfigAction extends StandardActionSupport {
                 String ip = serverObj.getString("ip");
 
                 String sourcePath = classesPath + "/baseConfig/java";
-                String targetPath = classesPath + "/outConfig/" + ip + "/java/";
+                String targetPath = getTargetPath() + "/outConfig/" + ip + "/java/";
 
                 writeLog("开始生成 " + ip + " 安装文件！");
                 FileCommon.copyDirectiory(sourcePath, targetPath);
@@ -221,7 +235,7 @@ public class InstallConfigAction extends StandardActionSupport {
                 String ip = serverObj.getString("ip");
 
                 String sourcePath = classesPath + "/baseConfig/zookeeper";
-                String targetPath = classesPath + "/outConfig/" + ip + "/zookeeper/";
+                String targetPath = getTargetPath() + "/outConfig/" + ip + "/zookeeper/";
 
                 FileCommon.copyDirectiory(sourcePath, targetPath);
 
@@ -367,8 +381,10 @@ public class InstallConfigAction extends StandardActionSupport {
                 JSONObject serverObj = getInfoById(DataFileName.serverConfig.name(), obj.getString("server_id"));
                 String ip = serverObj.getString("ip");
 
+                writeLog("开始生成 " + ip + " strom 安装文件！");
+
                 String sourcePath = classesPath + "/baseConfig/storm";
-                String targetPath = classesPath + "/outConfig/" + ip + "/storm/";
+                String targetPath = getTargetPath() + "/outConfig/" + ip + "/storm/";
 
                 FileCommon.copyDirectiory(sourcePath, targetPath);
 
@@ -390,7 +406,7 @@ public class InstallConfigAction extends StandardActionSupport {
                 map.put("storm_local_hostname", "\"" + ip + "\"");
                 map.put("storm_zookeeper_servers", storm_zookeeper_servers.toString());
                 map.put("storm_zookeeper_port", zkObj.get("clientPort"));
-                map.put("storm_zookeeper_root", stormObj.get("storm.zookeeper_root"));
+                map.put("storm_zookeeper_root", stormObj.get("storm_zookeeper_root"));
                 map.put("transactional_zookeeper_root", stormObj.get("transactional_zookeeper_root"));
                 map.put("nimbus_seeds", nimbus_seeds);
 
@@ -430,6 +446,8 @@ public class InstallConfigAction extends StandardActionSupport {
 //                    System.out.println("content: " + content);
                     FileCommon.writeFile(asda_json, content);
 
+                    writeLog("生成 " + ip + " 拓扑 安装文件完成！");
+
                 } else {
                     // 不安装拓扑的机器上删除 asda.json
                     File file = new File(asda_json);
@@ -437,6 +455,9 @@ public class InstallConfigAction extends StandardActionSupport {
                         file.delete();
                     }
                 }
+
+                writeLog("生成 " + ip + " strom 安装文件完成！");
+
             }
         }
 
@@ -465,7 +486,7 @@ public class InstallConfigAction extends StandardActionSupport {
                 String server_id = ip.substring(ip.lastIndexOf(".") + 1, ip.length());
 
                 String sourcePath = classesPath + "/baseConfig/mysql_install";
-                String targetPath = classesPath + "/outConfig/" + ip + "/mysql_install/";
+                String targetPath = getTargetPath() + "/outConfig/" + ip + "/mysql_install/";
 
                 FileCommon.copyDirectiory(sourcePath, targetPath);
 
@@ -540,7 +561,7 @@ public class InstallConfigAction extends StandardActionSupport {
                 String ip = serverObj.getString("ip");
 
                 String sourcePath = classesPath + "/baseConfig/es";
-                String targetPath = classesPath + "/outConfig/" + ip + "/es/";
+                String targetPath = getTargetPath() + "/outConfig/" + ip + "/es/";
 
                 FileCommon.copyDirectiory(sourcePath, targetPath);
 
@@ -584,6 +605,7 @@ public class InstallConfigAction extends StandardActionSupport {
 
             // 获取zk列表
             StringBuffer zookeeper_connect = new StringBuffer("\n");
+            String topics_zk = "";
             JSONArray zkIds = kafkaObj.getJSONArray("zkIds");
             for (int i = 0; i < zkIds.size(); i++) {
                 String zkId = zkIds.getString(i);
@@ -594,6 +616,10 @@ public class InstallConfigAction extends StandardActionSupport {
                     zookeeper_connect.append(",");
                 }
                 zookeeper_connect.append(server.get("ip") + ":" + zkObj.get("clientPort"));
+
+                if (i == 0) {
+                    topics_zk = server.get("ip") + ":" + zkObj.get("clientPort");
+                }
             }
 
             // 复制文件并 生成最新文件
@@ -603,7 +629,7 @@ public class InstallConfigAction extends StandardActionSupport {
                 String ip = serverObj.getString("ip");
 
                 String sourcePath = classesPath + "/baseConfig/kafka";
-                String targetPath = classesPath + "/outConfig/" + ip + "/kafka/";
+                String targetPath = getTargetPath() + "/outConfig/" + ip + "/kafka/";
 
                 FileCommon.copyDirectiory(sourcePath, targetPath);
 
@@ -618,12 +644,28 @@ public class InstallConfigAction extends StandardActionSupport {
                 map.put("listeners_prot", kafkaObj.get("listeners_prot"));
                 map.put("kafka_home", kafkaObj.get("kafka_home"));
                 // 本机
-                map.put("zookeeper_connect", zookeeper_connect);
+                map.put("zookeeper_connect", zookeeper_connect.toString());
 
                 content = processTemplate(content, map);
 //                System.out.println("content: " + content);
                 FileCommon.writeFile(server_properties, content);
 
+                // 修改install.sh
+                map.clear();
+                String install_kafka_sh = targetPath + "install_kafka.sh";
+                content = FileCommon.readFile(install_kafka_sh);
+                map.put("exec_topics", obj.getBoolean("exec_topics"));
+                map.put("topics_zk", topics_zk);
+                content = processTemplate(content, map);
+                FileCommon.writeFile(install_kafka_sh, content);
+
+                // 修改 readme.txt
+                map.clear();
+                String readme_txt = targetPath + "readme.txt";
+                content = FileCommon.readFile(readme_txt);
+                map.put("topics_zk", topics_zk);
+                content = processTemplate(content, map);
+                FileCommon.writeFile(readme_txt, content);
             }
         }
         System.out.println("gen kafka end");
@@ -780,15 +822,18 @@ public class InstallConfigAction extends StandardActionSupport {
                 String ip = serverObj.getString("ip");
 
                 String sourcePath = classesPath + "/baseConfig/hbase";
-                String targetPath = classesPath + "/outConfig/" + ip + "/hbase/";
+                String targetPath = getTargetPath() + "/outConfig/" + ip + "/hbase/";
 
                 Boolean is_mater = null == obj.getBoolean("is_master") ? false : obj.getBoolean("is_master");
                 if (!is_mater) {
                     continue;
                 }
 
+                writeLog("开始生成 " + ip + " 安装文件！");
+
                 // 只生成主节点文件，其它节点通过copy模式下发
                 FileCommon.copyDirectiory(sourcePath, targetPath);
+
 
                 Map<String, Object> map = new HashMap<String, Object>();
                 // 修改 hdoop_conf/core-site.xml start -----------------------
@@ -804,6 +849,7 @@ public class InstallConfigAction extends StandardActionSupport {
 //                System.out.println("core_site: " + content);
                 // 修改完内容 写入文件
                 FileCommon.writeFile(core_site, content);
+                writeLog("生成hadoop配置文件 core-site.xml 完成！");
                 // 修改 hdoop_conf/core-site.xml  end -----------------------
 
                 // 修改 hdoop_conf/hdfs-site.xml start -----------------------
@@ -821,6 +867,8 @@ public class InstallConfigAction extends StandardActionSupport {
 //                System.out.println("hdfs_site: " + content);
                 // 修改完内容 写入文件
                 FileCommon.writeFile(hdfs_site, content);
+                writeLog("生成hadoop配置文件 hdfs-site.xml 完成！");
+
                 // 修改 hdoop_conf/hdfs-site.xml  end -----------------------
 
 
@@ -842,6 +890,7 @@ public class InstallConfigAction extends StandardActionSupport {
 //                System.out.println("yarn_site: " + content);
                 // 修改完内容 写入文件
                 FileCommon.writeFile(yarn_site, content);
+                writeLog("生成hadoop配置文件 yarn-site.xml 完成！");
                 // 修改 hdoop_conf/yarn-site.xml  end -----------------------
 
 
@@ -856,6 +905,8 @@ public class InstallConfigAction extends StandardActionSupport {
 //                System.out.println("slaves: " + content);
                 // 修改完内容 写入文件
                 FileCommon.writeFile(slaves, content);
+                writeLog("生成hadoop配置文件 slaves 完成！");
+
                 // 修改 hdoop_conf/slaves  end -----------------------
 
 
@@ -873,6 +924,8 @@ public class InstallConfigAction extends StandardActionSupport {
 //                System.out.println("hbase_site: " + content);
                 // 修改完内容 写入文件
                 FileCommon.writeFile(hbase_site, content);
+                writeLog("生成hbase配置文件 hbase-site.xml 完成！");
+
                 // 修改 hbase_conf/hbase-site.xml  end -----------------------
 
 
@@ -887,6 +940,8 @@ public class InstallConfigAction extends StandardActionSupport {
 //                System.out.println("regionservers: " + content);
                 // 修改完内容 写入文件
                 FileCommon.writeFile(regionservers, content);
+                writeLog("生成hbase配置文件 regionservers 完成！");
+
                 // 修改 hbase_conf/regionservers  end -----------------------
 
 
@@ -901,7 +956,11 @@ public class InstallConfigAction extends StandardActionSupport {
 //                System.out.println("backup_masters: " + content);
                 // 修改完内容 写入文件
                 FileCommon.writeFile(backup_masters, content);
+                writeLog("生成hbase配置文件 backup-masters 完成！");
+
                 // 修改 hbase_conf/regionservers  end -----------------------
+
+                writeLog("生成 " + ip + " 安装文件完成！");
 
             }
         }
@@ -1120,8 +1179,13 @@ public class InstallConfigAction extends StandardActionSupport {
         }
     }
 
-    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
+    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss SSS");
+
+    /**
+     * 写日志
+     * @param s
+     */
     private void writeLog(String s) {
         String date = sdf.format(new Date());
         s = date + " : " + s;
@@ -1134,11 +1198,21 @@ public class InstallConfigAction extends StandardActionSupport {
     class ProcessTread extends Thread {
 
         public void run() {
+            long start = System.currentTimeMillis();
 
             if (StringUtils.isEmpty(fileName)) {
                 writeLog("没有软件需要生成安装文件！");
                 return;
             }
+
+            // 判断路径不存在，报错
+            String targetPath = getTargetPath();
+            File file = new File(targetPath);
+            if (!file.isDirectory()) {
+                writeLog("输入生成文件路径：" + targetPath + "不存在，生成在默认路径！");
+                setOutFilePath("");
+            }
+
             writeLog("开始生成安装文件！");
 
             writeLog("开始清理原生成的安装文件！");
@@ -1155,92 +1229,122 @@ public class InstallConfigAction extends StandardActionSupport {
                     writeLog(FileCommon.throwableToString(e));
                 }
                 writeLog("生成java安装文件完成！");
+                writeLog("----------------------------");
             }
+
 
             if (fileName.contains("zookeeper")) {
                 writeLog("开始生成zookeeper安装文件！");
 
                 try {
                     genZookeeper();
-                    throw new IOException("文件不存在");
                 } catch (IOException e) {
                     e.printStackTrace();
                     writeLog(FileCommon.throwableToString(e));
                 }
                 writeLog("生成zookeeper安装文件完成！");
+                writeLog("----------------------------");
             }
+
 
             if (fileName.contains("mysql")) {
                 writeLog("开始生成mysql安装文件！");
 
                 try {
                     genMysql();
-                    throw new IOException("文件不存在");
                 } catch (IOException e) {
                     e.printStackTrace();
                     writeLog(FileCommon.throwableToString(e));
                 }
                 writeLog("生成mysql安装文件完成！");
+                writeLog("----------------------------");
             }
+
+
             if (fileName.contains("es")) {
                 writeLog("开始生成es安装文件！");
 
                 try {
                     genEs();
-                    throw new IOException("文件不存在");
                 } catch (IOException e) {
                     e.printStackTrace();
                     writeLog(FileCommon.throwableToString(e));
                 }
                 writeLog("生成es安装文件完成！");
+                writeLog("----------------------------");
             }
+
+
             if (fileName.contains("kafka")) {
                 writeLog("开始生成kafka安装文件！");
 
                 try {
                     genKafka();
-                    throw new IOException("文件不存在");
                 } catch (IOException e) {
                     e.printStackTrace();
                     writeLog(FileCommon.throwableToString(e));
                 }
                 writeLog("生成kafka安装文件完成！");
+                writeLog("----------------------------");
             }
+
+
             if (fileName.contains("hbase")) {
                 writeLog("开始生成hbase安装文件！");
 
                 try {
                     genHbase();
-                    throw new IOException("文件不存在");
                 } catch (IOException e) {
                     e.printStackTrace();
                     writeLog(FileCommon.throwableToString(e));
                 }
                 writeLog("生成hbase安装文件完成！");
+                writeLog("----------------------------");
             }
+
+
             if (fileName.contains("storm")) {
                 writeLog("开始生成storm安装文件！");
 
                 try {
                     genStorm();
-                    throw new IOException("文件不存在");
                 } catch (IOException e) {
                     e.printStackTrace();
                     writeLog(FileCommon.throwableToString(e));
                 }
                 writeLog("生成storm安装文件完成！");
+                writeLog("----------------------------");
             }
 
-            writeLog("生成全部安装文件完成！");
+            long end = System.currentTimeMillis();
 
-            String fullPath = classesPath + "outConfig/";
+            writeLog("生成全部安装文件完成！耗时：" + (end - start) / 1000 + "s");
+
+            String fullPath = getTargetPath() + "/outConfig/";
+
             String os = System.getProperty("os.name");
             if (os.toLowerCase().startsWith("win")) {
-                fullPath = fullPath.substring(1, fullPath.length());
+                if (fullPath.startsWith("/")) {
+                    fullPath = fullPath.substring(1, fullPath.length());
+                }
             }
 
             writeLog("生成文件服务器路径：" + fullPath);
         }
+    }
+
+
+    private String getTargetPath() {
+        String targetPath = "";
+        if (StringUtils.isNotEmpty(outFilePath)) {
+            File file = new File(outFilePath);
+            targetPath = file.getPath();
+        } else {
+            File file = new File(classesPath);
+            targetPath = file.getPath();
+        }
+
+        return targetPath;
     }
 
 

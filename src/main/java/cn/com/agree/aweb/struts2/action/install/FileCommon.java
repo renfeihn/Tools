@@ -1,8 +1,7 @@
 package cn.com.agree.aweb.struts2.action.install;
 
-import com.aim.alibaba.fastjson.JSON;
-import com.aim.alibaba.fastjson.JSONArray;
-import com.aim.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 
 import java.io.*;
 import java.nio.channels.FileChannel;

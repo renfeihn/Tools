@@ -18,7 +18,7 @@
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
             name="viewport"/>
     <meta content="yes" name="apple-mobile-web-app-capable"/>
-    <title>日志分析平台</title>
+    <title>安装软件生成工具</title>
     <style id="#bgStyle"></style>
     <link href="img/bank/jxyh_favicon.ico" rel="shortcut icon" type="image/x-icon">
     <!-- <link href="img/favicon.ico" rel="shortcut icon" type="image/x-icon"> -->
@@ -341,10 +341,10 @@ li.aweb-navibar-personal > a:hover {
 	<%--左侧边栏 Start--%>
 	<div data-role="leftAside" id="leftAside" class="aside aside-left">
 		<!-- logo -->
-		<div class="bank-logo-content" style="cursor: pointer;">
-			<!-- <img src="img/bank/logo-dgns.png" > -->
-			<div></div>
-		</div>
+		<%--<div class="bank-logo-content" style="cursor: pointer;">--%>
+			<%--<!-- <img src="img/bank/logo-dgns.png" > -->--%>
+			<%--<div></div>--%>
+		<%--</div>--%>
 		<!-- logo -->
 		
 		<!-- 创建工单 -->

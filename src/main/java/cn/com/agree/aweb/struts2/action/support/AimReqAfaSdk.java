@@ -5,7 +5,7 @@ package cn.com.agree.aweb.struts2.action.support;
 
 import java.util.Set;
 
-import com.aim.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.JSONObject;
 
 import cn.com.agree.aweb.exception.String2JsonException;
 import cn.com.agree.aweb.struts2.action.support.interfaces.IAimReq;

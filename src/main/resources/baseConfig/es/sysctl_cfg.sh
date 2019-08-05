@@ -22,3 +22,5 @@ sed -i '$a * soft nofile 65536\n* hard nofile 65536\n' /etc/security/limits.conf
 
 #
 sed -i '$a *          soft    nproc     4096\n' /etc/security/limits.d/90-nproc.conf
+
+sysctl -p

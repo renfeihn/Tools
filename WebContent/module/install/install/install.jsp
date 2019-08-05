@@ -146,12 +146,18 @@
                 <input type="checkbox" value="mysql"/>mysql
                 <input type="checkbox" value="es"/>es
                 <input type="checkbox" value="kafka"/>kafka
-                <input type="checkbox" value="hbase"/>hbase
+                <input type="checkbox" value="hbase"/>hadoop hbase phoenix
                 <input type="checkbox" value="storm"/>storm
             </div>
 
         </form>
     </section>
+
+    <div style="margin: 20px 20px 20px;">
+        <label class="control-label">生成文件路径（注意：工具部署的服务器上）</label>
+        <input style="width: 300px;" id="outFilePath" type="input"/>
+        <span style="margin-left: 10px;">默认路径：工具部署目录/WEB-INF/classes/outConfig/</span>
+    </div>
 
     <div style="text-align: center">
         <button type="button" data-role="checkBtn">全选</button>
@@ -161,8 +167,8 @@
 
 
     <div style="width: 100%;margin: 20px">
-        <div>执行日志：</div>
-        <textarea style="margin: 5px 5px 10px; width: 900px; min-height: 400px;" id="logId"> </textarea>
+        <label class="control-label">执行日志：</label>
+        <textarea style="padding: 5px; width: 900px; min-height: 400px;" id="logId"> </textarea>
     </div>
 
 </div>

@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
-import com.aim.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSON;
 
 import cn.com.agree.aweb.Constants;
 import cn.com.agree.aweb.service.aweb.ILoginService;

@@ -10,7 +10,7 @@ import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
-import com.aim.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.JSONObject;
 
 import cn.com.agree.aweb.exception.ExceptionTypes;
 import cn.com.agree.aweb.struts2.action.support.bean.CommSerialBean;

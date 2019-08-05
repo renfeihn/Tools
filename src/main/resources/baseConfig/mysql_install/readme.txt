@@ -1,5 +1,7 @@
 此安装程序 mysql 最多支持安装双活
 
+1.执行check.sh
+2.install_mysql.sh
 #如果是双主策略,需要下配置
 
 登录10.7.1.11，运行mysql客户端

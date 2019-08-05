@@ -697,14 +697,14 @@
 	                app.operateTopo = operateTopo.operateTopo;
 	                // 初始化控制台输出(web控制台及android logcat)
 	                app.log = new Console(app.global.get("debug")).log;
-	                app.log("***********Here's some basic information*************");
-	                app.log("Current Version: " + app.global.get("version"));
-	                app.log("OS: " + navigator.platform);
-	                app.log("UserAgent: " + navigator.userAgent);
-	                app.log("CookieEnabled: " + navigator.cookieEnabled);
-	                app.log("OnLine: " + navigator.onLine);
-	                app.log("*****************************************************");
-	                app.log("");
+	                // app.log("***********Here's some basic information*************");
+	                // app.log("Current Version: " + app.global.get("version"));
+	                // app.log("OS: " + navigator.platform);
+	                // app.log("UserAgent: " + navigator.userAgent);
+	                // app.log("CookieEnabled: " + navigator.cookieEnabled);
+	                // app.log("OnLine: " + navigator.onLine);
+	                // app.log("*****************************************************");
+	                // app.log("");
 	                app.shelter.hide();
 	                app.shelter.lowerZIndex();
 	

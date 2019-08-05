@@ -1,32 +1,25 @@
 package cn.com.agree.aweb.service.aweb.impl;
 
-import java.text.ParseException;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
+import cn.com.agree.aweb.exception.AWebException;
+import cn.com.agree.aweb.service.aweb.ILoginService;
+import cn.com.agree.aweb.session.HttpSessionContainer;
+import cn.com.agree.aweb.util.DES;
+import com.alibaba.fastjson.JSONObject;
 import org.apache.struts2.ServletActionContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.aim.alibaba.fastjson.JSONObject;
-
-import cn.com.agree.aweb.Constants;
-import cn.com.agree.aweb.exception.AWebException;
-import cn.com.agree.aweb.service.aweb.ILoginService;
-import cn.com.agree.aweb.session.HttpSessionContainer;
-import cn.com.agree.aweb.util.CommonUtils;
-import cn.com.agree.aweb.util.DES;
-//import tc.bank.common.db.IDbService;
-//import tc.cama.aweb.model.AwebUser;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import java.text.ParseException;
 
 public class LoginServiceImpl implements ILoginService {
 
-	/**
-	 * 
-	 */
-	private static final Logger log = LoggerFactory.getLogger(LoginServiceImpl.class);
+    /**
+     *
+     */
+    private static final Logger log = LoggerFactory.getLogger(LoginServiceImpl.class);
 
 //	private IDbService dbService;
 //
@@ -38,19 +31,19 @@ public class LoginServiceImpl implements ILoginService {
 //		this.dbService = dbService;
 //	}
 
-	@Override
-	public String signIn(String username, String password) throws Exception {
-		JSONObject whereEx = new JSONObject();
-		JSONObject updateData = new JSONObject();
-		String errorMsg = "";
-		String encPassword = DES.getEncString(password);
+    @Override
+    public String signIn(String username, String password) throws Exception {
+        JSONObject whereEx = new JSONObject();
+        JSONObject updateData = new JSONObject();
+        String errorMsg = "";
+        String encPassword = DES.getEncString(password);
 
-		HttpSession session = getRequest().getSession(true);
-		HttpSessionContainer.putSession(session);
+        HttpSession session = getRequest().getSession(true);
+        HttpSessionContainer.putSession(session);
 
         return "";
 
-		// 登陆成功时，检查该用户是否在别处登陆，若存在则登出原用户
+        // 登陆成功时，检查该用户是否在别处登陆，若存在则登出原用户
 //		AwebUser userVO;
 //		if ((userVO = checkpassword(username, encPassword)) != null) {
 //			if (userVO.getState().equals(Constants.DB_AGREEUSER_STATE_2)) {// 已被锁定时
@@ -88,12 +81,12 @@ public class LoginServiceImpl implements ILoginService {
 //			}
 //		}
 //		return errorMsg;
-	}
+    }
 
-	@Override
-	public String userIfExist(String username) throws Exception {
-		String errorMsg = "";
-		// 登陆成功时，检查该用户是否在别处登陆，若存在则登出原用户
+    @Override
+    public String userIfExist(String username) throws Exception {
+        String errorMsg = "";
+        // 登陆成功时，检查该用户是否在别处登陆，若存在则登出原用户
 //		AwebUser userVO;
 //		if ((userVO = checkUserExist(username)) != null) {
 //			if (userVO.getState().equals(Constants.DB_AGREEUSER_STATE_2)) {// 已被锁定时
@@ -110,55 +103,55 @@ public class LoginServiceImpl implements ILoginService {
 //		} else {
 //			errorMsg = "您输入的用户名不存在！ ";
 //		}
-		return errorMsg;
-	}
+        return errorMsg;
+    }
 
-	/**
-	 * 获取HttpServletRequest
-	 * 
-	 * @return
-	 */
-	protected HttpServletRequest getRequest() {
-		return ServletActionContext.getRequest();
-	}
+    /**
+     * 获取HttpServletRequest
+     *
+     * @return
+     */
+    protected HttpServletRequest getRequest() {
+        return ServletActionContext.getRequest();
+    }
 
-	/**
-	 * 获取HttpServletResponse
-	 * 
-	 * @return
-	 */
-	protected HttpServletResponse getResponse() {
-		return ServletActionContext.getResponse();
-	}
+    /**
+     * 获取HttpServletResponse
+     *
+     * @return
+     */
+    protected HttpServletResponse getResponse() {
+        return ServletActionContext.getResponse();
+    }
 
-	/**
-	 * 获取本次会话HttpSession
-	 * 
-	 * @return
-	 */
-	protected HttpSession getSession() {
-		return getRequest().getSession(false);
-	}
+    /**
+     * 获取本次会话HttpSession
+     *
+     * @return
+     */
+    protected HttpSession getSession() {
+        return getRequest().getSession(false);
+    }
 
-	@Override
-	public void signOut(String sid) {
-		if (getSession() != null) {
-			String sessionId = sid == null ? getSession().getId() : sid;
-			HttpSession session = HttpSessionContainer.removeSession(sessionId);
-			if (session != null)
-				session.invalidate();
-		} else {
-			HttpSession session = HttpSessionContainer.removeSession(sid);
-			if (session != null)
-				session.invalidate();
-		}
-	}
+    @Override
+    public void signOut(String sid) {
+        if (getSession() != null) {
+            String sessionId = sid == null ? getSession().getId() : sid;
+            HttpSession session = HttpSessionContainer.removeSession(sessionId);
+            if (session != null)
+                session.invalidate();
+        } else {
+            HttpSession session = HttpSessionContainer.removeSession(sid);
+            if (session != null)
+                session.invalidate();
+        }
+    }
 
-	@Override
-	public String doEditUser(String oldPassword, String username, String password) throws ParseException {
-		JSONObject whereEx = new JSONObject();
-		JSONObject updateData = new JSONObject();
-		String errorMsg = "";
+    @Override
+    public String doEditUser(String oldPassword, String username, String password) throws ParseException {
+        JSONObject whereEx = new JSONObject();
+        JSONObject updateData = new JSONObject();
+        String errorMsg = "";
 //		if (username != null && !username.equals("")) {
 //			whereEx.put("username", username);
 //			AwebUser vo = dbService.queryAsBean(AwebUser.class, whereEx);
@@ -189,19 +182,19 @@ public class LoginServiceImpl implements ILoginService {
 //			errorMsg = "用户不存在！";
 //		}
 
-		log.error("修改用户密码", username + "失败");
-		return errorMsg;
-	}
+        log.error("修改用户密码", username + "失败");
+        return errorMsg;
+    }
 
-	/**
-	 * 检查用户名密码
-	 * 
-	 * @param username
-	 * @param encPassword
-	 * @return
-	 * @throws AWebException
-	 * @throws Throwable
-	 */
+    /**
+     * 检查用户名密码
+     *
+     * @param username
+     * @param encPassword
+     * @return
+     * @throws AWebException
+     * @throws Throwable
+     */
 //	private AwebUser checkpassword(String username, String encPassword) throws AWebException {
 //		JSONObject whereEx = new JSONObject();
 //		whereEx.put("username", username);
@@ -209,25 +202,25 @@ public class LoginServiceImpl implements ILoginService {
 //		return dbService.queryAsBean(AwebUser.class, whereEx);
 //	}
 
-	/**
-	 * 检查是否存在该用户
-	 * 
-	 * @param username
-	 * @return
-	 * @throws AWebException
-	 */
+    /**
+     * 检查是否存在该用户
+     *
+     * @param username
+     * @return
+     * @throws AWebException
+     */
 //	private AwebUser checkUserExist(String username) throws AWebException {
 //		JSONObject whereEx = new JSONObject();
 //		whereEx.put("username", username);
 //		return dbService.queryAsBean(AwebUser.class, whereEx);
 //	}
 
-	/**
-	 * 更新最后登陆时间
-	 * 
-	 * @param userVO
-	 * @throws ParseException
-	 */
+    /**
+     * 更新最后登陆时间
+     *
+     * @param userVO
+     * @throws ParseException
+     */
 //	private void updateLoginTime(AwebUser userVO) throws ParseException {
 //		JSONObject whereEx = new JSONObject();
 //		JSONObject updateData = new JSONObject();

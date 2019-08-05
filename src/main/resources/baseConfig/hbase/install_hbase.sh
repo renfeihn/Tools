@@ -2,11 +2,14 @@
 echo install hadoop hbase ......
 
 
-echo tar kafka ......
+echo tar hadoop ......
+tar -zxf hadoop-2.7.7.tar.gz -C ~/
 
-tar -xf hadoop-2.7.7.tar.gz -C ~/
-tar -xf hbase-1.4.8-bin.tar.gz -C ~/
-tar -xf apache-phoenix-4.14.0-HBase-1.4-bin.tar.gz -C ~/
+echo tar hbase ......
+tar -zxf hbase-1.4.8.tar.gz -C ~/
+
+echo tar phoenix ......
+tar -zxf apache-phoenix-4.14.0-HBase-1.4-bin.tar.gz -C ~/
 
 cd ~
 echo add profile

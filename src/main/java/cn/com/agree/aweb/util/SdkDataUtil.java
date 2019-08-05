@@ -4,8 +4,8 @@ import java.util.Set;
 
 import cn.com.agree.aweb.struts2.action.support.AimRespAfaSdk;
 
-import com.aim.alibaba.fastjson.JSONArray;
-import com.aim.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 
 /**
  * @Description SDK结果数据处理工具类

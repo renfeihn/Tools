@@ -21,17 +21,29 @@ define(["jquery"], function () {
                     data: 'username', defaultContent: '-'
                 }, {
                     data: 'password', defaultContent: '-'
+                }, {
+                    data: 'exec_topics', defaultContent: '-'
                 }],
                 'aoColumnDefs': [{
                     "render": function (data, type, row, meta) {
                         if (null != row.kafka_id && '' != row.kafka_id) {
-                            return '<input type="checkbox" checked />';
+                            return '<input name="server" type="checkbox" checked />';
                         } else {
-                            return '<input type="checkbox" />';
+                            return '<input name="server" type="checkbox" />';
                         }
 
                     },
                     "targets": 1
+                }, {
+                    "render": function (data, type, row, meta) {
+                        if (data) {
+                            return '<input name="topic" type="checkbox" checked />';
+                        } else {
+                            return '<input name="topic" type="checkbox" />';
+                        }
+
+                    },
+                    "targets": 6
                 }]
             });
 
@@ -63,6 +75,7 @@ define(["jquery"], function () {
                     // console.log(JSON.stringify(res));
                     var serverObj = res[0].result;
                     var kafkaObj = res[1].result;
+                    // console.log(JSON.stringify(kafkaObj));
                     var zkObj = res[2].result;
 
                     if (null != serverObj) {
@@ -78,6 +91,7 @@ define(["jquery"], function () {
                                     $(kafkaList).each(function (j, kafka) {
                                         if (server.id == kafka.server_id) {
                                             list[i].kafka_id = kafka.id;
+                                            list[i].exec_topics = kafka.exec_topics;
                                         }
                                     });
                                 });
@@ -140,7 +154,9 @@ define(["jquery"], function () {
              * 保存数据
              */
             $('[data-role="saveBtn"]', $el).on('click', function () {
-                var selectList = getSelectedDatas();
+                var selectList = getSelectedDatas('server');
+                var topic_selectList = getSelectedDatas('topic');
+
                 var data = {};
                 if (selectList.length > 0) {
                     var list = [];
@@ -148,6 +164,16 @@ define(["jquery"], function () {
                         var obj = {};
                         obj.id = row.kafka_id;
                         obj.server_id = row.id;
+
+                        // topic
+                        if (topic_selectList) {
+                            $(topic_selectList).each(function (i, o) {
+                                if (row.kafka_id == o.kafka_id) {
+                                    obj.exec_topics = true;
+                                }
+                            })
+                        }
+
                         list.push(obj)
                     });
                     data.list = list;
@@ -162,6 +188,7 @@ define(["jquery"], function () {
                     data.listeners_prot = $('#listeners_prot').val();
                     data.kafka_home = $('#kafka_home').val();
 
+                    // console.log(JSON.stringify(data));
                     if (data) {
                         app.common.ajaxWithAfa({
                             url: 'InstallConfigAction_saveFileData.do',
@@ -181,9 +208,24 @@ define(["jquery"], function () {
             });
 
             /**
-             * checkbox点击事件
+             * 拓扑选择点击事件
              */
-            $('#dataTable', $el).on('click', 'input[type="checkbox"]', function (event) {
+            $('#dataTable', $el).on('click', 'input[name="topic"]', function () {
+                var row = $dataTable.rows($(this).parents('tr')).data()[0];
+                // console.log(JSON.stringify(row));
+                if (row.kafka_id) {
+                    $(this).parent().parent().siblings().children('td').children('input[name="topic"]').prop('checked', false);
+                    $(this).attr('checked',true);
+                } else {
+                    $(this).prop('checked', false);
+                    app.alert('topic只能安装在选中的kafka服务器中！');
+                }
+            });
+
+            /**
+             * server checkbox点击事件
+             */
+            $('#dataTable', $el).on('click', 'input[name="server"]', function () {
                 var data = $dataTable.row($(this).parents("tr")).data();
                 var checked = $(this).is(':checked');
                 var id = data.id;
@@ -206,9 +248,9 @@ define(["jquery"], function () {
             });
 
             //获取选中行数据
-            function getSelectedDatas() {
+            function getSelectedDatas(name) {
                 var datas = [];
-                $dataTable.$('input:checked').each(function (i, item) {
+                $dataTable.$('input[name="' + name + '"]:checked').each(function (i, item) {
                     datas.push($dataTable.rows($(item).parents('tr')).data()[0]);
                 });
                 return datas.length ? datas : null;

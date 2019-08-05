@@ -72,7 +72,7 @@
 						this.on("change:status", function (model) {
 							//handler.log(templatePath + "页面状态由[" + model.previous("status") + "]变更为[" + model.get("status") + "]");
 							if(model.get("status") === view.lifeCycle.LOAD) {
-								handler.log(templatePath + "页面加载完成");
+								// handler.log(templatePath + "页面加载完成");
 							}
 							app.common.logHistory(model.get("status"),handler.title);
 							//触发监听

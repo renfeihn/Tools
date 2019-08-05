@@ -6,7 +6,7 @@ package cn.com.agree.aweb.struts2.action.support.interfaces;
 import java.io.IOException;
 import java.util.concurrent.TimeoutException;
 
-import com.aim.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.JSONObject;
 
 import cn.com.agree.aweb.exception.AWebException;
 import cn.com.agree.aweb.exception.DBSupportException;

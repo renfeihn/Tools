@@ -87,14 +87,14 @@ ul.menu-firstLevel {
 	margin: auto;
 	/*background: #5694f5 url(../img/logo.svg) no-repeat center;
 	background-size: 50px 50px;*/
-	background: url(../img/bank/logo_simple.png) no-repeat center; 
+	/*background: url(../img/bank/logo_simple.png) no-repeat center; */
 	background-size: 50%;
 	width: 100%;
 	height: 100%;
 	transition: all 0.3s;
 }
 .aside-left:hover .bank-logo-content div,body.lock-Menu .bank-logo-content div {
-	background: url(../img/bank/logo_dgns.png) no-repeat center;
+	/*background: url(../img/bank/logo_dgns.png) no-repeat center;*/
 	background-size: 80%;
 	/*background: url(../img/agree_logo.svg) no-repeat center;
 	 background-size: 180px 50px;*/ 

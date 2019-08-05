@@ -115,6 +115,7 @@
                 <th>服务器IP</th>
                 <th>用户</th>
                 <th>密码</th>
+                <th>是否安装topic</th>
             </tr>
             </thead>
             <tbody></tbody>

@@ -2,7 +2,8 @@
   "list": [
     {
       "id": "1",
-      "server_id": "1"
+      "server_id": "1",
+      "exec_topics": true
     },
     {
       "id": "2",

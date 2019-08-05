@@ -49,7 +49,7 @@
 
     .logStorage-grid label.control-label {
         margin-right: 12px;
-        width: 200px;
+        width: 220px;
     }
 
     .logStorage-grid {

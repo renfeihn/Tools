@@ -2,7 +2,7 @@
 echo install mysql start ......
 
 echo tar mysql ......
-tar -zxf mysql-5.7.20-linux-glibc2.12-x86_64.tar.gz -C ~/
+tar -xf mysql-5.7.27-linux-glibc2.12-x86_64.tar -C ~/
 cd ~
 
 echo add profile

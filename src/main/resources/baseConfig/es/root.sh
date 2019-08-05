@@ -2,4 +2,4 @@
 
 echo su root ......
 
-su - root -s /bin/sh /home/renfei/test/shell/es/sysctl_cfg.sh
+su - root -s /bin/sh /home/es/es/sysctl_cfg.sh

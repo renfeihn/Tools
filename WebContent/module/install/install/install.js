@@ -33,15 +33,17 @@ define(["jquery"], function () {
                     fileName = fileName + '_' + $(this).val();
                 });
 
+                var outFilePath = $('#outFilePath', $el).val();
                 app.common.ajaxWithAfa({
                     url: 'InstallConfigAction_install.do',
                     data: {
-                        fileName: fileName
+                        fileName: fileName,
+                        outFilePath: outFilePath
                     }
                 }).done(function (d) {
                     let result = d.result;
                     if (result) {
-                        app.alert('开始成功安装文件！');
+                        app.alert('开始生成安装文件！');
                     }
                 });
             });

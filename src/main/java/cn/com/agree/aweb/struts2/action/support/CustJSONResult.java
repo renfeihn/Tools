@@ -5,8 +5,8 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.struts2.json.JSONException;
 import org.apache.struts2.json.JSONResult;
 
-import com.aim.alibaba.fastjson.JSON;
-import com.aim.alibaba.fastjson.serializer.SerializerFeature;
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.serializer.SerializerFeature;
 
 public class CustJSONResult extends JSONResult {
 
