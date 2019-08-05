@@ -39,3 +39,6 @@ nbdist/
 # Others
 *.log
 *.xml.versionsBackup
+*.tar
+*.tar.gz
+*.tgz

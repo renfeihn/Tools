@@ -1165,6 +1165,11 @@ public class InstallConfigAction extends StandardActionSupport {
 
     String install_log_file = classesPath + "install.log";
 
+    /**
+     * 功能说明：获取生成文件时日志内容
+     *
+     * @return
+     */
     public String getInstallLog() {
         try {
 
@@ -1184,6 +1189,7 @@ public class InstallConfigAction extends StandardActionSupport {
 
     /**
      * 写日志
+     *
      * @param s
      */
     private void writeLog(String s) {
