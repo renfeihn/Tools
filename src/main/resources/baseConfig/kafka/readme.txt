@@ -1,3 +1,5 @@
+## 需要上传到 kafka用户根目录
+
 1.执行check.sh
 
 3.执行install_es.sh
